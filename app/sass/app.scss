@@ -1,0 +1,43 @@
+.header-top {
+    display: flex;
+    padding: 20px;
+
+    .title {
+        display: flex;
+        align-items: center;
+        margin-right: 50px;
+    }
+
+    .search {
+        display: flex;
+        position: relative;
+        border: 1px solid gray;
+
+        form {
+            display: flex;
+
+            .search__input {
+                width: 400px;
+                height: 60px;
+                padding: 10px;
+            }
+
+            .search__icon {
+                font-size: 1.4rem;
+                padding: 10px;
+            }
+        }
+
+        .search-top10 {
+            position: absolute;
+            transform: translateY(50%);
+            left: 10px;
+            font-size: 1.2rem;
+            height: 50%;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    justify-content: center;
+}

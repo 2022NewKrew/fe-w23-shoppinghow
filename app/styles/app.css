@@ -1,0 +1,38 @@
+.header-top {
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+}
+.header-top .title {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+}
+.header-top .search {
+  display: flex;
+  position: relative;
+  border: 1px solid gray;
+}
+.header-top .search form {
+  display: flex;
+}
+.header-top .search form .search__input {
+  width: 400px;
+  height: 60px;
+  padding: 10px;
+}
+.header-top .search form .search__icon {
+  font-size: 1.4rem;
+  padding: 10px;
+}
+.header-top .search .search-top10 {
+  position: absolute;
+  transform: translateY(50%);
+  left: 10px;
+  font-size: 1.2rem;
+  height: 50%;
+  display: flex;
+  align-items: center;
+}
+
+/*# sourceMappingURL=app.css.map */
