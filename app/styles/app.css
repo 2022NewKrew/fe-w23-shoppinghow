@@ -44,6 +44,9 @@
   height: 60px;
   padding: 10px;
 }
+.header-menu .category__title .fas {
+  margin-right: 8px;
+}
 .header-menu .top-menu {
   display: flex;
   align-items: center;
