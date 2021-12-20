@@ -1,6 +1,7 @@
 .header-top {
     display: flex;
-    padding: 20px;
+    padding: 60px;
+    justify-content: center;
 
     .title {
         display: flex;
@@ -38,6 +39,32 @@
             align-items: center;
         }
     }
+}
 
-    justify-content: center;
+.header-menu {
+    height: 60px;
+    display: flex;
+    border: 1px solid #cbcbcb;
+
+    .category__title {
+        height: 60px;
+        padding: 10px;
+
+    }
+    .top-menu {
+        display:flex;
+        align-items: center;
+        padding: 10px;
+        .top-menu__item {
+            padding:0 20px;
+            line-height: 60px;
+        }
+    }
+}
+
+.gubun-bar {
+    width: 1px;
+    height: 60px;
+    background: #cbcbcb;
+    margin: 0px 10px;
 }
