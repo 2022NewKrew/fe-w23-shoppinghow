@@ -1,3 +1,5 @@
+$button-padding: 20px;
+
 .header-top {
     display: flex;
     padding: 60px;
@@ -58,9 +60,16 @@
         display:flex;
         align-items: center;
         padding: 10px;
-        .top-menu__item {
-            padding:0 20px;
+        .top-menu__btn{
+            padding:0 $button-padding;
             line-height: 60px;
+        }
+    }
+    .private-menu{
+        margin-left: auto;
+        display: flex;
+        .private-menu__btn {
+            padding: $button-padding; 
         }
     }
 }
@@ -69,5 +78,5 @@
     width: 1px;
     height: 60px;
     background: #cbcbcb;
-    margin: 0px 10px;
+    margin: 0px 20px;
 }

@@ -52,16 +52,23 @@
   align-items: center;
   padding: 10px;
 }
-.header-menu .top-menu .top-menu__item {
+.header-menu .top-menu .top-menu__btn {
   padding: 0 20px;
   line-height: 60px;
+}
+.header-menu .private-menu {
+  margin-left: auto;
+  display: flex;
+}
+.header-menu .private-menu .private-menu__btn {
+  padding: 20px;
 }
 
 .gubun-bar {
   width: 1px;
   height: 60px;
   background: #cbcbcb;
-  margin: 0px 10px;
+  margin: 0px 20px;
 }
 
 /*# sourceMappingURL=app.css.map */
