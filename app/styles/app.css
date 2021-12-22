@@ -1,5 +1,30 @@
+@charset "UTF-8";
+* {
+  font-family: 돋움, dotum, sans-serif;
+  outline: 1px solid gray;
+}
+
+body {
+  margin: 0px auto;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
 .container .promotion {
   border: 1px solid #e4e2e2;
+}
+
+.container .hot-deal, .container .promotion {
+  width: 1270px;
+  margin: auto;
+  background: #fff;
+}
+
+.container .hot-deal .hot-deal-list .hot-deal__item, .container .theme .theme-item {
+  width: 25%;
+  padding: 0 60px;
 }
 
 .header-top {
@@ -82,11 +107,6 @@
   background-color: #f5f5f5;
   padding-top: 25px;
 }
-.container .promotion {
-  width: 1270px;
-  margin: auto;
-  background: #fff;
-}
 .container .promotion .banner {
   display: flex;
   justify-content: center;
@@ -115,10 +135,6 @@
 .container .theme .theme-container {
   display: flex;
 }
-.container .theme .theme-item {
-  width: 25%;
-  padding: 0 60px;
-}
 .container .theme .theme__link {
   display: block;
 }
@@ -126,6 +142,14 @@
   display: block;
   padding: 5px;
   font-size: 0.875rem;
+}
+.container .hot-deal .hot-deal__title, .container .hot-deal .hot-deal__deatil-price {
+  display: block;
+  padding: 5px;
+  font-size: 0.875rem;
+}
+.container .hot-deal .hot-deal-list {
+  display: flex;
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,7 +1,4 @@
-$button-padding: 20px;
-%border-basic {
-    border: 1px solid #e4e2e2;
-}
+@import "global";
 
 .header-top {
     display: flex;
@@ -97,9 +94,7 @@ $button-padding: 20px;
     padding-top: 25px;
 
     .promotion {
-        width: 1270px;
-        margin: auto;
-        background: #fff;
+        @extend %section-layout;
         @extend %border-basic;
 
         .banner {
@@ -139,8 +134,7 @@ $button-padding: 20px;
             display: flex;
         }
         .theme-item {
-            width: 25%;
-            padding:0 60px; 
+            @extend %card;
         }
         .theme__link {
             display: block;
@@ -148,6 +142,22 @@ $button-padding: 20px;
                 display: block;
                 padding: 5px;
                 font-size: 0.875rem;
+            }
+        }
+    }
+
+    .hot-deal {
+        @extend %section-layout;
+        .hot-deal__title, .hot-deal__deatil-price{
+            display: block;
+            padding: 5px;
+            font-size: 0.875rem;
+        }
+
+        .hot-deal-list {
+            display: flex;
+            .hot-deal__item {
+                @extend %card;
             }
         }
     }
