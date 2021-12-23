@@ -1,7 +1,6 @@
 @charset "UTF-8";
 * {
   font-family: 돋움, dotum, sans-serif;
-  outline: 1px solid gray;
 }
 
 body {
@@ -22,9 +21,15 @@ h1 {
   background: #fff;
 }
 
-.container .hot-deal .hot-deal-list .hot-deal__item, .container .theme .theme-item {
+.container .theme .theme-item {
   width: 25%;
-  padding: 0 60px;
+  padding: 20px 60px;
+}
+
+.container .hot-deal .hot-deal__title, .container .hot-deal .hot-deal__detail-price, .container .theme .theme__link strong, .container .theme .theme__link span {
+  display: block;
+  padding: 5px;
+  font-size: 0.875rem;
 }
 
 .header-top {
@@ -135,21 +140,51 @@ h1 {
 .container .theme .theme-container {
   display: flex;
 }
+.container .theme .theme-item {
+  border: 1px solid #f1f1f1;
+}
 .container .theme .theme__link {
   display: block;
 }
-.container .theme .theme__link strong, .container .theme .theme__link span {
-  display: block;
-  padding: 5px;
-  font-size: 0.875rem;
+.container .theme .theme__link .theme-item__title {
+  font-weight: bold;
 }
-.container .hot-deal .hot-deal__title, .container .hot-deal .hot-deal__deatil-price {
-  display: block;
-  padding: 5px;
-  font-size: 0.875rem;
+.container .theme .theme__link .theme-item__desc {
+  padding-top: 0;
+}
+.container .theme .theme__link .theme-item__icon {
+  border: 0.5px solid #ff000069;
+  padding: 4px;
+  width: 35px;
+}
+.container .hot-deal {
+  margin-top: 60px;
+}
+.container .hot-deal .section-title {
+  font-size: 1.25rem;
+  padding-bottom: 20px;
+  background-color: #f5f5f5;
 }
 .container .hot-deal .hot-deal-list {
   display: flex;
+  flex-wrap: wrap;
+}
+.container .hot-deal .hot-deal-list .hot-deal__item {
+  width: 20%;
+  padding: 20px;
+  border-right: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+}
+.container .hot-deal .hot-deal__detail-price {
+  margin-top: 20px;
+  position: relative;
+}
+.container .hot-deal .hot-deal__detail-price .txt-price-percent {
+  position: absolute;
+  right: 10px;
+  font-size: 1.1rem;
+  line-height: 1.1rem;
+  color: red;
 }
 
 /*# sourceMappingURL=app.css.map */

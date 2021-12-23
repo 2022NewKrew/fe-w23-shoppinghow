@@ -135,29 +135,60 @@
         }
         .theme-item {
             @extend %card;
+            border: 1px solid #f1f1f1;
         }
         .theme__link {
             display: block;
             strong, span {
-                display: block;
-                padding: 5px;
-                font-size: 0.875rem;
+                @extend %text-block;
+            }
+            .theme-item__title {
+                font-weight: bold;
+            }
+            .theme-item__desc {
+                padding-top:0;
+            }
+            .theme-item__icon {
+                border:0.5px solid #ff000069;
+                padding:4px;
+                width: 35px;
             }
         }
     }
 
     .hot-deal {
         @extend %section-layout;
-        .hot-deal__title, .hot-deal__deatil-price{
-            display: block;
-            padding: 5px;
-            font-size: 0.875rem;
+        margin-top:60px;
+
+        .section-title {
+            font-size: 1.25rem;
+            padding-bottom: 20px;
+            background-color: $bgColor;
+        }
+        .hot-deal__title, .hot-deal__detail-price{
+            @extend %text-block;
         }
 
         .hot-deal-list {
             display: flex;
+            flex-wrap:wrap;
             .hot-deal__item {
-                @extend %card;
+                width:20%;
+                padding:20px;
+                border-right: 1px solid #f1f1f1;
+                border-bottom: 1px solid #f1f1f1;
+            }
+        }
+
+        .hot-deal__detail-price {
+            margin-top: 20px;
+            position: relative;
+            .txt-price-percent {
+                position: absolute;
+                right: 10px;
+                font-size: 1.1rem;
+                line-height: 1.1rem;
+                color: red;
             }
         }
     }
