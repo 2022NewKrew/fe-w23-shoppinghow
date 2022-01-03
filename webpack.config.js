@@ -7,7 +7,9 @@ module.exports = {
     entry: "./src/app.js",
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js"
+        filename: "bundle.js",
+        clean: true,
+        publicPath: "/"
     },
     module: {
         rules: [{
@@ -19,6 +21,9 @@ module.exports = {
         }]
     },
     devtool: "inline-source-map",
+    devServer: {
+        static: "./dist"
+    },
     plugins: [new HtmlWebpackPlugin(
         {
             template: "src/app.html"
