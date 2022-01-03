@@ -1,5 +1,6 @@
-import { hello } from "./hello.js";
+import "./styles/libs/reset.css";
+import "./styles/app.css";
+import "./sass/app.scss";
+import sampleImage from "./images/sample.png";
 
-const app = document.querySelector("#app");
-app.innerHTML = "App is rendering";
-app.appendChild(hello());
+const app = document.querySelector(".title");
