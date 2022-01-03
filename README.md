@@ -1,2 +1,5 @@
-# fe-w23-shoppinghow
-2,3주차 프로젝트 
+
+## 빌드
+
+build : npm run build
+start : npm run start(웹팩, 서버 자동 동기화)

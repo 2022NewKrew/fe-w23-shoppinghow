@@ -1,0 +1,324 @@
+.head_shw {
+    padding-top: 43px;
+    font-family: Apple SD Gothic Neo,Malgun Gothic,맑은 고딕,Dotum,돋움,sans-serif;
+    background-color: #fff;
+    text-align: center;
+    min-width: 977px;
+
+    .area_headtop {
+        display: inline-block;
+        vertical-align: top;
+
+        .tit_shw {
+            float: left;
+            margin-top: 4px;
+
+            .link_shw {
+                display: block;
+            }
+
+            .img_g {
+                width: 119px;
+                height: auto;
+            }
+        }
+
+        .wrap_shwsearch {
+            float: left;
+            position: relative;
+            margin: 0 24px 0 30px;
+            z-index: 1060;
+        }
+
+        .box_search {
+            position: relative;
+            width: 670px;
+            height: 54px;
+            padding: 16px 60px 14px 30px;
+            border: 1px solid #cecfd1;
+            border-radius: 10px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        .tf_keyword {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 22px;
+            color: #000;
+            letter-spacing: -.05em;
+            outline: none;
+        }
+
+        .btn_shwsearch {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 52px;
+            height: 52px;
+        }
+
+        .ico_shwsearch {
+            position: absolute;
+            left: 14px;
+            top: 15px;
+            width: 23px;
+            height: 23px;
+        }
+
+        .wrap_rollkeywords {
+            overflow: hidden;
+            position: absolute;
+            left: 31px;
+            top: 16px;
+            width: 578px;
+            height: 23px;
+            line-height: 22px;
+            background-color: #fff;
+            text-align: left;
+        }
+
+        .wrap_rollkeywords {
+            overflow: hidden;
+            position: absolute;
+            left: 31px;
+            top: 16px;
+            width: 578px;
+            height: 23px;
+            line-height: 22px;
+            background-color: #fff;
+            text-align: left;
+        }
+
+        .list_rollkeywords {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+
+            li {
+                overflow: hidden;
+                height: 22px;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 22px;
+                color: #939393;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                +li {
+                    margin-top: 10px;
+                }
+            }
+
+            .num_rank {
+                margin-right: 15px;
+                font-weight: 700;
+                font-family: robotoitalic,Apple SD Gothic Neo,Malgun Gothic,맑은 고딕,Dotum,돋움,sans-serif;
+            }
+        }
+    }
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+.img_g {
+    vertical-align: top;
+}
+
+.screen_hide, .screen_out {
+    font-size: 0;
+    line-height: 0;
+}
+
+.ico_shwgnb {
+    display: block;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
+        background-size: 130px 90px;
+}
+
+.ir_wa {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+button {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+dl, li, menu, ol, ul {
+    list-style: none;
+}
+
+
+.mac .area_shwgnb .btn_shwcate {
+    width: 118px;
+}
+
+.area_shwgnb {
+    position: relative;
+    margin-top: 40px;
+    border-top: 1px solid #efefef;
+
+    .wrap_shwgnb {
+        width: 973px;
+        margin: 0 auto;
+    }
+
+    .wrap_shwcate {
+        float: left;
+        position: relative;
+        z-index: 1050;
+    }
+
+    .btn_shwcate {
+        width: 122px;
+        height: 54px;
+        padding-left: 40px;
+        line-height: 58px;
+        letter-spacing: -.04em;
+        display: block;
+    position: relative;
+    font-size: 16px;
+    color: #000;
+    text-align: left;
+
+        .ico_menu {
+            position: absolute;
+    top: 13px;
+    width: 28px;
+    height: 28px;
+            left: 4px;
+            background-position: 0 -30px;
+        }
+    }
+
+    .txt_bar {
+        float: left;
+        width: 1px;
+        height: 18px;
+        margin-top: 18px;
+        background-color: #e3e3e3;
+    }
+
+    .list_shwgnb {
+        float: left;
+        padding: 0 12px 0 8px;
+
+        li {
+            float: left;
+        }
+
+        .link_shwgnb {
+            line-height: 58px;
+            letter-spacing: -.038em;
+            padding: 0 19px;
+            display: inline-block;
+    height: 54px;
+    font-weight: 700;
+    font-size: 16px;
+        }
+    }
+
+    .list_usergnb {
+        float: right;
+
+        li {
+            float: left;
+        }
+    }
+
+    .link_login {
+        line-height: 59px;
+        width: 70px;
+        padding-left: 33px;
+        display: block;
+        position: relative;
+        height: 54px;
+        font-size: 16px;
+        letter-spacing: -.04em;
+        color: #000;
+        text-align: left;
+
+        .ico_user {
+            left: 0;
+            position: absolute;
+    top: 13px;
+    width: 28px;
+    height: 28px;
+            background-position: -30px -30px;
+        }
+    }
+
+    .link_products {
+        width: 72px;
+        line-height: 59px;
+        padding: 0 16px 0 34px;
+        display: block;
+    position: relative;
+    height: 54px;
+    font-size: 16px;
+    letter-spacing: -.04em;
+    color: #000;
+    text-align: left;
+
+    .ico_products {
+        left: 0;
+        background-position: -60px -30px;
+        position: absolute;
+    top: 13px;
+    width: 28px;
+    height: 28px;
+    }
+
+    .ico_arrow {
+        position: absolute;
+        right: 6px;
+        top: 26px;
+        width: 8px;
+        height: 5px;
+        background-position: -60px -60px;
+    }
+    }
+}
+
+.mac .area_shwgnb .list_kwordgnb .link_shwgnb, .mac .area_shwgnb .list_shwgnb .link_shwgnb {
+    line-height: 58px;
+    letter-spacing: -.038em;
+}
+
+.ico_shwgnb {
+    display: block;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
+        background-size: 130px 90px;
+}
+
+.area_rcntproducts {
+    position: relative;
+    z-index: 1050;
+}
