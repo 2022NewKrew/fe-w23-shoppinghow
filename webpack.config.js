@@ -10,6 +10,13 @@ module.exports = {
     filename: "bundle.js",
     publicPath: "/",
   },
+  resolve: {
+    alias: {
+      "@components": path.resolve(__dirname, "src/components"),
+      "@utils": path.resolve(__dirname, "src/utils"),
+      "@data": path.resolve(__dirname, "src/data"),
+    },
+  },
   devServer: {
     static: "./dist",
   },
