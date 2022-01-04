@@ -3,6 +3,10 @@ import { $ } from "../../utils/util";
 
 export default class HeaderMenu extends Component {
   setUp() {}
-  getTemplate() {}
+  template() {
+    return `
+      Header Menu
+    `;
+  }
   setEvent() {}
 }
