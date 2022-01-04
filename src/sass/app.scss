@@ -49,6 +49,7 @@
     border: 1px solid #cbcbcb;
     max-width: 1270px;
     margin: 0px auto;
+    position: relative;
 
     .category__title {
         height: 60px;
@@ -57,6 +58,13 @@
         .fas {
             margin-right: 8px;
         }
+    }
+
+    .category__container {
+        width: 561px;
+        height: 498px;
+        top: 58px;
+        left: -1px;
     }
 
     .top-menu {
@@ -70,12 +78,27 @@
         }
     }
 
+    .pop-up-layer {
+        @extend %border-distinct;
+        position: absolute;
+        background-color: #fff;
+        display: none;
+        overflow: hidden;
+    }
+
     .private-menu {
         margin-left: auto;
         display: flex;
 
         .private-menu__btn {
             padding: $button-padding;
+        }
+
+        .current-goods {
+            width: 363px;
+            height: 263px;
+            top: 58px;
+            right: -1px;
         }
     }
 }
