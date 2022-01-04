@@ -1,4 +1,8 @@
 @charset "UTF-8";
+@import url("./libs/reset.css");
+@import url("./global.css");
+@import url("./icon.css");
+
 * {
   font-family: 돋움, dotum, sans-serif;
 }
@@ -122,9 +126,22 @@ button {
   background-position: -30px 0;
 }
 
+.ico_comm2 {
+  background: url("../../assets/images/ico_comm2.gif");
+  float: left;
+  height: 18px;
+  margin: 11px 4px 0 0;
+}
+
+.ico_theme {
+  width: 31px;
+  background-position: 0 -850px;
+}
+
 #kakaoHead {
   padding-top: 43px;
-  font-family: Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, Dotum, 돋움, sans-serif;
+  font-family: Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, Dotum, 돋움,
+    sans-serif;
   background-color: #fff;
   text-align: center;
   min-width: 977px;
@@ -292,11 +309,11 @@ button {
   border: 1px solid #e4e4e4;
   border-bottom: 0 none;
   width: 1274px;
+  background-color: #fff;
 }
 .section_top .cont_event {
   width: 100%;
   border-bottom: 1px solid #f1f1f1;
-  background-color: #fff;
   display: flex;
 }
 .section_top .cont_event .evt_item {
@@ -340,13 +357,25 @@ button {
   margin-left: 3px;
   padding: 5px 0;
 }
-.section_top .cont_event .evt_slide .paging_comm .inner_paging .btn_paging .num_page {
+.section_top
+  .cont_event
+  .evt_slide
+  .paging_comm
+  .inner_paging
+  .btn_paging
+  .num_page {
   display: block;
   width: 15px;
   height: 5px;
   background-color: #ccc;
 }
-.section_top .cont_event .evt_slide .paging_comm .inner_paging .btn_paging .select {
+.section_top
+  .cont_event
+  .evt_slide
+  .paging_comm
+  .inner_paging
+  .btn_paging
+  .select {
   background-color: #000;
 }
 .section_top .cont_event .evt_slide .paging_comm .btn_slide {
@@ -366,6 +395,39 @@ button {
 }
 .section_top .cont_event .evt_slide .paging_comm .btn_next:hover .ico_next {
   background-position: -90px 0;
+}
+.section_top .list_item {
+  display: flex;
+}
+.section_top .list_item li {
+  padding: 21px 27px;
+  width: 256px;
+  height: 318px;
+  border-right: 1px solid #f1f1f1;
+}
+.section_top .list_item li .link_prod {
+  display: block;
+}
+.section_top .list_item li .link_prod .info_thumb {
+  display: block;
+  height: 200px;
+}
+.section_top .list_item li .link_prod .tit_g {
+  display: block;
+  margin: 10px 0 1px;
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 22px;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+.section_top .list_item li .link_prod .txt_info {
+  display: block;
+  color: #888;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: -1px;
 }
 
 /*# sourceMappingURL=app.css.map */

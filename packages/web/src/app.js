@@ -1,3 +1,5 @@
+import "./styles/app.css";
+
 window.addEventListener("DOMContentLoaded", () => {
   const targetEl = document.querySelector("#log");
 

@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/libs/reset.css" />
-    <link rel="stylesheet" href="./styles/_global.css" />
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" />
     <link rel="stylesheet" href="./styles/app.css" />
     <script
       src="https://kit.fontawesome.com/d69dc18532.js"
@@ -146,34 +145,21 @@
               </div>
             </div>
           </div>
-          <div class="cont_item"></div>
+          <ul class="list_item">
+            <li>
+              <a href="#" class="link_prod">
+                <span class="info_thumb">
+                  <img src="../assets/images/마음을 전해요 _새해 카드.jpg" />
+                </span>
+                <strong class="tit_g">마음을 전해요 #새해 카드</strong>
+                <span class="txt_info">손글씨로 전하는 새해 인사</span>
+                <span class="ico_comm2 ico_theme"></span>
+              </a>
+            </li>
+          </ul>
         </section>
       </div>
     </main>
     <footer></footer>
-
-    <script>
-      function makeHotDealHTML() {
-        const target = document.querySelector(".hot-deal-list");
-        const hotdealItemTpl = `
-                <li class="hot-deal__item">
-                    <a href="" class="hot-deal__link">
-                        <span class="hot-deal__thumb">
-                            <img src="//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895" class="hot-deal__img" alt="">
-                        </span>
-                        <strong class="hot-deal__title">구매1만↑우유앙빵10+10</strong>
-                        <span class="hot-deal__detail-price">
-                            <span class="txt-price">18,500 </span>
-                            <span class="txt-price-percent">핫딜가</span>
-                        </span>
-                    </a>
-                </li>`;
-
-        target.innerHTML = Array(10)
-          .fill(0)
-          .reduce((html, item) => html + hotdealItemTpl, ``);
-      }
-      makeHotDealHTML();
-    </script>
   </body>
 </html>

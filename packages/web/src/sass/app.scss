@@ -170,10 +170,11 @@
   border: 1px solid #e4e4e4;
   border-bottom: 0 none;
   width: 1274px;
+  background-color: #fff;
   .cont_event {
     width: 100%;
     border-bottom: 1px solid #f1f1f1;
-    background-color: #fff;
+
     display: flex;
     .evt_item {
       width: 510px;
@@ -244,6 +245,37 @@
       }
     }
   }
-  .cont_item {
+  .list_item {
+    display: flex;
+    li {
+      padding: 21px 27px;
+      width: 256px;
+      height: 318px;
+      border-right: 1px solid #f1f1f1;
+      .link_prod {
+        display: block;
+        .info_thumb {
+          display: block;
+          height: 200px;
+        }
+        .tit_g {
+          display: block;
+          margin: 10px 0 1px;
+          font-size: 14px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          line-height: 22px;
+          letter-spacing: -1px;
+          font-weight: bold;
+        }
+        .txt_info {
+          display: block;
+          color: #888;
+          font-size: 12px;
+          line-height: 14px;
+          letter-spacing: -1px;
+        }
+      }
+    }
   }
 }
