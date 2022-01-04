@@ -19,9 +19,4 @@ window.onload = () => {
     window.addEventListener('popstate', pageRouter.renderPage);
 
     pageRouter.renderPage();
-    // 페이지 체인지 테스트용
-    // setTimeout(() => {
-    //     console.log("after 2 seconds")
-    //     window.dispatchEvent(locationChangeEvent("top", "level"))
-    // }, 2000);
 };

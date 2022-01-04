@@ -67,7 +67,7 @@ export const goodsList = () => {
     const target = document.createElement('ul');
 
     const render = () => {
-        target.className = 'hot-deal-list';
+        target.className = 'goods-item-list';
         goodsData.forEach((goods) => target.appendChild(goodsItem(goods)));
 
         return target;

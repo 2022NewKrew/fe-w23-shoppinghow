@@ -5,7 +5,7 @@ export const goodsStall = () => {
     const target = document.createElement('div');
 
     const render = () => {
-        target.className = 'hot-deal';
+        target.className = 'goods-stall';
         target.appendChild(stallTitle({ title: '품절주의, 역대급 핫딜' }));
         target.appendChild(goodsList());
         return target;

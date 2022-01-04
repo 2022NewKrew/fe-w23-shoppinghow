@@ -155,7 +155,7 @@
         }
     }
 
-    .hot-deal {
+    .goods-stall {
         @extend %section-layout;
         margin-top: 60px;
 
@@ -164,15 +164,15 @@
             padding-bottom: 20px;
             background-color: $bgColor;
         }
-        .hot-deal__title,
-        .hot-deal__detail-price {
+        .goods-stall__title,
+        .goods-stall__detail-price {
             @extend %text-block;
         }
 
-        .hot-deal-list {
+        .goods-item-list {
             display: flex;
             flex-wrap: wrap;
-            .hot-deal__item {
+            .goods-stall__item {
                 width: 20%;
                 padding: 20px;
                 border-right: 1px solid #f1f1f1;
@@ -183,7 +183,7 @@
             }
         }
 
-        .hot-deal__detail-price {
+        .goods-stall__detail-price {
             margin-top: 20px;
             position: relative;
             .txt-price-percent {
