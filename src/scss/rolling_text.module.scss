@@ -1,0 +1,27 @@
+@use "search_bar_common.module" as search-bar;
+
+$height: 40px;
+
+.component {
+  height: $height;
+  position: absolute;
+  left: search-bar.$search-bar-left-margin;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  
+  .text-roller {
+    height: $height;
+    
+    .text-item {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+:export {
+  height: $height;
+}
