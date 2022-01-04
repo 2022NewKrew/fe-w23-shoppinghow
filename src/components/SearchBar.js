@@ -63,18 +63,32 @@ class SearchBar {
     }, TOP_ITEMS_ROLLING_DELAY);
   }
 
-  addEvents() {
-    const $searchForm = document.querySelector(".search__input");
-    $searchForm.addEventListener("mouseover", () => {
-      clearTimeout(this.#rollingTimeoutId);
-      this.#rollingTimeoutId = null;
-    });
+  pauseRolling() {
+    clearTimeout(this.#rollingTimeoutId);
+    this.#rollingTimeoutId = null;
+  }
 
-    $searchForm.addEventListener("mouseout", () => {
-      if (!this.#rollingTimeoutId) {
-        this.doRolling();
-      }
-    });
+  resumeRolling() {
+    if (!this.#rollingTimeoutId) {
+      this.doRolling();
+    }
+  }
+
+  addEvents() {
+    const $searchInput = document.querySelector(".search__input");
+    $searchInput.addEventListener("mouseover", this.pauseRolling.bind(this));
+
+    $searchInput.addEventListener("mouseout", this.resumeRolling.bind(this));
+
+    $searchInput.onfocus = () => {
+      $searchInput.style.backgroundColor = "white";
+      this.pauseRolling();
+    };
+
+    $searchInput.onblur = () => {
+      $searchInput.style.backgroundColor = "transparent";
+      this.resumeRolling();
+    };
   }
 
   render() {
