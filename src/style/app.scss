@@ -188,11 +188,10 @@
                 }
                 &__container {
                     display: flex;
+                    width: max-content;
                     position: absolute;
                     margin: 0 auto;
-                    width: 485px;
-                    height: 340px;
-                    left: -485px;
+                    left: 0;
                     z-index: 0;
                 }
                 &__navigation-ul {
