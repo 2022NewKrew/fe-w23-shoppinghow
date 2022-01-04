@@ -3,16 +3,16 @@ export default class Carousel {
    * @param {HTMLElement} container
    * @param {HTMLElement} leftBtn
    * @param {HTMLElement} rightBtn
-   * @param {HTMLElement} navigationUl
+   * @param {HTMLElement} tabContainer
    */
-  constructor(container, leftBtn, rightBtn, navigationUl){
+  constructor(container, leftBtn, rightBtn, tabContainer){
     /** @type {HTMLElement} */
     this.container=container;
-    // /** @type {HTMLElement} */
-    // this.container=this.container.children[0];
     this.length=this.container.children.length;
     /** @type {number} */
     this.currentIndex=1;
+    /** @type {HTMLElement} */
+    this.tabContainer=tabContainer;
     this.imageWidth=this.container.children[0].getBoundingClientRect().width;
 
     leftBtn.addEventListener("click", ()=>{
@@ -22,9 +22,19 @@ export default class Carousel {
       this._goByOffset(1);
     });
 
-    navigationUl.innerHTML=Array(this.length).fill(0).map((_, index)=>(
+    
+    tabContainer.innerHTML=Array(this.length).fill(0).map((_, index)=>(
       `<li data-tabIndex="${index}" class="planning__navigation-li"></li>`
     )).join("");
+    this._markCurrentPageActive();
+    tabContainer.addEventListener("click", (e)=>{
+      const tabIndex=e.target.getAttribute("data-tabIndex");
+      if(tabIndex===null){
+        return;
+      }
+      const offset=tabIndex-this.currentIndex;
+      this._goByOffset(offset);
+    });
   }
 
   /**
@@ -41,12 +51,11 @@ export default class Carousel {
    */
   _goByOffset(indexOffset){
     this.container.style=`transition: 0.5s ease-out;transform: translateX(${-indexOffset*(this.imageWidth)}px)`;
-    // this.container.style=`transition: 0.5s ease-out;`;
-    // indexOffset>0 ?
     this.container.ontransitionend=()=>{
       this.container.ontransitionend=null;
       this.container.removeAttribute("style");
-      this.currentIndex=(this.currentIndex+indexOffset)%this.length;
+      this.currentIndex=(this.currentIndex+indexOffset+this.length)%this.length;
+      this._markCurrentPageActive();
       if(indexOffset>0){
         while(indexOffset!==0){
           this.container.appendChild(this.container.firstElementChild);
@@ -60,5 +69,11 @@ export default class Carousel {
         }
       }
     };
+  }
+  _markCurrentPageActive(){
+    Array.from(this.tabContainer.children).forEach((tab)=>{
+      tab.classList.remove("planning__navigation-li-active");
+    });
+    this.tabContainer.children[this.currentIndex].classList.add("planning__navigation-li-active");
   }
 }
