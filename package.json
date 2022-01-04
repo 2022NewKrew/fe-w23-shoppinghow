@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "nodemon index.js -w index.js",
+    "webpack": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -25,9 +26,11 @@
     "@babel/cli": "^7.16.7",
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
+    "axios": "^0.24.0",
     "babel-loader": "^8.2.3",
     "core-js": "^3.20.2",
     "css-loader": "^6.5.1",
+    "nodemon": "^2.0.15",
     "sass": "^1.45.2",
     "sass-loader": "^12.4.0",
     "style-loader": "^3.3.1",

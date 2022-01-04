@@ -3,6 +3,8 @@
 
 # Repository Tree Structure
 ```
+json: Contains json files for databases.
+
 output: Outputs and html files are in here.
 
 src: source codes (js, css)
