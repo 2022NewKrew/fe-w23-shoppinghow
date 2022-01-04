@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "server": "nodemon ./server.js",
-    "start": "concurrently \"webpack --watch\" \"nodemon ./server\""
+    "server": "nodemon ./backend/server.js",
+    "start": "concurrently \"webpack --watch\" \"nodemon ./backend/server\""
   },
   "keywords": [],
   "author": "",
@@ -29,6 +29,7 @@
     "nodemon": "^2.0.15",
     "path": "^0.12.7",
     "sass-loader": "^12.4.0",
+    "sqlite3": "^5.0.2",
     "style-loader": "^3.3.1",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",

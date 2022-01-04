@@ -1,13 +1,14 @@
 const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const fe="frontend"
+
 module.exports = {
     mode: "development",
     entry: `./${fe}/src/index.js`,
     output: {
-        path: path.resolve(__dirname, "public/dist"),
+        path: path.join(__dirname, "/backend/public/dist"),
         publicPath:"/dist",
         filename: 'bundle.[contenthash].js',
     },

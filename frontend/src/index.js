@@ -1,12 +1,20 @@
-import MainService from './mainService.js';
-import './style/app.scss';
+import "./style/app.scss";
+import MainService from "./mainService.js";
+import GetForm from "./getForm.js";
+import GetApi from "./getApi.js";
 
-window.addEventListener("DOMContentLoaded", ()=> {
-    const targetEl = document.querySelector(".category");
+window.addEventListener("DOMContentLoaded", () => {
+  defaultSetting();
+});
 
-    const service = new MainService({targetEl})
-    const datalist = [1,2,3,4,5,6,7];
-    const subHtml = service.init(datalist);
+//기본 화면 구성 셋팅
+function defaultSetting() {
+    //검색키워드셋팅
+    setSearchKeyword();
+}
 
-    // targetEl.innerHTML += `datalist is ${subHtml}`;
-})
+//TODO: getapi, getform 연동해서 검색키워드 리스트 가져와 화면에 뿌려줄 예정
+//검색키워드셋팅
+function setSearchKeyword(){
+
+}
