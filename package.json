@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx nodemon ./server.js",
-    "dev": "webpack serve --open --config ./webpack/webpack.dev.js",
+    "dev": "webpack --config ./webpack/webpack.dev.js",
     "prod": "webpack --config ./webpack/webpack.prod.js"
   },
   "keywords": [],
@@ -16,6 +16,7 @@
     "babel-loader": "^8.2.3",
     "consolidate": "^0.16.0",
     "cookie-parser": "~1.4.4",
+    "corejs": "^1.0.0",
     "css-loader": "^6.5.1",
     "debug": "~2.6.9",
     "express": "~4.16.1",
