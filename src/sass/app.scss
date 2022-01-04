@@ -1,0 +1,227 @@
+@import "reset";
+@import "global";
+
+$SearchHeight: 60px;
+
+.header-top {
+    display: flex;
+    padding: 60px;
+    justify-content: center;
+
+    .title {
+        display: flex;
+        align-items: center;
+        margin-right: 50px;
+    }
+
+    .search {
+        display: flex;
+        position: relative;
+        border: 1px solid gray;
+        overflow: hidden;
+
+        form {
+            display: flex;
+
+            .search__input {
+                width: 400px;
+                height: 60px;
+                padding-left: 20px;
+                line-height: $SearchHeight;
+                font-size: 1.2rem;
+            }
+
+            .search__icon {
+                font-size: 1.4rem;
+                padding: 10px;
+            }
+        }
+
+        .search-top {
+            position: absolute;
+            top: 5px;
+            left: 20px;
+            line-height: $SearchHeight;
+            font-size: 1.2rem;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            color: grey;
+
+                .search-top__item{
+                    position: absolute;
+                    width: 300px;
+                    height: 60px;
+                    transition: transform 1s;
+                    display: none;
+                }
+
+                .previous-top-item{
+                    transform: translateY(-60px);
+                    display: block;
+                }
+
+                .current-top-item {
+                    transform: translateY(0px);
+                    display: block;
+                }
+
+                .next-top-item {
+                    transform: translateY(60px);
+                    display: block;
+                }
+        }
+    }
+}
+
+.header-menu {
+    height: 60px;
+    display: flex;
+    border: 1px solid #cbcbcb;
+    max-width: 1270px;
+    margin: 0px auto;
+
+    .category__title {
+        height: 60px;
+        padding: 10px;
+
+        .fas {
+            margin-right: 8px;
+        }
+
+    }
+
+    .top-menu {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+
+        .top-menu__btn {
+            padding: 0 $button-padding;
+            line-height: 60px;
+        }
+    }
+
+    .private-menu {
+        margin-left: auto;
+        display: flex;
+
+        .private-menu__btn {
+            padding: $button-padding;
+        }
+    }
+}
+
+.gubun-bar {
+    width: 1px;
+    height: 60px;
+    background: #cbcbcb;
+    margin: 0px 20px;
+}
+
+.container {
+    margin: auto;
+    background-color: #f5f5f5;
+    padding-top: 25px;
+
+    .promotion {
+        @extend %section-layout;
+        @extend %border-basic;
+
+        .banner {
+            display: flex;
+            justify-content: center;
+
+            .best {
+                float: left;
+                width: 510px;
+
+                .best__link {
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
+
+            .planning {
+                width: 790px;
+
+                .planning__link {
+                    display: block;
+                    margin: 0 auto;
+                    width: 600px;
+
+                }
+            }
+        }
+
+        img {
+            margin: auto;
+            text-align: center;
+            display: flex;
+        }
+    }
+    .theme {
+        .theme-container {
+            display: flex;
+        }
+        .theme-item {
+            @extend %card;
+            border: 1px solid #f1f1f1;
+        }
+        .theme__link {
+            display: block;
+            strong, span {
+                @extend %text-block;
+            }
+            .theme-item__title {
+                font-weight: bold;
+            }
+            .theme-item__desc {
+                padding-top:0;
+            }
+            .theme-item__icon {
+                border:0.5px solid #ff000069;
+                padding:4px;
+                width: 35px;
+            }
+        }
+    }
+
+    .hot-deal {
+        @extend %section-layout;
+        margin-top:60px;
+
+        .section-title {
+            font-size: 1.25rem;
+            padding-bottom: 20px;
+            background-color: $bgColor;
+        }
+        .hot-deal__title, .hot-deal__detail-price{
+            @extend %text-block;
+        }
+
+        .hot-deal-list {
+            display: flex;
+            flex-wrap:wrap;
+            .hot-deal__item {
+                width:20%;
+                padding:20px;
+                border-right: 1px solid #f1f1f1;
+                border-bottom: 1px solid #f1f1f1;
+            }
+        }
+
+        .hot-deal__detail-price {
+            margin-top: 20px;
+            position: relative;
+            .txt-price-percent {
+                position: absolute;
+                right: 10px;
+                font-size: 1.1rem;
+                line-height: 1.1rem;
+                color: red;
+            }
+        }
+    }
+}
