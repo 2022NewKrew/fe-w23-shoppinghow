@@ -1,0 +1,75 @@
+{
+  "hotdeals": [
+    {
+      "title": "새치와 이별시킨 헤어틴트",
+      "price": "22,900",
+      "original": "54,900",
+      "discounted": "58%",
+      "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211209123608275_155329"
+    },
+    {
+      "title": "피지가 쭉! 피지흡입기",
+      "price": "19,800",
+      "original": "70,000",
+      "discounted": "72%",
+      "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220103152744300_206043"
+    },
+    {
+      "title": "명품 랜덤박스 7,000원",
+      "price": "7000",
+      "original": null,
+      "discounted": "핫딜가",
+      "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211215173802161_208073"
+    },
+    {
+      "title": "쉐베베 쉐고미 뽀글이백",
+      "price": "19,900",
+      "original": "34,900",
+      "discounted": "43%",
+      "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220103142820081_617271"
+    },
+
+    {
+      "title": "주/문/폭/주 굽네갈비천왕",
+      "price": "14,550",
+      "original": null,
+      "discounted": "핫딜가",
+      "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220103155743340_128472"
+    },
+    {
+      "title": "티 안나! 정수리 부분가발",
+      "price": "8,500",
+      "original": "13,000",
+      "discounted": "35%",
+      "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220103152420751_902879"
+    },
+    {
+      "title": "감자탕大용량!배불리먹어~",
+      "price": "20,900",
+      "original": "39,900",
+      "discounted": "48%",
+      "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220103143932015_130439"
+    },
+    {
+      "title": "비싸서못먹던갑오징어특가",
+      "price": "15,900",
+      "original": null,
+      "discounted": "핫딜가",
+      "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220103160111751_247630"
+    },
+    {
+      "title": "제일맛난부위버팔로윙1kg",
+      "price": "8,800",
+      "original": "14,700",
+      "discounted": "58%",
+      "img": "https://shop1.daumcdn.net/shophow/c/image/content/set/ad8255/20211014114401830_24251"
+    },
+    {
+      "title": "판매자 인생브라 4SET",
+      "price": "12,400",
+      "original": "41,300",
+      "discounted": "70%",
+      "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220103162255509_805107"
+    }
+  ]
+}
