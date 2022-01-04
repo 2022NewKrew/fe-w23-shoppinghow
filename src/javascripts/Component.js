@@ -3,6 +3,7 @@ import { Obj } from 'nunjucks/src/object'
 export default class Component {
     
     #rootEl
+    #childComponents = []
     
     constructor(htmlStructure, childComponentObj) {
         if (!htmlStructure) {
@@ -20,8 +21,17 @@ export default class Component {
                 const componentKeyEl = this.#rootEl.querySelector(`[data-component="${ dataComponentKey }"]`)
         
                 componentKeyEl.parentElement.replaceChild(component.rootEl, componentKeyEl)
+                this.#childComponents.push(component)
             })
         }
+    }
+    
+    remove() {
+        this.#childComponents.forEach((component) => {
+            component.remove()
+        })
+        
+        this.#rootEl.remove()
     }
     
     get rootEl() {
