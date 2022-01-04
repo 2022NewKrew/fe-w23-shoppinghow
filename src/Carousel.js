@@ -32,15 +32,14 @@ export default class Carousel {
    */
   goToIndexByNavgation(targetIndex){
     this.currentIndex===targetIndex ?
-    undefined:
-    this._goByOffset(targetIndex, this.currentIndex<targetIndex);
+      undefined:
+      this._goByOffset(targetIndex, this.currentIndex<targetIndex);
   }
   /**
    * Do not call this outside.
    * @param {number} indexOffset
    */
   _goByOffset(indexOffset){
-    console.log(this.currentIndex, indexOffset)
     this.container.style=`transition: 0.5s ease-out;transform: translateX(${-indexOffset*(this.imageWidth)}px)`;
     // this.container.style=`transition: 0.5s ease-out;`;
     // indexOffset>0 ?
@@ -60,6 +59,6 @@ export default class Carousel {
           indexOffset+=1;
         }
       }
-    }
+    };
   }
-};
+}

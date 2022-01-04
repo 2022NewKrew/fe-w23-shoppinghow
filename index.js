@@ -4,15 +4,19 @@
  * The server handles both back and front.
  */
 const express=require("express");
-const itemData=require("./json/items.json");
 const app=express();
 const port=8000;
 const jsonPath="/json/";
 const apiPath="/api/";
-const zzimReqPath=`${apiPath}zzim/`;
+const dibsReqPath=`${apiPath}dibs/`;
 const viewReqPath=`${apiPath}view/`;
-const zzimItemIds={};
+const dibsItemIds={};
 const viewItemIds={};
+const webpack=require("webpack");
+const webpackDevMiddleware=require("webpack-dev-middleware");
+const webpackConfig=require("./webpack.config");
+const webpackCompiler=webpack(webpackConfig);
+app.use(webpackDevMiddleware(webpackCompiler));
 /**
  * Without using json middleware,
  * express cannot acquire request body.
@@ -37,15 +41,15 @@ app.get(viewReqPath, (req, res)=>{
   return res.send(JSON.stringify(viewItemIds)).status(200);
 });
 
-app.post(zzimReqPath, (req, res)=>{
+app.post(dibsReqPath, (req, res)=>{
   const itemId=req.body.itemId;
   if(itemId===undefined){
     return res.sendStatus(400);
   }
-  zzimItemIds[itemId]=true;  
+  dibsItemIds[itemId]=true;  
   return res.sendStatus(200);
 });
 
-app.get(zzimReqPath, (req, res)=>{
-  return res.send(JSON.stringify(zzimItemIds)).status(200);
+app.get(dibsReqPath, (req, res)=>{
+  return res.send(JSON.stringify(dibsItemIds)).status(200);
 });

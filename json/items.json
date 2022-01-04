@@ -1,62 +1,62 @@
-{
-    "0": {
+[
+    {
         "itemId": 0,
         "imageSrc": "//shop1.daumcdn.net/thumb/S318x318/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FP15687305480.jpg%3Fut%3D20211210172757&amp;scode=talkgift",
         "title": "트렌디한 구찌 지갑",
         "desc": "꺼내서 자랑하고 싶은 이유"
     },
-    "1": {
+    {
         "itemId": 1,
         "imageSrc": "//shop1.daumcdn.net/thumb/S318x318/?fname=http%3A%2F%2Fshop2.daumcdn.net%2Fshophow%2Fp%2FV14651717067.jpg%3Fut%3D20210904092746&amp;scode=talkgift",
         "title": "트라이앵글 브랜드전",
         "desc": "있으면 도움되는 조리 도구 총모음"
     },
-    "2": {
+    {
         "itemId": 2,
         "imageSrc": "//shop1.daumcdn.net/thumb/S318x318/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FX15420477717.jpg%3Fut%3D20211116163053&amp;scode=talkgift",
         "title": "작지만 강한 미니 온풍기",
         "desc": "언제 어디서든 따뜻하게"
     },
-    "3": {
+    {
         "itemId": 3,
         "imageSrc": "//shop1.daumcdn.net/thumb/S318x318/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FU15563830470.jpg%3Fut%3D20211222065245&amp;scode=talkgift",
         "title": "자주 쓰는 종이호일 기획전",
         "desc": "다양한 크기와 모양을 한 곳에!"
     },
-    "4": {
+    {
         "itemId": 4,
         "imageSrc": "//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895",
         "title": "구매1만↑우유앙빵10+10",
         "desc": "핫딜가"
     },
-    "5": {
+    {
         "itemId": 5,
         "imageSrc": "//shop1.daumcdn.net/thumb/R200x200/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FA5092613950.jpg%3Fut%3D20200601225403",
         "title": "오성사 HB-209",
         "desc": "따끈따끈 아이 조아"
     },
-    "6": {
+    {
         "itemId": 6,
         "imageSrc": "//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220103153804794_560102",
         "title": "핑크색잠옷",
         "desc": "홈쇼핑완판!상하의set특가"
     },
-    "7": {
+    {
         "itemId": 7,
         "imageSrc": "//shop1.daumcdn.net/thumb/S318x318/?fname=http%3A%2F%2Fshop2.daumcdn.net%2Fshophow%2Fp%2FR15045343742.jpg%3Fut%3D20211014080551&scode=talkgift",
         "title": "가계부",
         "desc": "체계적인 자금 관리 시작!"
     },
-    "8": {
+    {
         "itemId": 8,
         "imageSrc": "//shop1.daumcdn.net/thumb/S318x318/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FL15656535122.jpg%3Fut%3D20211208061428&scode=talkgift",
         "title": "게이밍 키보드와 마우스",
         "desc": "뛰어난 성능의 마우스와 키보드를 만나보세요"
     },
-    "9": {
+    {
         "itemId": 9,
         "imageSrc": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211229153951884_204341",
         "title": "통삼겹살 3kg",
         "desc": "통삼겹살 배부르게 먹자!"
     }
-}
+]
