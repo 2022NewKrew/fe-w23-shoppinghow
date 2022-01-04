@@ -1,3 +1,5 @@
+import { topPage } from '../components/pages/topPage';
+
 export default class PageRouter {
     #app;
     constructor(app) {
@@ -5,14 +7,14 @@ export default class PageRouter {
     }
 
     renderPage() {
-        console.log("renderPage 실행")
         const { pathname } = window.location;
+        this.#app.innerHTML = '';
         switch (pathname) {
-            case "/top":
-                this.#app.innerHTML = "<div> some Contents </div>";
+            case '/top':
+                this.#app.appendChild(topPage());
                 break;
             default:
-                this.#app.innerHTML = "<div>404</div>"
+                this.#app.innerHTML = '<div>404</div>';
         }
     }
 }
