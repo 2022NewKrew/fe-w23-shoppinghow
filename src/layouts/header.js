@@ -13,11 +13,11 @@ export default function createHeader() {
                         <input type="text" class="search__input" />
                         <button class="search__icon">🔍</button>
                     </form>
-                    <ul class="search-top10" id="top10Container>
+                    <ul class="search-top10" id="top10Container">
                     ${top10
                       .map(
                         ({ rank, title }) => `
-                        <li class="search-top10__item>${rank}. ${title}</li>
+                        <li class="search-top10__item">${rank}. ${title}</li>
                       `
                       )
                       .join("")}
@@ -29,4 +29,8 @@ export default function createHeader() {
 
   const header = document.getElementById("header");
   header.appendChild(top);
+}
+
+function shiftTop10() {
+  const slide = document.getElementById("top10Container");
 }
