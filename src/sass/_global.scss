@@ -1,18 +1,18 @@
 * {
-    font-family: 돋움,dotum,sans-serif;
+    font-family: 돋움, dotum, sans-serif;
     //outline:1px solid gray; //for debugging
-  }
+}
 
 body {
-  margin: 0px auto;
+    margin: 0px auto;
 }
 
 h1 {
-  font-size: 2rem;
+    font-size: 2rem;
 }
 
 $primaryColor: #eeffcc;
-$bgColor : #f5f5f5;
+$bgColor: #f5f5f5;
 
 $button-padding: 20px;
 %border-basic {
@@ -20,18 +20,22 @@ $button-padding: 20px;
 }
 
 %section-layout {
-  width: 1270px;
-  margin: auto;
-  background: #fff;
+    width: 1270px;
+    margin: auto;
+    background: #fff;
 }
 
 %card {
-  width:25%;
-  padding: 20px 60px;
+    width: 25%;
+    padding: 20px 60px;
 }
 
 %text-block {
-  display: block;
-  padding: 5px;
-  font-size: 0.875rem;
+    display: block;
+    padding: 5px;
+    font-size: 0.875rem;
+}
+
+%text-bold {
+    font-weight: bolder;
 }

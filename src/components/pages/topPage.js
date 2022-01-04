@@ -1,4 +1,5 @@
 import { promotion } from '../promotion/promotion.js';
+import { goodsStall } from '../goodsStall/goodsStall.js';
 
 export const topPage = () => {
     const target = document.createElement('div');
@@ -6,6 +7,7 @@ export const topPage = () => {
     const render = () => {
         target.className = 'container';
         target.appendChild(promotion());
+        target.appendChild(goodsStall());
         return target;
     };
 

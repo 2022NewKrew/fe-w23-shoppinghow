@@ -1,4 +1,4 @@
-@import "global";
+@import 'global';
 
 .header-top {
     display: flex;
@@ -57,7 +57,6 @@
         .fas {
             margin-right: 8px;
         }
-
     }
 
     .top-menu {
@@ -118,7 +117,6 @@
                     display: block;
                     margin: 0 auto;
                     width: 600px;
-
                 }
             }
         }
@@ -139,18 +137,19 @@
         }
         .theme__link {
             display: block;
-            strong, span {
+            strong,
+            span {
                 @extend %text-block;
             }
             .theme-item__title {
                 font-weight: bold;
             }
             .theme-item__desc {
-                padding-top:0;
+                padding-top: 0;
             }
             .theme-item__icon {
-                border:0.5px solid #ff000069;
-                padding:4px;
+                border: 0.5px solid #ff000069;
+                padding: 4px;
                 width: 35px;
             }
         }
@@ -158,25 +157,29 @@
 
     .hot-deal {
         @extend %section-layout;
-        margin-top:60px;
+        margin-top: 60px;
 
         .section-title {
             font-size: 1.25rem;
             padding-bottom: 20px;
             background-color: $bgColor;
         }
-        .hot-deal__title, .hot-deal__detail-price{
+        .hot-deal__title,
+        .hot-deal__detail-price {
             @extend %text-block;
         }
 
         .hot-deal-list {
             display: flex;
-            flex-wrap:wrap;
+            flex-wrap: wrap;
             .hot-deal__item {
-                width:20%;
-                padding:20px;
+                width: 20%;
+                padding: 20px;
                 border-right: 1px solid #f1f1f1;
                 border-bottom: 1px solid #f1f1f1;
+                strong {
+                    @extend %text-bold;
+                }
             }
         }
 
