@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "dev": "nodemon server.js",
-    "server": "node server.js"
+    "dev": "NODE_ENV=development nodemon server.js",
+    "start": "npm run build && NODE_ENV=production node server.js"
   },
   "nodemonConfig": {
     "watch": [
@@ -46,6 +46,8 @@
   },
   "dependencies": {
     "core-js": "^3.20.2",
-    "express": "^4.17.2"
+    "cross-env": "^7.0.3",
+    "express": "^4.17.2",
+    "nunjucks": "^3.2.3"
   }
 }
