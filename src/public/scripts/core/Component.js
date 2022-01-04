@@ -2,12 +2,12 @@ export class Component {
   $target;
   $state;
   $props;
-  constructor($target, $props) {
+  constructor($target, $props = {}) {
     this.$target = $target;
     this.$props = $props;
     this.setUp();
     this.setEvent();
-    this.render();
+    this.#render();
   }
 
   setUp() {}
@@ -15,7 +15,7 @@ export class Component {
   template() {
     return "";
   }
-  render() {
+  #render() {
     this.$target.innerHTML = this.template();
     this.setEvent();
     this.mounted();
@@ -23,7 +23,7 @@ export class Component {
   setEvent() {}
   setState(newState) {
     this.$state = { ...this.$state, ...newState };
-    this.render();
+    this.#render();
   }
   mounted() {} // render 이후 로직 처리
 }
