@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   entry: path.resolve(__dirname, "../src/public/scripts/Main.js"),
   output: {
-    path: path.resolve(__dirname, "../src/build"),
+    path: path.resolve(__dirname, "../build"),
     filename: "bundle.js",
     clean: true,
   },
@@ -36,5 +36,9 @@ module.exports = {
   plugins: [
     // 컴파일 + 번들링 CSS 파일이 저장될 경로와 이름 지정
     new MiniCssExtractPlugin({ filename: "css/style.css" }),
+    new HtmlWebpackPlugin({
+      filename: "main.html",
+      template: "src/pages/main.html",
+    }),
   ],
 };

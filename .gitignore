@@ -2,5 +2,6 @@ node_modules
 
 # 빌드파일
 src/build/*
+build/*
 
 src/pages/dummy.html

@@ -8,13 +8,14 @@ const PORT = process.env.PORT || 3000;
 app.engine("html", engines.mustache);
 
 app.set("view engine", "html");
-app.set("views", __dirname + "/src/pages");
+app.set("views", __dirname + "/build");
 
 app.use("/", router);
-app.use(express.static("src"));
+app.use(express.static(__dirname + "/src"));
+app.use(express.static(__dirname + "/build"));
 
 app.listen(PORT, () => {
-    console.log(`
+  console.log(`
   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
   ┃   Server listening on port: ${PORT}    ┃
   ┃     http://localhost:${PORT}/          ┃

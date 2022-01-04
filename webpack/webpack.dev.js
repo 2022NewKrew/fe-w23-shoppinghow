@@ -4,7 +4,7 @@ const path = require("path");
 
 module.exports = merge(common, {
   devServer: {
-    static: path.resolve(__dirname, "../src/build"),
+    static: path.resolve(__dirname, "build"),
   },
   mode: "development",
   devtool: "inline-source-map", // 소스 맵을 이용해 배포용 파일의 특정 부분이 원본 소스의 어떤 부분인지 확인한다.
