@@ -80,6 +80,7 @@
 
             .recent-items-container {
                 position: absolute;
+                z-index: 100;
                 top: 100%;
                 right: 0;
                 width: 442px;
@@ -126,7 +127,7 @@
 
                 .recent-item {
                     margin-right: 5px;
-                    
+
                     & > img {
                         width: 100px;
                         height: 100px;
@@ -168,12 +169,50 @@
             }
 
             .planning {
+                position: relative;
                 width: 790px;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                padding: 20px;
 
-                .planning__link {
-                    display: block;
+                & button {
+                    cursor: pointer;
+                    z-index: 1;
+                }
+                &__window {
+                    position: relative;
+                    width: 485px;
+                    height: 340px;
+                    overflow: hidden;
+                }
+                &__container {
+                    display: flex;
+                    position: absolute;
                     margin: 0 auto;
-                    width: 600px;
+                    width: 485px;
+                    height: 340px;
+                    left: -485px;
+                    z-index: 0;
+                }
+                &__navigation-ul {
+                    position: absolute;
+                    left: 50%;
+                    bottom: 40px;
+                    transform: translateX(-50%);
+                    display: flex;
+                    justify-content: space-between;
+                    column-gap: 3px;
+                }
+                &__navigation-li {
+                    width: 14px;
+                    height: 6px;
+                    cursor: pointer;
+                    background-color: $weakGreyColor;
+                    border-radius: 2px;
+                    &-active {
+                        background-color: $strongGreyColor;
+                    }
                 }
             }
         }

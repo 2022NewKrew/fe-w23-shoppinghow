@@ -34,7 +34,6 @@ app.post(viewReqPath, (req, res)=>{
 });
 
 app.get(viewReqPath, (req, res)=>{
-
   return res.send(JSON.stringify(viewItemIds)).status(200);
 });
 

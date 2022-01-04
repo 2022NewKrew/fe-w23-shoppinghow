@@ -5,6 +5,7 @@
  */
 import axios from "axios";
 import "./style/app.scss";
+import Carousel from "./Carousel.js";
 import {createRecentItems} from "./creates.js";
 
 const tabClassName="recent-items-container__tab";
@@ -58,6 +59,16 @@ recentItemsTabContainer.addEventListener("click", (e)=>{
   e.target.classList.add(activeTabClassName);
 });
 
+function initCarousel(){
+  const carouselContainer=document.querySelector(".planning");
+  const container=carouselContainer.querySelector(".planning__container");
+  const leftBtn=carouselContainer.querySelector(".planning__left-btn");
+  const rightBtn=carouselContainer.querySelector(".planning__right-btn");
+  const navigationUl=carouselContainer.querySelector(".planning__navigation-ul");
+  const carousel=new Carousel(container, leftBtn, rightBtn, navigationUl);
+}
+
 (function initDefault(){
   viewItemTab.click();
+  initCarousel();
 })();
