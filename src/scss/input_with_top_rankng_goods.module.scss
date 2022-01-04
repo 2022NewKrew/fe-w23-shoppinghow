@@ -1,0 +1,21 @@
+.component {
+  display: flex;
+  position: relative;
+  border: 1px solid gray;
+  align-items: center;
+  
+  form {
+    display: flex;
+    
+    .search-input {
+      width: 400px;
+      height: 60px;
+      padding: 10px;
+    }
+    
+    .search-icon {
+      font-size: 1.4rem;
+      padding: 10px;
+    }
+  }
+}
