@@ -1,30 +1,31 @@
 const TOP_ITEMS_ROLLING_DELAY = 2000;
 
 class SearchBar {
-  #topItemList;
   #topItemIdx;
   #topItemLength;
 
   constructor() {
-    this.#topItemList = this.getTopItemList();
     this.#topItemIdx = 0;
-    this.#topItemLength = this.#topItemList.length;
   }
 
-  // TODO: 데이터 fetch 사용
-  getTopItemList() {
-    return [
-      "런닝화",
-      "생수",
-      "노트북",
-      "이어폰",
-      "앨범",
-      "멜론",
-      "시험과제",
-      "액자",
-      "퍼즐",
-      "양말",
-    ];
+  componentDidMount() {
+    fetch("http://localhost:3000/topItems.json")
+      .then((res) => res.json())
+      .then((topItemList) => {
+        this.#topItemLength = topItemList.length;
+        this.putTopItems(topItemList);
+        this.doRolling();
+      });
+  }
+
+  putTopItems(topItemList) {
+    const $searchTopList = document.querySelector(".search-top");
+    topItemList.map((item, idx) => {
+      const $topListItem = document.createElement("li");
+      $topListItem.classList.add("search-top__item");
+      $topListItem.innerText = `${idx + 1}. ${item}`;
+      $searchTopList.appendChild($topListItem);
+    });
   }
 
   doRolling() {
@@ -61,20 +62,13 @@ class SearchBar {
 
   render() {
     // TODO: 마우스 오버시 애니메이션 멈춤
-    window.addEventListener("DOMContentLoaded", this.doRolling.bind(this));
+    window.addEventListener(
+      "DOMContentLoaded",
+      this.componentDidMount.bind(this)
+    );
 
     return `<div class="search">             
                 <ul class="search-top">
-                    ${this.#topItemList
-                      .map(
-                        (item, idx) =>
-                          '<li class="search-top__item">' +
-                          (idx + 1) +
-                          ". " +
-                          item +
-                          "</li>"
-                      )
-                      .join("\n")}
                 </ul>
                 <form>
                     <input type="text" class="search__input">
