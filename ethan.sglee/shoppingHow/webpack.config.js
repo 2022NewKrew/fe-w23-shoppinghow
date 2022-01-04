@@ -1,5 +1,7 @@
 const path = require('path');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   mode: 'development',
   entry: './app.js',
@@ -8,13 +10,22 @@ module.exports = {
     filename: 'bundle.js',
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader'
-      }
-    }, ],
+    rules: [
+      {
+        include: path.resolve("node_modules"),
+        sideEffects: false,
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }, 
+    ],
+  },
+  resolve: {
+    extensions: ['js', 'json', 'ts'],
   },
   plugins: [new HtmlWebpackPlugin(
     {
