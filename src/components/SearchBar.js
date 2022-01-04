@@ -25,25 +25,41 @@ class SearchBar {
     ];
   }
 
+  doRolling() {
+    const $searchTopList = document.querySelector(".search-top");
+    const prevItem =
+      $searchTopList.children[
+        this.#topItemIdx - 1 < 0
+          ? this.#topItemLength - 1
+          : this.#topItemIdx - 1
+      ];
+    const curItem = $searchTopList.children[this.#topItemIdx];
+    const nextItem =
+      $searchTopList.children[
+        this.#topItemIdx + 1 === this.#topItemLength ? 0 : this.#topItemIdx + 1
+      ];
+
+    curItem.classList.add("current-top-item");
+    nextItem.classList.add("next-top-item");
+
+    setTimeout(() => {
+      prevItem.classList.remove("previous-top-item");
+
+      curItem.classList.add("previous-top-item");
+      curItem.classList.remove("current-top-item");
+
+      nextItem.classList.remove("next-top-item");
+      nextItem.classList.add("current-top-item");
+      this.#topItemIdx =
+        this.#topItemIdx + 1 === this.#topItemLength ? 0 : this.#topItemIdx + 1;
+
+      this.doRolling();
+    }, 2000);
+  }
+
   render() {
     // TODO: 마우스 오버시 애니메이션 멈춤
-    window.addEventListener("DOMContentLoaded", () => {
-      const $searchTopList = document.querySelector(".search-top");
-      setInterval(() => {
-        if (this.#topItemIdx === 0) {
-          $searchTopList.style.transition = "transform 1s";
-        }
-        $searchTopList.style.transform = `translateY(-${
-          (this.#topItemIdx + 1) * 60
-        }px)`;
-        this.#topItemIdx++;
-        if (this.#topItemIdx === this.#topItemLength + 1) {
-          $searchTopList.style.transition = "none";
-          $searchTopList.style.transform = `translateY(0px)`;
-          this.#topItemIdx = 0;
-        }
-      }, 1000);
-    });
+    window.addEventListener("DOMContentLoaded", this.doRolling.bind(this));
 
     return `<div class="search">             
                 <ul class="search-top">
@@ -57,10 +73,9 @@ class SearchBar {
                           "</li>"
                       )
                       .join("\n")}
-                    
-                      <li class="search-top__item">1. ${
-                        this.#topItemList[0]
-                      }</li>
+<!--                   <li class="search-top__item">1. ${
+      this.#topItemList[0]
+    }</li>-->
                 </ul>
                 <form>
                     <input type="text" class="search__input">

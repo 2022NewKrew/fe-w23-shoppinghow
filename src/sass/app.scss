@@ -1,6 +1,8 @@
 @import "reset";
 @import "global";
 
+$SearchHeight: 60px;
+
 .header-top {
     display: flex;
     padding: 60px;
@@ -25,7 +27,7 @@
                 width: 400px;
                 height: 60px;
                 padding-left: 20px;
-                line-height: 60px;
+                line-height: $SearchHeight;
                 font-size: 1.2rem;
             }
 
@@ -38,9 +40,8 @@
         .search-top {
             position: absolute;
             top: 5px;
-            transition: transform 1s;
             left: 20px;
-            line-height: 60px;
+            line-height: $SearchHeight;
             font-size: 1.2rem;
             height: 50%;
             display: flex;
@@ -48,6 +49,28 @@
             align-items: start;
             color: grey;
 
+                .search-top__item{
+                    position: absolute;
+                    width: 300px;
+                    height: 60px;
+                    transition: transform 1s;
+                    display: none;
+                }
+
+                .previous-top-item{
+                    transform: translateY(-60px);
+                    display: block;
+                }
+
+                .current-top-item {
+                    transform: translateY(0px);
+                    display: block;
+                }
+
+                .next-top-item {
+                    transform: translateY(60px);
+                    display: block;
+                }
         }
     }
 }
