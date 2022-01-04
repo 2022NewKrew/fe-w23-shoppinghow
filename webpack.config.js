@@ -1,9 +1,8 @@
 const path = require("path");
-
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 // const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const babelConfing = require("./babel.config.json");
 
 module.exports = {
     mode: "development",
@@ -20,12 +19,13 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader"
+                    loader: "babel-loader",
+                    options: babelConfing
                 }
             },
             {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
+                test: /\.s?css$/i,
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
             },
             {
                 test: /\.png$/,
@@ -35,10 +35,6 @@ module.exports = {
                         name: '[name].[ext]?[hash]'
                     }
                 }]
-            },
-            {
-                test: /\.s[ac]ss$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
             }
         ]
     },
@@ -48,7 +44,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({ template: "src/index.html" }),
-        new MiniCssExtractPlugin({ filename: "app.css "}),
+        new MiniCssExtractPlugin({ filename: "app.css" }),
         // new CleanWebpackPlugin()
     ]
 }

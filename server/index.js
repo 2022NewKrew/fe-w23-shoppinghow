@@ -13,6 +13,10 @@ app.use(
     })
 )
 
+app.get("/", (req, res) => {
+    res.sendFile("index.html");
+})
+
 app.listen(PORT, () => {
     console.log(`Server is listening on port: ${PORT}`);
 })
