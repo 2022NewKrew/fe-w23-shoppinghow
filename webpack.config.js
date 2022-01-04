@@ -1,7 +1,8 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 
-const root = process.cwd();
+const root = path.resolve();
 
 export default {
     mode: 'development',
@@ -15,7 +16,7 @@ export default {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.js$/i,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
@@ -30,13 +31,17 @@ export default {
                                 }
                             ]
                         ],
-                        'plugins': []
+                        'plugins': [],
                     },
                 },
             },
             {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                test: /\.scss$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
             {
               test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -49,6 +54,7 @@ export default {
         ],
     },
     plugins: [
-        new HtmlWebpackPlugin({template: path.resolve(root, 'src/index.html')}),
+        new HtmlWebpackPlugin({template: 'src/index.html'}),
+        new MiniCssExtractPlugin({filename: 'style.css'}),
     ]
 };
