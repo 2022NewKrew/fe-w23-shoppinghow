@@ -2,127 +2,150 @@
 
 .container {
   margin: 5rem auto 0rem auto;
-  background-color: $bg-color;
   @extend %section-layout;
+
+  .container__title {
+    font-weight: 400;
+    font-size: 22px;
+    padding-bottom: 0.75rem;
+  }
+
+  .container__content {
+    @extend %border-basic;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+  }
 }
 
-.container__title {
-  font-weight: bold;
-  font-size: 1.25rem;
-  padding-bottom: 20px;
-  @extend %text-block;
+.product {
+  width: 20%;
+  padding: 20px;
+  border-right: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+
+  .product__thumb {
+    display: block;
+    height: 200px;
+    text-align: center;
+    transition: opacity 200ms ease-out;
+    & > img {
+      height: 100%;
+    }
+  }
+
+  .product__title {
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .product__link:hover {
+    .product__thumb {
+      opacity: 0.7;
+    }
+    .product__title {
+      text-decoration: underline;
+    }
+  }
 }
 
-.container__content {
-  @extend %border-basic;
-  background-color: white;
+// 상단 배너
+
+.banner {
+  display: flex;
+  border-bottom: $border-style;
+
+  & > :not(:last-child) {
+    border-right: $border-style;
+  }
+
+  img {
+    display: flex;
+    text-align: center;
+    margin: auto;
+  }
+
+  .promotion {
+    flex: 2;
+    .promotion__link {
+      display: block;
+      height: 100%;
+    }
+  }
+
+  .slider {
+    flex: 3;
+  }
 }
 
-// .container {
-//     margin: auto;
-//     background-color: $bg-color;
-//     padding-top: 25px;
+// 테마
 
-//     .promotion {
-//       @extend %section-layout;
-//       @extend %border-basic;
+.theme__container {
+  display: flex;
+  overflow: hidden;
 
-//       .banner {
-//         display: flex;
-//         justify-content: center;
+  .product {
+    .product__title {
+      color: #333333;
+      font-weight: bold;
+    }
 
-//         .best {
-//           float: left;
-//           width: 510px;
+    .product__desc {
+      color: #888;
+      font-size: 0.75rem;
+    }
 
-//           .best__link {
-//             display: block;
-//             margin: 0 auto;
-//           }
-//         }
+    .product__themeIcon {
+      $color: #ff000069;
+      border: 0.5px solid $color;
+      border-radius: 2px;
+      color: $color;
+      font-size: 0.75rem;
+      padding: 0px 2px;
+      margin-top: 0.5rem;
+    }
+  }
+}
 
-//         .planning {
-//           width: 790px;
+// 핫딜
 
-//           .planning__link {
-//             display: block;
-//             margin: 0 auto;
-//             width: 600px;
-//           }
-//         }
-//       }
+.hotDeal__container {
+  display: flex;
+  flex-wrap: wrap;
 
-//       img {
-//         margin: auto;
-//         text-align: center;
-//         display: flex;
-//       }
-//     }
+  .product {
+    .product__title {
+      color: #555555;
+    }
 
-//     .theme {
-//       .theme-container {
-//         display: flex;
-//       }
-//       .theme-item {
-//         @extend %card;
-//         border: 1px solid #f1f1f1;
-//       }
-//       .theme__link {
-//         display: block;
-//         strong,
-//         span {
-//           @extend %text-block;
-//         }
-//         .theme-item__title {
-//           font-weight: bold;
-//         }
-//         .theme-item__desc {
-//           padding-top: 0;
-//         }
-//         .theme-item__icon {
-//           border: 0.5px solid #ff000069;
-//           padding: 4px;
-//           width: 35px;
-//         }
-//       }
-//     }
+    .product__price {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
 
-//     .hot-deal {
-//       @extend %section-layout;
-//       margin-top: 60px;
+      .txt__price {
+        font-weight: 900;
+        .txt__unit {
+          font-weight: 400;
+        }
+      }
 
-//       .section-title {
-//         font-size: 1.25rem;
-//         padding-bottom: 20px;
-//         background-color: $bg-color;
-//       }
-//       .hot-deal__title,
-//       .hot-deal__detail-price {
-//         @extend %text-block;
-//       }
+      .txt__originPrice {
+        color: #888888;
+        text-decoration: line-through;
+      }
 
-//       .hot-deal-list {
-//         @extend %border-basic;
-//         display: flex;
-//         flex-wrap: wrap;
-//         .hot-deal__item {
-//           width: 20%;
-//           padding: 20px;
-//           border-right: 1px solid #f1f1f1;
-//           border-bottom: 1px solid #f1f1f1;
-//         }
-//       }
-
-//       .hot-deal__detail-price {
-//         margin-top: 20px;
-//         position: relative;
-//         .txt-price-percent {
-//           position: absolute;
-//           right: 10px;
-//           font-size: 1.1rem;
-//           line-height: 1.1rem;
-//           color: red;
-//         }
-//       }
-//     }
-//   }
+      .txt__discountPercent {
+        position: absolute;
+        right: 10px;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: $red-500;
+        .txt__unit {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .slider__prevBtn,
+  .slider__nextBtn {
+    cursor: pointer;
+    margin: 1rem;
+    padding: 1rem;
+    height: 50px;
+  }
+
+  .slider__track {
+    position: relative;
+    .slider__link {
+      display: block;
+    }
+    .slider__pagingContainer {
+      position: absolute;
+      bottom: 1rem;
+      left: 0;
+      right: 0;
+      user-select: none;
+      display: flex;
+      justify-content: center;
+
+      .slider__paging {
+        padding: 0.5rem 0;
+        margin: 2px;
+
+        span {
+          display: block;
+          width: 15px;
+          height: 5px;
+          background-color: #cccccc;
+          transition: background-color 100ms ease-out;
+        }
+
+        &:hover {
+          span {
+            background-color: black;
+          }
+        }
+        .--selected {
+          background-color: black;
+        }
+      }
+    }
+  }
+}

@@ -1,15 +1,21 @@
 $primary-color: #eeffcc;
 $bg-color: #f5f5f5;
-$button-padding: 20px;
+
+$grey-100: #f1f1f1;
+
+$red-300: #f9624c;
+$red-500: #fc363c;
+
+$btn-padding: 20px;
+$border-style: 1px solid #e4e2e2;
 
 %border-basic {
-  border: 1px solid #e4e2e2;
+  border: $border-style;
 }
 
 %section-layout {
   width: 1270px;
   margin: auto;
-  background: #fff;
 }
 
 %card {
@@ -19,6 +25,11 @@ $button-padding: 20px;
 
 %text-block {
   display: block;
-  padding: 5px;
+  padding: 0.25rem 0px;
   font-size: 0.875rem;
+}
+
+%flex {
+  display: flex;
+  align-items: center;
 }
