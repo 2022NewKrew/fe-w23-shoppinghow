@@ -25,7 +25,6 @@
   "devDependencies": {
     "@babel/cli": "^7.16.7",
     "@babel/core": "^7.16.7",
-    "@babel/plugin-proposal-pipeline-operator": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
     "express": "^4.17.2",
     "html-webpack-plugin": "^5.5.0",

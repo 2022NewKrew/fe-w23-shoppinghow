@@ -1,44 +1,162 @@
 @import "global";
+@import "icon";
 
-.header-top {
+#kakaoHead {
+  padding-top: 43px;
+  font-family: Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, Dotum, 돋움,
+    sans-serif;
+  background-color: #fff;
+  text-align: center;
+  min-width: 977px;
+}
+
+.area_headtop {
+  display: inline-block;
+  vertical-align: top;
   display: flex;
-  padding: 60px;
   justify-content: center;
-
-  .title {
-    display: flex;
-    align-items: center;
-    margin-right: 50px;
-  }
-
-  .search {
-    display: flex;
-    position: relative;
-    border: 1px solid gray;
-
-    form {
-      display: flex;
-
-      .search__input {
-        width: 400px;
-        height: 60px;
-        padding: 10px;
-      }
-
-      .search__icon {
-        font-size: 1.4rem;
-        padding: 10px;
+  .tit_shw {
+    margin-top: 4px;
+    a {
+      display: block;
+      img {
+        width: 119px;
+        vertical-align: top;
       }
     }
+  }
+}
 
-    .search-top10 {
+.wrap_shwsearch {
+  position: relative;
+  margin: 0 24px 0 30px;
+  z-index: 10;
+  .frm_shwsearch {
+    position: relative;
+    width: 670px;
+    height: 54px;
+    padding: 16px 60px 14px 30px;
+    border: 1px solid #cecfd1;
+    border-radius: 10px;
+    background-color: #fff;
+    button {
       position: absolute;
-      transform: translateY(50%);
-      left: 10px;
-      font-size: 1.2rem;
-      height: 50%;
-      display: flex;
-      align-items: center;
+      right: 0;
+      top: 0;
+      width: 52px;
+      height: 52px;
+    }
+  }
+}
+
+.wrap_rollkeywords {
+  overflow: hidden;
+  position: absolute;
+  left: 31px;
+  top: 16px;
+  width: 578px;
+  height: 23px;
+  line-height: 23px;
+  text-align: left;
+  ol {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    li {
+      overflow: hidden;
+      height: 22px;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 22px;
+      color: #939393;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      span {
+        margin-right: 15px;
+        font-family: robotoitalic, Apple SD Gothic Neo;
+      }
+    }
+  }
+}
+
+#kakaoGnb {
+  position: relative;
+  margin-top: 40px;
+  border-top: 1px solid #efefef;
+  box-shadow: 0 1px rgba(0, 0, 0, 0.16);
+}
+.wrap_shwgnb {
+  width: 1280px;
+  font-size: 16px;
+  margin: 0 auto;
+  height: 54px;
+  .wrap_shwcate {
+    float: left;
+    height: 54px;
+    button {
+      width: 118px;
+      height: 54px;
+      padding-left: 40px;
+      line-height: 58px;
+      display: block;
+      position: relative;
+      text-align: left;
+    }
+  }
+  .list_shwgnb {
+    float: left;
+    display: flex;
+    padding: 0 12px 0 8px;
+    li > a {
+      display: block;
+      height: 54px;
+      line-height: 58px;
+      letter-spacing: -0.038em;
+      padding: 0 19px;
+      font-weight: 700;
+      position: relative;
+      .txt_new {
+        right: 10px;
+      }
+    }
+  }
+  .list_kwordgnb {
+    float: left;
+    display: flex;
+    padding: 0 14px;
+    li > a {
+      display: block;
+      height: 54px;
+      line-height: 58px;
+      letter-spacing: -0.038em;
+      padding: 0 14px;
+      font-weight: 700;
+      color: #888;
+      position: relative;
+      .txt_new {
+        right: 5px;
+      }
+    }
+  }
+  .list_usergnb {
+    float: right;
+    display: flex;
+    letter-spacing: -0.04em;
+    line-height: 59px;
+    .loginWrap > a {
+      display: block;
+      width: 103px;
+      height: 54px;
+      padding-left: 33px;
+      text-align: left;
+      position: relative;
+    }
+    .area_rcntproducts > a {
+      display: block;
+      width: 122px;
+      height: 54px;
+      padding: 0 16px 0 34px;
+      position: relative;
     }
   }
 }

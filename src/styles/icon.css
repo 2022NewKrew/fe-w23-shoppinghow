@@ -1,0 +1,48 @@
+.ico_shwgnb {
+  display: block;
+  overflow: hidden;
+  background: url("../../assets/images/ico_gnb_shw.png");
+  background-size: 130px 90px;
+  position: absolute;
+}
+
+.ico_shwsearch {
+  top: 15px;
+  left: 14px;
+  width: 23px;
+  height: 23px;
+}
+
+.ico_menu {
+  top: 13px;
+  left: 4px;
+  width: 28px;
+  height: 28px;
+  background-position: 0 -30px;
+}
+
+.ico_user {
+  top: 13px;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  background-position: -30px -30px;
+}
+
+.ico_products {
+  top: 13px;
+  left: 0px;
+  width: 28px;
+  height: 28px;
+  background-position: -60px -30px;
+}
+
+.ico_arrow {
+  top: 26px;
+  right: 6px;
+  width: 8px;
+  height: 5px;
+  background-position: -60px -60px;
+}
+
+/*# sourceMappingURL=icon.css.map */

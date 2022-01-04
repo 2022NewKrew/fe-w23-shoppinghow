@@ -11,6 +11,10 @@ h1 {
   font-size: 2rem;
 }
 
+button {
+  cursor: pointer;
+}
+
 .container .promotion {
   border: 1px solid #e4e2e2;
 }
@@ -34,41 +38,232 @@ h1 {
   font-size: 0.875rem;
 }
 
-.header-top {
+.screen_out {
+  font-size: 0;
+  line-height: 0;
+}
+
+.txt_bar {
+  width: 1px;
+  height: 18px;
+  margin-top: 18px;
+  background-color: #e3e3e3;
+}
+
+.txt_new {
+  position: absolute;
+  top: 17px;
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  background-color: #f9624c;
+}
+
+.ico_shwgnb {
+  display: block;
+  overflow: hidden;
+  background: url("../../assets/images/ico_gnb_shw.png");
+  background-size: 130px 90px;
+  position: absolute;
+}
+
+.ico_shwsearch {
+  top: 15px;
+  left: 14px;
+  width: 23px;
+  height: 23px;
+}
+
+.ico_menu {
+  top: 13px;
+  left: 4px;
+  width: 28px;
+  height: 28px;
+  background-position: 0 -30px;
+}
+
+.ico_user {
+  top: 13px;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  background-position: -30px -30px;
+}
+
+.ico_products {
+  top: 13px;
+  left: 0px;
+  width: 28px;
+  height: 28px;
+  background-position: -60px -30px;
+}
+
+.ico_arrow {
+  top: 26px;
+  right: 6px;
+  width: 8px;
+  height: 5px;
+  background-position: -60px -60px;
+}
+
+#kakaoHead {
+  padding-top: 43px;
+  font-family: Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, Dotum, 돋움, sans-serif;
+  background-color: #fff;
+  text-align: center;
+  min-width: 977px;
+}
+
+.area_headtop {
+  display: inline-block;
+  vertical-align: top;
   display: flex;
-  padding: 60px;
   justify-content: center;
 }
-.header-top .title {
-  display: flex;
-  align-items: center;
-  margin-right: 50px;
+.area_headtop .tit_shw {
+  margin-top: 4px;
 }
-.header-top .search {
-  display: flex;
+.area_headtop .tit_shw a {
+  display: block;
+}
+.area_headtop .tit_shw a img {
+  width: 119px;
+  vertical-align: top;
+}
+
+.wrap_shwsearch {
   position: relative;
-  border: 1px solid gray;
+  margin: 0 24px 0 30px;
+  z-index: 10;
 }
-.header-top .search form {
-  display: flex;
+.wrap_shwsearch .frm_shwsearch {
+  position: relative;
+  width: 670px;
+  height: 54px;
+  padding: 16px 60px 14px 30px;
+  border: 1px solid #cecfd1;
+  border-radius: 10px;
+  background-color: #fff;
 }
-.header-top .search form .search__input {
-  width: 400px;
-  height: 60px;
-  padding: 10px;
-}
-.header-top .search form .search__icon {
-  font-size: 1.4rem;
-  padding: 10px;
-}
-.header-top .search .search-top10 {
+.wrap_shwsearch .frm_shwsearch button {
   position: absolute;
-  transform: translateY(50%);
-  left: 10px;
-  font-size: 1.2rem;
-  height: 50%;
+  right: 0;
+  top: 0;
+  width: 52px;
+  height: 52px;
+}
+
+.wrap_rollkeywords {
+  overflow: hidden;
+  position: absolute;
+  left: 31px;
+  top: 16px;
+  width: 578px;
+  height: 23px;
+  line-height: 23px;
+  text-align: left;
+}
+.wrap_rollkeywords ol {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+.wrap_rollkeywords ol li {
+  overflow: hidden;
+  height: 22px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 22px;
+  color: #939393;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wrap_rollkeywords ol li span {
+  margin-right: 15px;
+  font-family: robotoitalic, Apple SD Gothic Neo;
+}
+
+#kakaoGnb {
+  position: relative;
+  margin-top: 40px;
+  border-top: 1px solid #efefef;
+  box-shadow: 0 1px rgba(0, 0, 0, 0.16);
+}
+
+.wrap_shwgnb {
+  width: 1280px;
+  font-size: 16px;
+  margin: 0 auto;
+  height: 54px;
+}
+.wrap_shwgnb .wrap_shwcate {
+  float: left;
+  height: 54px;
+}
+.wrap_shwgnb .wrap_shwcate button {
+  width: 118px;
+  height: 54px;
+  padding-left: 40px;
+  line-height: 58px;
+  display: block;
+  position: relative;
+  text-align: left;
+}
+.wrap_shwgnb .list_shwgnb {
+  float: left;
   display: flex;
-  align-items: center;
+  padding: 0 12px 0 8px;
+}
+.wrap_shwgnb .list_shwgnb li > a {
+  display: block;
+  height: 54px;
+  line-height: 58px;
+  letter-spacing: -0.038em;
+  padding: 0 19px;
+  font-weight: 700;
+  position: relative;
+}
+.wrap_shwgnb .list_shwgnb li > a .txt_new {
+  right: 10px;
+}
+.wrap_shwgnb .list_kwordgnb {
+  float: left;
+  display: flex;
+  padding: 0 14px;
+}
+.wrap_shwgnb .list_kwordgnb li > a {
+  display: block;
+  height: 54px;
+  line-height: 58px;
+  letter-spacing: -0.038em;
+  padding: 0 14px;
+  font-weight: 700;
+  color: #888;
+  position: relative;
+}
+.wrap_shwgnb .list_kwordgnb li > a .txt_new {
+  right: 5px;
+}
+.wrap_shwgnb .list_usergnb {
+  float: right;
+  display: flex;
+  letter-spacing: -0.04em;
+  line-height: 59px;
+}
+.wrap_shwgnb .list_usergnb .loginWrap > a {
+  display: block;
+  width: 103px;
+  height: 54px;
+  padding-left: 33px;
+  text-align: left;
+  position: relative;
+}
+.wrap_shwgnb .list_usergnb .area_rcntproducts > a {
+  display: block;
+  width: 122px;
+  height: 54px;
+  padding: 0 16px 0 34px;
+  position: relative;
 }
 
 .header-menu {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,62 +11,95 @@
       src="https://kit.fontawesome.com/d69dc18532.js"
       crossorigin="anonymous"
     ></script>
-    <title>Document</title>
+    <script src="../dist/bundle.js"></script>
+    <title>쇼핑하우</title>
   </head>
 
   <body>
-    <header>
-      <div class="header-top">
-        <div class="title">
-          <h1>쇼핑하우</h1>
-        </div>
-        <div class="search">
-          <form>
-            <input type="text" class="search__input" />
-            <button class="search__icon">🔍</button>
+    <header id="kakaoHead" role="banner" class="head_shw">
+      <div class="area_headtop">
+        <h1 class="tit_shw">
+          <a href="#">
+            <img src="../assets/images/logo_shw_2021.png" alt="쇼핑하우" />
+          </a>
+        </h1>
+        <div class="wrap_shwsearch">
+          <h2 class="screen_out">검색</h2>
+          <form class="frm_shwsearch" role="search">
+            <input type="text" class="tf_keyword" size="55" />
+            <button type="submit">
+              <span class="ico_shwgnb ico_shwsearch"></span>
+            </button>
           </form>
-          <ul class="search-top10">
-            <li class="search-top10__item">3. 아디다스 런닝화</li>
-          </ul>
+          <div class="wrap_rollkeywords">
+            <h2 class="screen_out"></h2>
+            <ol class="list_rollkeywords">
+              <li>
+                <span>1</span>
+                엔진코딩제
+              </li>
+              <li>
+                <span>2</span>
+                경량패딩
+              </li>
+              <li>
+                <span>3</span>
+                한과
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
+      <nav id="kakaoGnb" role="navigation" class="area_shwgnb">
+        <div class="wrap_shwgnb">
+          <h2 class="screen_out">쇼핑하우 주요 메뉴</h2>
+          <div class="wrap_shwcate">
+            <button type="button" class="btn_shwcate">
+              <span class="ico_shwgnb ico_menu"></span>
+              카테고리
+            </button>
+          </div>
+          <span class="txt_bar"></span>
 
-      <div class="header-menu">
-        <div class="category">
-          <button class="category__title">
-            <i class="fas fa-bars"></i>카테고리
-          </button>
-          <ul class="category-first">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+          <h2 class="screen_out">쇼핑하우 메뉴</h2>
+          <ul class="list_shwgnb">
+            <li><a href="#">핫딜</a></li>
+            <li><a href="#">베스트100</a></li>
+            <li>
+              <a href="#"><span class="txt_new"></span>할인특가</a>
+            </li>
+            <li><a href="#">기획전</a></li>
           </ul>
-          <ul class="category-second">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+          <span class="txt_bar"></span>
+
+          <h2 class="screen_out">쇼핑하우 스페셜 메뉴</h2>
+          <ul class="list_kwordgnb">
+            <li><a href="#">#건강식품</a></li>
+            <li>
+              <a href="#"><span class="txt_new"></span>#새해카드</a>
+            </li>
+            <li><a href="#">#보드게임</a></li>
+            <li><a href="#">#겨울 캠핑용품</a></li>
           </ul>
-          <ul class="category-third">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+
+          <h2 class="screen_out">쇼핑하우 사용자 메뉴</h2>
+          <ul class="list_usergnb">
+            <li class="loginWrap">
+              <a href="#">
+                <span class="ico_shwgnb ico_user"></span>
+                MY 쇼핑
+              </a>
+            </li>
+            <li class="area_rcntproducts">
+              <a href="#">
+                <span class="ico_shwgnb ico_products"></span>
+                최근본 상품
+                <span class="ico_shwgnb ico_arrow"></span>
+              </a>
+            </li>
           </ul>
         </div>
-        <div class="gubun-bar"></div>
-        <ul class="top-menu">
-          <li class="top-menu__btn"><a href="#">핫딜</a></li>
-          <li class="top-menu__btn"><a href="">베스트100</a></li>
-          <li class="top-menu__btn"><a href="">할인특가</a></li>
-          <li class="top-menu__btn"><a href="">기획전</a></li>
-        </ul>
-        <ul class="private-menu">
-          <li class="private-menu__btn"><a href="#">로그인</a></li>
-          <li class="private-menu__btn"><a href="#">최근본상품</a></li>
-        </ul>
-      </div>
+      </nav>
     </header>
     <div class="container">
       <div class="promotion">
@@ -209,9 +242,7 @@
                         <span class="hot-deal__thumb">
                             <img src="//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895" class="hot-deal__img" alt="">
                         </span>
-
                         <strong class="hot-deal__title">구매1만↑우유앙빵10+10</strong>
-
                         <span class="hot-deal__detail-price">
                             <span class="txt-price">18,500 </span>
                             <span class="txt-price-percent">핫딜가</span>
