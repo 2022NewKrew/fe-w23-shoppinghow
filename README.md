@@ -1,16 +1,3 @@
-# 쇼핑하우 기본 레이아웃
+# fe-w23-shoppinghow
 
-## 환경
-
-- BEM styles rules
-- SASS
-
-## 소스
-
-- /app/sass/\*.scss
-
-## 빌드
-
-```shell
-npm run sas
-```
+2,3주차 프로젝트

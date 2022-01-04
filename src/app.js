@@ -1,3 +1,6 @@
+import "./styles/libs/reset.css";
+import "./sass/app.scss";
+
 function makeHotDealHTML() {
   const target = document.querySelector(".hot-deal-list");
   const hotdealItemTpl = `
