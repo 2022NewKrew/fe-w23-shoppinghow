@@ -1,0 +1,21 @@
+@import "global";
+
+* {
+  font-family: 돋움, dotum, sans-serif;
+  // outline: 1px solid gray; //for debugging
+  padding: 0rem;
+  margin: 0rem;
+}
+
+body {
+  background-color: $bg-color;
+  margin: 0px auto;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+a {
+  cursor: pointer;
+}

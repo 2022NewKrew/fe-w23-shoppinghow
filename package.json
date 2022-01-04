@@ -1,13 +1,39 @@
 {
-  "name": "kakaopage-styles",
+  "name": "fe-w23-shoppinghow",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "clone shoppinghow wesite (feat. webpack)",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-	"sas": "sass --watch app/sass:app/styles"
+    "dev": "concurrently \"webpack --config webpack.dev.js\" \"nodemon ./src/server.js\"",
+    "build": "webpack --config webpack.prod.js",
+    "serve": "node ./src/server.js",
+    "start": "yarn build && yarn serve"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "edward",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "concurrently": "^7.0.0",
+    "core-js": "3",
+    "css-loader": "^6.5.1",
+    "css-minimizer-webpack-plugin": "^3.3.1",
+    "file-loader": "^6.2.0",
+    "html-loader": "^3.0.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "nodemon": "^2.0.15",
+    "sass": "^1.45.2",
+    "sass-loader": "^12.4.0",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.0",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  }
 }
