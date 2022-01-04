@@ -1,0 +1,79 @@
+.footer_shw {
+    font-family: Apple SD Gothic Neo,돋움,dotum,sans-serif;
+    background-color: #fff;
+
+    .wrap_link {
+        height: 49px;
+        border-top: 1px solid #e4e4e4;
+        border-bottom: 1px solid #e4e4e4;
+    }
+
+    .inner_link {
+        width: 978px;
+        margin: 0 auto;
+
+        .link_info {
+            color: #222;
+            letter-spacing: normal;
+            display: inline-block;
+            font-size: 15px;
+            vertical-align: top;
+            line-height: 51px;
+        }
+
+        .txt_bar {
+            font-weight: 100;
+            margin: 0 10px;
+            color: #c7c7c7;
+            letter-spacing: normal;
+            display: inline-block;
+            font-size: 15px;
+            vertical-align: top;
+            line-height: 51px;
+        }
+    }
+
+    .wrap_info {
+        position: relative;
+        width: 978px;
+        margin: 0 auto;
+        padding: 34px 0 71px;
+    }
+
+    .kakaocommerce_info {
+        letter-spacing: -.034em;
+        font-size: 14px;
+        line-height: 23px;
+        color: #676767;
+
+        .txt_bar {
+            margin: 0 6px;
+            color: #c7c7c7;
+        }
+
+        .link_info {
+            color: #676767;
+            text-decoration: underline;
+        }
+    }
+
+    .txt_caution {
+        margin-top: 13px;
+        font-size: 13px;
+        line-height: 23px;
+        color: #8f8f8f;
+        letter-spacing: -.038em;
+    }
+
+    .txt_copyright {
+        display: block;
+        margin: 14px 0 1px;
+        font-size: 13px;
+        font-family: Apple SD Gothic Neo,dotum,돋움,sans-serif;
+        color: #666;
+        letter-spacing: .026em;
+        .link_kakaocommerce {
+            color: #666;
+        }
+    }
+}
