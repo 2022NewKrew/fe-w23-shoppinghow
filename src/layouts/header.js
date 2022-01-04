@@ -3,7 +3,9 @@ const top10 = require("../data/searchTop10.json").top10;
 export default function createHeader() {
   const top = document.createElement("div");
 
-  top.innerHTML = `
+  top.insertAdjacentHTML(
+    "afterbegin",
+    `
             <div class="header-top">
                 <div class="title">
                     <h1>쇼핑하우</h1>
@@ -25,7 +27,8 @@ export default function createHeader() {
                 </div>
             </div>
     
-        `;
+        `
+  );
 
   const header = document.getElementById("header");
   header.appendChild(top);

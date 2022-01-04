@@ -1,8 +1,9 @@
 export default function createBanners() {
   const banner = document.createElement("div");
 
-  banner.innerHTML = `
-  <div class="banner">
+  banner.insertAdjacentHTML(
+    "afterbegin",
+    `<div class="banner">
     <div class="best">
       <a href="#" class="best__link">
         <img
@@ -31,7 +32,8 @@ export default function createBanners() {
     </div>
   </div>
       
-  `;
+  `
+  );
 
   const promotion = document.getElementById("promotion");
   promotion.appendChild(banner);

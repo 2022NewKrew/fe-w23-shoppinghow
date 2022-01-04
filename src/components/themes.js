@@ -1,9 +1,9 @@
-const themes = require("../data/themes.json").themes;
-
-export default function createBanners() {
+export default function createBanners(themes) {
   const theme = document.createElement("div");
 
-  theme.innerHTML = `
+  theme.insertAdjacentHTML(
+    "afterbegin",
+    `
   <div class="theme">
     <ul class="theme-container">
       ${themes
@@ -29,7 +29,8 @@ export default function createBanners() {
         .join("")}
     </ul>
   </div>
-    `;
+    `
+  );
 
   const promotion = document.getElementById("promotion");
   promotion.appendChild(theme);

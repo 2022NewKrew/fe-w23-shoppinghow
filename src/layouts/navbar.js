@@ -1,7 +1,9 @@
 export default function createNavbar() {
   const navbar = document.createElement("div");
 
-  navbar.innerHTML = `
+  navbar.insertAdjacentHTML(
+    "afterbegin",
+    `
     <div class="header-menu">
         <div class="category">
             <button class="category__title">
@@ -50,7 +52,8 @@ export default function createNavbar() {
             </li>
         </ul>
     </div>;
-    `;
+    `
+  );
 
   const header = document.getElementById("header");
   header.appendChild(navbar);

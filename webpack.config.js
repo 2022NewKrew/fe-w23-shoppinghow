@@ -23,11 +23,6 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         exclude: /node_modules/,
       },
-      {
-        test: /\.json5$/i,
-        loader: "json5-loader",
-        type: "javascript/auto",
-      },
     ],
   },
   plugins: [
