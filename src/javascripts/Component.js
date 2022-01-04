@@ -17,9 +17,9 @@ export default class Component {
     
         if (childComponentObj) {
             Object.entries(childComponentObj).forEach(([dataComponentKey, component]) => {
-                const tempEl = this.#rootEl.querySelector(`[data-component="${ dataComponentKey }"]`)
+                const componentKeyEl = this.#rootEl.querySelector(`[data-component="${ dataComponentKey }"]`)
         
-                tempEl.parentElement.replaceChild(component.rootEl, tempEl)
+                componentKeyEl.parentElement.replaceChild(component.rootEl, componentKeyEl)
             })
         }
     }
