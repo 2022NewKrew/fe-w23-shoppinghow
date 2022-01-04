@@ -1,0 +1,22 @@
+const express = require("express");
+const webpack = require("webpack");
+const webpackDevMiddleWare = require("webpack-dev-middleware");
+
+const app = express();
+const config = require("../webpack.config.js");
+const compiler = webpack(config);
+const PORT = process.env.PORT || 8080;
+
+app.use(
+    webpackDevMiddleWare(compiler, {
+        publicPath: config.output.publicPath
+    })
+)
+
+app.get("/", (req, res) => {
+    res.sendFile("index.html");
+})
+
+app.listen(PORT, () => {
+    console.log(`Server is listening on port: ${PORT}`);
+})
