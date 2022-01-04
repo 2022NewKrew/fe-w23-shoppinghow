@@ -43,3 +43,16 @@
   height: 5px;
   background-position: -60px -60px;
 }
+.ico_slide {
+  width: 23px;
+  height: 45px;
+  display: inline-block;
+  background: url("../../assets/images/img_home_190702.png");
+}
+.ico_prev {
+  left: 160px;
+}
+.ico_next {
+  right: 160px;
+  background-position: -30px 0;
+}

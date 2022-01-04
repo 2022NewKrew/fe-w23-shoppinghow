@@ -5,6 +5,7 @@
 
 body {
   margin: 0px auto;
+  background-color: #f3f3f3;
 }
 
 h1 {
@@ -57,4 +58,25 @@ $button-padding: 20px;
   height: 5px;
   border-radius: 100%;
   background-color: #f9624c;
+}
+.slide {
+  position: relative;
+  top: 0px;
+  left: -514px;
+  transform: translate3d(0px, 0px, 0px);
+  width: 1542px;
+  display: flex;
+  .panel {
+    height: 100%;
+    overflow: hidden;
+    display: inline-block;
+    transform: translate3d(0px, 0px, 0px);
+    width: 514px;
+    a {
+      display: block;
+      position: relative;
+      width: 484px;
+      margin: 0 auto;
+    }
+  }
 }
