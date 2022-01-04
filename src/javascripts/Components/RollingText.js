@@ -1,6 +1,7 @@
-import styles from '../scss/rolling_text.module.scss'
+import styles from '../../scss/rolling_text.module.scss'
+import Component from '../Component'
 
-export default class RollingText {
+export default class RollingText extends Component {
     
     #TRANSITION_DURATION = 700
     
@@ -8,34 +9,27 @@ export default class RollingText {
     #texts
     #rollingPeriod
     
-    #rootEl
     #textItemEls
     
     #autoRollingIntervalId
     
     constructor(texts, rollingPeriod) {
-        this.#texts = texts
-        this.#rollingPeriod = rollingPeriod
-        
-        const getHTML = () => {
-            return `
+        super(`
+            <div class="${ styles.component }">
                 <div class="${ styles.textRoller }">
                     <div class="${ styles.textItem }"></div>
                     <div class="${ styles.textItem }"></div>
                 </div>
-            `
-        }
+            </div>
+        `)
         
-        const createElement = () => {
-            this.#rootEl = document.createElement('div')
-            this.#rootEl.classList.add(styles.component)
-            
-            this.#rootEl.innerHTML = getHTML()
-            this.#textItemEls = this.#rootEl.querySelectorAll(`.${ styles.textItem }`)
-        }
+        this.#texts = texts
+        this.#rollingPeriod = rollingPeriod
+        
+        this.#textItemEls = this.rootEl.querySelectorAll(`.${ styles.textItem }`)
         
         const initRollerElement = () => {
-            const rollerEl = this.#rootEl.querySelector(`.${ styles.textRoller }`)
+            const rollerEl = this.rootEl.querySelector(`.${ styles.textRoller }`)
             
             rollerEl.addEventListener('transitionend', () => {
                 rollerEl.style.transitionDuration = '0ms'
@@ -45,7 +39,6 @@ export default class RollingText {
             })
         }
         
-        createElement()
         initRollerElement()
         this.#renewText()
         this.startAutoRolling()
@@ -63,7 +56,7 @@ export default class RollingText {
     
     startAutoRolling() {
         const roll = () => {
-            const rollerEl = this.#rootEl.querySelector(`.${ styles.textRoller }`)
+            const rollerEl = this.rootEl.querySelector(`.${ styles.textRoller }`)
             
             rollerEl.style.transitionDuration = `${ this.#TRANSITION_DURATION }ms`
             rollerEl.style.transform = `translateY(-${ styles.height })`
@@ -82,8 +75,9 @@ export default class RollingText {
         clearInterval(this.#autoRollingIntervalId)
     }
     
-    get rootEl() {
-        return this.#rootEl
+    set texts(newTexts) {
+        this.#texts = newTexts
+        this.#renewText()
     }
     
 }

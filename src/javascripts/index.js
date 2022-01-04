@@ -1,5 +1,5 @@
 import css from '../scss/main.scss'
-import InputWithTopRankingGoods from './InputWithTopRankingGoods'
+import InputWithTopRankingGoods from './Components/InputWithTopRankingGoods'
 
 
 window.addEventListener("DOMContentLoaded", ()=> {
