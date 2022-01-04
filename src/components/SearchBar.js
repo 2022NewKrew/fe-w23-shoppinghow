@@ -1,3 +1,5 @@
+const TOP_ITEMS_ROLLING_DELAY = 2000;
+
 class SearchBar {
   #topItemList;
   #topItemIdx;
@@ -54,7 +56,7 @@ class SearchBar {
         this.#topItemIdx + 1 === this.#topItemLength ? 0 : this.#topItemIdx + 1;
 
       this.doRolling();
-    }, 2000);
+    }, TOP_ITEMS_ROLLING_DELAY);
   }
 
   render() {
@@ -73,9 +75,6 @@ class SearchBar {
                           "</li>"
                       )
                       .join("\n")}
-<!--                   <li class="search-top__item">1. ${
-      this.#topItemList[0]
-    }</li>-->
                 </ul>
                 <form>
                     <input type="text" class="search__input">
