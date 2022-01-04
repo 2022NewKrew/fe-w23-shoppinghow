@@ -45,21 +45,25 @@ export default class InputWithTopRankingGoods {
         const setEventToDoNotShowRollerIfFocused = () => {
             const inputEl = this.#rootEl.querySelector(`.${ styles.searchInput }`)
             let timeId
-    
+            
             inputEl.addEventListener('focusin', () => {
                 this.#rollingText.rootEl.style.visibility = 'hidden'
                 this.#rollingText.stopAutoRolling()
+                
+                this.#rootEl.style.borderColor = 'rgba(255, 0, 0, 0.5)'
             })
-    
+            
             inputEl.addEventListener('focusout', () => {
                 this.#rollingText.rootEl.style.visibility = 'visible'
                 this.#rollingText.startAutoRolling()
+                
+                this.#rootEl.style.borderColor = ''
             })
             
             inputEl.addEventListener('mouseenter', () => {
                 clearTimeout(timeId)
             })
-    
+            
             inputEl.addEventListener('mouseout', () => {
                 timeId = setTimeout(() => {
                     inputEl.blur()
