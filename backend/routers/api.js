@@ -17,8 +17,8 @@ router.get("/getSearchKeywordGroup", async function (req, res, next) {
       message: "success",
       data: result,
     });
-  } catch {
-    res.status(400).json({ err: err });
+  } catch(err) {
+    res.status(400).json({ err: err.message });
     return;
   }
 });
@@ -32,8 +32,8 @@ router.get("/getBestProduct", async function (req, res, next) {
       message: "success",
       data: result,
     });
-  } catch {
-    res.status(400).json({ err: err });
+  } catch(err) {
+    res.status(400).json({ err: err.message });
     return;
   }
 });
@@ -47,8 +47,8 @@ router.get("/getEventProduct", async function (req, res, next) {
       message: "success",
       data: result,
     });
-  } catch {
-    res.status(400).json({ err: err });
+  } catch(err) {
+    res.status(400).json({ err: err.message });
     return;
   }
 });
@@ -62,8 +62,8 @@ router.get("/getThemaProduct", async function (req, res, next) {
       message: "success",
       data: result,
     });
-  } catch {
-    res.status(400).json({ err: err });
+  } catch(err) {
+    res.status(400).json({ err: err.message });
     return;
   }
 });
@@ -77,8 +77,8 @@ router.get("/getHotDealProduct", async function (req, res, next) {
       message: "success",
       data: result,
     });
-  } catch {
-    res.status(400).json({ err: err });
+  } catch(err) {
+    res.status(400).json({ err: err.message });
     return;
   }
 });
@@ -92,8 +92,8 @@ router.get("/getKeywordProduct", async function (req, res, next) {
       message: "success",
       data: result,
     });
-  } catch {
-    res.status(400).json({ err: err });
+  } catch(err) {
+    res.status(400).json({ err: err.message });
     return;
   }
 });
@@ -115,8 +115,8 @@ router.post("/getTagProduct", async function (req, res, next) {
       message: "success",
       data: result,
     });
-  } catch {
-    res.status(400).json({ err: err });
+  } catch(err) {
+    res.status(400).json({ err: err.message });
     return;
   }
 });
