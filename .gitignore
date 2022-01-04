@@ -1,0 +1,5 @@
+node_modules
+
+# 빌드파일
+src/build/*
+
