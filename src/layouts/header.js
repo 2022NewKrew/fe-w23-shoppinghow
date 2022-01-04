@@ -1,3 +1,5 @@
+const top10 = require("../data/searchTop10.json").top10;
+
 export default function createHeader() {
   const top = document.createElement("div");
 
@@ -11,8 +13,14 @@ export default function createHeader() {
                         <input type="text" class="search__input" />
                         <button class="search__icon">🔍</button>
                     </form>
-                    <ul class="search-top10">
-                        <li class="search-top10__item">3. 아디다스 런닝화</li>
+                    <ul class="search-top10" id="top10Container>
+                    ${top10
+                      .map(
+                        ({ rank, title }) => `
+                        <li class="search-top10__item>${rank}. ${title}</li>
+                      `
+                      )
+                      .join("")}
                     </ul>
                 </div>
             </div>
