@@ -1,13 +1,13 @@
 import { stallTitle } from './stallTitle';
 import { goodsList } from './goodsList';
 
-export const goodsStall = () => {
+export const goodsStall = ({ title, goodsData }) => {
     const target = document.createElement('div');
 
     const render = () => {
         target.className = 'goods-stall';
-        target.appendChild(stallTitle({ title: '품절주의, 역대급 핫딜' }));
-        target.appendChild(goodsList());
+        target.appendChild(stallTitle({ title }));
+        target.appendChild(goodsList(goodsData));
         return target;
     };
 
