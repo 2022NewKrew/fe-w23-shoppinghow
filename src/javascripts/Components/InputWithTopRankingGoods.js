@@ -23,50 +23,50 @@ export default class InputWithTopRankingGoods extends Component {
             'RollingText': rollingText
         })
         
-        const fetchTopGoodsData = (callbackAfterFetch) => {
-            fetch(TOP_10_GOODS_JSON_URL)
-                .then((res) => {
-                    res.json().then(callbackAfterFetch)
-                })
-        }
+        this.#passTopGoodsDataToRollingText(rollingText)
+        this.#setEventToDoNotShowRollerIfFocused(rollingText)
+    }
+    
+    #fetchTopGoodsData(callbackAfterFetch) {
+        fetch(TOP_10_GOODS_JSON_URL)
+            .then((res) => {
+                res.json().then(callbackAfterFetch)
+            })
+    }
+    
+    #passTopGoodsDataToRollingText(rollingText) {
+        this.#fetchTopGoodsData((topGoodsData) => {
+            rollingText.texts = topGoodsData
+        })
+    }
+    
+    #setEventToDoNotShowRollerIfFocused(rollingText) {
+        const inputEl = this.rootEl.querySelector(`.${ styles.searchInput }`)
+        let timeId
+    
+        inputEl.addEventListener('focusin', () => {
+            rollingText.rootEl.style.visibility = 'hidden'
+            rollingText.stopAutoRolling()
         
-        const passTopGoodsDataToRollingText = () => {
-            fetchTopGoodsData((topGoodsData) => {
-                rollingText.texts = topGoodsData
-            })
-        }
+            this.rootEl.style.borderColor = 'rgba(255, 0, 0, 0.5)'
+        })
+    
+        inputEl.addEventListener('focusout', () => {
+            rollingText.rootEl.style.visibility = 'visible'
+            rollingText.startAutoRolling()
         
-        const setEventToDoNotShowRollerIfFocused = () => {
-            const inputEl = this.rootEl.querySelector(`.${ styles.searchInput }`)
-            let timeId
-            
-            inputEl.addEventListener('focusin', () => {
-                rollingText.rootEl.style.visibility = 'hidden'
-                rollingText.stopAutoRolling()
-                
-                this.rootEl.style.borderColor = 'rgba(255, 0, 0, 0.5)'
-            })
-            
-            inputEl.addEventListener('focusout', () => {
-                rollingText.rootEl.style.visibility = 'visible'
-                rollingText.startAutoRolling()
-                
-                this.rootEl.style.borderColor = ''
-            })
-            
-            inputEl.addEventListener('mouseenter', () => {
-                clearTimeout(timeId)
-            })
-            
-            inputEl.addEventListener('mouseout', () => {
-                timeId = setTimeout(() => {
-                    inputEl.blur()
-                }, FOCUS_OUT_TIME_IF_MOUSE_OUT)
-            })
-        }
-        
-        passTopGoodsDataToRollingText()
-        setEventToDoNotShowRollerIfFocused()
+            this.rootEl.style.borderColor = ''
+        })
+    
+        inputEl.addEventListener('mouseenter', () => {
+            clearTimeout(timeId)
+        })
+    
+        inputEl.addEventListener('mouseout', () => {
+            timeId = setTimeout(() => {
+                inputEl.blur()
+            }, FOCUS_OUT_TIME_IF_MOUSE_OUT)
+        })
     }
     
 }

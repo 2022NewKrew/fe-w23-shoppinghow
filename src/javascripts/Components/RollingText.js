@@ -28,20 +28,20 @@ export default class RollingText extends Component {
         
         this.#textItemEls = this.rootEl.querySelectorAll(`.${ styles.textItem }`)
         
-        const initRollerElement = () => {
-            const rollerEl = this.rootEl.querySelector(`.${ styles.textRoller }`)
-            
-            rollerEl.addEventListener('transitionend', () => {
-                rollerEl.style.transitionDuration = '0ms'
-                rollerEl.style.transform = 'translateY(0)'
-                
-                this.#renewText()
-            })
-        }
-        
-        initRollerElement()
+        this.#initTextRollerElement()
         this.#renewText()
         this.startAutoRolling()
+    }
+    
+    #initTextRollerElement() {
+        const rollerEl = this.rootEl.querySelector(`.${ styles.textRoller }`)
+    
+        rollerEl.addEventListener('transitionend', () => {
+            rollerEl.style.transitionDuration = '0ms'
+            rollerEl.style.transform = 'translateY(0)'
+        
+            this.#renewText()
+        })
     }
     
     #renewText() {
