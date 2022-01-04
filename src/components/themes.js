@@ -1,4 +1,4 @@
-export default function createBanners(themes) {
+export default function createBanners(themeData) {
   const theme = document.createElement("div");
 
   theme.insertAdjacentHTML(
@@ -6,7 +6,7 @@ export default function createBanners(themes) {
     `
   <div class="theme">
     <ul class="theme-container">
-      ${themes
+      ${themeData
         .map(
           ({ title, description, img }) => `
           <li class="theme-item">
