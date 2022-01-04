@@ -1,0 +1,8 @@
+#불필요한 파일
+*.DS_Store
+*.csv
+*.docx
+*.pdf
+*.xlsx
+
+node_modules
