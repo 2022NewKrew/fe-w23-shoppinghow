@@ -1,25 +1,29 @@
 export class Component {
   $target;
   $state;
-  constructor($target) {
+  $props;
+  constructor($target, $props) {
     this.$target = $target;
-    this.setup();
+    this.$props = $props;
+    this.setUp();
     this.setEvent();
     this.render();
   }
 
   setUp() {}
 
-  getTemplate() {
+  template() {
     return "";
   }
   render() {
     this.$target.innerHTML = this.template();
     this.setEvent();
+    this.mounted();
   }
   setEvent() {}
   setState(newState) {
     this.$state = { ...this.$state, ...newState };
     this.render();
   }
+  mounted() {} // render 이후 로직 처리
 }
