@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const bodyParser = require("body-parser");
 const server = express();
 const apiRouter = require("./routers/api");
 
@@ -16,7 +17,7 @@ const apiRouter = require("./routers/api");
 server.set("port", 8080);
 
 server.use(express.static(path.join(__dirname, "public")));
-
+server.use(bodyParser.json());
 //bundle된 index.html '/' 주소로 요청
 server.get("/", (req, res) => {
   console.log(__dirname);
