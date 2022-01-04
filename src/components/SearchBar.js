@@ -4,6 +4,8 @@ class SearchBar {
   #topItemIdx;
   #topItemLength;
 
+  #rollingTimeoutId;
+
   constructor() {
     this.#topItemIdx = 0;
   }
@@ -15,6 +17,7 @@ class SearchBar {
         this.#topItemLength = topItemList.length;
         this.putTopItems(topItemList);
         this.doRolling();
+        this.addEvents();
       });
   }
 
@@ -45,7 +48,7 @@ class SearchBar {
     curItem.classList.add("current-top-item");
     nextItem.classList.add("next-top-item");
 
-    setTimeout(() => {
+    this.#rollingTimeoutId = setTimeout(() => {
       prevItem.classList.remove("previous-top-item");
 
       curItem.classList.add("previous-top-item");
@@ -60,6 +63,20 @@ class SearchBar {
     }, TOP_ITEMS_ROLLING_DELAY);
   }
 
+  addEvents() {
+    const $searchForm = document.querySelector(".search__input");
+    $searchForm.addEventListener("mouseover", () => {
+      clearTimeout(this.#rollingTimeoutId);
+      this.#rollingTimeoutId = null;
+    });
+
+    $searchForm.addEventListener("mouseout", () => {
+      if (!this.#rollingTimeoutId) {
+        this.doRolling();
+      }
+    });
+  }
+
   render() {
     // TODO: 마우스 오버시 애니메이션 멈춤
     window.addEventListener(
@@ -70,7 +87,7 @@ class SearchBar {
     return `<div class="search">             
                 <ul class="search-top">
                 </ul>
-                <form>
+                <form class="search__form">
                     <input type="text" class="search__input">
                     <button class="search__icon">🔍</button>
                 </form>

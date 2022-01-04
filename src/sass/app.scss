@@ -29,6 +29,8 @@ $SearchHeight: 60px;
                 padding-left: 20px;
                 line-height: $SearchHeight;
                 font-size: 1.2rem;
+                background-color: transparent;
+                z-index: 200;
             }
 
             .search__icon {
