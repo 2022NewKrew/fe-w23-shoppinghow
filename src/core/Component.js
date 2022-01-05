@@ -3,7 +3,7 @@ class Component {
   props;
   state;
 
-  constructor($target, props) {
+  constructor($target, props = {}) {
     this.$target = $target;
     this.props = props; // props 할당
     this.setup();
