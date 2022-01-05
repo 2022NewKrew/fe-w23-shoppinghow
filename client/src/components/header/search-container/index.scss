@@ -1,0 +1,12 @@
+.search {
+  display: flex;
+  position: relative;
+  border: 1px solid var(--color-grey3);
+  border-radius: 10px;
+  padding: 5px 10px;
+  overflow: hidden;
+
+  &.active {
+    border-color: var(--color-orange);
+  }
+}
