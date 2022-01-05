@@ -1,5 +1,5 @@
 import Component from '../Component'
-import styles from '../../scss/goods-floating-layer.module.scss'
+import styles from '../../scss/ComponentStyles/GoodsFloatingLayer.module.scss'
 import GoodsDataManager from '../GoodsDataManager'
 
 export default class GoodsFloatingLayer extends Component {
