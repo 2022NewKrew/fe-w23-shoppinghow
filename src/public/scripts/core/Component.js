@@ -6,7 +6,6 @@ export class Component {
     this.$target = $target;
     this.$props = $props;
     this.setUp();
-    this.setEvent();
     this.#render();
   }
 
