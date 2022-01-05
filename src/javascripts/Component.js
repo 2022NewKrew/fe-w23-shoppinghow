@@ -1,5 +1,3 @@
-import { Obj } from 'nunjucks/src/object'
-
 export default class Component {
     
     #rootEl
@@ -24,6 +22,10 @@ export default class Component {
                 this.#childComponents.push(component)
             })
         }
+    }
+    
+    update() {
+        throw new Error('update() must be overridden.')
     }
     
     remove() {
