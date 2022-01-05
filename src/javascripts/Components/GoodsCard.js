@@ -29,11 +29,11 @@ export default class GoodsCard extends Component {
         
         this.#goodsData = goodsData
         
-        this.#checkIfTagged()
+        this.#addTaggedClassIfTagged()
         this.#setClickEventListener()
     }
     
-    #checkIfTagged() {
+    #addTaggedClassIfTagged() {
         const tagGoodsList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.TAG_GOODS_LIST_KEY))
     
         tagGoodsList.forEach((goodsData, idx) => {
