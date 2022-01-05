@@ -1,6 +1,4 @@
 const path = require('path');
-
-//여기도 추가
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -9,6 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   devtool: 'inline-source-map',
   devServer: {
