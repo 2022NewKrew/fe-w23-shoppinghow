@@ -36,6 +36,7 @@
     .search__box {
       position: absolute;
       overflow: hidden;
+      z-index: -1;
 
       .search-top10 {
         padding: 5px;
