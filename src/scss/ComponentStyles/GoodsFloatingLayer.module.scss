@@ -14,7 +14,7 @@ $floating-layer-border: 1px;
   width: $floating-layer-width;
   height: $floating-layer-height;
   background-color: #FFFFFF;
-  border: $floating-layer-border solid #333333;
+  border: $floating-layer-border solid #AAAAAA;
   padding: $floating-layer-padding;
   overflow: hidden;
 }
@@ -53,7 +53,7 @@ $floating-layer-border: 1px;
   
   .goods-list {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     padding-top: 10px;
     flex-wrap: wrap;
   
