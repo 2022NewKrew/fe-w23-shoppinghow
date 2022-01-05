@@ -1,6 +1,6 @@
 import Component from '../Component'
 import styles from '../../scss/goods-card.module.scss'
-import GoodsFloatingLayer from './GoodsFloatingLayer'
+import GoodsDataManager from '../GoodsDataManager'
 
 export default class GoodsCard extends Component {
     
@@ -29,28 +29,16 @@ export default class GoodsCard extends Component {
         
         this.#goodsData = goodsData
         
-        this.#addTaggedClassIfTagged()
+        this.#addTaggedClassIfTaggedGoods()
         this.#setClickEventListener()
     }
     
-    #checkIfSameGoodsDataExists(goodsList, goodsData, callbackIfSameGoodsDataExists) {
-        goodsList.forEach((goodsData, idx) => {
-            if (goodsData.name === this.#goodsData.name
-                && goodsData.imgSrc === this.#goodsData.imgSrc) {
-                callbackIfSameGoodsDataExists(idx)
-                return false
-            }
-        })
-    }
-    
-    #addTaggedClassIfTagged() {
-        const tagGoodsList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.TAG_GOODS_LIST_KEY))
-    
-        this.#checkIfSameGoodsDataExists(tagGoodsList, this.#goodsData, () => {
-            const heartIconEl = this.rootEl.querySelector(`.${ styles.heartIcon }`)
-    
+    #addTaggedClassIfTaggedGoods() {
+        const heartIconEl = this.rootEl.querySelector(`.${ styles.heartIcon }`)
+        
+        if (GoodsDataManager.checkIfSameTaggedGoodsDataExists(this.#goodsData)) {
             heartIconEl.classList.add(styles.heartIconTagged)
-        })
+        }
     }
     
     #setClickEventListener() {
@@ -59,32 +47,15 @@ export default class GoodsCard extends Component {
         
         cardEl.addEventListener('click', (event) => {
             if (event.target === heartIconEl) {
-                const tagGoodsList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.TAG_GOODS_LIST_KEY))
-    
                 if (heartIconEl.classList.contains(styles.heartIconTagged)) {
                     heartIconEl.classList.remove(styles.heartIconTagged)
-                    
-                    this.#checkIfSameGoodsDataExists(tagGoodsList, this.#goodsData, (idx) => {
-                        tagGoodsList.pop(idx)
-                    })
+                    GoodsDataManager.removeTaggedGoodsData(this.#goodsData)
                 } else {
                     heartIconEl.classList.add(styles.heartIconTagged)
-                    tagGoodsList.push(this.#goodsData)
+                    GoodsDataManager.addTaggedGoodsData(this.#goodsData)
                 }
-    
-                localStorage.setItem(GoodsFloatingLayer.TAG_GOODS_LIST_KEY, JSON.stringify(tagGoodsList))
             } else {
-                const recentGoodsList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.RECENT_GOODS_LIST_KEY))
-                let isDuplicate = false
-                
-                this.#checkIfSameGoodsDataExists(recentGoodsList, this.#goodsData, () => {
-                    isDuplicate = true
-                })
-    
-                if (!isDuplicate) {
-                    recentGoodsList.push(this.#goodsData)
-                    localStorage.setItem(GoodsFloatingLayer.RECENT_GOODS_LIST_KEY, JSON.stringify(recentGoodsList))
-                }
+                GoodsDataManager.addRecentGoodsData(this.#goodsData)
             }
         })
     }

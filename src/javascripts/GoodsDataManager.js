@@ -1,7 +1,7 @@
 export default class GoodsDataManager {
     
     static #RECENT_GOODS_LIST_KEY = 'recentGoodsList'
-    static #TAGGED_GOODS_LIST_KEY = 'tagGoodsList'
+    static #TAGGED_GOODS_LIST_KEY = 'taggedGoodsList'
     
     static #recentGoodsDataList = []
     static #taggedGoodsDataList = []
@@ -22,15 +22,32 @@ export default class GoodsDataManager {
         })
     }
     
-    static #checkIfSameGoodsDataExists(goodsList, goodsData) {
+    static #checkIfSameGoodsDataExists(goodsList, goodsData, callbackIfSameGoodsDataExists) {
         goodsList.forEach((goodsDataToCompare, idx) => {
             if (goodsDataToCompare.name === goodsData.name
                 && goodsDataToCompare.imgSrc === goodsData.imgSrc) {
+                callbackIfSameGoodsDataExists(idx)
                 return false
             }
         })
+    }
+    
+    static init() {
+        this.pullFormLocalStorage()
+    
+        window.addEventListener('beforeunload', () => {
+            this.pushToLocalStorage()
+        })
+    }
+    
+    static checkIfSameTaggedGoodsDataExists(goodsData) {
+        let doSameTaggedGoodsDataExists = false
         
-        return true
+        this.#checkIfSameGoodsDataExists(this.#taggedGoodsDataList, goodsData, () => {
+            doSameTaggedGoodsDataExists = true
+        })
+        
+        return doSameTaggedGoodsDataExists
     }
     
     static pullFormLocalStorage() {
@@ -52,17 +69,44 @@ export default class GoodsDataManager {
     }
     
     static addRecentGoodsData(goodsData) {
-        if (this.#checkIfSameGoodsDataExists(this.#recentGoodsDataList, goodsData)) {
+        let isDuplicate = false
+        
+        this.#checkIfSameGoodsDataExists(this.#recentGoodsDataList, goodsData, () => {
+            isDuplicate = true
+        })
+    
+        if (!isDuplicate) {
             this.#recentGoodsDataList.push(goodsData)
             this.#notifyRecentGoodsDataChangedEvent()
         }
     }
     
     static addTaggedGoodsData(goodsData) {
-        if (this.#checkIfSameGoodsDataExists(this.#taggedGoodsDataList, goodsData)) {
+        let isDuplicate = false
+    
+        this.#checkIfSameGoodsDataExists(this.#taggedGoodsDataList, goodsData, () => {
+            isDuplicate = true
+        })
+    
+        if (!isDuplicate) {
             this.#taggedGoodsDataList.push(goodsData)
             this.#notifyTaggedGoodsDataChangedEvent()
         }
+    }
+    
+    static getRecentGoodsDataList() {
+        return this.#recentGoodsDataList
+    }
+    
+    static getTaggedGoodsDataList() {
+        return this.#taggedGoodsDataList
+    }
+    
+    static removeTaggedGoodsData(goodsData) {
+        this.#checkIfSameGoodsDataExists(this.#taggedGoodsDataList, goodsData, (idx) => {
+            this.#taggedGoodsDataList.splice(idx, 1)
+            this.#notifyTaggedGoodsDataChangedEvent()
+        })
     }
     
     static addRecentGoodsDataChangedEventListener(eventListener) {
@@ -75,6 +119,4 @@ export default class GoodsDataManager {
 
 }
 
-window.addEventListener('beforeunload', () => {
-    GoodsDataManager.pushToLocalStorage()
-})
+GoodsDataManager.init()

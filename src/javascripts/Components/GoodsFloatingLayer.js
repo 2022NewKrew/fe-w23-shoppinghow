@@ -1,20 +1,21 @@
 import Component from '../Component'
 import styles from '../../scss/goods-floating-layer.module.scss'
+import GoodsDataManager from '../GoodsDataManager'
 
 export default class GoodsFloatingLayer extends Component {
     
-    static RECENT_GOODS_LIST_KEY = 'recentGoodsList'
-    static TAG_GOODS_LIST_KEY = 'tagGoodsList'
+    static #RECENT_KEY = 'recent'
+    static #TAGGED_KEY = 'tagged'
     
-    #recentGoodsList
-    #tagGoodsList
-    #whatToShow = GoodsFloatingLayer.RECENT_GOODS_LIST_KEY
+    #recentGoodsList = []
+    #taggedGoodsList = []
+    #whatToShow = GoodsFloatingLayer.#RECENT_KEY
     
     #recentGoodsTabEl
-    #tagGoodsTabEl
+    #taggedGoodsTabEl
     
     #recentGoodsNumEl
-    #tagGoodsNumEl
+    #taggedGoodsNumEl
     #goodsListEl
     
     constructor() {
@@ -40,35 +41,23 @@ export default class GoodsFloatingLayer extends Component {
         
         const tabEls = this.rootEl.querySelectorAll(`.${ styles.tabItem }`)
         this.#recentGoodsTabEl = tabEls[0]
-        this.#tagGoodsTabEl = tabEls[1]
+        this.#taggedGoodsTabEl = tabEls[1]
         
         const goodsNumEls = this.rootEl.querySelectorAll(`.${ styles.tabItemNumber }`)
         this.#recentGoodsNumEl = goodsNumEls[0]
-        this.#tagGoodsNumEl = goodsNumEls[1]
+        this.#taggedGoodsNumEl = goodsNumEls[1]
         
         this.#goodsListEl = this.rootEl.querySelector(`.${ styles.goodsList }`)
         
-        this.#initLocalStorage()
+        this.#pullGoodsData()
         this.#setTabMouseOverEventListener()
-        this.#setStorageChangedEventListener()
+        this.#setGoodsDataChangedEventListener()
         this.update()
     }
     
-    #initLocalStorage() {
-        const recentGoodsDataList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.RECENT_GOODS_LIST_KEY))
-        const tagGoodsDataList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.TAG_GOODS_LIST_KEY))
-    
-        if (!recentGoodsDataList) {
-            localStorage.setItem(GoodsFloatingLayer.RECENT_GOODS_LIST_KEY, '[]')
-        } else {
-            this.#recentGoodsList = recentGoodsDataList
-        }
-        
-        if (!tagGoodsDataList) {
-            localStorage.setItem(GoodsFloatingLayer.TAG_GOODS_LIST_KEY, '[]')
-        } else {
-            this.#tagGoodsList = tagGoodsDataList
-        }
+    #pullGoodsData() {
+        this.#recentGoodsList = GoodsDataManager.getRecentGoodsDataList()
+        this.#taggedGoodsList = GoodsDataManager.getTaggedGoodsDataList()
     }
     
     #getGoodsListHTML(goodsList) {
@@ -77,18 +66,18 @@ export default class GoodsFloatingLayer extends Component {
     
     update() {
         this.#recentGoodsNumEl.innerText = this.#recentGoodsList.length
-        this.#tagGoodsNumEl.innerText = this.#tagGoodsList.length
+        this.#taggedGoodsNumEl.innerText = this.#taggedGoodsList.length
         
         switch (this.#whatToShow) {
-            case GoodsFloatingLayer.RECENT_GOODS_LIST_KEY:
+            case GoodsFloatingLayer.#RECENT_KEY:
                 this.#goodsListEl.innerHTML = this.#getGoodsListHTML(this.#recentGoodsList)
                 this.#recentGoodsTabEl.classList.add(styles.selectedTabItem)
-                this.#tagGoodsTabEl.classList.remove(styles.selectedTabItem)
+                this.#taggedGoodsTabEl.classList.remove(styles.selectedTabItem)
                 break
             
-            case GoodsFloatingLayer.TAG_GOODS_LIST_KEY:
-                this.#goodsListEl.innerHTML = this.#getGoodsListHTML(this.#tagGoodsList)
-                this.#tagGoodsTabEl.classList.add(styles.selectedTabItem)
+            case GoodsFloatingLayer.#TAGGED_KEY:
+                this.#goodsListEl.innerHTML = this.#getGoodsListHTML(this.#taggedGoodsList)
+                this.#taggedGoodsTabEl.classList.add(styles.selectedTabItem)
                 this.#recentGoodsTabEl.classList.remove(styles.selectedTabItem)
                 break
         }
@@ -96,21 +85,24 @@ export default class GoodsFloatingLayer extends Component {
     
     #setTabMouseOverEventListener() {
         this.#recentGoodsTabEl.addEventListener('mouseover', () => {
-            this.#whatToShow = GoodsFloatingLayer.RECENT_GOODS_LIST_KEY
+            this.#whatToShow = GoodsFloatingLayer.#RECENT_KEY
             this.update()
         })
         
-        this.#tagGoodsTabEl.addEventListener('mouseover', () => {
-            this.#whatToShow = GoodsFloatingLayer.TAG_GOODS_LIST_KEY
+        this.#taggedGoodsTabEl.addEventListener('mouseover', () => {
+            this.#whatToShow = GoodsFloatingLayer.#TAGGED_KEY
             this.update()
         })
     }
     
-    #setStorageChangedEventListener() {
-        window.addEventListener('storage', () => {
-            console.log('storage updated')
-            this.#recentGoodsList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.RECENT_GOODS_LIST_KEY))
-            this.#tagGoodsList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.TAG_GOODS_LIST_KEY))
+    #setGoodsDataChangedEventListener() {
+        GoodsDataManager.addRecentGoodsDataChangedEventListener((recentGoodsDataList) => {
+            this.#recentGoodsList = recentGoodsDataList
+            this.update()
+        })
+        
+        GoodsDataManager.addTaggedGoodsDataChangedEventListener((taggedGoodsDataList) => {
+            this.#taggedGoodsList = taggedGoodsDataList
             this.update()
         })
     }
