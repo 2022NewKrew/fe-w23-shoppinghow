@@ -36,20 +36,43 @@
     .search__box {
       position: absolute;
       overflow: hidden;
+      line-height: 60px;
       z-index: -1;
+      width: 100%;
 
       .search-top10 {
-        padding: 5px;
+        padding-left: 5px;
         font-size: 1.2rem;
+        line-height: 60px;
         height: 60px;
+        width: 100%;
 
         .search-top10__item {
+          position: absolute;
+          width: 300px;
+          height: 60px;
+          transition: transform 0.5s;
+          display: none;
+        }
+
+        .previous-top-item {
+          transform: translateY(-60px);
+          display: block;
+          // height: 60px;
+        }
+
+        .current-top-item {
+          transform: translateY(0px);
           display: flex;
           align-items: center;
-          height: 60px;
-          color: #939393;
-          font-weight: 700;
-          line-height: 22px;
+          // height: 60px;
+        }
+
+        .next-top-item {
+          transform: translateY(60px);
+          display: flex;
+          align-items: center;
+          // height: 60px;
         }
       }
     }
