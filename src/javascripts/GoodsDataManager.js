@@ -24,7 +24,7 @@ export default class GoodsDataManager {
     
     static #checkIfSameGoodsDataExists(goodsList, goodsData, callbackIfSameGoodsDataExists) {
         goodsList.forEach((goodsDataToCompare, idx) => {
-            if (goodsDataToCompare.name === goodsData.name
+            if (goodsDataToCompare.title === goodsData.title
                 && goodsDataToCompare.imgSrc === goodsData.imgSrc) {
                 callbackIfSameGoodsDataExists(idx)
                 return false

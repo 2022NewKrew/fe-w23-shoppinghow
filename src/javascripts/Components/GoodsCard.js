@@ -6,6 +6,10 @@ export default class GoodsCard extends Component {
     
     #goodsData
     
+    #imgEl
+    #titleEl
+    #priceNumEl
+    
     constructor(goodsData) {
         super(`
             <div class="${ styles.cardContainer }">
@@ -14,10 +18,10 @@ export default class GoodsCard extends Component {
                         <img src="//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895" alt="">
                     </div>
                     <div class="${ styles.descriptionBox }">
-                        <div class="${ styles.title }">육즙가득 안심스테이크1+1</div>
+                        <div class="${ styles.title }"></div>
                         <div class="${ styles.detailBox }">
                             <div class="${ styles.price }">
-                                <span class="${ styles.priceNum }">27,750</span>
+                                <span class="${ styles.priceNum }"></span>
                                 <span class="${ styles.priceUnit }">원</span>
                             </div>
                             <div class="${ styles.heartIcon }">
@@ -29,8 +33,19 @@ export default class GoodsCard extends Component {
         
         this.#goodsData = goodsData
         
+        this.#imgEl = this.rootEl.querySelector('img')
+        this.#titleEl = this.rootEl.querySelector(`.${ styles.title }`)
+        this.#priceNumEl = this.rootEl.querySelector(`.${ styles.priceNum }`)
+        
         this.#addTaggedClassIfTaggedGoods()
         this.#setClickEventListener()
+        this.update()
+    }
+    
+    update() {
+        this.#imgEl.src = this.#goodsData.imgSrc
+        this.#titleEl.innerText = this.#goodsData.title
+        this.#priceNumEl.innerText = this.#goodsData.price
     }
     
     #addTaggedClassIfTaggedGoods() {
@@ -62,6 +77,7 @@ export default class GoodsCard extends Component {
     
     set goodsData(newGoodsData) {
         this.#goodsData = newGoodsData
+        this.update()
     }
     
 }
