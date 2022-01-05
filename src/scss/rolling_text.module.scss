@@ -9,6 +9,7 @@ $height: 40px;
   display: flex;
   align-items: center;
   overflow: hidden;
+  z-index: -1;
   
   .text-roller {
     height: $height;
