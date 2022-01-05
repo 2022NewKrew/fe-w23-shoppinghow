@@ -1,0 +1,36 @@
+.header-menu {
+  height: 60px;
+  display: flex;
+  border: 1px solid #cbcbcb;
+  max-width: 1270px;
+  margin: 40px auto;
+
+  .category__title {
+    height: 60px;
+    padding: 10px;
+
+    .fas {
+      margin-right: 8px;
+    }
+  }
+
+  .top-menu {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+
+    .top-menu__btn {
+      padding: 0 $button-padding;
+      line-height: 60px;
+    }
+  }
+
+  .private-menu {
+    margin-left: auto;
+    display: flex;
+
+    .private-menu__btn {
+      padding: $button-padding;
+    }
+  }
+}
