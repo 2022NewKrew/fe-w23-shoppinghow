@@ -31,14 +31,41 @@
             }
         }
 
-        .search-top10 {
+        .search-rollbox{
+
+            overflow: hidden;
             position: absolute;
             transform: translateY(50%);
+            width: 200px;
             left: 10px;
-            font-size: 1.2rem;
             height: 50%;
-            display: flex;
-            align-items: center;
+            pointer-events: none;
+
+            .search-top10 {
+                position: absolute;
+                transform: translateY(50%);
+                left: 10px;
+                font-size: 1.2rem;
+                height: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+    
+                .search-top10__item {
+                    padding-top: 2px;
+                    padding-bottom: 2px;
+                }
+    
+                .prev {
+                    
+                }
+                .current {
+                    
+                }
+                .next {
+                    
+                }
+            }
         }
     }
 }

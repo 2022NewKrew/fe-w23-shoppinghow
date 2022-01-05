@@ -32,6 +32,14 @@ h1 {
   font-size: 0.875rem;
 }
 
+.hidden {
+  display: hidden;
+}
+
+.none {
+  display: none;
+}
+
 .header-top {
   display: flex;
   padding: 60px;
@@ -59,16 +67,29 @@ h1 {
   font-size: 1.4rem;
   padding: 10px;
 }
-.header-top .search .search-top10 {
+.header-top .search .search-rollbox {
+  overflow: hidden;
+  position: absolute;
+  transform: translateY(50%);
+  width: 200px;
+  left: 10px;
+  height: 50%;
+  pointer-events: none;
+}
+.header-top .search .search-rollbox .search-top10 {
   position: absolute;
   transform: translateY(50%);
   left: 10px;
   font-size: 1.2rem;
   height: 50%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
 }
-
+.header-top .search .search-rollbox .search-top10 .search-top10__item {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
 .header-menu {
   height: 60px;
   display: flex;
