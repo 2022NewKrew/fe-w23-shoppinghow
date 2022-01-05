@@ -1,0 +1,34 @@
+$border-option: 1px solid rgba(0, 0, 0, 0.08);
+
+.component {
+  margin-top: 40px;
+  width: 100%;
+  
+  .header-title {
+    padding: 5px 0;
+    font-size: 1.5rem;
+  }
+  
+  .goods-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border: $border-option;
+    
+    li {
+      width: 20%;
+      
+      &:nth-child(n+1):nth-child(-n+4) {
+        border-right: $border-option
+      }
+      
+      &:nth-child(n+1):nth-child(-n+5) {
+        border-bottom: $border-option;
+      }
+      
+      &:nth-child(n+6):nth-child(-n+9) {
+        border-right: $border-option;
+      }
+    }
+  }
+}
