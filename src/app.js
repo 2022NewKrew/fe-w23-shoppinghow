@@ -1,7 +1,67 @@
 import "./styles/libs/reset.css";
 import "./sass/app.scss";
 
-function makeHotDealHTML() {
+const PLANNING_CONTAINER_TRANSITION_STR = "transform 0.3s ease-in-out";
+const HOT_DEAL_ITEM_CNT = 10;
+
+// reference : https://velog.io/@wjddnjswjd12/javascript%EB%A1%9C-carousel-slide-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EA%B8%B0
+const makePlanningCarousel = () => {
+  const planningList = document.querySelector(".planning-list");
+  const planningItemArray = [
+    document.querySelector(".planning-item__last-clone"),
+    ...document.querySelectorAll(".planning-item"),
+    document.querySelector(".planning-item__first-clone"),
+  ];
+  const leftBtn = document.querySelector(".planning__left-btn");
+  const rightBtn = document.querySelector(".planning__right-btn");
+
+  let counter = 1;
+
+  planningList.style.transform =
+    "translateX(" + -planningItemArray[0].clientWidth * counter + "px)";
+
+  leftBtn.addEventListener("click", () => {
+    if (counter <= 0) {
+      return;
+    }
+
+    planningList.style.transition = PLANNING_CONTAINER_TRANSITION_STR;
+    counter--;
+    planningList.style.transform =
+      "translateX(" + -planningItemArray[0].clientWidth * counter + "px)";
+  });
+
+  rightBtn.addEventListener("click", () => {
+    if (counter >= planningItemArray.length - 1) {
+      return;
+    }
+
+    planningList.style.transition = PLANNING_CONTAINER_TRANSITION_STR;
+    counter++;
+    planningList.style.transform =
+      "translateX(" + -planningItemArray[0].clientWidth * counter + "px)";
+  });
+
+  planningList.addEventListener("transitionend", () => {
+    if (planningItemArray[counter].className === "planning-item__last-clone") {
+      planningList.style.transition = "none";
+      counter = planningItemArray.length - 2;
+      planningList.style.transform =
+        "translateX(" + -planningItemArray[0].clientWidth * counter + "px)";
+    }
+
+    if (planningItemArray[counter].className === "planning-item__first-clone") {
+      planningList.style.transition = "none";
+      counter = planningItemArray.length - counter;
+      planningList.style.transform =
+        "translateX(" + -planningItemArray[0].clientWidth * counter + "px)";
+    }
+  });
+
+  return;
+};
+
+const makeHotDealHTML = () => {
   const target = document.querySelector(".hot-deal-list");
   const hotdealItemTpl = `
             <li class="hot-deal__item">
@@ -19,8 +79,12 @@ function makeHotDealHTML() {
                 </a>
             </li>`;
 
-  target.innerHTML = Array(10)
+  target.innerHTML = Array(HOT_DEAL_ITEM_CNT)
     .fill(0)
     .reduce((html, item) => html + hotdealItemTpl, ``);
-}
+
+  return;
+};
+
+makePlanningCarousel();
 makeHotDealHTML();

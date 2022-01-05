@@ -118,6 +118,30 @@
           margin: 0 auto;
           width: 600px;
         }
+
+        .planning-box {
+          width: 100px;
+          height: 100px;
+          overflow: hidden;
+
+          .planning-list {
+            width: 900px;
+            display: flex;
+            height: 100px;
+
+            .planning-item,
+            .planning-item__last-clone,
+            .planning-item__first-clone {
+              background-color: rgb(255, 215, 187);
+              width: 100px;
+              height: 100px;
+              text-align: center;
+              line-height: 100px;
+              font-size: larger;
+              border: rgb(165, 165, 165) 0.5px solid;
+            }
+          }
+        }
       }
     }
 
