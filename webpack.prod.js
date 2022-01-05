@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const common = require('./webpack.common.js');
 
+const HTML_TEMPLATE = 'assets/production.html';
+
 module.exports = merge(common, {
   mode: 'production',
   // devtool: "source-map", // 배포 디버깅용
@@ -19,12 +21,12 @@ module.exports = merge(common, {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: 'assets/production.html',
+      template: HTML_TEMPLATE,
       filename: 'home.html',
       chunks: ['home'],
     }),
     new HtmlWebpackPlugin({
-      template: 'assets/production.html',
+      template: HTML_TEMPLATE,
       filename: 'dummy.html',
       chunks: ['dummy'],
     }),
