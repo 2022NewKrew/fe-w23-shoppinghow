@@ -1,2 +1,2 @@
-export { default as Component } from "./Component";
-export { default as State } from "./State";
+export { default as Component } from './Component';
+export { default as Store } from './Store';
