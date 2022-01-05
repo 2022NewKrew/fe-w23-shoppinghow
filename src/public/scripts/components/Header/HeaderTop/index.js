@@ -1,6 +1,6 @@
-import { Component } from "../../core/Component";
-import { $ } from "../../utils/util";
-import { HeaderRolling } from "./index";
+import { Component } from "@core/Component";
+import { $ } from "@utils/query";
+import HeaderRolling from "./HeaderRolling";
 
 export default class HeaderTop extends Component {
   setUp() {
@@ -16,25 +16,27 @@ export default class HeaderTop extends Component {
         "7. 육수팩",
         "8. 유산균",
         "9. 제기세트",
-        "10. 스노우보드",
+        "10. 스케이트",
+        "1. 스노우보드",
+        "2. 스테비아토마토",
       ],
     };
   }
   template() {
     return `
-    <div class="header-top">
       <div class="title">
         <h1>쇼핑하우</h1>
       </div>
       <div class="search">
         <form>
           <input type="text" class="search__input" />
+          
           <button class="search__icon">🔍</button>
         </form>
-        <ul component="header-rolling" class="search-top10" >
-        </ul>
+        <div class="top10-wrap"  >
+          <ol class="search-top10" component="header-rolling"></ol>
+        </div>
       </div>
-    </div>
     `;
   }
   mounted() {
@@ -42,6 +44,7 @@ export default class HeaderTop extends Component {
 
     new HeaderRolling($headerRolling, {
       top10: this.$state.top10,
+      rollingList: $(".search-top10", this.$target),
     });
   }
   setEvent() {}
