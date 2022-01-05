@@ -1,7 +1,9 @@
 import Component from "../../core/Component";
-
+import ApiService from "../../core/ApiService";
+import RollKeyword from "./RollKeyword";
 //TODO 인기검색어리스트 추가기능 작업예정
 export default class KaKaoHead extends Component {
+
   template() {
     return `
     <div class="area_headtop">
@@ -30,13 +32,11 @@ export default class KaKaoHead extends Component {
                     </div>
                 </fieldset>
             </form>
-            <div class="wrap_rollkeywords" id="upwardKeywordWrap"><strong class="screen_out">인기 쇼핑 키워드</strong>
-                <ol class="list_rollkeywords">
-                    <!-- 2019-08-01 css top속성으로 키워드를 롤링 시킬 수 있습니다. -->
-
-                
-
+            <div class="wrap_rollkeywords" id="upwardKeywordWrap">
+                <strong class="screen_out">인기 쇼핑 키워드</strong>
+                <ol class="list_rollkeywords" data-component="roll-keyword" style="top: 0px;">
                 </ol>
+                
             </div>
             <div class="wrap_suggestion" id="suggestWrap" style="display:none">
 
@@ -113,5 +113,86 @@ export default class KaKaoHead extends Component {
             </ul>
         </div>
     </div>`;
+  }
+
+  setup(){
+      this.$state={
+          rollInterval:null
+      }
+  }
+
+  mounted() {
+    this.setDataToMounted();
+    this.setAutoRollAnimation();
+    this.setSearchFormMouseEvent();
+  }
+
+  setAutoRollAnimation(){
+    const $rollKeyword = this.$target.querySelector(
+        '[data-component="roll-keyword"]'
+      );
+      this.$state.rollInterval = setInterval(()=> {
+        let top = parseInt($rollKeyword.style.top.split("px")[0]);
+
+        if(top<-300){
+            $rollKeyword.style.top="0px";
+            top=0;
+        }
+
+        this.moveRollAnimation($rollKeyword,top,32,2)
+        
+      },3000)
+  }
+
+  //마우스가 올라가면 rollInterval(검색어 자동롤)을 멈춤 마우스가 벗어나면 다시 실행
+  setSearchFormMouseEvent(){
+    const _this = this;
+    const kakaoSearchEl = this.$target.querySelector('[name="kakaoSearch"]')
+    kakaoSearchEl.addEventListener('mouseenter', function(){
+        if(_this.$state.rollInterval!=null){
+            clearInterval(_this.$state.rollInterval)
+            console.log(_this.$state.rollInterval);
+        }
+
+    });
+
+    kakaoSearchEl.addEventListener('mouseleave', function(){
+        _this.setAutoRollAnimation()
+    });
+  }
+
+  //총픽셀을 원하는 픽셀만큼 이동시킴
+  moveRollAnimation($el,top,TotalMovePx,movePx){
+    let count=0;
+    const moveAnimation = setInterval(() => {
+        if(count>=(TotalMovePx/movePx)){
+            $el.style.top = `${top-TotalMovePx}px`
+            clearInterval(moveAnimation)
+            return
+        }
+        count++;
+        $el.style.top = `${top-(movePx*count)}px`
+    }, 40);
+
+  }
+
+  async setDataToMounted() {
+    const $rollKeyword = this.$target.querySelector(
+      '[data-component="roll-keyword"]'
+    );
+    const searchKeywordGroup = await this.getSearhKeyword();
+
+    new RollKeyword($rollKeyword, { searchKeywordGroup: searchKeywordGroup });
+  }
+
+  async getSearhKeyword() {
+    const apiService = new ApiService();
+
+    const res = await apiService.getApi("getSearchKeywordGroup");
+    if (res == null) {
+      console.log("getSearhKeyword err");
+      return;
+    }
+    return res.data;
   }
 }

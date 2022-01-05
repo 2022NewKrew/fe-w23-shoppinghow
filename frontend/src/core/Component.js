@@ -11,6 +11,8 @@ export default class Component {
       this.setEvent();
       this.render();
     }
+
+    //sate설정하는 함수
     setup () {};
     
     //렌더링 후 후 추가기능
@@ -26,6 +28,7 @@ export default class Component {
     }
 
     //이벤트 설정
+    //TODO: mount안된 상태에서 접근이 불가능해서 고민
     setEvent () {}
 
     //상태 설정(상태 설정 후에 렌더링)
