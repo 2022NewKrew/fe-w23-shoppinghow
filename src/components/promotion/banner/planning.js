@@ -1,23 +1,40 @@
+import { buttonConsole } from '../../carousel/buttonConsole';
 import { carousel } from '../../carousel/carousel';
+import { imageContainer } from '../../carousel/imageContainer';
+
+// fetch되어온 데이터라 가정
+const dummyData = [
+    'https://shop3.daumcdn.net/shophow/sib/0_211220170158_owNwlIYMPjCOmpLzLBZpBGQkATLoNNWG',
+    'https://shop3.daumcdn.net/shophow/sib/0_211220170214_KnBppOYCunaKIzTENvoRdzZivpnaGYdc',
+    'https://shop2.daumcdn.net/shophow/sib/0_211220170154_lPdfLnRSayayFBdHisdeeCypQQWWgaeu',
+];
+
+const makePlanningCarousel = (cellData) => {
+    const CELL_WIDTH = 485;
+    const CELL_HEIGHT = 340;
+
+    const container = imageContainer({ imgWidth: CELL_WIDTH, imgHeight: CELL_HEIGHT, imgSrcs: cellData });
+    const buttons = buttonConsole({ dataCount: cellData.length });
+
+    const planningCarousel = carousel({
+        cell_width: CELL_WIDTH,
+        cell_height: CELL_HEIGHT,
+        container,
+        buttons,
+        dataLength: cellData.length,
+    });
+    planningCarousel.classList.add('planning__carousel');
+
+    return planningCarousel;
+};
 
 export const planning = () => {
     const target = document.createElement('div');
 
     const render = () => {
         target.className = 'planning';
-        const planningCarousel = carousel();
-        planningCarousel.classList.add('planning__carousel');
+        const planningCarousel = makePlanningCarousel(dummyData);
         target.appendChild(planningCarousel);
-        // target.innerHTML = `
-        //     <a href="#" target="_blank" class="planning__link">
-        //         <img src="//shop2.daumcdn.net/shophow/sib/0_211202145115_cjUvJCvuztdGHrYUNDAIqoswLScKwQct" width="485" height="340" class="img_g" alt="">
-        //     </a>
-        //     <button class="planning__left-btn"></button>
-        //     <button class="planning__right-btn"></button>
-        //     <div class="planning__paging">
-        //         <span></span><span></span><span></span>
-        //     </div>
-        // `;
 
         return target;
     };
