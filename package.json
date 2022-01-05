@@ -1,0 +1,29 @@
+{
+  "name": "fe-w23-shoppinghow",
+  "version": "1.0.0",
+  "description": "2,3주차 프로젝트",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dth12/fe-w23-shoppinghow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dth12/fe-w23-shoppinghow/issues"
+  },
+  "homepage": "https://github.com/dth12/fe-w23-shoppinghow#readme",
+  "dependencies": {
+    "core-js": "^3.20.2",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "eslint": "^8.6.0"
+  }
+}
