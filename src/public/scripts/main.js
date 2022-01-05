@@ -1,14 +1,14 @@
 import "../sass/libs/reset.scss";
 import "../sass/app.scss";
-import { $ } from "./utils/util.js";
-import { Component } from "./core/Component.js";
-import { Header, Content, Footer } from "./components/index.js";
+import { $ } from "@utils/query.js";
+import { Component } from "@core/Component.js";
+import { Header, Content, Footer } from "./components";
 
 class App extends Component {
   setup() {}
   template() {
     return `
-        <div component="header"></div>
+        <div component="header" class="header"></div>
         <div component="content" class="container"></div>
         <div component="footer" class="footer"></div>
       `;
@@ -27,3 +27,4 @@ class App extends Component {
 }
 
 new App($("#app"));
+// super

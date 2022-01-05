@@ -1,9 +1,10 @@
-import { $ } from "../utils/util.js";
-import { Component } from "../core/Component.js";
-import { HeaderTop, HeaderMenu } from "./headers/index.js";
+import { $ } from "@utils/query.js";
+import { Component } from "@core/Component.js";
+import HeaderTop from "./HeaderTop";
+import HeaderMenu from "./HeaderMenu";
 
 export default class Header extends Component {
-  setup() {}
+  setUp() {}
   template() {
     return `
       <div class="header-top" component="header-top"></div>
