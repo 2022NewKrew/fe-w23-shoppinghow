@@ -1,4 +1,5 @@
 const { merge } = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
@@ -13,5 +14,18 @@ module.exports = merge(common, {
   devServer: {
     static: './dist',
   },
-  plugins: [],
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: '개발모드 | 쇼핑나우',
+      template: 'assets/develop.html',
+      filename: 'home.html',
+      chunks: ['home'],
+    }),
+    new HtmlWebpackPlugin({
+      title: '개발모드 | 쇼핑나우 | 더미',
+      template: 'assets/develop.html',
+      filename: 'dummy.html',
+      chunks: ['dummy'],
+    }),
+  ],
 });

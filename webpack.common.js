@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -36,19 +35,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'src/pages/home.html',
-      filename: 'home.html',
-      chunks: ['home'],
-    }),
-    new HtmlWebpackPlugin({
-      template: 'src/pages/dummy.html',
-      filename: 'dummy.html',
-      chunks: ['dummy'],
-    }),
-  ],
+  plugins: [new MiniCssExtractPlugin()],
   resolve: {
     alias: {
       '@core': path.resolve(__dirname, 'src/core/'),
