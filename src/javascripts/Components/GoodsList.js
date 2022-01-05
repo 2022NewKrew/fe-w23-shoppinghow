@@ -9,10 +9,9 @@ export default class GoodsList extends Component {
     
     #goodListEl
     
-    constructor(title, goodsJsonUrl) {
+    constructor(goodsJsonUrl) {
         super(`
             <div class="${ styles.component }">
-                <div class="${ styles.headerTitle }">${ title }</div>
                 <ul class="${ styles.goodsList }"></ul>
             </div>
         `)
