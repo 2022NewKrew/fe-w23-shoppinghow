@@ -1,0 +1,23 @@
+form {
+  display: flex;
+  justify-content: space-between;
+  .search__input {
+    width: 500px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .search__icon {
+    border: none;
+    padding: 10px;
+    background: white;
+    cursor: pointer;
+
+    img {
+      width: 30px;
+    }
+  }
+}
