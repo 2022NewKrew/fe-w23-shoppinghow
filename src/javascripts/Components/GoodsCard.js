@@ -12,7 +12,7 @@ export default class GoodsCard extends Component {
     
     constructor(goodsData) {
         super(`
-            <div class="${ styles.cardContainer }">
+            <li class="${ styles.cardContainer }">
                 <div class="${ styles.card }">
                     <div class="${ styles.imgBox }">
                         <img src="//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895" alt="">
