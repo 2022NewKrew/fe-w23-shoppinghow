@@ -9,6 +9,13 @@ module.exports = {
     filename: "bundle.js",
     clean: true,
   },
+  resolve: {
+    alias: {
+      "@core": path.resolve(__dirname, "../src/public/scripts/core"),
+      "@components": path.resolve(__dirname, "../src/public/scripts/components"),
+      "@utils": path.resolve(__dirname, "../src/public/scripts/utils"),
+    },
+  },
   module: {
     rules: [
       {
@@ -35,7 +42,9 @@ module.exports = {
   },
   plugins: [
     // 컴파일 + 번들링 CSS 파일이 저장될 경로와 이름 지정
-    new MiniCssExtractPlugin({ filename: "css/style.css" }),
+    new MiniCssExtractPlugin({
+      filename: "css/style.css",
+    }),
     new HtmlWebpackPlugin({
       filename: "main.html",
       template: "src/pages/main.html",
