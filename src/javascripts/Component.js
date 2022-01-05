@@ -28,6 +28,14 @@ export default class Component {
         throw new Error('update() must be overridden.')
     }
     
+    show() {
+        this.rootEl.style.visibility = 'visible'
+    }
+    
+    hide() {
+        this.rootEl.style.visibility = 'hidden'
+    }
+    
     remove() {
         this.#childComponents.forEach((component) => {
             component.remove()

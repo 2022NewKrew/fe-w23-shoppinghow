@@ -47,15 +47,13 @@ export default class InputWithTopRankingGoods extends Component {
         let timeId
         
         inputEl.addEventListener('focusin', () => {
-            rollingText.rootEl.style.visibility = 'hidden'
-            rollingText.stopAutoRolling()
+            rollingText.hide()
             
             this.rootEl.style.borderColor = 'rgba(255, 0, 0, 0.5)'
         })
         
         inputEl.addEventListener('focusout', () => {
-            rollingText.rootEl.style.visibility = 'visible'
-            rollingText.startAutoRolling()
+            rollingText.show()
             
             this.rootEl.style.borderColor = ''
         })

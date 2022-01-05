@@ -9,6 +9,7 @@ export default class RollingText extends Component {
     #texts
     #rollingPeriod
     
+    #rollerEl
     #textItemEls
     
     #autoRollingIntervalId
@@ -26,6 +27,8 @@ export default class RollingText extends Component {
         this.#texts = texts
         this.#rollingPeriod = rollingPeriod
         
+        this.#rollerEl = this.rootEl.querySelector(`.${ styles.textRoller }`)
+        
         this.#textItemEls = this.rootEl.querySelectorAll(`.${ styles.textItem }`)
         
         this.#initTextRollerElement()
@@ -34,12 +37,10 @@ export default class RollingText extends Component {
     }
     
     #initTextRollerElement() {
-        const rollerEl = this.rootEl.querySelector(`.${ styles.textRoller }`)
-    
-        rollerEl.addEventListener('transitionend', () => {
-            rollerEl.style.transitionDuration = '0ms'
-            rollerEl.style.transform = 'translateY(0)'
-        
+        this.#rollerEl.addEventListener('transitionend', () => {
+            this.#rollerEl.style.transitionDuration = '0ms'
+            this.#rollerEl.style.transform = 'translateY(0)'
+            
             this.update()
         })
     }
@@ -56,10 +57,8 @@ export default class RollingText extends Component {
     
     startAutoRolling() {
         const roll = () => {
-            const rollerEl = this.rootEl.querySelector(`.${ styles.textRoller }`)
-            
-            rollerEl.style.transitionDuration = `${ RollingText.#TRANSITION_DURATION }ms`
-            rollerEl.style.transform = `translateY(-${ styles.height })`
+            this.#rollerEl.style.transitionDuration = `${ RollingText.#TRANSITION_DURATION }ms`
+            this.#rollerEl.style.transform = `translateY(-${ styles.height })`
             
             this.#currentIdx++
             
@@ -73,6 +72,19 @@ export default class RollingText extends Component {
     
     stopAutoRolling() {
         clearInterval(this.#autoRollingIntervalId)
+        this.#rollerEl.style.transitionDuration = '0ms'
+    }
+    
+    show() {
+        super.show()
+        
+        this.startAutoRolling()
+    }
+    
+    hide() {
+        super.hide()
+        
+        this.stopAutoRolling()
     }
     
     set texts(newTexts) {
