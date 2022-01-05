@@ -1,0 +1,11 @@
+.recently-viewed-thing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  .recently-viewed-thing-img {
+    width: 40px;
+    margin-left: 20px;
+  }
+}
