@@ -1,4 +1,4 @@
-import MainPage from '../pages/index';
+import MainPage from '@/pages/main';
 
 const pathToRegex = (path) => new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
 

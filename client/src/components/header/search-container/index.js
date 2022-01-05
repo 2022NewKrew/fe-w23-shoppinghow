@@ -24,7 +24,6 @@ export default class SearchContainer {
   deactivateInput() {
     this.search.classList.contains(cssNameForActivation) && this.search.classList.remove(cssNameForActivation);
     this.searchForm.getInputLength() === 0 && this.searchForm.blurInput();
-    console.log('this.searchForm.getInputLength() : ', this.searchForm.getInputLength());
   }
 
   setState(props) {
