@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" />
+    <link rel="stylesheet" href="./styles/app.css" />
+    <script
+      src="https://kit.fontawesome.com/d69dc18532.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../dist/bundle.js"></script>
+    <title>쇼핑하우</title>
+  </head>
+
+  <body>
+    <header id="kakaoHead" role="banner">
+      <div class="area_headtop">
+        <h1 class="tit_shw">
+          <a href="#">
+            <img src="../assets/images/logo_shw_2021.png" alt="쇼핑하우" />
+          </a>
+        </h1>
+        <div class="wrap_shwsearch">
+          <h2 class="screen_out">검색</h2>
+          <form class="frm_shwsearch" role="search">
+            <input type="text" class="tf_keyword" size="55" />
+            <button type="submit">
+              <span class="ico_shwgnb ico_shwsearch"></span>
+            </button>
+          </form>
+          <div class="wrap_rollkeywords">
+            <h2 class="screen_out"></h2>
+            <ol class="list_rollkeywords">
+              <li>
+                <span>1</span>
+                엔진코딩제
+              </li>
+              <li>
+                <span>2</span>
+                경량패딩
+              </li>
+              <li>
+                <span>3</span>
+                한과
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <nav id="kakaoGnb" role="navigation">
+        <div class="wrap_shwgnb">
+          <h2 class="screen_out">쇼핑하우 주요 메뉴</h2>
+          <div class="wrap_shwcate">
+            <button type="button" class="btn_shwcate">
+              <span class="ico_shwgnb ico_menu"></span>
+              카테고리
+            </button>
+          </div>
+          <span class="txt_bar"></span>
+
+          <h2 class="screen_out">쇼핑하우 메뉴</h2>
+          <ul class="list_shwgnb">
+            <li><a href="#">핫딜</a></li>
+            <li><a href="#">베스트100</a></li>
+            <li>
+              <a href="#"><span class="txt_new"></span>할인특가</a>
+            </li>
+            <li><a href="#">기획전</a></li>
+          </ul>
+          <span class="txt_bar"></span>
+
+          <h2 class="screen_out">쇼핑하우 스페셜 메뉴</h2>
+          <ul class="list_kwordgnb">
+            <li><a href="#">#건강식품</a></li>
+            <li>
+              <a href="#"><span class="txt_new"></span>#새해카드</a>
+            </li>
+            <li><a href="#">#보드게임</a></li>
+            <li><a href="#">#겨울 캠핑용품</a></li>
+          </ul>
+
+          <h2 class="screen_out">쇼핑하우 사용자 메뉴</h2>
+          <ul class="list_usergnb">
+            <li class="loginWrap">
+              <a href="#">
+                <span class="ico_shwgnb ico_user"></span>
+                MY 쇼핑
+              </a>
+            </li>
+            <li class="area_rcntproducts">
+              <a href="#">
+                <span class="ico_shwgnb ico_products"></span>
+                최근본 상품
+                <span class="ico_shwgnb ico_arrow"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="kakaoMain" role="main">
+      <div class="mArticle">
+        <h2 class="screen_out">쇼핑하우 홈</h2>
+        <section class="section_top">
+          <h2 class="screen_out">기획전 및 이벤트</h2>
+          <div class="cont_event">
+            <div class="evt_item">
+              <a href="#"><img src="../assets/images/기획전 이벤트.png" /></a>
+            </div>
+            <div class="evt_slide">
+              <div class="slide_evt">
+                <div class="slide">
+                  <div class="panel">
+                    <a href="#"><img src="../assets/images/이벤트1.png" /></a>
+                  </div>
+                  <div class="panel">
+                    <a href="#"><img src="../assets/images/이벤트2.png" /></a>
+                  </div>
+                  <div class="panel">
+                    <a href="#"><img src="../assets/images/이벤트3.png" /></a>
+                  </div>
+                </div>
+              </div>
+              <div class="paging_comm">
+                <span class="inner_paging">
+                  <span class="btn_paging" data-index="1"
+                    ><span class="num_page"></span
+                  ></span>
+                  <span class="btn_paging" data-index="2"
+                    ><span class="num_page select"></span
+                  ></span>
+                  <span class="btn_paging" data-index="3"
+                    ><span class="num_page"></span
+                  ></span>
+                </span>
+                <button type="button" class="btn_slide btn_prev">
+                  <span class="ico_slide ico_prev"></span>
+                </button>
+                <button type="button" class="btn_slide btn_next">
+                  <span class="ico_slide ico_next"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <ul class="list_item">
+            <li>
+              <a href="#" class="link_prod">
+                <span class="info_thumb">
+                  <img src="../assets/images/마음을 전해요 _새해 카드.jpg" />
+                </span>
+                <strong class="tit_g">마음을 전해요 #새해 카드</strong>
+                <span class="txt_info">손글씨로 전하는 새해 인사</span>
+                <span class="ico_comm2 ico_theme"></span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>

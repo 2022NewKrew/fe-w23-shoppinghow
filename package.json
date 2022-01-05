@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "web": "yarn workspace @root/web",
+    "api": "yarn workspace @root/api"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
