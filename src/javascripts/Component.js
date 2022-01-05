@@ -29,7 +29,11 @@ export default class Component {
     }
     
     update() {
-        throw new Error('update() must be overridden.')
+    
+    }
+    
+    addEventListener(eventType, listener) {
+        this.rootEl.addEventListener(eventType, listener)
     }
     
     show() {
