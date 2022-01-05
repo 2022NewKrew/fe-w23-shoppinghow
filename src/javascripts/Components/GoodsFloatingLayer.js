@@ -45,8 +45,22 @@ export default class GoodsFloatingLayer extends Component {
         
         this.#goodsListEl = this.rootEl.querySelector(`.${ styles.goodsList }`)
         
+        this.#initLocalStorage()
         this.#setTabMouseOverEventListener(recentGoodsTabEl, tagGoodsTabEl)
         this.#setStorageChangedEventListener()
+    }
+    
+    #initLocalStorage() {
+        const recentGoodsDataList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.RECENT_GOODS_LIST_KEY))
+        const tagGoodsDataList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.TAG_GOODS_LIST_KEY))
+    
+        if (!recentGoodsDataList) {
+            localStorage.setItem(GoodsFloatingLayer.RECENT_GOODS_LIST_KEY, '[]')
+        }
+        
+        if (!tagGoodsDataList) {
+            localStorage.setItem(GoodsFloatingLayer.TAG_GOODS_LIST_KEY, '[]')
+        }
     }
     
     #getGoodsListHTML(goodsList) {
