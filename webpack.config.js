@@ -6,7 +6,7 @@ const fe="frontend"
 
 module.exports = {
     mode: "development",
-    entry: `./${fe}/src/index.js`,
+    entry: `./${fe}/src/main.js`,
     output: {
         path: path.join(__dirname, "/backend/public/dist"),
         publicPath:"/dist",
@@ -40,7 +40,7 @@ module.exports = {
         new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin(
         {
-            template: `./frontend/src/index.html`
+            template: `./frontend/index.html`
         },
     )],
     devtool: 'inline-source-map',
