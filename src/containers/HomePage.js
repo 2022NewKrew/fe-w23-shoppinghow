@@ -18,13 +18,9 @@ export class HomePage extends MainLayout {
     super.mounted();
 
     new HotDealSection(this.$main, {
+      renderType: 'beforeend',
       title: '품절주의, 역대급 핫딜',
       hotDealProductList: this.hotDealProductList,
     });
-  }
-
-  render() {
-    this.$root.insertAdjacentHTML('beforeend', this.template());
-    this.mounted();
   }
 }

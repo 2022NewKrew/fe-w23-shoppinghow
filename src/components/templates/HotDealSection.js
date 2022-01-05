@@ -14,7 +14,10 @@ export class HotDealSection extends SectionLayout {
     const $hotDealList = $('.hotDeal__container', this.$contentContainer);
 
     hotDealProductList.forEach((product) => {
-      new HotDealProduct($hotDealList, { product });
+      new HotDealProduct($hotDealList, {
+        renderType: 'beforeend',
+        product,
+      });
     });
   }
 }

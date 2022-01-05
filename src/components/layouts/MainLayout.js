@@ -16,8 +16,8 @@ export class MainLayout extends Component {
   }
 
   mounted() {
-    new Header($('header', this.$root));
-    new Footer($('footer', this.$root));
-    this.$main = $('main', this.$root);
+    new Header($('header', this.$target));
+    new Footer($('footer', this.$target));
+    this.$main = $('main', this.$target);
   }
 }

@@ -34,9 +34,4 @@ export class HotDealProduct extends Component {
       </li>
     `;
   }
-
-  render() {
-    this.$root.insertAdjacentHTML('beforeend', this.template());
-    this.mounted();
-  }
 }

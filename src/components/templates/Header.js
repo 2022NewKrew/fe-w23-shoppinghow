@@ -2,7 +2,7 @@ import { Component } from '@core';
 
 export class Header extends Component {
   setup() {
-    this.$root.className = 'header';
+    this.$target.className = 'header';
   }
 
   template() {
