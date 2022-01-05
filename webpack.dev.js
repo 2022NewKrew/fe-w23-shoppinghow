@@ -1,9 +1,9 @@
-const { merge } = require("webpack-merge");
-const common = require("./webpack.common.js");
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-  mode: "development",
-  devtool: "inline-source-map",
+  mode: 'development',
+  devtool: 'inline-source-map',
   watch: true,
   watchOptions: {
     ignored: /node_modules/,
@@ -11,7 +11,7 @@ module.exports = merge(common, {
     poll: 1000, // 1초마다 변화를 감지한다.
   },
   devServer: {
-    static: "./dist",
+    static: './dist',
   },
   plugins: [],
 });
