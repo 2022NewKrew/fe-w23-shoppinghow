@@ -1,9 +1,9 @@
 import styles from '../../scss/rolling_text.module.scss'
 import Component from '../Component'
 
-const TRANSITION_DURATION = 700
-
 export default class RollingText extends Component {
+    
+    static #TRANSITION_DURATION = 700
     
     #currentIdx = 0
     #texts
@@ -29,7 +29,7 @@ export default class RollingText extends Component {
         this.#textItemEls = this.rootEl.querySelectorAll(`.${ styles.textItem }`)
         
         this.#initTextRollerElement()
-        this.#renewText()
+        this.update()
         this.startAutoRolling()
     }
     
@@ -40,11 +40,11 @@ export default class RollingText extends Component {
             rollerEl.style.transitionDuration = '0ms'
             rollerEl.style.transform = 'translateY(0)'
         
-            this.#renewText()
+            this.update()
         })
     }
     
-    #renewText() {
+    update() {
         this.#textItemEls.forEach((textItemEl, elIdx) => {
             const idxToShow = this.#currentIdx + elIdx < this.#texts.length ? this.#currentIdx + elIdx : 0
             const textToShow = this.#texts[idxToShow]
@@ -58,7 +58,7 @@ export default class RollingText extends Component {
         const roll = () => {
             const rollerEl = this.rootEl.querySelector(`.${ styles.textRoller }`)
             
-            rollerEl.style.transitionDuration = `${ TRANSITION_DURATION }ms`
+            rollerEl.style.transitionDuration = `${ RollingText.#TRANSITION_DURATION }ms`
             rollerEl.style.transform = `translateY(-${ styles.height })`
             
             this.#currentIdx++
@@ -77,7 +77,7 @@ export default class RollingText extends Component {
     
     set texts(newTexts) {
         this.#texts = newTexts
-        this.#renewText()
+        this.update()
     }
     
 }

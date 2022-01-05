@@ -2,14 +2,14 @@ import styles from '../../scss/input_with_top_rankng_goods.module.scss'
 import RollingText from './RollingText'
 import Component from '../Component'
 
-const ROLLING_PERIOD = 4000
-const FOCUS_OUT_TIME_IF_MOUSE_OUT = 500
-const TOP_10_GOODS_JSON_URL = 'http://localhost:3000/json/top-10-goods.json'
-
 export default class InputWithTopRankingGoods extends Component {
     
+    static #ROLLING_PERIOD = 4000
+    static #FOCUS_OUT_TIME_IF_MOUSE_OUT = 500
+    static #TOP_10_GOODS_JSON_URL = 'http://localhost:3000/json/top-10-goods.json'
+    
     constructor() {
-        const rollingText = new RollingText([], ROLLING_PERIOD)
+        const rollingText = new RollingText([], InputWithTopRankingGoods.#ROLLING_PERIOD)
         
         super(`
             <div class="${ styles.component }">
@@ -27,8 +27,10 @@ export default class InputWithTopRankingGoods extends Component {
         this.#setEventToDoNotShowRollerIfFocused(rollingText)
     }
     
+    update() {}
+    
     #fetchTopGoodsData(callbackAfterFetch) {
-        fetch(TOP_10_GOODS_JSON_URL)
+        fetch(InputWithTopRankingGoods.#TOP_10_GOODS_JSON_URL)
             .then((res) => {
                 res.json().then(callbackAfterFetch)
             })
@@ -43,29 +45,29 @@ export default class InputWithTopRankingGoods extends Component {
     #setEventToDoNotShowRollerIfFocused(rollingText) {
         const inputEl = this.rootEl.querySelector(`.${ styles.searchInput }`)
         let timeId
-    
+        
         inputEl.addEventListener('focusin', () => {
             rollingText.rootEl.style.visibility = 'hidden'
             rollingText.stopAutoRolling()
-        
+            
             this.rootEl.style.borderColor = 'rgba(255, 0, 0, 0.5)'
         })
-    
+        
         inputEl.addEventListener('focusout', () => {
             rollingText.rootEl.style.visibility = 'visible'
             rollingText.startAutoRolling()
-        
+            
             this.rootEl.style.borderColor = ''
         })
-    
+        
         inputEl.addEventListener('mouseenter', () => {
             clearTimeout(timeId)
         })
-    
+        
         inputEl.addEventListener('mouseout', () => {
             timeId = setTimeout(() => {
                 inputEl.blur()
-            }, FOCUS_OUT_TIME_IF_MOUSE_OUT)
+            }, InputWithTopRankingGoods.#FOCUS_OUT_TIME_IF_MOUSE_OUT)
         })
     }
     
