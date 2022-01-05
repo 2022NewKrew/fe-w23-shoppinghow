@@ -1,0 +1,39 @@
+.carousel__window {
+    position: relative;
+    overflow: hidden;
+
+    .carousel__container {
+        display: flex;
+    }
+}
+
+.console {
+    @extend %x-center-align;
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+}
+
+.console__container {
+    @extend %center-align;
+
+    .console__arrow {
+        font-size: 50px;
+        font-weight: 100;
+        color: $paleGray;
+        cursor: pointer;
+        margin: 0 40px;
+    }
+
+    .console__indicator {
+        @extend %center-align;
+
+        .console__indicator--button {
+            width: 15px;
+            height: 5px;
+            background-color: $paleGray;
+            margin: 0 2px;
+            cursor: pointer;
+        }
+    }
+}

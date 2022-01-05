@@ -1,4 +1,5 @@
 @import 'global';
+@import 'carousel';
 
 .header-top {
     display: flex;
@@ -134,13 +135,8 @@
             }
 
             .planning {
+                @extend %x-center-align;
                 width: 790px;
-
-                .planning__link {
-                    display: block;
-                    margin: 0 auto;
-                    width: 600px;
-                }
             }
         }
 
