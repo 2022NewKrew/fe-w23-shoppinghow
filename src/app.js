@@ -1,6 +1,5 @@
 import "./sass/app.scss";
 import Header from "@components/Header.js";
 
-const headerEl = new Header();
-
-document.querySelector("header").innerHTML += headerEl.render();
+const $header = document.querySelector("header");
+new Header($header);

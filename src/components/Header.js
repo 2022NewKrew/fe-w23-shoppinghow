@@ -1,14 +1,21 @@
 import SearchBar from "./SearchBar";
+import Component from "@core/Component";
 
-class Header {
-  #searchbarEl = new SearchBar();
+class Header extends Component {
+  mounted() {
+    const $headerTop = this.$target.querySelector(".header-top");
+    fetch("http://localhost:3000/topItems.json")
+      .then((res) => res.json())
+      .then((topItemList) => {
+        new SearchBar($headerTop, { topItemList });
+      });
+  }
 
-  render() {
+  template() {
     return `<div class="header-top">
             <div class="title">
                 <h1>쇼핑하우</h1>
             </div>
-            ${this.#searchbarEl.render()}
     </div>
     <div class="header-menu">
             <div class="category">
