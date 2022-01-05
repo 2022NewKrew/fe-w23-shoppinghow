@@ -1,0 +1,59 @@
+$floating-layer-height: 500px;
+
+.floating-layer-benchmark {
+  position: relative;
+}
+
+.floating-layer {
+  position: absolute;
+  bottom: -$floating-layer-height;
+  right: 0;
+  width: 350px;
+  height: $floating-layer-height;
+  background-color: #FFFFFF;
+  border: 1px solid #333333;
+  padding: 20px;
+}
+
+.tab {
+  display: flex;
+  justify-content: left;
+  
+  .tab-item {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+    cursor: pointer;
+    
+    &.selected-tab-item {
+      border-bottom: 2px solid #000000;
+      
+      .tab-item-text {
+        font-weight: 600;
+      }
+    }
+    
+    .tab-item-text {
+      padding: 5px 0;
+    }
+  
+    .tab-item-number {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-left: 3px;
+    }
+  }
+}
+
+.goods-panel {
+  
+  .goods-list {
+  
+    .goods-item {
+      display: inline-block;
+      padding: 10px;
+    }
+    
+  }
+  
+}
