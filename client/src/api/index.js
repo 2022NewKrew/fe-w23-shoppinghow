@@ -1,11 +1,11 @@
-/* eslint-disable no-useless-catch */
-import { API_ERROR_MSG } from '@/static/constants/error';
+import { NETWORK_ERROR_MSG } from '@/static/constants/error';
+
 const API_ENDPOINT = process.env.API_ENDPOINT;
 
 const getData = async (url) => {
   try {
     const res = await fetch(`${API_ENDPOINT}${url}`);
-    if (!res.ok) throw new Error(API_ERROR_MSG);
+    if (!res.ok) throw new Error(NETWORK_ERROR_MSG);
     return await res.json();
   } catch (e) {
     throw e;
@@ -21,7 +21,7 @@ const postData = async (url, data) => {
         'Content-Type': 'application/json',
       },
     });
-    if (!res.ok) throw new Error(API_ERROR_MSG);
+    if (!res.ok) throw new Error(NETWORK_ERROR_MSG);
     return await res.json();
   } catch (e) {
     throw e;
@@ -37,7 +37,7 @@ const putData = async (url, data) => {
         'Content-Type': 'application/json',
       },
     });
-    if (!res.ok) throw new Error(API_ERROR_MSG);
+    if (!res.ok) throw new Error(NETWORK_ERROR_MSG);
     return await res.json();
   } catch (e) {
     throw e;
@@ -52,7 +52,7 @@ const deleteData = async (url) => {
         'Content-Type': 'application/json',
       },
     });
-    if (!res.ok) throw new Error(API_ERROR_MSG);
+    if (!res.ok) throw new Error(NETWORK_ERROR_MSG);
     return await res.json();
   } catch (e) {
     throw e;
@@ -62,61 +62,33 @@ const deleteData = async (url) => {
 export const api = {
   get: async (url) => {
     try {
-      const data = await getData(url);
-      return {
-        success: true,
-        data,
-      };
+      return await getData(url);
     } catch (e) {
-      return {
-        success: false,
-        message: e,
-      };
+      throw e;
     }
   },
 
   post: async (url, datas) => {
     try {
-      const data = await postData(url, datas);
-      return {
-        success: true,
-        data,
-      };
+      return await postData(url, datas);
     } catch (e) {
-      return {
-        success: false,
-        message: e,
-      };
+      throw e;
     }
   },
 
   update: async (url, datas) => {
     try {
-      const data = await putData(url, datas);
-      return {
-        success: true,
-        data,
-      };
+      return await putData(url, datas);
     } catch (e) {
-      return {
-        success: false,
-        message: e,
-      };
+      throw e;
     }
   },
 
   delete: async (url) => {
     try {
-      const data = await deleteData(url);
-      return {
-        success: true,
-        data,
-      };
+      return await deleteData(url);
     } catch (e) {
-      return {
-        success: false,
-        message: e,
-      };
+      throw e;
     }
   },
 };
