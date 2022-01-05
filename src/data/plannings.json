@@ -1,0 +1,19 @@
+{
+  "plannings": [
+    {
+      "index": 0,
+      "title": "고블렛",
+      "img": "https://shop3.daumcdn.net/shophow/sib/0_211220170214_KnBppOYCunaKIzTENvoRdzZivpnaGYdc"
+    },
+    {
+      "index": 1,
+      "title": "홈인테리어 특가전",
+      "img": "https://shop3.daumcdn.net/shophow/sib/0_211220170158_owNwlIYMPjCOmpLzLBZpBGQkATLoNNWG"
+    },
+    {
+      "index": 2,
+      "title": "크리스마스 트리",
+      "img": "//shop2.daumcdn.net/shophow/sib/0_211202145115_cjUvJCvuztdGHrYUNDAIqoswLScKwQct"
+    }
+  ]
+}

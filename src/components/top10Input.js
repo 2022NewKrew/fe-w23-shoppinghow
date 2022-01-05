@@ -3,7 +3,7 @@ const HEIGHT = 60;
 const TRANSITION_DURATION = "500ms";
 const FOCUS_OUT_TIME = 500;
 
-export default class top10Input {
+export default class Top10Input {
   #top10Idx;
   #top10List;
   #top10ListLength;
