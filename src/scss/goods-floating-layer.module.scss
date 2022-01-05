@@ -1,4 +1,7 @@
-$floating-layer-height: 500px;
+$floating-layer-height: 600px;
+$floating-layer-width: 400px;
+$floating-layer-padding: 20px;
+$floating-layer-border: 1px;
 
 .floating-layer-benchmark {
   position: relative;
@@ -8,11 +11,12 @@ $floating-layer-height: 500px;
   position: absolute;
   bottom: -$floating-layer-height;
   right: 0;
-  width: 350px;
+  width: $floating-layer-width;
   height: $floating-layer-height;
   background-color: #FFFFFF;
-  border: 1px solid #333333;
-  padding: 20px;
+  border: $floating-layer-border solid #333333;
+  padding: $floating-layer-padding;
+  overflow: hidden;
 }
 
 .tab {
@@ -50,11 +54,15 @@ $floating-layer-height: 500px;
   .goods-list {
     display: flex;
     justify-content: space-between;
+    padding-top: 10px;
+    flex-wrap: wrap;
   
     .goods-item {
-      width: 33%;
+      width: ($floating-layer-width - ($floating-layer-padding + $floating-layer-border) * 2) / 3;
+      height: ($floating-layer-width - ($floating-layer-padding + $floating-layer-border) * 2) / 3;
+      padding: 2px;
       display: inline-block;
-      padding: 10px;
+      cursor: pointer;
     }
     
   }

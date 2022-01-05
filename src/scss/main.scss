@@ -91,107 +91,113 @@
 }
 
 .container {
-    margin: auto;
     background-color: #f5f5f5;
     padding-top: 25px;
-
-    .promotion {
-        @extend %section-layout;
-        @extend %border-basic;
-
-        .banner {
-            display: flex;
-            justify-content: center;
-
-            .best {
-                float: left;
-                width: 510px;
-
-                .best__link {
-                    display: block;
-                    margin: 0 auto;
+    
+    .container-wrapper {
+        margin: auto;
+        width: 1276px;
+        
+        .promotion {
+            @extend %section-layout;
+            @extend %border-basic;
+        
+            .banner {
+                display: flex;
+                justify-content: center;
+            
+                .best {
+                    float: left;
+                    width: 510px;
+                
+                    .best__link {
+                        display: block;
+                        margin: 0 auto;
+                    }
+                }
+            
+                .planning {
+                    width: 790px;
+                
+                    .planning__link {
+                        display: block;
+                        margin: 0 auto;
+                        width: 600px;
+                    
+                    }
                 }
             }
-
-            .planning {
-                width: 790px;
-
-                .planning__link {
-                    display: block;
-                    margin: 0 auto;
-                    width: 600px;
-
+        
+            img {
+                margin: auto;
+                text-align: center;
+                display: flex;
+            }
+        }
+        .theme {
+            .theme-container {
+                display: flex;
+            }
+            .theme-item {
+                @extend %card;
+                border: 1px solid #f1f1f1;
+            }
+            .theme__link {
+                display: block;
+                strong, span {
+                    @extend %text-block;
+                }
+                .theme-item__title {
+                    font-weight: bold;
+                }
+                .theme-item__desc {
+                    padding-top:0;
+                }
+                .theme-item__icon {
+                    border:0.5px solid #ff000069;
+                    padding:4px;
+                    width: 35px;
                 }
             }
         }
-
-        img {
-            margin: auto;
-            text-align: center;
-            display: flex;
-        }
-    }
-    .theme {
-        .theme-container {
-            display: flex;
-        }
-        .theme-item {
-            @extend %card;
-            border: 1px solid #f1f1f1;
-        }
-        .theme__link {
-            display: block;
-            strong, span {
+    
+        .hot-deal {
+            @extend %section-layout;
+            margin-top:60px;
+        
+            .section-title {
+                font-size: 1.25rem;
+                padding-bottom: 20px;
+                background-color: $bgColor;
+            }
+            .hot-deal__title, .hot-deal__detail-price{
                 @extend %text-block;
             }
-            .theme-item__title {
-                font-weight: bold;
+        
+            .hot-deal-list {
+                display: flex;
+                flex-wrap:wrap;
+                .hot-deal__item {
+                    width:20%;
+                    padding:20px;
+                    border-right: 1px solid #f1f1f1;
+                    border-bottom: 1px solid #f1f1f1;
+                }
             }
-            .theme-item__desc {
-                padding-top:0;
-            }
-            .theme-item__icon {
-                border:0.5px solid #ff000069;
-                padding:4px;
-                width: 35px;
-            }
-        }
-    }
-
-    .hot-deal {
-        @extend %section-layout;
-        margin-top:60px;
-
-        .section-title {
-            font-size: 1.25rem;
-            padding-bottom: 20px;
-            background-color: $bgColor;
-        }
-        .hot-deal__title, .hot-deal__detail-price{
-            @extend %text-block;
-        }
-
-        .hot-deal-list {
-            display: flex;
-            flex-wrap:wrap;
-            .hot-deal__item {
-                width:20%;
-                padding:20px;
-                border-right: 1px solid #f1f1f1;
-                border-bottom: 1px solid #f1f1f1;
-            }
-        }
-
-        .hot-deal__detail-price {
-            margin-top: 20px;
-            position: relative;
-            .txt-price-percent {
-                position: absolute;
-                right: 10px;
-                font-size: 1.1rem;
-                line-height: 1.1rem;
-                color: red;
+        
+            .hot-deal__detail-price {
+                margin-top: 20px;
+                position: relative;
+                .txt-price-percent {
+                    position: absolute;
+                    right: 10px;
+                    font-size: 1.1rem;
+                    line-height: 1.1rem;
+                    color: red;
+                }
             }
         }
     }
+
+    
 }
