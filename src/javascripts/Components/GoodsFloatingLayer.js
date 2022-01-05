@@ -8,7 +8,10 @@ export default class GoodsFloatingLayer extends Component {
     
     #recentGoodsList
     #tagGoodsList
-    #whatToShow
+    #whatToShow = GoodsFloatingLayer.RECENT_GOODS_LIST_KEY
+    
+    #recentGoodsTabEl
+    #tagGoodsTabEl
     
     #recentGoodsNumEl
     #tagGoodsNumEl
@@ -19,7 +22,7 @@ export default class GoodsFloatingLayer extends Component {
             <div class="${ styles.floatingLayerBenchmark }">
                 <div class="${ styles.floatingLayer }">
                     <ul class="${ styles.tab }">
-                        <li class="${ styles.tabItem } ${ styles.selectedTabItem }">
+                        <li class="${ styles.tabItem }">
                             <span class="${ styles.tabItemText }">최근 본 상품</span>
                             <span class="${ styles.tabItemNumber }">0</span>
                         </li>
@@ -36,8 +39,8 @@ export default class GoodsFloatingLayer extends Component {
         `)
         
         const tabEls = this.rootEl.querySelectorAll(`.${ styles.tabItem }`)
-        const recentGoodsTabEl = tabEls[0]
-        const tagGoodsTabEl = tabEls[1]
+        this.#recentGoodsTabEl = tabEls[0]
+        this.#tagGoodsTabEl = tabEls[1]
         
         const goodsNumEls = this.rootEl.querySelectorAll(`.${ styles.tabItemNumber }`)
         this.#recentGoodsNumEl = goodsNumEls[0]
@@ -46,8 +49,9 @@ export default class GoodsFloatingLayer extends Component {
         this.#goodsListEl = this.rootEl.querySelector(`.${ styles.goodsList }`)
         
         this.#initLocalStorage()
-        this.#setTabMouseOverEventListener(recentGoodsTabEl, tagGoodsTabEl)
+        this.#setTabMouseOverEventListener()
         this.#setStorageChangedEventListener()
+        this.update()
     }
     
     #initLocalStorage() {
@@ -56,10 +60,14 @@ export default class GoodsFloatingLayer extends Component {
     
         if (!recentGoodsDataList) {
             localStorage.setItem(GoodsFloatingLayer.RECENT_GOODS_LIST_KEY, '[]')
+        } else {
+            this.#recentGoodsList = recentGoodsDataList
         }
         
         if (!tagGoodsDataList) {
             localStorage.setItem(GoodsFloatingLayer.TAG_GOODS_LIST_KEY, '[]')
+        } else {
+            this.#tagGoodsList = tagGoodsDataList
         }
     }
     
@@ -74,21 +82,25 @@ export default class GoodsFloatingLayer extends Component {
         switch (this.#whatToShow) {
             case GoodsFloatingLayer.RECENT_GOODS_LIST_KEY:
                 this.#goodsListEl.innerHTML = this.#getGoodsListHTML(this.#recentGoodsList)
+                this.#recentGoodsTabEl.classList.add(styles.selectedTabItem)
+                this.#tagGoodsTabEl.classList.remove(styles.selectedTabItem)
                 break
             
             case GoodsFloatingLayer.TAG_GOODS_LIST_KEY:
                 this.#goodsListEl.innerHTML = this.#getGoodsListHTML(this.#tagGoodsList)
+                this.#tagGoodsTabEl.classList.add(styles.selectedTabItem)
+                this.#recentGoodsTabEl.classList.remove(styles.selectedTabItem)
                 break
         }
     }
     
-    #setTabMouseOverEventListener(recentGoodsTabEl, tagGoodsTabEl) {
-        recentGoodsTabEl.addEventListener('mouseover', () => {
+    #setTabMouseOverEventListener() {
+        this.#recentGoodsTabEl.addEventListener('mouseover', () => {
             this.#whatToShow = GoodsFloatingLayer.RECENT_GOODS_LIST_KEY
             this.update()
         })
         
-        tagGoodsTabEl.addEventListener('mouseover', () => {
+        this.#tagGoodsTabEl.addEventListener('mouseover', () => {
             this.#whatToShow = GoodsFloatingLayer.TAG_GOODS_LIST_KEY
             this.update()
         })
@@ -96,6 +108,7 @@ export default class GoodsFloatingLayer extends Component {
     
     #setStorageChangedEventListener() {
         window.addEventListener('storage', () => {
+            console.log('storage updated')
             this.#recentGoodsList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.RECENT_GOODS_LIST_KEY))
             this.#tagGoodsList = JSON.parse(localStorage.getItem(GoodsFloatingLayer.TAG_GOODS_LIST_KEY))
             this.update()

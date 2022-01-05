@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const recentGoodsFloatingLayer = new GoodsFloatingLayer()
     
     const target = document.querySelector('.hot-deal-list')
-    const goodsCard = new GoodsCard({ name: '육즙가득 안심스테이크1+1', imgSrc: '//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_190702.png' })
+    const goodsCard = new GoodsCard({ name: '육즙가득 안심스테이크1+1', imgSrc: 'http://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895' })
     
     target.appendChild(goodsCard.rootEl)
     
