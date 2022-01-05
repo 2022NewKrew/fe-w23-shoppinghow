@@ -61,7 +61,7 @@ export default class GoodsFloatingLayer extends Component {
     }
     
     #getGoodsListHTML(goodsList) {
-        return goodsList.map((goods) => `<img src="${ goods.imgSrc }" alt="${ goods.title }">`).join()
+        return goodsList.map((goods) => `<li class="${ styles.goodsItem }"><img src="${ goods.imgSrc }" alt="${ goods.title }"></li>`).join()
     }
     
     update() {

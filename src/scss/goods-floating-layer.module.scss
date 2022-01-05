@@ -48,8 +48,11 @@ $floating-layer-height: 500px;
 .goods-panel {
   
   .goods-list {
+    display: flex;
+    justify-content: space-between;
   
     .goods-item {
+      width: 33%;
       display: inline-block;
       padding: 10px;
     }
