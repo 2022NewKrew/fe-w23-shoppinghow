@@ -24,6 +24,10 @@ export default class Component {
         }
     }
     
+    addChild(component, parentEl) {
+        parentEl.appendChild(component.rootEl)
+    }
+    
     update() {
         throw new Error('update() must be overridden.')
     }
