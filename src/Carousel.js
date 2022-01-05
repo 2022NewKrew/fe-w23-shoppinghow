@@ -4,8 +4,9 @@ export default class Carousel {
    * @param {HTMLElement} leftBtn
    * @param {HTMLElement} rightBtn
    * @param {HTMLElement} tabContainer
+   * @param {boolean} autoInterval
    */
-  constructor(container, leftBtn, rightBtn, tabContainer){
+  constructor(container, leftBtn, rightBtn, tabContainer, autoInterval){
     /** @type {HTMLElement} */
     this.container=container;
     this.length=this.container.children.length;
@@ -18,6 +19,10 @@ export default class Carousel {
     this.isBusy=false;
     /** @type {number} */
     this.transition=0.5;
+    /** @type {number} */
+    this.autoInterval=autoInterval;
+    /** @type {number} */
+    this.timeoutHandler;
 
     leftBtn.addEventListener("click", ()=>{
       this._goByOffset(-1);
@@ -38,6 +43,8 @@ export default class Carousel {
       const offset=tabIndex-this.currentIndex;
       this._goByOffset(offset);
     });
+
+    this._setTimeout();
   }
 
   /**
@@ -48,7 +55,7 @@ export default class Carousel {
   }
   
   /**
-   * Do not call this outside.
+   * Do not call this outside. Internal use only.
    * @param {number} indexOffset
    */
   _goByOffset(indexOffset){
@@ -65,6 +72,11 @@ export default class Carousel {
         copyIndexOffset+=1;
       }
       this.container.style=`transform: translateX(${indexOffset*(this.imageWidth)}px)`;
+      /**
+       * Derive Repaint. Otherwise transition does not work
+       * as expected, because we apply the 'transform' property right above,
+       * and right after we alter the value of the 'transform' property.
+       */
       this.container.scrollWidth;
       this.container.style=`transition: ${this.transition}s; ease-out;transform: 0`;
     }
@@ -81,6 +93,7 @@ export default class Carousel {
         }  
       }
       this.container.removeAttribute("style");
+      this._setTimeout();
     };
   }
 
@@ -89,5 +102,14 @@ export default class Carousel {
       tab.classList.remove("planning__navigation-li-active");
     });
     this.tabContainer.children[this.currentIndex].classList.add("planning__navigation-li-active");
+  }
+
+  _setTimeout(){
+    if(this.autoInterval){
+      clearTimeout(this.timeoutHandler);
+      this.timeoutHandler=setTimeout(()=>{
+        this._goByOffset(1);
+      }, this.autoInterval);
+    }
   }
 }
