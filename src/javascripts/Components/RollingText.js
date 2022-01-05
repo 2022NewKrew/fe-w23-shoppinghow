@@ -1,4 +1,4 @@
-import styles from '../../scss/rolling_text.module.scss'
+import styles from '../../scss/ComponentStyles/RollingText.module.scss'
 import Component from '../Component'
 
 export default class RollingText extends Component {

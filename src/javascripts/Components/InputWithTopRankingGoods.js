@@ -1,4 +1,4 @@
-import styles from '../../scss/input_with_top_rankng_goods.module.scss'
+import styles from '../../scss/ComponentStyles/InputWithTopRankingGoods.module.scss'
 import RollingText from './RollingText'
 import Component from '../Component'
 

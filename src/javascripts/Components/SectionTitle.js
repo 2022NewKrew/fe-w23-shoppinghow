@@ -1,5 +1,5 @@
 import Component from '../Component'
-import styles from '../../scss/section-title.module.scss'
+import styles from '../../scss/ComponentStyles/SectionTitle.module.scss'
 
 export default class SectionTitle extends Component {
 
