@@ -1,31 +1,32 @@
 export default class Component {
-  $target;
+  $root;
   $props;
-  $state;
 
-  constructor($target, $props) {
-    this.$target = $target;
-    this.$props = $props;
+  constructor($root, $props = {}) {
+    this.$root = $root;
+    this.$props = { ...$props };
+
     this.setup();
     this.setEvent();
     this.render();
   }
 
-  setup() {}
-  mounted() {}
+  setup() {
+    // this.$root.className = '';
+  }
+  setEvent() {
+    this.addEvent('click', 'div', (e) => {});
+  }
+  addEvent(eventType, selector, callback) {}
+
   template() {
-    return ``;
+    return /* html */ `<div></div>`;
+  }
+  mounted() {
+    // 상태 구독
   }
   render() {
-    this.$target.innerHTML = this.template();
-    this.setEvent();
-  }
-  setEvent() {}
-  setState(newState) {
-    this.$state = { ...this.$state, ...newState };
-    this.render();
-  }
-  addEvent(eventType, selector, callback) {
-    /* 생략 */
+    this.$root.innerHTML = this.template();
+    this.mounted();
   }
 }

@@ -4,6 +4,7 @@
     "paths": {
       "@core": ["./core"],
       "@components": ["./components"],
+      "@containers": ["./containers"],
       "@styles/*": ["./styles/*"],
       "@utils": ["./utils"]
     }
