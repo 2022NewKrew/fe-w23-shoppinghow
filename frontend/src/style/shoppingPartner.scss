@@ -1,0 +1,93 @@
+.wrap_shopping_partner {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+
+    .tit_home {
+        display: block;
+        margin: 7px 0 15px;
+        font-size: 21px;
+        line-height: 24px;
+        font-family: NanumGothic,나눔고딕,Nanum Gothic,Malgun Gothic,맑은 고딕,Dotum,돋움,Helvetica,AppleSDGothicNeo,Arial,sans-serif;
+        letter-spacing: -1px;
+        color: #222;
+    }
+
+    .section_etc {
+        overflow: hidden;
+        position: relative;
+        width: 933px;
+        padding: 30px 11px 23px 32px;
+        border: 1px solid #e4e4e4;
+        border-bottom: 0;
+        background-color: #fff;
+        .cont_partner {
+            overflow: hidden;
+            height: 110px;
+        }
+
+        .cate_partner {
+            float: left;
+            width: 103px;
+        }
+
+        .tit_mall {
+            display: block;
+            margin-bottom: 11px;
+            line-height: 14px;
+        }
+
+        .list_mall {
+            overflow: hidden;
+            float: left;
+            width: 103px;
+
+            li {
+                height: 21px;
+            }
+        }
+
+        .link_mall {
+            overflow: hidden;
+            float: left;
+            line-height: 20px;
+            color: #606060;
+        }
+
+        .btn_home {
+            position: absolute;
+            bottom: -1px;
+            left: 948px;
+            width: 29px;
+            height: 29px;
+            background-position: -105px -220px;
+        }
+    }
+
+    .link_all {
+        position: absolute;
+        top: 18px;
+        right: 1px;
+        padding-right: 9px;
+        font-size: 12px;
+        line-height: 13px;
+        background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/ico_comm2_141128.gif) 100% -273px no-repeat;
+        letter-spacing: -1px;
+        color: #666;
+    }
+}
+
+.shopping_top{
+    #cEtc{
+        .wrap_shopping_partner {
+            width: 973px;
+            .section_etc {
+                width: 928px;
+                .btn_home {
+                    left: 943px;
+                }
+            }
+        }
+    }
+}
