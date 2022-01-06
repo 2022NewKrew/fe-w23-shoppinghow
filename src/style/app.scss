@@ -14,7 +14,10 @@
     .search {
         display: flex;
         position: relative;
-        border: 1px solid gray;
+        border: 1px solid #808080;
+        border-radius: 100px;
+        padding: 0 10px;
+        overflow: hidden;
 
         form {
             display: flex;
@@ -33,12 +36,20 @@
 
         .search-top10 {
             position: absolute;
-            transform: translateY(50%);
-            left: 10px;
+            display: block;
+            top: 0;
+            left: 20px;
             font-size: 1.2rem;
-            height: 50%;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            flex-direction: column;
+            z-index: -1;
+            height: 100%;
+            &__item {
+                display: block;
+                line-height: 60px;
+                color: $strongGreyColor;
+            }
         }
     }
 }
@@ -80,6 +91,7 @@
 
             .recent-items-container {
                 position: absolute;
+                z-index: 100;
                 top: 100%;
                 right: 0;
                 width: 442px;
@@ -126,7 +138,7 @@
 
                 .recent-item {
                     margin-right: 5px;
-                    
+
                     & > img {
                         width: 100px;
                         height: 100px;
@@ -168,12 +180,49 @@
             }
 
             .planning {
+                position: relative;
                 width: 790px;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                padding: 20px;
 
-                .planning__link {
-                    display: block;
+                & button {
+                    cursor: pointer;
+                    z-index: 1;
+                }
+                &__window {
+                    position: relative;
+                    width: 485px;
+                    height: 340px;
+                    overflow: hidden;
+                }
+                &__container {
+                    display: flex;
+                    width: max-content;
+                    position: absolute;
                     margin: 0 auto;
-                    width: 600px;
+                    left: 0;
+                    z-index: 0;
+                }
+                &__navigation-ul {
+                    position: absolute;
+                    left: 50%;
+                    bottom: 40px;
+                    transform: translateX(-50%);
+                    display: flex;
+                    justify-content: space-between;
+                    column-gap: 3px;
+                }
+                &__navigation-li {
+                    width: 14px;
+                    height: 6px;
+                    cursor: pointer;
+                    background-color: $weakGreyColor;
+                    border-radius: 2px;
+                    &-active {
+                        background-color: $strongGreyColor;
+                    }
                 }
             }
         }
@@ -263,6 +312,52 @@
                 line-height: 1.1rem;
                 color: red;
             }
+        }
+    }
+}
+
+.recommendation {
+    @extend %section-layout;
+    margin: auto;
+    background-color: #f5f5f5;
+    margin-top: 60px;
+    padding-top: 25px;
+    
+    &__header {
+        display: flex;
+        justify-content: space-between;
+
+        &__title {
+            font-size: 1.25rem;
+        }
+
+        &__more {
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: $strongGreyColor;
+        }
+    }
+    &__body {
+        @extend %section-layout;
+        @extend %border-basic;
+        .picked-items {
+            display: flex;
+            justify-content: center;
+            &__item {
+                flex-basis: 20%;
+                display: flex;
+                justify-content: space-between;
+            }
+            &__item-image {
+                flex: 2;
+            }
+            &__item-title {
+                flex: 4;
+
+            }
+        }
+        .recommendation-items {
+
         }
     }
 }

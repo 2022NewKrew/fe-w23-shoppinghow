@@ -23,7 +23,16 @@
                     <button class="search__icon">🔍</button>
                 </form>
                 <ul class="search-top10">
-                    <li class="search-top10__item">3. 아디다스 런닝화</li>
+                    <li class="search-top10__item">1. 아디다스 런닝화</li>
+                    <li class="search-top10__item">2. 피라 런닝화</li>
+                    <li class="search-top10__item">3. 나이키 런닝화</li>
+                    <li class="search-top10__item">4. 리복 런닝화</li>
+                    <li class="search-top10__item">5. 샤넬 런닝화</li>
+                    <li class="search-top10__item">6. 신라면</li>
+                    <li class="search-top10__item">7. 삼양라면</li>
+                    <li class="search-top10__item">8. 진라면</li>
+                    <li class="search-top10__item">9. 무파마</li>
+                    <li class="search-top10__item">10. 열라면</li>
                 </ul>
             </div>
         </div>
@@ -66,12 +75,12 @@
                         <ul class="recent-items-container__tab-container">
                             <li class="recent-items-container__tab recent-items-container__view-tab" 
                             >최근 본 상품</li>
-                            <li class="recent-items-container__tab recent-items-container__zzim-tab"
+                            <li class="recent-items-container__tab recent-items-container__dibs-tab"
                             >찜한 상품</li>
                         </ul>
                         <div class="recent-items-container__container recent-items-container__view-container">
                         </div>
-                        <div class="recent-items-container__container recent-items-container__zzim-container">
+                        <div class="recent-items-container__container recent-items-container__dibs-container">
                         </div>
                     </div>
                 </li>
@@ -88,14 +97,23 @@
                     </a>
                 </div>
                 <div class="planning">
-                    <a href="#" target="_blank" class="planning__link"><img
-                            src="//shop2.daumcdn.net/shophow/sib/0_211202145115_cjUvJCvuztdGHrYUNDAIqoswLScKwQct"
-                            width="485" height="340" class="img_g" alt=""></a>
-                    <button class="planning__left-btn"></button>
-                    <button class="planning__right-btn"></button>
-                    <div class="planning__paging">
-                        <span></span><span></span><span></span>
+                    <button class="planning__left-btn">
+                        <img src="https://static-page.kakao.com/static/pc/ic-paging-back-nor.svg?2c964bb7a6b07a7941252b32ea13f03c" alt="left">
+                    </button>
+                    <div class="planning__window">
+                        <div class="planning__container">
+                            <img src="//shop2.daumcdn.net/shophow/sib/0_211202145115_cjUvJCvuztdGHrYUNDAIqoswLScKwQct"
+                            width="485" height="340" class="img_g" alt="">
+                            <img src="//shop3.daumcdn.net/shophow/sib/0_211220165955_PwBwkpRhdDiDeqfbjVSJxZBnrWeTXRjH"
+                            width="485" height="340" class="img_g" alt="">
+                            <img src="//shop4.daumcdn.net/shophow/sib/0_211220170002_BsDsswhwKiSunNoHuZhqhJwiBptBTSBN"
+                            width="485" height="340" class="img_g" alt="">
+                        </div>
                     </div>
+                    <button class="planning__right-btn">
+                        <img src="https://static-page.kakao.com/static/pc/ic-paging-next-nor.svg?b76f34a1b77e59514735b92464295b7c" alt="left">
+                    </button>
+                    <ul class="planning__navigation-ul"></ul>
                 </div>
             </div>
             <div class="theme">
@@ -120,28 +138,38 @@
                 <li class="rising-keyword__item"></li>
                 <li class="rising-keyword__item"></li>
             </ul>
-
         </div>
+
         <div class="recommendation">
-            <ul class="picked-items">
-                <li class="picked-items__item"></li>
-                <li class="picked-items__item"></li>
-                <li class="picked-items__item"></li>
-                <li class="picked-items__item"></li>
-            </ul>
-            <ul class="recommendation-items">
-                <li class="recommendation-items__item"></li>
-                <li class="recommendation-items__item"></li>
-                <li class="recommendation-items__item"></li>
-                <li class="recommendation-items__item"></li>
-                <li class="recommendation-items__item"></li>
-                <li class="recommendation-items__item"></li>
-                <li class="recommendation-items__item"></li>
-                <li class="recommendation-items__item"></li>
-            </ul>
+            <div class="recommendation__header">
+                <div class="recommendation__header__title">
+                    이 상품 어때요?
+                </div>
+                <div class="recommendation__header__more">
+                    최근 본 상품 더보기
+                </div>
+            </div>
+            <div class="recommendation__body">
+                <ul class="picked-items">
+                    <!-- <li class="picked-items__item"></li>
+                    <li class="picked-items__item"></li>
+                    <li class="picked-items__item"></li>
+                    <li class="picked-items__item"></li> -->
+                </ul>
+                <ul class="recommendation-items">
+                    <!-- <li class="recommendation-items__item"></li>
+                    <li class="recommendation-items__item"></li>
+                    <li class="recommendation-items__item"></li>
+                    <li class="recommendation-items__item"></li>
+                    <li class="recommendation-items__item"></li>
+                    <li class="recommendation-items__item"></li>
+                    <li class="recommendation-items__item"></li>
+                    <li class="recommendation-items__item"></li> -->
+                </ul>
+            </div>
         </div>
-
     </div>
+
     <footer></footer>
 </body>
 
