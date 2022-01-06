@@ -9,12 +9,12 @@ export default class Header {
     menu: [],
   };
   constructor({ $parent }) {
-    const header = document.createElement('header');
+    const headerContainer = document.createElement('div');
 
-    this.headerTop = new HeaderTop({ $parent: header });
-    this.headerDown = new HeaderDown({ $parent: header });
+    this.headerTop = new HeaderTop({ $parent: headerContainer });
+    this.headerDown = new HeaderDown({ $parent: headerContainer });
 
-    $parent.appendChild(header);
+    $parent.appendChild(headerContainer);
 
     this.initializeData();
   }

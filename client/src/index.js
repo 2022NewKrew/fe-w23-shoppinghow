@@ -3,10 +3,9 @@ import '@/static/styles/index.scss';
 import { router, navigateTo } from '@/core/router';
 import { addMoneyUnitLogic } from '@/utils/helper';
 import Header from './components/header/header-whole';
+import { $ } from './utils/helper';
 
-String.prototype.addMoneyUnit = addMoneyUnitLogic;
-
-new Header({ $parent: document.body });
+Number.prototype.addMoneyUnit = addMoneyUnitLogic;
 
 window.addEventListener('popstate', router);
 document.body.addEventListener('click', handleClickBody);
@@ -22,4 +21,5 @@ const changePage = (e) => {
   }
 };
 
+new Header({ $parent: $('.header') });
 router();
