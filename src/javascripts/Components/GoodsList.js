@@ -17,11 +17,10 @@ export default class GoodsList extends Component {
         `)
         
         this.#goodListEl = this.rootEl.querySelector(`.${ styles.goodsList }`)
-        
-        this.#fetchGoodsData(goodsJsonUrl, (goodsDataList) => {
-            this.#goodsDataList = goodsDataList
-            this.update()
-        })
+    
+        if (goodsJsonUrl) {
+            this.setJsonUrl(goodsJsonUrl)
+        }
     }
     
     update() {
@@ -42,6 +41,13 @@ export default class GoodsList extends Component {
             .then((res) => {
                 res.json().then(callbackAfterFetch)
             })
+    }
+    
+    setJsonUrl(goodsJsonUrl) {
+        this.#fetchGoodsData(goodsJsonUrl, (goodsDataList) => {
+            this.#goodsDataList = goodsDataList
+            this.update()
+        })
     }
     
 }
