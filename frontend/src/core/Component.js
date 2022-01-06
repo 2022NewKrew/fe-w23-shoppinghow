@@ -51,7 +51,9 @@ export default class Component {
     // closest를 이용하여 처리한다.
     const isTarget = (target) => children.includes(target) || target.closest(selector);
     this.$target.addEventListener(eventType, (event) => {
-      if (!isTarget(event.target)) return false;
+      if (!isTarget(event.target)) {
+        return false;
+      }
       callback(event);
     });
   }

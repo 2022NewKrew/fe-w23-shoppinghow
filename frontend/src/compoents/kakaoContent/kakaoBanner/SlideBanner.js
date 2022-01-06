@@ -65,9 +65,13 @@ export default class SlideBanner extends Component {
     const _this = this;
     const innerPageEl = this.$target.querySelector('[id="mileageSildePage"]');
     innerPageEl.addEventListener('mouseover', function(event) {
-      if (event.target.className != 'num_page') return;
+      if (event.target.className != 'num_page') {
+        return;
+      }
       const targetPage = parseInt(event.target.innerText);
-      if (targetPage == _this.$state.currentPage) return;
+      if (targetPage == _this.$state.currentPage) {
+        return;
+      }
       _this.setState({currentPage: targetPage});
       console.log(_this.$state);
     });
