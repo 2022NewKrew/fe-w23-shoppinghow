@@ -120,7 +120,7 @@ export default class KaKaoHead extends Component {
     };
   }
 
-  async asyncMounted() {
+  async syncMounted() {
     const $rollKeyword = this.$target.querySelector(
         '[data-component="roll-keyword"]',
     );
