@@ -19,8 +19,14 @@ export class MainLayout extends Component {
   }
 
   mounted() {
-    new Header($('header', this.$target));
-    new Footer($('footer', this.$target));
+    new Header($('header', this.$target), {
+      renderType: 'outerHTML',
+    });
+
+    new Footer($('footer', this.$target), {
+      renderType: 'outerHTML',
+    });
+
     this.$main = $('main', this.$target);
   }
 }
