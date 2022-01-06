@@ -1,4 +1,5 @@
-@import "global";
+@import 'global';
+@import 'carousel';
 
 .header-top {
     display: flex;
@@ -49,6 +50,7 @@
     border: 1px solid #cbcbcb;
     max-width: 1270px;
     margin: 0px auto;
+    position: relative;
 
     .category__title {
         height: 60px;
@@ -57,7 +59,13 @@
         .fas {
             margin-right: 8px;
         }
+    }
 
+    .category__container {
+        width: 561px;
+        height: 498px;
+        top: 58px;
+        left: -1px;
     }
 
     .top-menu {
@@ -71,12 +79,28 @@
         }
     }
 
+    .pop-up-layer {
+        @extend %border-distinct;
+        position: absolute;
+        background-color: #fff;
+        display: none;
+        overflow: hidden;
+        z-index: 1;
+    }
+
     .private-menu {
         margin-left: auto;
         display: flex;
 
         .private-menu__btn {
             padding: $button-padding;
+        }
+
+        .current-goods {
+            width: 363px;
+            height: 263px;
+            top: 58px;
+            right: -1px;
         }
     }
 }
@@ -112,14 +136,8 @@
             }
 
             .planning {
+                @extend %x-center-align;
                 width: 790px;
-
-                .planning__link {
-                    display: block;
-                    margin: 0 auto;
-                    width: 600px;
-
-                }
             }
         }
 
@@ -139,48 +157,52 @@
         }
         .theme__link {
             display: block;
-            strong, span {
+            strong,
+            span {
                 @extend %text-block;
             }
             .theme-item__title {
                 font-weight: bold;
             }
             .theme-item__desc {
-                padding-top:0;
+                padding-top: 0;
             }
             .theme-item__icon {
-                border:0.5px solid #ff000069;
-                padding:4px;
+                border: 0.5px solid #ff000069;
+                padding: 4px;
                 width: 35px;
             }
         }
     }
 
-    .hot-deal {
+    .goods-stall {
         @extend %section-layout;
-        margin-top:60px;
+        margin-top: 60px;
 
         .section-title {
-            font-size: 1.25rem;
-            padding-bottom: 20px;
-            background-color: $bgColor;
+            @extend %h2-title;
         }
-        .hot-deal__title, .hot-deal__detail-price{
+        .goods-stall__title,
+        .goods-stall__detail-price {
             @extend %text-block;
         }
 
-        .hot-deal-list {
+        .goods-stall-list {
             display: flex;
-            flex-wrap:wrap;
-            .hot-deal__item {
-                width:20%;
-                padding:20px;
+            flex-wrap: wrap;
+            @extend %border-basic;
+            .goods-stall__item {
+                width: 20%;
+                padding: 20px;
                 border-right: 1px solid #f1f1f1;
                 border-bottom: 1px solid #f1f1f1;
+                strong {
+                    @extend %text-bold;
+                }
             }
         }
 
-        .hot-deal__detail-price {
+        .goods-stall__detail-price {
             margin-top: 20px;
             position: relative;
             .txt-price-percent {
@@ -189,6 +211,38 @@
                 font-size: 1.1rem;
                 line-height: 1.1rem;
                 color: red;
+            }
+        }
+    }
+
+    .suggestion {
+        @extend %section-layout;
+        margin-top: 60px;
+
+        .section-title {
+            @extend %h2-title;
+        }
+    }
+
+    .suggestion-carousel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: blueviolet;
+        .cell {
+            @extend %x-center-align;
+        }
+
+        .cell__item {
+            background-color: aqua;
+            @extend %x-center-align;
+            .cell__thumbnail {
+            }
+
+            .cell__title {
+            }
+
+            .cell__link {
             }
         }
     }
