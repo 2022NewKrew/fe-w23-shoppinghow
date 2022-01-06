@@ -1,0 +1,23 @@
+@import "global";
+@import "kakaoHead";
+
+#daumWrap {
+    position: relative;
+    width: 100%;
+}
+
+.shopping_top {
+    min-width: 977px;
+}
+
+.screen_out {
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    text-indent: -9999px
+px
+;
+}

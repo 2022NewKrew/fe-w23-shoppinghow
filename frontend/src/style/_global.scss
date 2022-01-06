@@ -1,0 +1,46 @@
+blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, select, td, textarea, th, ul {
+  margin: 0;
+  padding: 0;
+}
+
+body, button, input, select, td, textarea, th {
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: 돋움,dotum,sans-serif;
+  color: #333;
+}
+
+div {
+  display: block;
+}
+
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, select, td, textarea, th, ul {
+  FONT-VARIANT: JIS04;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  display: block;
+  margin-top: 0em;
+}
