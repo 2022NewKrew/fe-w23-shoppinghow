@@ -106,9 +106,32 @@
   .private-menu {
     margin-left: auto;
     display: flex;
+    position: relative;
+    cursor: pointer;
 
     .private-menu__btn {
       padding: $button-padding;
+    }
+
+    #recent-product-container {
+      display: none;
+      position: absolute;
+      top: 58px;
+      right: 0px;
+      background-color: white;
+      width: 421px;
+      height: 540px;
+      z-index: 20;
+      border: 1px solid #979797;
+      padding: 0 28px;
+
+      .recent-product-menu {
+        display: flex;
+        padding: 26px 0 17px;
+        div + div {
+          margin-left: 38px;
+        }
+      }
     }
   }
 }

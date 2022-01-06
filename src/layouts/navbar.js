@@ -1,9 +1,11 @@
+import RecentProduct from "../components/RecentProduct";
+
 export default function createNavbar() {
   const navbar = document.createElement("div");
-
+  const recentProduct = new RecentProduct();
   navbar.insertAdjacentHTML(
     "afterbegin",
-    `
+    /*html*/ `
     <div class="header-menu">
         <div class="category">
             <button class="category__title">
@@ -47,10 +49,13 @@ export default function createNavbar() {
             <li class="private-menu__btn">
                 <a href="#">로그인</a>
             </li>
-            <li class="private-menu__btn">
-                <a href="#">최근본상품</a>
+            <li class="private-menu__btn" id="recent-product-menu">
+                <a href="#">최근 본 상품</a>
             </li>
+            ${recentProduct.render()}
+            </div>
         </ul>
+        
     </div>
     `
   );

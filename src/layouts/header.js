@@ -1,4 +1,4 @@
-import Top10Input from "../components/top10Input";
+import Top10Input from "../components/Top10Input";
 
 const top10 = require("../data/searchTop10.json").top10;
 

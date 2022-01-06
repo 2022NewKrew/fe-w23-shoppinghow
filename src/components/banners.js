@@ -1,4 +1,4 @@
-import Carousel from "../components/carousel";
+import Carousel from "../components/Carousel";
 
 export default function createBanners() {
   const banner = document.createElement("div");

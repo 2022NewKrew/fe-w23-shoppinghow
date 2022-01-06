@@ -1,4 +1,4 @@
-const ROLLING_TIME = 1000;
+const ROLLING_TIME = 3000;
 const HEIGHT = 60;
 const TRANSITION_DURATION = "500ms";
 const FOCUS_OUT_TIME = 500;
@@ -38,7 +38,6 @@ export default class Top10Input {
       top10Container.children[
         this.#top10Idx + 1 === this.#top10ListLength ? 0 : this.#top10Idx + 1
       ];
-    console.log(this.#top10Idx);
     const nextNextItem =
       top10Container.children[
         this.#top10Idx + 2 >= this.#top10ListLength
@@ -50,8 +49,6 @@ export default class Top10Input {
   }
 
   initSlide() {
-    const top10Container = document.querySelector("#top10Container");
-
     top10Container.style.transitionDuration = TRANSITION_DURATION;
 
     const [prevItem, curItem, nextItem] = this.findActiveSlide(top10Container);
@@ -60,10 +57,8 @@ export default class Top10Input {
     nextItem.classList.add("next-top-item");
   }
 
-  runSlide() {
+  runSlide(top10Container) {
     const run = () => {
-      const top10Container = document.querySelector("#top10Container");
-
       top10Container.style.transitionDuration = TRANSITION_DURATION;
 
       // previous, current, next active-slide 찾기
@@ -88,20 +83,8 @@ export default class Top10Input {
     clearInterval(this.#slidePlaying);
   }
 
-  addSlideEventListner() {
+  addSlideEventListner(input) {
     let timeId;
-    const top10Container = document.querySelector("#top10Container");
-    const input = document.querySelector(".search__input");
-
-    input.onfocus = () => {
-      input.style.backgroundColor = "white";
-      this.pauseSlide();
-    };
-
-    input.onblur = () => {
-      input.style.backgroundColor = "transparent";
-      this.runSlide();
-    };
 
     input.addEventListener("mouseover", (e) => {
       clearTimeout(timeId);
@@ -112,13 +95,25 @@ export default class Top10Input {
         input.blur();
       }, FOCUS_OUT_TIME);
     });
+
+    input.addEventListener("focus", (e) => {
+      input.style.backgroundColor = "white";
+      this.pauseSlide();
+    });
+
+    input.addEventListener("blur", (e) => {
+      input.style.backgroundColor = "transparent";
+      this.runSlide(top10Container);
+    });
   }
 
   render() {
     window.addEventListener("DOMContentLoaded", () => {
-      this.initSlide();
-      this.runSlide();
-      this.addSlideEventListner();
+      const top10Container = document.querySelector("#top10Container");
+      const input = document.querySelector(".search__input");
+      this.initSlide(top10Container);
+      this.runSlide(top10Container);
+      this.addSlideEventListner(input);
     });
 
     return `

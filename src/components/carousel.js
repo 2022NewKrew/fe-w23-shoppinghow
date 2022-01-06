@@ -12,8 +12,7 @@ export default class Carousel {
     return file;
   }
 
-  initCarousel() {
-    const list = document.querySelector(".planning__lists").children;
+  initCarousel(list, page) {
     const prevItem = list[this.#slideLength - 1];
     const curItem = list[0];
     const nextItem = list[1];
@@ -21,22 +20,18 @@ export default class Carousel {
     curItem.classList.add("cur-item");
     nextItem.classList.add("next-item");
 
-    const page = document.querySelector(".planning__pages").children;
     page[0].classList.add("cur-page");
   }
 
-  addHoverEventListener() {
-    const page = document.querySelector(".planning__pages").children;
+  addHoverEventListener(list, page) {
     Array.from(page).forEach((e, idx) => {
       e.addEventListener("mouseover", () => {
-        this.addActiveClass(idx, "none");
+        this.addActiveClass(idx, "none", list, page);
       });
     });
   }
 
-  addActiveClass(idx, direction) {
-    const list = document.querySelector(".planning__lists").children;
-
+  addActiveClass(idx, direction, list, page) {
     // slide에 active class 추가 및 제거
     const prevItem = list[idx - 1 < 0 ? this.#slideLength - 1 : idx - 1];
     const nextItem = list[idx + 1 === this.#slideLength ? 0 : idx + 1];
@@ -52,7 +47,6 @@ export default class Carousel {
     curItem.classList.add("cur-item");
 
     // 하단 페이지 바 active class 추가 및 제거
-    const page = document.querySelector(".planning__pages").children;
     const curPage = page[idx];
 
     Array.from(page).forEach((e) => {
@@ -86,18 +80,18 @@ export default class Carousel {
     };
   }
 
-  addButtonEventListener() {
+  addButtonEventListener(list, page) {
     const prevBtn = document.querySelector(".planning__left-btn");
     const nextBtn = document.querySelector(".planning__right-btn");
 
-    let idx = this.findCurrentIndex();
+    let idx = this.findCurrentIndex(page);
     prevBtn.addEventListener(
       "click",
       this.throttle(() => {
         idx -= 1;
         idx = idx < 0 ? this.#slideLength - 1 : idx;
         this.addTransition();
-        this.addActiveClass(idx, "prev");
+        this.addActiveClass(idx, "prev", list, page);
       }, 300)
     );
     nextBtn.addEventListener(
@@ -106,7 +100,7 @@ export default class Carousel {
         idx += 1;
         idx = idx === this.#slideLength ? 0 : idx;
         this.addTransition();
-        this.addActiveClass(idx, "next");
+        this.addActiveClass(idx, "next", list, page);
       }, 300)
     );
   }
@@ -118,8 +112,7 @@ export default class Carousel {
     });
   }
 
-  findCurrentIndex() {
-    const page = document.querySelector(".planning__pages").children;
+  findCurrentIndex(page) {
     const idx = 0;
     Array.from(page).forEach((e, idx) => {
       if (e.classList.contains("cur-page")) {
@@ -131,9 +124,12 @@ export default class Carousel {
 
   render() {
     window.addEventListener("DOMContentLoaded", () => {
-      this.initCarousel();
-      this.addHoverEventListener();
-      this.addButtonEventListener();
+      const page = document.querySelector(".planning__pages").children;
+      const list = document.querySelector(".planning__lists").children;
+
+      this.initCarousel(list, page);
+      this.addHoverEventListener(list, page);
+      this.addButtonEventListener(list, page);
     });
     return /*html*/ `
           <div class="planning">
