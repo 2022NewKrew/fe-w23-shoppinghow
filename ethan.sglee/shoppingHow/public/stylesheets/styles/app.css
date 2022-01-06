@@ -148,9 +148,10 @@ h1 {
 }
 .container .promotion .banner .planning {
   width: 790px;
+  overflow: hidden;
 }
 .container .promotion .banner .planning .planning__link {
-  display: block;
+  display: inline-block;
   margin: 0 auto;
   width: 600px;
 }

@@ -130,12 +130,23 @@
 
             .planning {
                 width: 790px;
+                overflow: hidden;
 
                 .planning__link {
-                    display: block;
+                    display: inline-block;
                     margin: 0 auto;
                     width: 600px;
 
+                }
+
+                .prev {
+
+                }
+                .current {
+
+                }
+                .next {
+                    
                 }
             }
         }
