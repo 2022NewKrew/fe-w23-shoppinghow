@@ -21,10 +21,6 @@ export default class Top10Input {
   }
 
   findActiveSlide(top10Container) {
-    // const top10Container = document.querySelector("#top10Container");
-
-    // top10Container.style.transitionDuration = TRANSITION_DURATION;
-
     // current active-slide 찾기
     const top10List = Array.from(top10Container.children);
     top10List.forEach((e, idx) => {
@@ -42,8 +38,12 @@ export default class Top10Input {
       top10Container.children[
         this.#top10Idx + 1 === this.#top10ListLength ? 0 : this.#top10Idx + 1
       ];
+    const nextNextItem =
+      top10Container.children[
+        this.#top10Idx + 2 === this.#top10ListLength ? 0 : this.#top10Idx + 2
+      ];
 
-    return [prevItem, curItem, nextItem];
+    return [prevItem, curItem, nextItem, nextNextItem];
   }
 
   initSlide() {
@@ -64,19 +64,29 @@ export default class Top10Input {
       top10Container.style.transitionDuration = TRANSITION_DURATION;
 
       // previous, current, next active-slide 찾기
-      const [prevItem, curItem, nextItem] =
+      const [prevItem, curItem, nextItem, nextNextItem] =
         this.findActiveSlide(top10Container);
 
       prevItem.classList.remove("previous-top-item");
 
-      curItem.classList.add("previous-top-item");
       curItem.classList.remove("current-top-item");
+      curItem.classList.add("previous-top-item");
 
       nextItem.classList.remove("next-top-item");
       nextItem.classList.add("current-top-item");
+
+      nextNextItem.classList.add("next-top-item");
     };
 
     this.#slidePlaying = setInterval(run, ROLLING_TIME);
+  }
+
+  throttle(callback, delay) {
+    let timerId;
+    return (event) => {
+      if (timerId) clearTimeout(timerId);
+      timerId = setTimeout(callback, delay, event);
+    };
   }
 
   pauseSlide() {
@@ -88,23 +98,21 @@ export default class Top10Input {
     const top10Container = document.querySelector("#top10Container");
     const input = document.querySelector(".search__input");
 
-    input.addEventListener("focusin", (e) => {
-      top10Container.style.visibility = "hidden";
-      input.parentNode.style.border = "1px solid red";
+    input.onfocus = () => {
+      input.style.backgroundColor = "white";
       this.pauseSlide();
-    });
+    };
 
-    input.addEventListener("focusout", (e) => {
-      top10Container.style.visibility = "visible";
-      input.parentNode.style.border = "none";
+    input.onblur = () => {
+      input.style.backgroundColor = "transparent";
       this.runSlide();
-    });
+    };
 
-    input.addEventListener("mouseenter", (e) => {
+    input.addEventListener("mouseover", (e) => {
       clearTimeout(timeId);
     });
 
-    input.addEventListener("mouseleave", (e) => {
+    input.addEventListener("mouseout", (e) => {
       timeId = setTimeout(() => {
         input.blur();
       }, FOCUS_OUT_TIME);

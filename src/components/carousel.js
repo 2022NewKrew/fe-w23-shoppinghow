@@ -135,7 +135,7 @@ export default class Carousel {
       this.addHoverEventListener();
       this.addButtonEventListener();
     });
-    return `
+    return /*html*/ `
           <div class="planning">
             <button class="planning__left-btn planning__btn"><</button>
             <div class="planning__lists__container">

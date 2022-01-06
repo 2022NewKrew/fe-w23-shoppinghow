@@ -20,11 +20,4 @@ export default function createHeader() {
 
   const header = document.getElementById("header");
   header.appendChild(top);
-
-  // window.addEventListener("DOMContentLoaded", () => {
-  //   const targetEl = document.querySelector(".header-top");
-  //   const rollingText = new InputWithTopRankingGoods();
-
-  //   targetEl.appendChild(rollingText.rootEl);
-  // });
 }
