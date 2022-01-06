@@ -1,4 +1,4 @@
-import { consoleButton } from '../../carousel/consoleButton';
+import { consoleButtons } from '../../carousel/consoleButtons';
 import { carousel } from '../../carousel/carousel';
 import { imageContainer } from '../../carousel/imageContainer';
 
@@ -14,7 +14,7 @@ const renderPlanningCarousel = (cellData) => {
     const CELL_HEIGHT = 340;
 
     const container = imageContainer({ imgWidth: CELL_WIDTH, imgHeight: CELL_HEIGHT, imgSrcs: cellData });
-    const buttons = buttonConsole({ dataCount: cellData.length });
+    const buttons = consoleButtons({ dataCount: cellData.length });
 
     const planningCarousel = carousel({
         cell_width: CELL_WIDTH,

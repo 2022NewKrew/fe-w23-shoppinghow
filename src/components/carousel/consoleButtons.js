@@ -25,7 +25,7 @@ const renderConsole = (dataCount) => {
     return target;
 };
 
-export const consoleButton = ({ dataCount }) => {
+export const consoleButtons = ({ dataCount }) => {
     const target = document.createElement('div');
 
     const render = () => {

@@ -1,6 +1,6 @@
 import { carousel } from './carousel/carousel';
 import { suggestItemContainer } from './carousel/suggestItemContainer';
-import { consoleButton } from './carousel/consoleButton';
+import { consoleButtons } from './carousel/consoleButtons';
 import { smallTitle } from './smallTitle';
 
 // fetch되어온 데이터라 가정
@@ -46,7 +46,7 @@ const renderSuggestionCarousel = (cellData) => {
         cell_width: CELL_WIDTH,
         cell_height: CELL_HEIGHT,
         container,
-        buttons: consoleButton({ dataCount: numberOfCells }),
+        buttons: consoleButtons({ dataCount: numberOfCells }),
         dataLength: numberOfCells,
     });
     suggestionCarousel.classList.add('suggestion-carousel');
