@@ -23,12 +23,6 @@ router.get("/hotdeal", async (req, res) => {
     result,
   });
 });
-router.get("/hotdeal", async (req, res) => {
-  const [result] = await pool.query(`select * from hotdeal`);
-  res.status(200).json({
-    result,
-  });
-});
 router.get("/event/top100", async (req, res) => {
   const [result] = await pool.query(`select * from event where type = 2`);
   res.status(200).json({

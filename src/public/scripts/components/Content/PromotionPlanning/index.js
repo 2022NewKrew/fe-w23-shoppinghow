@@ -6,7 +6,7 @@ export default class PromotionPlanning extends Component {
   setUp() {
     this.$state = {
       planningList: [],
-      slidingSpeed: 2500,
+      slidingSpeed: 3500,
       slidingWidth: 635,
     };
     this.totalSlideCount = 3;
