@@ -6,20 +6,16 @@ export default class RollKeyword extends Component {
     const searchKeywordGroup = this.$props.searchKeywordGroup;
 
     return `
-        ${searchKeywordGroup
-          .map((keyword, index) => {
-            return `<li>
-                        <span class="num_rank">${index + 1}</span>${
-              keyword.name
-            }
-                    </li>`;
-          })
-          .join(" ")}
-        ${`<li>
-                        <span class="num_rank">${1}</span>${
-          searchKeywordGroup[0].name
-        }
-                    </li>`}
+    ${searchKeywordGroup
+      .map((keyword, index) => {
+        return `<li>
+          <span class="num_rank">${index + 1}</span>${keyword.name}
+      </li>`;
+      })
+      .join(" ")}
+    ${`<li>
+          <span class="num_rank">${1}</span>${searchKeywordGroup[0].name}
+      </li>`}
     `;
   }
 }

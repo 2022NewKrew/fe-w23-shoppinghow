@@ -17,6 +17,9 @@ export default class Component {
     
     //렌더링 후 후 추가기능
     mounted () {};
+
+    //비동기 렌더링 후 후 추가기능
+    async asyncMounted () {};
     
     //화면에 보여줄 템플릿(레더링에 적용될 html)
     template () { return ''; }
@@ -25,6 +28,7 @@ export default class Component {
     render () {
       this.$target.innerHTML = this.template();
       this.mounted();
+      this.asyncMounted();
     }
 
     //이벤트 설정
