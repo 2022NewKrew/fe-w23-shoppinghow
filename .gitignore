@@ -4,6 +4,7 @@
 *.docx
 *.pdf
 *.xlsx
+dbsettingDummy.js
 
 node_modules
 backend/public/dist/*

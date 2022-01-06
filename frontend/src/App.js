@@ -1,7 +1,7 @@
-import Component from "./core/Component.js";
-import KaKaoHead from "./compoents/kakaoHead/KaKaoHead.js";
-import KaKaoFoot from "./compoents/kakaoFoot/KaKaoFoot.js";
-import KaKaoContent from "./compoents/kakaoContent/KaKaoContent.js";
+import Component from './core/Component.js';
+import KaKaoHead from './compoents/kakaoHead/KaKaoHead.js';
+import KaKaoFoot from './compoents/kakaoFoot/KaKaoFoot.js';
+import KaKaoContent from './compoents/kakaoContent/KaKaoContent.js';
 
 export default class App extends Component {
   template() {
@@ -14,13 +14,13 @@ export default class App extends Component {
         `;
   }
 
-  mounted () {
+  mounted() {
     const $kakaoHead = this.$target.querySelector('[data-component="kakao-head"]');
     const $kakaoContent = this.$target.querySelector('[data-component="kakao-content"]');
     const $kakaoFoot = this.$target.querySelector('[data-component="kakao-foot"]');
-    
-    new KaKaoHead($kakaoHead,{})
-    new KaKaoFoot($kakaoFoot,{})
-    new KaKaoContent($kakaoContent,{})
+
+    new KaKaoHead($kakaoHead, {});
+    new KaKaoFoot($kakaoFoot, {});
+    new KaKaoContent($kakaoContent, {});
   }
 }

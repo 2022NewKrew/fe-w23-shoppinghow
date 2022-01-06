@@ -1,5 +1,5 @@
-import Component from "../../../core/Component";
-//TODO: cMain작업예정(상품 리스트)
+import Component from '../../../core/Component';
+// TODO: cMain작업예정(상품 리스트)
 export default class KaKaoItemGroup extends Component {
   template() {
     return `
@@ -7,6 +7,6 @@ export default class KaKaoItemGroup extends Component {
     </div>
     <div data-component="kakao-event-list" class="cont_item">
     </div>
-    `
+    `;
   }
 }

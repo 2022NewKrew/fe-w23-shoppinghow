@@ -1,6 +1,6 @@
-import Component from "../../core/Component";
+import Component from '../../core/Component';
 
-//TODO: cMain작업예정(상품 리스트)
+// TODO: cMain작업예정(상품 리스트)
 export default class KaKaoNotice extends Component {
   template() {
     return `
