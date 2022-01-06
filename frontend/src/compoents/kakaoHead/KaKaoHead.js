@@ -8,7 +8,7 @@ export default class KaKaoHead extends Component {
     <div class="area_headtop">
         <h1 class="tit_shw">
             <a href="/" class="link_shw _GC_">
-                <img src="http://localhost:8080/asset/common/logo_shw_2021.png" class="img_g" alt="쇼핑하우">
+                <img src="/asset/common/logo_shw_2021.png" class="img_g" alt="쇼핑하우">
             </a>
         </h1>
         <div class="wrap_shwsearch">
@@ -120,8 +120,16 @@ export default class KaKaoHead extends Component {
     };
   }
 
+  async asyncMounted(){
+    const $rollKeyword = this.$target.querySelector(
+        '[data-component="roll-keyword"]'
+      );
+      const searchKeywordGroup = await this.getSearhKeyword();
+  
+      new RollKeyword($rollKeyword, { searchKeywordGroup: searchKeywordGroup });
+  }
+
   mounted() {
-    this.setDataToMounted();
     this.setAutoRollAnimation();
     this.setSearchFormMouseEvent();
   }
@@ -170,15 +178,6 @@ export default class KaKaoHead extends Component {
       count++;
       $el.style.top = `${top - movePx * count}px`;
     }, 40);
-  }
-
-  async setDataToMounted() {
-    const $rollKeyword = this.$target.querySelector(
-      '[data-component="roll-keyword"]'
-    );
-    const searchKeywordGroup = await this.getSearhKeyword();
-
-    new RollKeyword($rollKeyword, { searchKeywordGroup: searchKeywordGroup });
   }
 
   async getSearhKeyword() {
