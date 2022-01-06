@@ -18,6 +18,9 @@
     "url": "https://github.com/Dongkyun-Jang/fe-w23-shoppinghow/issues"
   },
   "homepage": "https://github.com/Dongkyun-Jang/fe-w23-shoppinghow#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
   "devDependencies": {
     "@babel/cli": "^7.16.7",
     "@babel/core": "^7.16.7",
@@ -25,7 +28,6 @@
     "babel-loader": "^8.2.3",
     "core-js": "^3.20.2",
     "css-loader": "^6.5.1",
-    "express": "^4.17.2",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.5",
     "nodemon": "^2.0.15",
