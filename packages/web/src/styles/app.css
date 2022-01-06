@@ -65,6 +65,10 @@ button {
   cursor: pointer;
 }
 
+a {
+  cursor: pointer;
+}
+
 .screen_out {
   font-size: 0;
   line-height: 0;
@@ -87,7 +91,6 @@ button {
 }
 
 .slide {
-  display: flex;
   width: max-content;
   cursor: pointer;
 }
@@ -211,13 +214,20 @@ button {
   z-index: 10;
 }
 .wrap_shwsearch .frm_shwsearch {
+  z-index: 3;
   position: relative;
   width: 670px;
   height: 54px;
   padding: 16px 60px 14px 30px;
   border: 1px solid #cecfd1;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: transparent;
+}
+.wrap_shwsearch .frm_shwsearch input {
+  float: left;
+  height: 22px;
+  width: 100%;
+  text-align: left;
 }
 .wrap_shwsearch .frm_shwsearch button {
   position: absolute;
@@ -226,8 +236,7 @@ button {
   width: 52px;
   height: 52px;
 }
-
-.wrap_rollkeywords {
+.wrap_shwsearch .wrap_rollkeywords {
   overflow: hidden;
   position: absolute;
   left: 31px;
@@ -237,12 +246,13 @@ button {
   line-height: 23px;
   text-align: left;
 }
-.wrap_rollkeywords ol {
+.wrap_shwsearch .wrap_rollkeywords ol {
   position: absolute;
+  top: -32px;
   left: 0;
   width: 100%;
 }
-.wrap_rollkeywords ol li {
+.wrap_shwsearch .wrap_rollkeywords ol li {
   overflow: hidden;
   height: 22px;
   font-weight: 700;
@@ -252,9 +262,12 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.wrap_rollkeywords ol li span {
+.wrap_shwsearch .wrap_rollkeywords ol li span {
   margin-right: 15px;
   font-family: robotoitalic, Apple SD Gothic Neo;
+}
+.wrap_shwsearch .wrap_rollkeywords ol :not(li:first-child) {
+  margin-top: 10px;
 }
 
 #kakaoGnb {
@@ -299,6 +312,9 @@ button {
 }
 .wrap_shwgnb .list_shwgnb li > a .txt_new {
   right: 10px;
+}
+.wrap_shwgnb .list_shwgnb li > a:hover {
+  color: #f65b3d;
 }
 .wrap_shwgnb .list_kwordgnb {
   float: left;
@@ -427,6 +443,7 @@ button {
 }
 .section_top .list_item {
   display: flex;
+  border-bottom: 1px solid #e4e4e4;
 }
 .section_top .list_item li {
   padding: 21px 27px;

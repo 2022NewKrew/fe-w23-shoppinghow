@@ -16,6 +16,10 @@ button {
   cursor: pointer;
 }
 
+a {
+  cursor: pointer;
+}
+
 .screen_out {
   font-size: 0;
   line-height: 0;
@@ -38,7 +42,6 @@ button {
 }
 
 .slide {
-  display: flex;
   width: max-content;
   cursor: pointer;
 }

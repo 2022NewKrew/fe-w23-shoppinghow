@@ -16,6 +16,10 @@ button {
   cursor: pointer;
 }
 
+a {
+  cursor: pointer;
+}
+
 $primaryColor: #eeffcc;
 $bgColor: #f5f5f5;
 
@@ -60,7 +64,6 @@ $button-padding: 20px;
   background-color: #f9624c;
 }
 .slide {
-  display: flex;
   width: max-content;
   cursor: pointer;
   .panel {

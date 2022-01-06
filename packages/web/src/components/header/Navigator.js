@@ -1,4 +1,4 @@
-import { createHTML } from "../utils/dom";
+import { createHTML } from "../../utils/dom";
 
 const sample = {
   list_shwgnb: [
