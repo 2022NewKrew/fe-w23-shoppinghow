@@ -2,21 +2,8 @@
 export default class ApiService {
   // 서버에 폼 가져오기
   async getApi(type) {
-    let url = 'api';
-    switch (type) {
-      case 'getSearchKeywordGroup':
-        url += '/getSearchKeywordGroup';
-        break;
-      case 'getBannerData':
-        url += '/getBannerData';
-        break;
-      default:
-        break;
-    }
-    console.log(`fetch url: ${url}`);
-
     try {
-      const response = await fetch(url);
+      const response = await fetch(this.getUrl(type));
       console.log(response);
       if (response.ok) {
         return response.json();
@@ -25,6 +12,18 @@ export default class ApiService {
     } catch (err) {
       console.log(err);
       return null;
+    }
+  }
+
+  getUrl(type) {
+    const defaultUrl = 'api';
+    switch (type) {
+      case 'getSearchKeywordGroup':
+        return defaultUrl + '/getSearchKeywordGroup';
+      case 'getBannerData':
+        return defaultUrl + '/getBannerData';
+      default:
+        return '';
     }
   }
 }
