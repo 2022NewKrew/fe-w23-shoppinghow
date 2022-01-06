@@ -11,7 +11,7 @@ export class HotDealProduct extends Component {
         originPrice,
         discount: { type, text },
       },
-    } = this.$props;
+    } = this.props;
 
     return /*html*/ `
       <li class="product">

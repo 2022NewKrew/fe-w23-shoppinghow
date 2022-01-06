@@ -2,8 +2,8 @@ import { HotDealProduct, SectionLayout } from '@components';
 import { $ } from '@utils';
 
 export class HotDealSection extends SectionLayout {
-  constructor($target, $props) {
-    super($target, { className: 'hotDeal__section', ...$props });
+  constructor($target, props) {
+    super($target, { className: 'hotDeal__section', ...props });
   }
 
   render() {
@@ -12,7 +12,7 @@ export class HotDealSection extends SectionLayout {
   }
 
   renderHotDealProductList() {
-    const { hotDealProductList } = this.$props;
+    const { hotDealProductList } = this.props;
 
     this.$contentContainer.innerHTML = `<ul class="hotDeal__container"></ul>`;
     const $hotDealList = $('.hotDeal__container', this.$contentContainer);

@@ -2,8 +2,8 @@ import { PromotionCard, SectionLayout, Slider, ThemeProduct } from '@components'
 import { $ } from '@utils';
 
 export class PromotionSection extends SectionLayout {
-  constructor($target, $props) {
-    super($target, { className: 'promotion__section', ...$props });
+  constructor($target, props) {
+    super($target, { className: 'promotion__section', ...props });
   }
 
   render() {
@@ -18,7 +18,7 @@ export class PromotionSection extends SectionLayout {
   }
 
   renderThemeProductList() {
-    const { themeProductList = [] } = this.$props;
+    const { themeProductList = [] } = this.props;
 
     const $themeContainer = $('.theme__container', this.$contentContainer);
 
@@ -31,7 +31,7 @@ export class PromotionSection extends SectionLayout {
   }
 
   renderBanner() {
-    const { sliderImgList = [] } = this.$props;
+    const { sliderImgList = [] } = this.props;
 
     const $banner = $('.banner', this.$contentContainer);
 

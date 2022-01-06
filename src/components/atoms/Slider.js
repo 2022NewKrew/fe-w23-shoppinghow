@@ -7,7 +7,7 @@ export class Slider extends Component {
     this.AUTO_SLIDE_TIME = 3000;
     this.SLIDE_FRAME_WIDTH = 485;
 
-    const { imgList = [] } = this.$props;
+    const { imgList = [] } = this.props;
     this.currentIndex = 0;
     this.maxIndex = imgList.length - 1;
   }
@@ -29,7 +29,7 @@ export class Slider extends Component {
   }
 
   template() {
-    const { imgList = [] } = this.$props;
+    const { imgList = [] } = this.props;
 
     const pagingTemplate = (index) => /* html */ `
         <div class="slider__paging" data-index="${index}">

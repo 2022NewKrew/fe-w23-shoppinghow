@@ -8,18 +8,18 @@ export class SectionLayout extends Component {
   $contentContainer;
 
   template() {
-    const { className = '', hideTitle } = this.$props;
+    const { className = '', hideTitle } = this.props;
 
     return /*html*/ `
       <section class="container ${className}">
-        <h3 class="container__title ${hideTitle ? 'screenOut' : ''}">${this.$props.title}</h3>
+        <h3 class="container__title ${hideTitle ? 'screenOut' : ''}">${this.props.title}</h3>
         <div class="container__content"></div>
       </section>
     `;
   }
 
   mounted() {
-    const { className } = this.$props;
+    const { className } = this.props;
     this.$contentContainer = $(`.${className} .container__content`, this.$target);
   }
 }

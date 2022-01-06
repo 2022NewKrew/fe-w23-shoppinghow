@@ -3,16 +3,17 @@ export default class Component {
    * @param {HTMLElement} $target
    */
   $target;
-  $props;
+  props;
 
   /**
    * @param {HTMLElement} $target 타겟 기준으로 컴포넌트를 삽입합니다.
-   * @param $props `renderType: "replace"`이면 innerHTML로 삽입, 아니면 insertAdjacentHTML의 position을 입력하세요.
-   * https://developer.mozilla.org/ko/docs/Web/API/Element/insertAdjacentHTML
+   * @param props
+   * `renderType: "innerHTML" | "outerHTML" | beforebegin | afterbegin | beforeend | afterend`
+   * insertAdjacentHTML의 position https://developer.mozilla.org/ko/docs/Web/API/Element/insertAdjacentHTML
    */
-  constructor($target, $props = {}) {
+  constructor($target, props = {}) {
     this.$target = $target;
-    this.$props = { renderType: 'replace', ...$props };
+    this.props = { renderType: 'innerHTML', ...props };
 
     this.setup();
     this.setEvent();
@@ -31,10 +32,18 @@ export default class Component {
   }
   mounted() {}
   render() {
-    const { renderType } = this.$props;
+    const { renderType } = this.props;
 
-    if (renderType === 'replace') this.$target.innerHTML = this.template();
-    else this.$target.insertAdjacentHTML(renderType, this.template());
+    if (renderType === 'innerHTML') {
+      this.$target.innerHTML = this.template();
+    } else if (renderType === 'outerHTML') {
+      const $parent = this.$target.parentElement;
+      this.$target.outerHTML = this.template();
+      $parent.querySelector();
+      console.log(this.$target);
+    } else {
+      this.$target.insertAdjacentHTML(renderType, this.template());
+    }
 
     this.mounted();
   }

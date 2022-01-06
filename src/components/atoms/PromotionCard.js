@@ -2,7 +2,7 @@ import { Component } from '@core';
 
 export class PromotionCard extends Component {
   template() {
-    const { link, img } = this.$props;
+    const { link, img } = this.props;
 
     return /*html*/ `
       <div class="promotion">

@@ -4,7 +4,7 @@ export class ThemeProduct extends Component {
   template() {
     const {
       product: { title, desc, img },
-    } = this.$props;
+    } = this.props;
 
     return /*html*/ `
       <li class="product">
