@@ -83,14 +83,6 @@ export default class Top10Input {
     this.#slidePlaying = setInterval(run, ROLLING_TIME);
   }
 
-  throttle(callback, delay) {
-    let timerId;
-    return (event) => {
-      if (timerId) clearTimeout(timerId);
-      timerId = setTimeout(callback, delay, event);
-    };
-  }
-
   pauseSlide() {
     clearInterval(this.#slidePlaying);
   }
