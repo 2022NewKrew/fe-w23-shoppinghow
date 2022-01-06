@@ -1,9 +1,12 @@
 export default class Component {
+  /**
+   * @param {HTMLElement} $target
+   */
   $target;
   $props;
 
   /**
-   * @param $target 타겟 기준으로 컴포넌트를 삽입합니다.
+   * @param {HTMLElement} $target 타겟 기준으로 컴포넌트를 삽입합니다.
    * @param $props `renderType: "replace"`이면 innerHTML로 삽입, 아니면 insertAdjacentHTML의 position을 입력하세요.
    * https://developer.mozilla.org/ko/docs/Web/API/Element/insertAdjacentHTML
    */

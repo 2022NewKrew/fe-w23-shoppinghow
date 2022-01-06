@@ -2,6 +2,11 @@ import { Component } from '@core';
 import { $ } from '@utils';
 
 export class SectionLayout extends Component {
+  /**
+   *  @type {HTMLElement}
+   */
+  $contentContainer;
+
   template() {
     const { className = '', hideTitle } = this.$props;
 

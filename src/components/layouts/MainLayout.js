@@ -3,6 +3,9 @@ import { $ } from '@utils';
 import { Footer, Header } from '@components';
 
 export class MainLayout extends Component {
+  /**
+   *  @type {HTMLElement}
+   */
   $main;
 
   template() {
