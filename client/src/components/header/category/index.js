@@ -1,4 +1,5 @@
-import { CATEGORY_ICON } from '../../../static/constants/image-path';
+import { CATEGORY_HOVER_ICON, CATEGORY_ICON } from '@/static/constants/image-path';
+import { $ } from '@/utils/helper';
 import './index.scss';
 
 export default class Category {
@@ -7,6 +8,9 @@ export default class Category {
     this.category.className = 'category';
     this.render();
     $parent.appendChild(this.category);
+
+    this.category.addEventListener('mouseenter', this.handleMouseEnterCategory.bind(this));
+    this.category.addEventListener('mouseleave', this.handleMouseLeaveCategory.bind(this));
   }
 
   setState(props) {}
@@ -17,6 +21,14 @@ export default class Category {
         <span>카테고리</span>
         <div class="gubun-bar"></div>
     `;
+  }
+
+  handleMouseEnterCategory() {
+    $('.category-img', this.category).src = CATEGORY_HOVER_ICON;
+  }
+
+  handleMouseLeaveCategory() {
+    $('.category-img', this.category).src = CATEGORY_ICON;
   }
 }
 {
