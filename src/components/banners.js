@@ -4,7 +4,6 @@ import Carousel from "../components/Carousel";
 export default class Banners extends Component {
   template() {
     return `
-    <div class="banner">
       <div class="best">
         <a href="#" class="best__link">
           <img

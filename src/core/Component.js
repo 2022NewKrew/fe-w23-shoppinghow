@@ -19,6 +19,8 @@ export default class Component {
     return "";
   }
 
+  init() {}
+
   render() {
     this.$target.innerHTML += this.template();
     this.setEvent();
