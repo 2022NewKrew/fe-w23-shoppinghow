@@ -1,5 +1,7 @@
-import { hotDealTemplate } from "./template/container/hotDealTemplate.js";
-import { promotionTemplate } from "./template/container/promotionTemplate.js";
+import { addCarouselEvent } from './event/carouselEvent.js';
+import { hotDealTemplate } from './template/container/hotDealTemplate.js';
+import { promotionTemplate } from './template/container/promotionTemplate.js';
+import { $ } from '../utils/utils.js';
 
 // example dummy
 function makeHotDealHTML() {
@@ -23,16 +25,26 @@ function makeHotDealHTML() {
     target.innerHTML = Array(10).fill(0).reduce( (html, item) => html+hotdealItemTpl, ``);
 }
 
-export const makeContainerElement = (containerElement) => {
+export const makeContainerElement = async (containerElement) => {
+    const response = await fetch('../data/content.json');
+    const fetchedData = await response.json();
+
     const promotionTpl = promotionTemplate({
-        best: {href: "", imgUrl: "//shop1.daumcdn.net/shophow/sib/0_211210142533_BedHMJMFxJiJcYPqWFiZwzldCrXJHrcC"},
-        carouselList: [],
+        best: fetchedData.best,
+        carouselList: fetchedData.carouselList,
         themeList: []
     });
     const hotDealTpl = hotDealTemplate();
 
     containerElement.insertAdjacentHTML('beforeend',promotionTpl);
     containerElement.insertAdjacentHTML('beforeend', hotDealTpl);
+
+    // add event
+    addCarouselEvent({
+        leftBtnEl: $('.carousel__left-btn', containerElement),
+        rightBtnEl: $('.carousel__right-btn', containerElement),
+        containerEl: $('.carousel-container', containerElement)
+    })
 
     makeHotDealHTML();
 }

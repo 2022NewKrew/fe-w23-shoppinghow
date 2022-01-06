@@ -7,21 +7,22 @@ export const addCarouselEvent = ({leftBtnEl, rightBtnEl, containerEl}) => {
         waitTransition: false
     };
     const itemWidth = containerEl.firstElementChild.clientWidth;
-    const lastIndex = containerEl.children.length - 1;
+    const lastIndex = containerEl.children.length - 2;
+    containerEl.style.transform = `translateX(${-itemWidth * state.index}px)`;
 
     // click event
     leftBtnEl.addEventListener('click', () => {
         if(state.waitTransition) return;
         state.waitTransition = true;
-        state.index++;
-        containerEl.style.transition = CAROUSEL_TRANSITION;
+        state.index--;
+        containerEl.style.transition = CAROUSEL_TRANSITION_STYLE;
         containerEl.style.transform = `translateX(${-itemWidth * state.index}px)`;
     });
     rightBtnEl.addEventListener('click', () => {
         if(state.waitTransition) return;
         state.waitTransition = true;
-        state.index--;
-        containerEl.style.transition = CAROUSEL_TRANSITION;
+        state.index++;
+        containerEl.style.transition = CAROUSEL_TRANSITION_STYLE;
         containerEl.style.transform = `translateX(${-itemWidth * state.index}px)`;
     });
 

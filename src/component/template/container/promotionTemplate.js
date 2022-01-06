@@ -1,3 +1,5 @@
+import { carouselTemplate } from "./carouselTemplate.js";
+
 export const promotionTemplate = ({best, carouselList,themeList}) => {
     
     const carouselTpl = `
@@ -13,6 +15,8 @@ export const promotionTemplate = ({best, carouselList,themeList}) => {
         </div>
     `;
 
+    const planningTpl = carouselTemplate(carouselList);
+
     return `
         <div class="promotion">
             <div class="banner">
@@ -22,7 +26,7 @@ export const promotionTemplate = ({best, carouselList,themeList}) => {
                             width="485" height="340" class="img_g" alt="기획전 이벤트">
                     </a>
                 </div>
-                ${carouselTpl}
+                ${planningTpl}
             </div>
             <!-- dummy -->
             <div class="theme">

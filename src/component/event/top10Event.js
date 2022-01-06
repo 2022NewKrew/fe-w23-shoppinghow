@@ -29,6 +29,7 @@ export const top10Event = ({inputBoxEl, inputEl, containerEl}) => {
         inputBoxEl.classList.add('focus');
     });
     inputEl.addEventListener('blur', () => {
+        if(inputEl.value !== '') return;
         inputBoxEl.classList.remove('focus');
     });
 
