@@ -11,24 +11,26 @@ class SearchBar extends Component {
 
   template() {
     const { topItemList } = this.props;
-    return `<div class="search">             
-                <ul class="search-top">
-                ${topItemList
-                  .map(
-                    (item, idx) =>
-                      '<li class="search-top__item">' +
-                      (idx + 1) +
-                      ". " +
-                      item +
-                      "</li>"
-                  )
-                  .join("\n")}
-                </ul>
-                <form class="search__form">
-                    <input type="text" class="search__input">
-                    <button class="search__icon">🔍</button>
-                </form>
-            </div>`;
+    return `
+        <div class="search">             
+            <ul class="search-top">
+            ${topItemList
+              .map(
+                (item, idx) =>
+                  '<li class="search-top__item">' +
+                  (idx + 1) +
+                  ". " +
+                  item +
+                  "</li>"
+              )
+              .join("\n")}
+            </ul>
+            <form class="search__form">
+                <input type="text" class="search__input">
+                <button class="search__icon">🔍</button>
+            </form>
+        </div>
+    `;
   }
 
   mounted() {
@@ -49,7 +51,7 @@ class SearchBar extends Component {
         e.target.style.backgroundColor = "white";
         this.pauseRolling();
       },
-      true
+      { capture: true }
     );
 
     this.addEvent(
@@ -59,7 +61,7 @@ class SearchBar extends Component {
         e.target.style.backgroundColor = "transparent";
         this.resumeRolling();
       },
-      true
+      { capture: true }
     );
   }
 
