@@ -1,10 +1,10 @@
 import { NETWORK_ERROR_MSG } from '@/static/constants/error';
 
-const API_ENDPOINT = process.env.API_ENDPOINT;
+const API_PREFIX = process.env.API_PREFIX;
 
 const getData = async (url) => {
   try {
-    const res = await fetch(`${API_ENDPOINT}${url}`);
+    const res = await fetch(`${API_PREFIX}${url}`);
     if (!res.ok) throw new Error(NETWORK_ERROR_MSG);
     return await res.json();
   } catch (e) {
@@ -14,7 +14,7 @@ const getData = async (url) => {
 
 const postData = async (url, data) => {
   try {
-    const res = await fetch(`${API_ENDPOINT}${url}`, {
+    const res = await fetch(`${API_PREFIX}${url}`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -30,7 +30,7 @@ const postData = async (url, data) => {
 
 const putData = async (url, data) => {
   try {
-    const res = await fetch(`${API_ENDPOINT}${url}`, {
+    const res = await fetch(`${API_PREFIX}${url}`, {
       method: 'PUT',
       body: JSON.stringify(data),
       headers: {
@@ -46,7 +46,7 @@ const putData = async (url, data) => {
 
 const deleteData = async (url) => {
   try {
-    const res = await fetch(`${API_ENDPOINT}${url}`, {
+    const res = await fetch(`${API_PREFIX}${url}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
