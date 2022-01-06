@@ -38,10 +38,11 @@ export default class Top10Input {
       top10Container.children[
         this.#top10Idx + 1 === this.#top10ListLength ? 0 : this.#top10Idx + 1
       ];
+    console.log(this.#top10Idx);
     const nextNextItem =
       top10Container.children[
         this.#top10Idx + 2 >= this.#top10ListLength
-          ? this.#top10Idx - this.#top10ListLength + 3
+          ? this.#top10Idx - this.#top10ListLength + 2
           : this.#top10Idx + 2
       ];
 
