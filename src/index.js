@@ -1,9 +1,10 @@
 import Component from './core/Component.js';
-import Container from './components/Container.js';
-import Header from './components/Header.js';
-import Footer from './components/Footer.js';
+import Main from './components/Main';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import './index.scss';
 
-export default class App extends Component {
+class App extends Component {
   setup() {
     this.$state = {};
   }
@@ -21,7 +22,9 @@ export default class App extends Component {
     const $footer = this.$('footer');
 
     new Header($header, {});
-    new Container($main, {});
+    new Main($main, {});
     new Footer($footer, {});
   }
 }
+
+new App(document.querySelector('#app'));

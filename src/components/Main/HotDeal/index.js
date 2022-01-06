@@ -1,4 +1,5 @@
-import Component from '../core/Component.js';
+import Component from '../../../core/Component.js';
+import './index.scss';
 
 export default class HotDeal extends Component {
   template() {

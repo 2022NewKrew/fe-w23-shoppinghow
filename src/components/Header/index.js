@@ -1,11 +1,12 @@
-import Component from '../core/Component.js';
+import Component from '../../core/Component.js';
+import './index.scss';
 
 export default class Header extends Component {
   template() {
     return `
     <div class="header-top">
         <div class="title">
-            <h1>쇼핑하우</h1>
+            <img class="title__img" src="//search1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/logo_shw_2021.png" alt="쇼핑하우">
         </div>
         <div class="search">
             <form>

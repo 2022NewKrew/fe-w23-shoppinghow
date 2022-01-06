@@ -1,0 +1,74 @@
+.planning {
+  position: relative;
+  flex: 1 1 0;
+  border-left: 1px solid #f1f1f1;
+
+  .planning__link {
+    display: block;
+    margin: 0 auto;
+    width: 600px;
+  }
+
+  .paging__comm {
+    position: absolute;
+    top: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .planning__btn {
+      display: block;
+      overflow: hidden;
+      position: absolute;
+      top: -17px;
+      width: 35px;
+      height: 45px;
+      span {
+        display: inline-block;
+        overflow: hidden;
+        width: 15px;
+        height: 25px;
+        font-size: 0;
+        line-height: 0;
+        background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+        text-indent: -9999px;
+      }
+    }
+
+    .planning__left-btn {
+      left: 150px;
+      background-position: -128px -335px;
+      span {
+        left: 160px;
+        background-position: -128px -335px;
+      }
+    }
+
+    .planning__right-btn {
+      right: 150px;
+      background-position: -145px -335px;
+      span {
+        right: 160px;
+        background-position: -145px -335px;
+      }
+    }
+
+    .planning__paging {
+      width: 51px;
+      display: flex;
+      justify-content: space-between;
+      .paging__bar {
+        display: block;
+        width: 15px;
+        height: 5px;
+        font-size: 0;
+        line-height: 0;
+        background-color: #ccc;
+      }
+
+      .selected {
+        background-color: #000;
+      }
+    }
+  }
+}

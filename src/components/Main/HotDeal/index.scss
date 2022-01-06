@@ -1,0 +1,38 @@
+@import '../../global.scss';
+
+.hot-deal {
+  @extend %section-layout;
+  margin-top:60px;
+
+  .section-title {
+      font-size: 1.25rem;
+      padding-bottom: 20px;
+      background-color: $bgColor;
+  }
+  .hot-deal__title, .hot-deal__detail-price{
+      @extend %text-block;
+  }
+
+  .hot-deal-list {
+      display: flex;
+      flex-wrap:wrap;
+      .hot-deal__item {
+          width:20%;
+          padding:20px;
+          border-right: 1px solid #f1f1f1;
+          border-bottom: 1px solid #f1f1f1;
+      }
+  }
+
+  .hot-deal__detail-price {
+      margin-top: 20px;
+      position: relative;
+      .txt-price-percent {
+          position: absolute;
+          right: 10px;
+          font-size: 1.1rem;
+          line-height: 1.1rem;
+          color: red;
+      }
+  }
+}

@@ -1,0 +1,36 @@
+@import '../../../global.scss';
+
+.theme {
+  .theme-container {
+      display: flex;
+  }
+  .theme-item {
+      @extend %card;
+      border-left: 1px solid #f1f1f1;
+      border-top: 1px solid #f1f1f1;
+  }
+  .theme-item:first-child {
+      border-left: none;
+  }
+  .theme__link {
+      display: block;
+      strong, span {
+          @extend %text-block;
+      }
+      .img_top {
+        width: 200px;
+        height: 200px;
+      }
+      .theme-item__title {
+          font-weight: bold;
+      }
+      .theme-item__desc {
+          padding-top:0;
+      }
+      .theme-item__icon {
+          border:0.5px solid #ff000069;
+          padding:4px;
+          width: 35px;
+      }
+  }
+}
