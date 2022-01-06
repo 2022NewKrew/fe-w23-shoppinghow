@@ -1,0 +1,129 @@
+.section_top {
+    overflow: hidden;
+    position: relative;
+    width: 971px;
+    margin: 0 auto;
+    border: 1px solid #e4e4e4;
+    border-bottom: 0 none;
+
+    .cont_event {
+        overflow: hidden;
+        width: 100%;
+        border-bottom: 1px solid #f1f1f1;
+        font-family: NanumGothic,'나눔고딕','Nanum Gothic','Malgun Gothic','맑은 고딕',Dotum,'돋움',Helvetica,AppleSDGothicNeo,Arial,sans-serif;
+        background-color: #fff;
+
+        .evt_item {
+            float: left;
+            position: relative;
+            width: 485px;
+            height: 340px;
+        }
+
+        .link_event {
+            display: block;
+            position: relative;
+            width: 484px;
+            margin: 0 auto;
+        }
+
+        .evt_slide {
+            float: left;
+            position: relative;
+            width: 485px;
+            height: 340px;
+            border-left: 1px solid #f1f1f1;
+            background-color: #fff;
+        }
+    }
+    
+    .slide_evt {
+        overflow: hidden;
+        position: relative;
+        width: 484px;
+        height: 340px;
+        margin: 0 auto;
+    }
+
+    .link_event {
+        display: block;
+        position: relative;
+        width: 484px;
+        margin: 0 auto;
+    }
+
+    .paging_comm {
+        position: absolute;
+        top: 283px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        clear: both;
+
+        .inner_paging {
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .btn_paging {
+            display: inline;
+            float: left;
+            width: 15px;
+            height: 5px;
+            margin-left: 3px;
+            padding: 5px 0;
+        }
+
+        em{
+
+            &.btn_paging{
+                .num_page {
+                background-color: #000;
+                }
+            }
+        }
+
+        .num_page {
+            display: block;
+            width: 15px;
+            height: 5px;
+            font-size: 0;
+            line-height: 0;
+            background-color: #ccc;
+            text-indent: -9999px;
+        }
+
+        .btn_prev {
+            left: 150px;
+            background-position: -128px -335px;
+        }
+
+        .ico_prev {
+            left: 160px;
+            background-position: -128px  -335px;
+        }
+
+        .btn_next {
+            right: 150px;
+            background-position: -145px -335px;
+        }
+
+        .ico_next {
+            right: 160px;
+            background-position: -145px -335px;
+        }
+
+        .btn_slide {
+            display: block;
+            overflow: hidden;
+            position: absolute;
+            top: -14px;
+            width: 35px;
+            height: 45px;
+        }
+    }
+}
+
+.img_g {
+    vertical-align: top;
+}

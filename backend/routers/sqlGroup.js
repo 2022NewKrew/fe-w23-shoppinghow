@@ -13,7 +13,7 @@ const getSql = (type, ...Args) => {
     case "getBestProduct":
       sql = 'SELECT * FROM product where tag="best"';
       break;
-    case "getEventProduct":
+    case "getSpecialProduct":
       sql = 'SELECT * FROM product where tag="special"';
       break;
     case "getThemaProduct":
