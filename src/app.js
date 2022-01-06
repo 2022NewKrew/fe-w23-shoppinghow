@@ -1,6 +1,14 @@
-import "./sass/app.scss";
+import "@style/app.scss";
 import Header from "@components/Header.js";
+import Contents from "@components/Contents";
 
-const headerEl = new Header();
+const $body = document.querySelector("body");
+const $header = document.createElement("header");
+const $contents = document.createElement("div");
 
-document.querySelector("header").innerHTML += headerEl.render();
+$body.appendChild($header);
+$body.appendChild($contents);
+$contents.classList.add("container");
+
+new Header($header);
+new Contents($contents);

@@ -1,0 +1,95 @@
+$planningTransitionDelay: 0.3s;
+
+.planning {
+  position:relative;
+  width: 100%;
+  border-left: 1px solid #f1f1f1;
+  display: flex;
+  justify-content: center;
+
+  .container{
+    position: relative;
+    width: 70%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+
+    .center-item{
+      transition: none;
+      left: 0;
+      display: block;
+    }
+
+    .left-item{
+      transition: none;
+      left: -780px;
+      display: block;
+    }
+
+    .right-item{
+      transition: none;
+      left: 780px;
+      display: block;
+    }
+
+    .move-left{
+      transition: $planningTransitionDelay;
+      transform: translateX(-780px);
+    }
+
+    .move-right{
+      transition: $planningTransitionDelay;
+      transform: translateX(780px);
+    }
+  }
+
+  .link {
+    position:absolute;
+    display: block;
+    margin: 0 auto;
+    width: 600px;
+
+  }
+
+  .btn{
+    position:absolute;
+    color: grey;
+    top: 45%;
+    font-size: 40px;
+    width: 23px;
+    height: 50px;
+    z-index: 1;
+  }
+
+  .left-btn{
+    left: 7%;
+    background: url(https://shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+  }
+
+  .right-btn{
+    right: 7%;
+    background: url(https://shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat -30px 0;
+  }
+
+  .page-slot-list{
+    position: absolute;
+    display: flex;
+    top: 283px;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    z-index: 1;
+
+    .page-slot{
+      background-color: #cccccc;
+      width: 15px;
+      height: 5px;
+      margin-left: 3px;
+    }
+
+    .activated-slot{
+      background-color: black;
+    }
+  }
+}

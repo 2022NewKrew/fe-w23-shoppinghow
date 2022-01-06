@@ -29,6 +29,8 @@ $SearchHeight: 60px;
                 padding-left: 20px;
                 line-height: $SearchHeight;
                 font-size: 1.2rem;
+                background-color: transparent;
+                z-index: 2;
             }
 
             .search__icon {
@@ -135,22 +137,11 @@ $SearchHeight: 60px;
 
             .best {
                 float: left;
-                width: 510px;
+                width: 500px;
 
                 .best__link {
                     display: block;
                     margin: 0 auto;
-                }
-            }
-
-            .planning {
-                width: 790px;
-
-                .planning__link {
-                    display: block;
-                    margin: 0 auto;
-                    width: 600px;
-
                 }
             }
         }
