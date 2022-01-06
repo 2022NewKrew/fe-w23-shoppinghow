@@ -1,8 +1,7 @@
 @import "global";
 @import "headerMenu";
 @import "headerTop";
-$banner-width: 1270px;
-$banner-promotion-height: 445px;
+
 .gubun-bar {
   width: 1px;
   height: 60px;
@@ -38,6 +37,7 @@ $banner-promotion-height: 445px;
         width: $banner-width/2;
         height: $banner-promotion-height;
         overflow: hidden;
+        border-left: 1px solid #f1f1f1;
         .promotion__planning--wrap {
           display: flex;
           .promotion__planning--link {
@@ -55,12 +55,18 @@ $banner-promotion-height: 445px;
       display: flex;
     }
     .promotion__theme {
+      width: $banner-width;
       .theme-container {
         display: flex;
       }
       .theme-item {
         @extend %card;
-        border: 1px solid #f1f1f1;
+        border-left: 1px solid #f1f1f1;
+        border-top: 1px solid #f1f1f1;
+        width: $banner-promotion-item-width/2;
+      }
+      .theme-item:first-child {
+        border-left: none;
       }
       .theme__link {
         display: block;
@@ -86,25 +92,60 @@ $banner-promotion-height: 445px;
   .hot-deal {
     @extend %section-layout;
     margin-top: 60px;
+    position: relative;
 
     .section-title {
       font-size: 1.25rem;
       padding-bottom: 20px;
       background-color: $bgColor;
     }
-    .hot-deal__title,
     .hot-deal__detail-price {
       @extend %text-block;
     }
-
-    .hot-deal-list {
+    .hot-deal__title {
+      position: absolute;
+      top: -35px;
+      line-height: 30px;
+      font-size: 30px;
+    }
+    .hot-deal__list {
       display: flex;
       flex-wrap: wrap;
       .hot-deal__item {
-        width: 20%;
+        width: 25%;
         padding: 20px;
         border-right: 1px solid #f1f1f1;
         border-bottom: 1px solid #f1f1f1;
+        .hot-deal__item--title {
+          display: block;
+          margin-bottom: 30px;
+          margin-top: 5px;
+        }
+        .hot-deal__item--info {
+          .hot-deal__item--detail-price {
+            display: flex;
+            justify-content: space-between;
+            .hot-deal__item--discount {
+              font-size: 20px;
+              line-height: 23px;
+              color: #000;
+              font-weight: 700;
+              font-family: Tahoma, sans-serif;
+            }
+            .hot-deal__item--percent {
+              font-size: 24px;
+              line-height: 30px;
+              color: #fc363c;
+            }
+          }
+          .hot-deal__item--price {
+            font-size: 13px;
+            color: #888;
+            line-height: 22px;
+            font-family: Tahoma, sans-serif;
+            text-decoration: line-through;
+          }
+        }
       }
     }
 
