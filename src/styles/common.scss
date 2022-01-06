@@ -1,4 +1,4 @@
-@import "global";
+@import 'global';
 
 * {
   font-family: 돋움, dotum, sans-serif;
@@ -12,10 +12,20 @@ body {
   margin: 0px auto;
 }
 
-h1 {
-  font-size: 2rem;
-}
-
 a {
   cursor: pointer;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.screenOut {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  text-indent: -9999px;
 }

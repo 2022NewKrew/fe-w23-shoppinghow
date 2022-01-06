@@ -1,1 +1,3 @@
-export * from "./atoms";
+export * from './atoms';
+export * from './layouts';
+export * from './templates';

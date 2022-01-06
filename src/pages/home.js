@@ -1,5 +1,7 @@
-import { button } from "@components";
-import "@styles/index.scss";
+import '@styles/index.scss';
+import { HomePage } from '@containers';
+import { $ } from '@utils';
 
-console.log(button);
-// console.log("hi")
+(() => {
+  new HomePage($('#app'));
+})();
