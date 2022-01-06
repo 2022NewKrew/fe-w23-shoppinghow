@@ -32,7 +32,7 @@ export default class KaKaoContent extends Component {
     new KaKaoNotice($kaKaoNotice, {});
   }
 
-  async asyncMounted() {
+  async syncMounted() {
     const $kaKaoBanner = this.$target.querySelector('[data-component="kakao-banner"]');
     const bannerData = await this.getBannerData();
     new KaKaoBanner($kaKaoBanner, {bannerData: bannerData});
