@@ -1,0 +1,6 @@
+@import '@/static/styles/index.scss';
+
+.main-banner {
+  @extend %section-layout;
+  margin-top: 60px;
+}
