@@ -26,7 +26,7 @@ export default class RecentProduct extends Component {
     const $recentProductContainer = document.getElementById(
       "recent-product-container"
     );
-    console.log($recentProductContainer);
+
     this.addEvent(
       "mouseenter",
       recentProductMenu,
