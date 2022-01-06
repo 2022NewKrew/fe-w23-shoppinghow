@@ -10,10 +10,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: '쇼핑하우',
-      template: './src/index.html',
-    }),
+    new HtmlWebpackPlugin(),
     new CleanWebpackPlugin(),
   ],
   module: {
