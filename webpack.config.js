@@ -25,7 +25,7 @@ export default {
                             [
                                 '@babel/preset-env',
                                 {
-                                    'targets' : '> 1.0%, not dead',
+                                    'targets' : '> 0.25%, not dead',
                                     'useBuiltIns': 'usage',
                                     'corejs': {'version': 3, 'proposals': true }
                                 }
@@ -40,17 +40,18 @@ export default {
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
             {
-              test: /\.(png|svg|jpg|jpeg|gif)$/i,
-              type: 'asset/resource',
-            },
-            {
-              test: /\.(woff|woff2|eot|ttf|otf)$/i,
-              type: 'asset/resource',
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: 'images/[name].[ext]',
+                    }
+                },
             },
         ],
     },
     plugins: [
-        new HtmlWebpackPlugin({template: 'src/index.html'}),
+        new HtmlWebpackPlugin({template: path.resolve(root, 'src/index.html')}),
         new MiniCssExtractPlugin({filename: 'style.css'}),
     ]
 };
