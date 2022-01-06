@@ -1,7 +1,8 @@
 @import "global";
 @import "headerMenu";
 @import "headerTop";
-
+$banner-width: 1270px;
+$banner-promotion-height: 445px;
 .gubun-bar {
   width: 1px;
   height: 60px;
@@ -18,28 +19,32 @@
     @extend %section-layout;
     @extend %border-basic;
 
-    .banner {
+    .promotion__banner {
       display: flex;
       justify-content: center;
-
-      .best {
+      width: $banner-width;
+      .promotion__best {
         float: left;
-        width: 510px;
-
-        .best__link {
-          display: block;
-          margin: 0 auto;
+        width: $banner-width/2;
+        .promotion__best--wrap {
+          .promotion__best--link {
+            display: block;
+            margin: 0 auto;
+          }
         }
       }
 
-      .planning {
-        width: 790px;
-        height: 340px;
+      .promotion__planning {
+        width: $banner-width/2;
+        height: $banner-promotion-height;
         overflow: hidden;
-        .planning__link {
-          display: block;
-          margin: 0 auto;
-          width: 600px;
+        .promotion__planning--wrap {
+          display: flex;
+          .promotion__planning--link {
+            display: block;
+            margin: 0 auto;
+            width: 600px;
+          }
         }
       }
     }
@@ -49,31 +54,31 @@
       text-align: center;
       display: flex;
     }
-  }
-  .theme {
-    .theme-container {
-      display: flex;
-    }
-    .theme-item {
-      @extend %card;
-      border: 1px solid #f1f1f1;
-    }
-    .theme__link {
-      display: block;
-      strong,
-      span {
-        @extend %text-block;
+    .promotion__theme {
+      .theme-container {
+        display: flex;
       }
-      .theme-item__title {
-        font-weight: bold;
+      .theme-item {
+        @extend %card;
+        border: 1px solid #f1f1f1;
       }
-      .theme-item__desc {
-        padding-top: 0;
-      }
-      .theme-item__icon {
-        border: 0.5px solid #ff000069;
-        padding: 4px;
-        width: 35px;
+      .theme__link {
+        display: block;
+        strong,
+        span {
+          @extend %text-block;
+        }
+        .theme-item__title {
+          font-weight: bold;
+        }
+        .theme-item__desc {
+          padding-top: 0;
+        }
+        .theme-item__icon {
+          border: 0.5px solid #ff000069;
+          padding: 4px;
+          width: 35px;
+        }
       }
     }
   }

@@ -17,8 +17,8 @@ export default class PromotionBanner extends Component {
   template() {
     const { top100 } = this.$state;
     return `
-      <div class="best">
-        <a href="#" class="best__link">
+      <div class="promotion__best--wrap">
+        <a href="#" class="promotion__planning--link">
           <img
             src="${top100.src}"
             width="${top100.width}"

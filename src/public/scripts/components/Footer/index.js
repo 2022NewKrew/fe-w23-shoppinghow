@@ -5,7 +5,7 @@ export default class Footer extends Component {
   setUp() {}
   template() {
     return `
-      Footer
+      <div class="footer__content">Footer</div>
     `;
   }
   setEvent() {}

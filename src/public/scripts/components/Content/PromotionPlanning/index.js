@@ -11,12 +11,13 @@ export default class PromotionPlanning extends Component {
   template() {
     const { planningList } = this.$state;
     return `
+      <div class="promotion__planning--wrap">
         ${
           planningList.length > 0 &&
           planningList
             .map(
               item => `
-          <a href="#" target="_blank" class="planning__link"
+          <a href="#" target="_blank" class="promotion__planning--link"
             ><img
               src="${item.src}"
               width="${item.width}"
@@ -28,9 +29,15 @@ export default class PromotionPlanning extends Component {
             )
             .join("")
         }
-        <button class="planning__left-btn"></button>
-        <button class="planning__right-btn"></button>
-        <div class="planning__paging"><span></span><span></span><span></span></div>
+        </div>
+        <div class="promotion__planning--btn-box">
+          <button class="promotion__planning--left-btn"></button>
+          <button class="promotion__planning--right-btn"></button>
+          <div class="promotion__planning--paging">
+            <span>_</span><span>_</span><span>_</span>
+          </div>
+        </div>
+      
       
     `;
   }
@@ -39,6 +46,8 @@ export default class PromotionPlanning extends Component {
     if (JSON.stringify(this.$state.planningList) !== JSON.stringify(result)) {
       this.setState({ planningList: result });
     }
+
+    $(".promotion__planning--wrap", this.$target).style.width = this.$state.planningList.length * 635 + "px";
   }
   setEvent() {}
 }

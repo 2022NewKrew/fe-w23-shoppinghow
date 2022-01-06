@@ -10,12 +10,12 @@ export default class Content extends Component {
   template() {
     return `
       <div class="promotion">
-        <div class="banner">
-          <div component="promotion-banner" class="best"></div>
-          <div component="promotion-planning" class="planning"></div>
+        <div class="promotion__banner">
+          <div component="promotion-banner" class="promotion__best"></div>
+          <div component="promotion-planning" class="promotion__planning"></div>
         </div>
         
-        <div component="promotion-theme" class="theme"></div>
+        <div component="promotion-theme" class="promotion__theme"></div>
       </div>
       <div component="hot-deal" class="hot-deal"></div>
     `;
