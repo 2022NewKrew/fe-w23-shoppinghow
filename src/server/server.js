@@ -27,6 +27,10 @@ app.get("/themeItems.json", (req, res) => {
   res.sendFile(path.join(__dirname, "/data", "themeItems.json"));
 });
 
+app.get("/planningItems.json", (req, res) => {
+  res.sendFile(path.join(__dirname, "/data", "planningItems.json"));
+});
+
 app.listen(port, function () {
   console.log("Example app listening on port 3000!\n");
 });

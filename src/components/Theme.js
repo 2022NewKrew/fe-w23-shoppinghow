@@ -10,12 +10,12 @@ class Theme extends Component {
   }
 
   mounted() {
-    const $themeItemsList = this.$target.querySelector(".theme-container");
+    const $themeItemList = this.$target.querySelector(".theme-container");
     fetch("http://localhost:3000/themeItems.json")
       .then((res) => res.json())
       .then((themeItemList) => {
         themeItemList.map(
-          (themeItem) => new ThemeItem($themeItemsList, themeItem)
+          (themeItem) => new ThemeItem($themeItemList, themeItem)
         );
       });
   }
