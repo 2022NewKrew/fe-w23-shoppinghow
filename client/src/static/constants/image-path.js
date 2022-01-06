@@ -11,3 +11,5 @@ export const RECENTLY_VIEWED_THINGS_ICON =
   'https://user-images.githubusercontent.com/50862052/148036792-537918e6-9e3d-4b3c-97dd-e9550d4d791d.png';
 export const USER_ICON =
   'https://user-images.githubusercontent.com/50862052/148036850-f00a4b23-f9c8-447e-a433-cdf94263376f.png';
+export const THEME_ICON =
+  'https://user-images.githubusercontent.com/50862052/148356657-e63a11c8-3624-4368-96e3-fece922a5aee.png';
