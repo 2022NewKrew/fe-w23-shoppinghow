@@ -1,4 +1,4 @@
-.planning {
+.carousel {
   position: relative;
   flex: 1 1 0;
   border-left: 1px solid #f1f1f1;
@@ -15,7 +15,7 @@
     overflow-x: hidden;
   }
 
-  .planning__link {
+  .carousel__link {
     display: table;
     float: left;
     width: 634px;
@@ -33,7 +33,7 @@
     display: flex;
     justify-content: center;
 
-    .planning__btn {
+    .carousel__btn {
       display: block;
       overflow: hidden;
       position: absolute;
@@ -52,7 +52,7 @@
       }
     }
 
-    .planning__left-btn {
+    .carousel__left-btn {
       left: 150px;
       background-position: -128px -335px;
       span {
@@ -61,7 +61,7 @@
       }
     }
 
-    .planning__right-btn {
+    .carousel__right-btn {
       right: 150px;
       background-position: -145px -335px;
       span {
@@ -70,7 +70,7 @@
       }
     }
 
-    .planning__paging {
+    .carousel__paging {
       display: flex;
       .paging__bar {
         display: block;

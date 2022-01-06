@@ -1,7 +1,7 @@
 import Component from '../../../core/Component.js';
 import Theme from './Theme';
 import './index.scss';
-import Plannig from './Planning/index.js';
+import Carousel from './Carousel/index.js';
 
 export default class Promotion extends Component {
   setup() {
@@ -20,7 +20,7 @@ export default class Promotion extends Component {
           <img src="${this.$state.banner.src}" class="img_g" alt="${this.$state.banner.title}">
         </a>
       </div>
-      <div class="planning"></div>
+      <div class="carousel"></div>
     </div>
     <div class="theme"></div>
     `;
@@ -29,7 +29,7 @@ export default class Promotion extends Component {
   mounted() {
     const $theme = this.$('.theme');
     new Theme($theme, {});
-    const $planning = this.$('.planning');
-    new Plannig($planning, {});
+    const $carousel = this.$('.carousel');
+    new Carousel($carousel, {});
   }
 }

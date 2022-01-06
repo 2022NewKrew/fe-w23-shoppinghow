@@ -1,7 +1,7 @@
 import Component from '../../../../core/Component.js';
 import './index.scss';
 
-export default class Plannig extends Component {
+export default class Carousel extends Component {
   setup() {
     this.$state = {
       items: [
@@ -30,7 +30,7 @@ export default class Plannig extends Component {
             ${items
               .map(
                 (item) => `
-                  <a href="#" target="_blank" class="planning__link">
+                  <a href="#" target="_blank" class="carousel__link">
                     <img src="${item.src}" alt="${item.title}">
                   </a>
                   `
@@ -40,13 +40,13 @@ export default class Plannig extends Component {
         </div>
       </div>
       <div class="paging__comm">
-        <button class="planning__left-btn planning__btn">
+        <button class="carousel__left-btn carousel__btn">
           <span>이전</span>
         </button>
-        <button class="planning__right-btn planning__btn">
+        <button class="carousel__right-btn carousel__btn">
           <span>다음</span>
         </button>
-        <div class="planning__paging">
+        <div class="carousel__paging">
           ${items.map((item) => `<span class="paging__bar"></span>`).join('')}
         </div>
       </div>
@@ -69,8 +69,8 @@ export default class Plannig extends Component {
   }
 
   setEvent() {
-    const $slideBtnNext = this.$('.planning__right-btn');
-    const $slideBtnPrev = this.$('.planning__left-btn');
+    const $slideBtnNext = this.$('.carousel__right-btn');
+    const $slideBtnPrev = this.$('.carousel__left-btn');
 
     const $slideList = this.$('.slide_list');
     const slideLen = this.$state.items.length;
