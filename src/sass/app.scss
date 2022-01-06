@@ -223,4 +223,27 @@
             @extend %h2-title;
         }
     }
+
+    .suggestion-carousel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: blueviolet;
+        .cell {
+            @extend %x-center-align;
+        }
+
+        .cell__item {
+            background-color: aqua;
+            @extend %x-center-align;
+            .cell__thumbnail {
+            }
+
+            .cell__title {
+            }
+
+            .cell__link {
+            }
+        }
+    }
 }

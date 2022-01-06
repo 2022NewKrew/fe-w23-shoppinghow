@@ -59,3 +59,9 @@ $button-padding: 20px;
     @extend %x-center-align;
     @extend %y-center-align;
 }
+
+%h2-title {
+    font-size: 1.25rem;
+    padding-bottom: 20px;
+    background-color: $bgColor;
+}

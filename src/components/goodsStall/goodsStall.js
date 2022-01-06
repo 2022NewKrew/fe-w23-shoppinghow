@@ -1,4 +1,4 @@
-import { stallTitle } from './stallTitle';
+import { smallTitle } from '../smallTitle';
 import { goodsList } from './goodsList';
 
 export const goodsStall = ({ title, goodsData }) => {
@@ -6,7 +6,7 @@ export const goodsStall = ({ title, goodsData }) => {
 
     const render = () => {
         target.className = 'goods-stall';
-        target.appendChild(stallTitle({ title }));
+        target.appendChild(smallTitle({ title }));
         target.appendChild(goodsList(goodsData));
         return target;
     };

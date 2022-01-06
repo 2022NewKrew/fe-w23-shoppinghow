@@ -1,4 +1,4 @@
-export const stallTitle = ({ title }) => {
+export const smallTitle = ({ title }) => {
     const target = document.createElement('h2');
 
     const render = () => {

@@ -1,4 +1,4 @@
-import { buttonConsole } from '../../carousel/buttonConsole';
+import { consoleButton } from '../../carousel/consoleButton';
 import { carousel } from '../../carousel/carousel';
 import { imageContainer } from '../../carousel/imageContainer';
 
@@ -9,7 +9,7 @@ const dummyData = [
     'https://shop2.daumcdn.net/shophow/sib/0_211220170154_lPdfLnRSayayFBdHisdeeCypQQWWgaeu',
 ];
 
-const makePlanningCarousel = (cellData) => {
+const renderPlanningCarousel = (cellData) => {
     const CELL_WIDTH = 485;
     const CELL_HEIGHT = 340;
 
@@ -33,7 +33,7 @@ export const planning = () => {
 
     const render = () => {
         target.className = 'planning';
-        const planningCarousel = makePlanningCarousel(dummyData);
+        const planningCarousel = renderPlanningCarousel(dummyData);
         target.appendChild(planningCarousel);
 
         return target;

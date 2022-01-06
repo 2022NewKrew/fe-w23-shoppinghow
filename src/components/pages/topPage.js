@@ -1,5 +1,6 @@
 import { promotion } from '../promotion/promotion.js';
 import { goodsStall } from '../goodsStall/goodsStall.js';
+import { suggestion } from '../suggestion.js';
 
 const goodsData = [
     {
@@ -72,6 +73,7 @@ export const topPage = () => {
         target.appendChild(promotion());
         target.appendChild(goodsStall({ title: '품절주의! 역대급 핫딜', goodsData }));
         target.appendChild(goodsStall({ title: '쇼핑 급상승 키워드', goodsData }));
+        target.appendChild(suggestion());
         return target;
     };
 

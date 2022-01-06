@@ -1,7 +1,14 @@
 const PREV_DIRECTION = 1;
 const NEXT_DIRECTION = -1;
 
-const makeButtonClickHandler = (cell_width, dataLength) => {
+const duplicateFirstLastCell = (container) => {
+    const firstClone = container.firstElementChild.cloneNode(true);
+    const lastClone = container.lastElementChild.cloneNode(true);
+    container.insertBefore(lastClone, container.firstElementChild);
+    container.appendChild(firstClone);
+};
+
+const renderButtonClickHandler = (cell_width, dataLength) => {
     function buttonClickHandler() {}
     buttonClickHandler.prototype.count = -1;
     buttonClickHandler.prototype.getClickHandler = (container, direction) => {
@@ -9,7 +16,6 @@ const makeButtonClickHandler = (cell_width, dataLength) => {
             buttonClickHandler.prototype.count += direction;
             container.style.transform = `translateX(${buttonClickHandler.prototype.count * cell_width}px)`;
             container.style.transitionDuration = '300ms';
-
             container.ontransitionend = () => {
                 container.style.transitionDuration = '0ms';
                 if (direction === NEXT_DIRECTION && buttonClickHandler.prototype.count < -1 * dataLength) {
@@ -27,8 +33,9 @@ const makeButtonClickHandler = (cell_width, dataLength) => {
 };
 
 const handleButtonClick = ({ buttons, container, cell_width, dataLength }) => {
+    if (dataLength <= 1) return;
     const [prevBtn, nextBtn] = buttons.querySelectorAll('.console__arrow');
-    const ButtonClickHandler = makeButtonClickHandler(cell_width, dataLength);
+    const ButtonClickHandler = renderButtonClickHandler(cell_width, dataLength);
     prevBtn.addEventListener(
         'click',
         ButtonClickHandler.prototype.getClickHandler(container, PREV_DIRECTION, dataLength)
@@ -49,6 +56,8 @@ export const carousel = (carouselInfo) => {
         carouselWindow.style.height = cell_height + 'px';
 
         container.classList.add('carousel__container');
+        duplicateFirstLastCell(container);
+        container.style.transform = `translateX(${-1 * cell_width}px)`;
         carouselWindow.appendChild(container);
         carouselWindow.appendChild(buttons);
         handleButtonClick(carouselInfo);
