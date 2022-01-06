@@ -32,9 +32,20 @@ export default class KaKaoContent extends Component {
     new KaKaoNotice($kaKaoNotice,{})
   }
 
-  //TODO 서버에 데이터 요청 작업 예정
   async asyncMounted(){
     const $kaKaoBanner = this.$target.querySelector('[data-component="kakao-banner"]');
-    new KaKaoBanner($kaKaoBanner,{})
+    const bannerData = await this.getBannerData();
+    new KaKaoBanner($kaKaoBanner,{bannerData:bannerData})
+  }
+
+  async getBannerData() {
+    const apiService = new ApiService();
+
+    const res = await apiService.getApi("getBannerData");
+    if (res == null) {
+      console.log("getBannerData err");
+      return;
+    }
+    return res.data;
   }
 }

@@ -76,7 +76,7 @@ db.serialize(() => {
     const tag = `special`;
     let num = "0" + i.toString();
     num = num.slice(-2);
-    const sql = `INSERT INTO product(name, path,tag) VALUES('product_${tag}_${num}.jpeg', '/asset/img/product_${tag}','${tag}')`;
+    const sql = `INSERT INTO product(name, path,tag) VALUES('product_${tag}_${num}.png', '/asset/img/product_${tag}','${tag}')`;
     db.run(sql);
   }
 
