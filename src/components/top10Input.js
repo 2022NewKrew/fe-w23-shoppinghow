@@ -1,4 +1,4 @@
-const ROLLING_TIME = 3000;
+const ROLLING_TIME = 1000;
 const HEIGHT = 60;
 const TRANSITION_DURATION = "500ms";
 const FOCUS_OUT_TIME = 500;
@@ -40,7 +40,9 @@ export default class Top10Input {
       ];
     const nextNextItem =
       top10Container.children[
-        this.#top10Idx + 2 === this.#top10ListLength ? 0 : this.#top10Idx + 2
+        this.#top10Idx + 2 >= this.#top10ListLength
+          ? this.#top10Idx - this.#top10ListLength + 3
+          : this.#top10Idx + 2
       ];
 
     return [prevItem, curItem, nextItem, nextNextItem];
