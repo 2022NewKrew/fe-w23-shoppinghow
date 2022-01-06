@@ -115,13 +115,13 @@ export class Slider extends Component {
   }
 
   onSlide(index) {
+    this.setBlockClickIndicator(true);
     this.$sliderTrack.style.transition = 'transform 400ms ease-in-out';
     this.currentIndex = index;
     this.moveTrack();
   }
 
   moveTrack() {
-    this.setBlockClickIndicator(true);
     const x = -this.SLIDE_FRAME_WIDTH * (this.currentIndex + 1);
     this.$sliderTrack.style.transform = `translateX(${x}px)`;
   }
