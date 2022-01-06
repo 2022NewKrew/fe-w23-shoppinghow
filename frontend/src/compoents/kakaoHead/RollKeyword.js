@@ -1,6 +1,6 @@
-import Component from "../../core/Component";
+import Component from '../../core/Component';
 
-//TODO 인기검색어리스트 추가기능 작업예정
+// TODO 인기검색어리스트 추가기능 작업예정
 export default class RollKeyword extends Component {
   template() {
     const searchKeywordGroup = this.$props.searchKeywordGroup;
@@ -12,7 +12,7 @@ export default class RollKeyword extends Component {
           <span class="num_rank">${index + 1}</span>${keyword.name}
       </li>`;
       })
-      .join(" ")}
+      .join(' ')}
     ${`<li>
           <span class="num_rank">${1}</span>${searchKeywordGroup[0].name}
       </li>`}

@@ -1,14 +1,14 @@
-//요구사항에 맞는 api를 가져옴
+// 요구사항에 맞는 api를 가져옴
 export default class ApiService {
-  //서버에 폼 가져오기
+  // 서버에 폼 가져오기
   async getApi(type) {
-    let url = "api";
+    let url = 'api';
     switch (type) {
-      case "getSearchKeywordGroup":
-        url += "/getSearchKeywordGroup";
+      case 'getSearchKeywordGroup':
+        url += '/getSearchKeywordGroup';
         break;
-      case "getBannerData":
-        url += "/getBannerData";
+      case 'getBannerData':
+        url += '/getBannerData';
         break;
       default:
         break;

@@ -1,8 +1,8 @@
-import Component from "../../core/Component";
-import KaKaoBanner from "./kakaoBanner/KaKaoBanner";
-import KaKaoShopingPartner from "./KaKaoShopingPartner";
-import KaKaoNotice from "./KaKaoNotice";
-import ApiService from "../../core/ApiService";
+import Component from '../../core/Component';
+import KaKaoBanner from './kakaoBanner/KaKaoBanner';
+import KaKaoShopingPartner from './KaKaoShopingPartner';
+import KaKaoNotice from './KaKaoNotice';
+import ApiService from '../../core/ApiService';
 export default class KaKaoContent extends Component {
   template() {
     return `
@@ -24,26 +24,26 @@ export default class KaKaoContent extends Component {
     </div>`;
   }
 
-  mounted(){
+  mounted() {
     const $kaKaoShopingPartner = this.$target.querySelector('[data-component="kakao-shopping-partner"]');
     const $kaKaoNotice = this.$target.querySelector('[data-component="kakao-notice"]');
 
-    new KaKaoShopingPartner($kaKaoShopingPartner,{})
-    new KaKaoNotice($kaKaoNotice,{})
+    new KaKaoShopingPartner($kaKaoShopingPartner, {});
+    new KaKaoNotice($kaKaoNotice, {});
   }
 
-  async asyncMounted(){
+  async asyncMounted() {
     const $kaKaoBanner = this.$target.querySelector('[data-component="kakao-banner"]');
     const bannerData = await this.getBannerData();
-    new KaKaoBanner($kaKaoBanner,{bannerData:bannerData})
+    new KaKaoBanner($kaKaoBanner, {bannerData: bannerData});
   }
 
   async getBannerData() {
     const apiService = new ApiService();
 
-    const res = await apiService.getApi("getBannerData");
+    const res = await apiService.getApi('getBannerData');
     if (res == null) {
-      console.log("getBannerData err");
+      console.log('getBannerData err');
       return;
     }
     return res.data;
