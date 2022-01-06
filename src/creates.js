@@ -1,11 +1,7 @@
 import axios from "axios";
+import fetchItemData from "./fetchItemData";
 
 let itemData;
-const itemDataUrl="/json/items.json";
-
-async function fetchItemData(){
-  itemData=await (await fetch(itemDataUrl)).json();
-}
 
 function createsHotDealHtml(){
   const container = document.querySelector(".hot-deal-list");
@@ -82,7 +78,7 @@ function createRecentItems(container, itemIds){
 }
 
 async function createAll(){
-  await fetchItemData();
+  itemData=await fetchItemData();
   createsHotDealHtml();
   createItemsHtml();
 }

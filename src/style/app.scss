@@ -315,3 +315,49 @@
         }
     }
 }
+
+.recommendation {
+    @extend %section-layout;
+    margin: auto;
+    background-color: #f5f5f5;
+    margin-top: 60px;
+    padding-top: 25px;
+    
+    &__header {
+        display: flex;
+        justify-content: space-between;
+
+        &__title {
+            font-size: 1.25rem;
+        }
+
+        &__more {
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: $strongGreyColor;
+        }
+    }
+    &__body {
+        @extend %section-layout;
+        @extend %border-basic;
+        .picked-items {
+            display: flex;
+            justify-content: center;
+            &__item {
+                flex-basis: 20%;
+                display: flex;
+                justify-content: space-between;
+            }
+            &__item-image {
+                flex: 2;
+            }
+            &__item-title {
+                flex: 4;
+
+            }
+        }
+        .recommendation-items {
+
+        }
+    }
+}

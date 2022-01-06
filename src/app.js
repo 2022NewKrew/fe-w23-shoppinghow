@@ -8,6 +8,7 @@ import Carousel from "./Carousel.js";
 import Top10 from "./Top10";
 import axios from "axios";
 import {createRecentItems} from "./creates.js";
+import Recommend from "./Recommend";
 
 const tabClassName="recent-items-container__tab";
 const activeTabClassName="recent-items-container__tab-active";
@@ -75,8 +76,14 @@ function initTop10(){
   new Top10(element, input);
 }
 
+function initRecommend(){
+  const bodyElement=document.querySelector(".recommendation__body");
+  new Recommend(bodyElement);
+}
+
 (function initDefault(){
   viewItemTab.click();
   initCarousel();
   initTop10();
+  initRecommend();
 })();
