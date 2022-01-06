@@ -2,11 +2,9 @@
 
 .main-container {
   margin: auto;
-  background-color: #f5f5f5;
   width: 100vw;
-  height: 2000px;
-  margin-top: 200px;
-  border: 1px solid var(--color-grey3);
+  height: 100vh;
+  margin-top: 250px;
 
   .promotion {
     @extend %section-layout;
