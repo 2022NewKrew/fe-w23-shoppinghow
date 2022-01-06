@@ -7,7 +7,7 @@ export default class HotItem {
     hotItem.className = 'hot-item';
     hotItem.innerHTML = '<h2 class="section-title">쇼핑 급상승 키워드</h2>';
 
-    this.itemFrame = new ItemFrame({ $parent: hotItem });
+    this.itemFrame = new ItemFrame({ $parent: hotItem, itemType: 'item' });
     $parent.appendChild(hotItem);
   }
 
