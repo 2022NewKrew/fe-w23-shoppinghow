@@ -18,7 +18,7 @@ export class PromotionSection extends SectionLayout {
   }
 
   renderThemeProductList() {
-    const { themeProductList } = this.$props;
+    const { themeProductList = [] } = this.$props;
 
     const $themeContainer = $('.theme__container', this.$contentContainer);
 
@@ -31,6 +31,8 @@ export class PromotionSection extends SectionLayout {
   }
 
   renderBanner() {
+    const { sliderImgList = [] } = this.$props;
+
     const $banner = $('.banner', this.$contentContainer);
 
     new PromotionCard($banner, {
@@ -41,12 +43,7 @@ export class PromotionSection extends SectionLayout {
 
     new Slider($banner, {
       renderType: 'beforeend',
-      imgList: [
-        '//shop2.daumcdn.net/shophow/sib/0_211202145115_cjUvJCvuztdGHrYUNDAIqoswLScKwQct',
-        '//shop2.daumcdn.net/shophow/sib/0_211220170154_lPdfLnRSayayFBdHisdeeCypQQWWgaeu',
-        '//shop3.daumcdn.net/shophow/sib/0_211220170214_KnBppOYCunaKIzTENvoRdzZivpnaGYdc',
-        '//shop3.daumcdn.net/shophow/sib/0_211220170158_owNwlIYMPjCOmpLzLBZpBGQkATLoNNWG',
-      ],
+      imgList: sliderImgList,
     });
   }
 }
