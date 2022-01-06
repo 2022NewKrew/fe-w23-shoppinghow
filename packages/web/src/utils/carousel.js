@@ -94,12 +94,11 @@ export default (htmlEl, totalItems, itemWidth, isVertical) => {
     if (El.dataset.index != curPos) {
       slide.style.transition = "0ms";
       slide.style.transform = `translateX(-${
-        IMAGE_WIDTH * (El.dataset.index + 1)
+        ITEM_WIDTH * (El.dataset.index + 1)
       }px)`;
       curPos = Number(El.dataset.index);
     }
     updatePagingBtn();
-    startTimer();
   }
   function onMouseOutPagingBtn() {
     startTimer();

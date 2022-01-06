@@ -165,12 +165,71 @@
       text-align: left;
       position: relative;
     }
-    .area_rcntproducts > a {
-      display: block;
-      width: 122px;
-      height: 54px;
-      padding: 0 16px 0 34px;
+    .area_rcntproducts {
       position: relative;
+      & > a {
+        display: block;
+        width: 122px;
+        height: 54px;
+        padding: 0 16px 0 34px;
+        position: relative;
+      }
+    }
+    .wrap_rcntproducts {
+      // display: block;
+      display: none;
+      position: absolute;
+      right: 2px;
+      top: 54px;
+      z-index: 10;
+      padding: 0 28px;
+      border: 1px solid #979797;
+      background-color: #fff;
+      text-align: left;
+      .list_tab {
+        overflow: hidden;
+        padding: 26px 0 17px;
+        display: flex;
+        li:nth-child(2) {
+          margin-left: 38px;
+        }
+        li > a {
+          display: flex;
+          height: 26px;
+          font-size: 14px;
+          color: #444;
+          box-sizing: border-box;
+          letter-spacing: -0.05em;
+          line-height: 1.5;
+          .txt_tab {
+            display: inline-block;
+
+            vertical-align: top;
+            width: 100%;
+            .num_products {
+              margin-left: 3px;
+              font-weight: 700;
+              font-size: 16px;
+            }
+          }
+        }
+        .on .txt_tab {
+          border-bottom: 2px solid #4a4a4a;
+          font-weight: 700;
+        }
+      }
+      .box_pannel {
+        .list_rcntproducts {
+          overflow: hidden;
+          width: 363px;
+          height: 363px;
+        }
+        .info_login {
+          overflow: hidden;
+          height: 46px;
+          padding: 37px 0 23px;
+        }
+      }
     }
   }
 }
