@@ -129,55 +129,59 @@ export default class KaKaoHead extends Component {
     new RollKeyword($rollKeyword, {searchKeywordGroup: searchKeywordGroup});
   }
 
-  mounted() {
+  setEvent() {
     this.setAutoRollAnimation();
     this.setSearchFormMouseEvent();
   }
 
   setAutoRollAnimation() {
+    const minTop = -300;
+    const totalPx = 32;
+    const movePx = 2;
+    const rollCycleTime = 3000;
     const $rollKeyword = this.$target.querySelector(
         '[data-component="roll-keyword"]',
     );
     this.$state.rollInterval = setInterval(() => {
       let top = parseInt($rollKeyword.style.top.split('px')[0]);
 
-      if (top < -300) {
+      if (top < minTop) {
         $rollKeyword.style.top = '0px';
         top = 0;
       }
 
-      this.moveRollAnimation($rollKeyword, top, 32, 2);
-    }, 3000);
+      this.moveRollAnimation($rollKeyword, top, totalPx, movePx);
+    }, rollCycleTime);
   }
 
   // 마우스가 올라가면 rollInterval(검색어 자동롤)을 멈춤 마우스가 벗어나면 다시 실행
   setSearchFormMouseEvent() {
-    const _this = this;
     const kakaoSearchEl = this.$target.querySelector('[name="kakaoSearch"]');
-    kakaoSearchEl.addEventListener('mouseenter', function() {
-      if (_this.$state.rollInterval != null) {
-        clearInterval(_this.$state.rollInterval);
-        console.log(_this.$state.rollInterval);
+    kakaoSearchEl.addEventListener('mouseenter', () => {
+      if (this.$state.rollInterval != null) {
+        clearInterval(this.$state.rollInterval);
+        console.log(this.$state.rollInterval);
       }
     });
 
-    kakaoSearchEl.addEventListener('mouseleave', function() {
-      _this.setAutoRollAnimation();
+    kakaoSearchEl.addEventListener('mouseleave', () => {
+      this.setAutoRollAnimation();
     });
   }
 
   // 총픽셀을 원하는 픽셀만큼 이동시킴
-  moveRollAnimation($el, top, TotalMovePx, movePx) {
+  moveRollAnimation($el, top, totalMovePx, movePx) {
     let count = 0;
+    const moveAnimationCycleTime = 40;
     const moveAnimation = setInterval(() => {
-      if (count >= TotalMovePx / movePx) {
-        $el.style.top = `${top - TotalMovePx}px`;
+      if (count >= totalMovePx / movePx) {
+        $el.style.top = `${top - totalMovePx}px`;
         clearInterval(moveAnimation);
         return;
       }
       count++;
       $el.style.top = `${top - movePx * count}px`;
-    }, 40);
+    }, moveAnimationCycleTime);
   }
 
   async getSearhKeyword() {

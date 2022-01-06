@@ -4,18 +4,11 @@ import Component from '../../core/Component';
 export default class RollKeyword extends Component {
   template() {
     const searchKeywordGroup = this.$props.searchKeywordGroup;
-
-    return `
-    ${searchKeywordGroup
-      .map((keyword, index) => {
-        return `<li>
-          <span class="num_rank">${index + 1}</span>${keyword.name}
-      </li>`;
-      })
-      .join(' ')}
-    ${`<li>
-          <span class="num_rank">${1}</span>${searchKeywordGroup[0].name}
-      </li>`}
-    `;
+    searchKeywordGroup.push(searchKeywordGroup[0]);
+    console.log(searchKeywordGroup);
+    const getKeywordTemplate = (keyword, index) => {
+      return `<li><span class="num_rank">${index + 1}</span>${keyword.name}</li>`;
+    };
+    return `${searchKeywordGroup.map(getKeywordTemplate).join('')}`;
   }
 }
