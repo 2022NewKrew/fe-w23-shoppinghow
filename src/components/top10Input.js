@@ -2,19 +2,18 @@ import Component from "../core/Component";
 
 const ROLLING_TIME = 3000;
 const HEIGHT = 60;
-const TRANSITION_DURATION = "500ms";
+// const TRANSITION_DURATION = "500ms";
 const FOCUS_OUT_TIME = 500;
 
 export default class Top10Input extends Component {
-  top10Idx;
   slidePlaying;
   timeId;
 
   setup() {
-    this.top10Idx = 0;
-    this.slidePlaying = null;
     this.timeId = 0;
+    this.slidePlaying = null;
   }
+
   template() {
     // const { top10List } = this.props;
     const top10List = require("../data/searchTop10.json").top10;
@@ -40,105 +39,85 @@ export default class Top10Input extends Component {
   }
 
   mounted() {
-    const top10Container = document.querySelector("#top10Container");
-    const input = document.querySelector(".search__input");
-    this.initSlide(top10Container);
-    this.runSlide(top10Container);
+    this.initSlide();
+    this.runSlide();
   }
 
   setEvent() {
     const searchInput = ".search__input";
-    const top10Container = document.querySelector("#top10Container");
+    const top10Container = this.$target.querySelector("#top10Container");
     // const input = document.querySelector(".search__input");
     let timeId;
 
-    this.addEvent("mouseover", searchInput, (e) => {
-      clearTimeout(timeId);
-    });
+    this.addEvent("mouseover", searchInput, this.pauseSlide.bind(this));
 
-    this.addEvent("mouseout", searchInput, (e) => {
-      timeId = setTimeout(() => {
-        input.blur();
-      }, FOCUS_OUT_TIME);
-    });
+    this.addEvent("mouseout", searchInput, this.resumeSlide.bind(this));
 
-    this.addEvent("focus", searchInput, (e) => {
-      e.target.style.backgroundColor = "white";
-      this.pauseSlide();
-    });
+    this.addEvent(
+      "focus",
+      searchInput,
+      (e) => {
+        e.target.style.backgroundColor = "white";
+        this.pauseSlide();
+      },
+      true
+    );
 
-    this.addEvent("blur", searchInput, (e) => {
-      e.target.style.backgroundColor = "transparent";
-      this.runSlide(top10Container);
-    });
+    this.addEvent(
+      "blur",
+      searchInput,
+      (e) => {
+        e.target.style.backgroundColor = "transparent";
+        this.runSlide(top10Container);
+      },
+      true
+    );
   }
 
-  findIndex(top10List) {
-    top10List.forEach((e, idx) => {
-      if (e.classList.contains("current-top-item")) {
-        this.top10Idx = idx;
+  initSlide() {
+    const $top10Container = this.$target.querySelector("#top10Container");
+
+    $top10Container.children[0].classList.add("current-top-item");
+    $top10Container.children[1].classList.add("next-top-item");
+    $top10Container.lastElementChild.classList.add("previous-top-item");
+  }
+
+  runSlide() {
+    const $top10Container = this.$target.querySelector("#top10Container");
+
+    const $prevItem = $top10Container.querySelector(".previous-top-item");
+    const $curItem = $top10Container.querySelector(".current-top-item");
+    const $nextItem = $top10Container.querySelector(".next-top-item");
+    // console.log($prevItem, $curItem, $nextItem);
+
+    this.slidePlaying = setTimeout(() => {
+      $prevItem.classList.remove("previous-top-item");
+
+      $curItem.classList.remove("current-top-item");
+      $curItem.classList.add("previous-top-item");
+
+      $nextItem.classList.remove("next-top-item");
+      $nextItem.classList.add("current-top-item");
+
+      if ($nextItem.nextElementSibling) {
+        $nextItem.nextElementSibling.classList.add("next-top-item");
+      } else {
+        $top10Container.firstElementChild.classList.add("next-top-item");
       }
-    });
-  }
 
-  findActiveSlide(top10Container) {
-    // current active-slide 찾기
-    const top10List = Array.from(top10Container.children);
-    const top10ListLength = top10List.length;
-    this.findIndex(top10List);
-
-    const prevItem =
-      top10Container.children[
-        this.top10Idx - 1 < 0 ? top10ListLength - 1 : this.top10Idx - 1
-      ];
-    const curItem = top10Container.children[this.top10Idx];
-    const nextItem =
-      top10Container.children[
-        this.top10Idx + 1 === top10ListLength ? 0 : this.top10Idx + 1
-      ];
-    const nextNextItem =
-      top10Container.children[
-        this.top10Idx + 2 >= top10ListLength
-          ? this.top10Idx - top10ListLength + 2
-          : this.top10Idx + 2
-      ];
-
-    return [prevItem, curItem, nextItem, nextNextItem];
-  }
-
-  initSlide(top10Container) {
-    top10Container.style.transitionDuration = TRANSITION_DURATION;
-
-    const [prevItem, curItem, nextItem] = this.findActiveSlide(top10Container);
-
-    curItem.classList.add("current-top-item");
-    nextItem.classList.add("next-top-item");
-  }
-
-  runSlide(top10Container) {
-    const run = () => {
-      top10Container.style.transitionDuration = TRANSITION_DURATION;
-
-      // previous, current, next active-slide 찾기
-      const [prevItem, curItem, nextItem, nextNextItem] =
-        this.findActiveSlide(top10Container);
-
-      prevItem.classList.remove("previous-top-item");
-
-      curItem.classList.remove("current-top-item");
-      curItem.classList.add("previous-top-item");
-
-      nextItem.classList.remove("next-top-item");
-      nextItem.classList.add("current-top-item");
-
-      nextNextItem.classList.add("next-top-item");
-    };
-
-    this.slidePlaying = setInterval(run, ROLLING_TIME);
+      this.runSlide();
+    }, ROLLING_TIME);
   }
 
   pauseSlide() {
-    clearInterval(this.slidePlaying);
+    clearTimeout(this.slidePlaying);
+    this.slidePlaying = null;
+  }
+
+  resumeSlide() {
+    if (!this.slidePlaying) {
+      this.runSlide();
+    }
   }
 }
 
