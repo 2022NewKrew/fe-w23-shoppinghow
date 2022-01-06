@@ -2,7 +2,6 @@
 @import "global";
 
 $SearchHeight: 60px;
-$planningTransitionDelay: 0.3s;
 
 .header-top {
     display: flex;
@@ -143,103 +142,6 @@ $planningTransitionDelay: 0.3s;
                 .best__link {
                     display: block;
                     margin: 0 auto;
-                }
-            }
-
-            .planning {
-                position:relative;
-                width: 100%;
-                border-left: 1px solid #f1f1f1;
-                display: flex;
-                justify-content: center;
-
-                .planning__container{
-                    position: relative;
-                    width: 70%;
-                    height: 100%;
-                    overflow: hidden;
-                    display: flex;
-                    justify-content: center;
-
-                    .planning__link{
-                        position:absolute;
-                    }
-
-                    .planning__item-center{
-                        transition: none;
-                        left: 0;
-                        display: block;
-                    }
-
-                    .planning__item-left{
-                        transition: none;
-                        left: -780px;
-                        display: block;
-                    }
-
-                    .planning__item-right{
-                        transition: none;
-                        left: 780px;
-                        display: block;
-                    }
-
-                    .planning__item-move-left{
-                        transition: $planningTransitionDelay;
-                        transform: translateX(-780px);
-                    }
-
-                    .planning__item-move-right{
-                        transition: $planningTransitionDelay;
-                        transform: translateX(780px);
-                    }
-                }
-
-                .planning__link {
-                    display: block;
-                    margin: 0 auto;
-                    width: 600px;
-
-                }
-
-                .planning__btn{
-                    position:absolute;
-                    color: grey;
-                    top: 45%;
-                    font-size: 40px;
-                    width: 23px;
-                    height: 50px;
-                    z-index: 1;
-                }
-
-                .planning__left-btn{
-                    left: 7%;
-                    background: url(https://shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
-                }
-
-                .planning__right-btn{
-                    right: 7%;
-                    background: url(https://shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat -30px 0;
-                }
-
-                .planning__paging{
-                    position: absolute;
-                    display: flex;
-                    top: 283px;
-                    left: 0;
-                    width: 100%;
-                    justify-content: center;
-                    z-index: 1;
-
-                    .planning__span{
-                        background-color: #cccccc;
-                        width: 15px;
-                        height: 5px;
-                        margin-left: 3px;
-                    }
-
-                    .planning__activated-span{
-                        background-color: black;
-                    }
                 }
             }
         }

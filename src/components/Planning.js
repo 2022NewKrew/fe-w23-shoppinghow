@@ -1,47 +1,33 @@
 import Component from "@core/Component";
 import PlanningItem from "@components/PlanningItem";
-import { throttling } from "../utils/eventutils";
+import { throttling } from "@utils/eventutils";
+import style from "@style/planning.module.scss";
 
 const CLICK_THROTTLING_DELAY = 300;
-const CSS_CLASS = {
-  PARENT: "planning",
-  CENTER: "planning__item-center",
-  LEFT: "planning__item-left",
-  RIGHT: "planning__item-right",
-  MOVE_LEFT: "planning__item-move-left",
-  MOVE_RIGHT: "planning__item-move-right",
-  CONTAINER: "planning__container",
-  LEFT_BTN: "planning__left-btn",
-  RIGHT_BTN: "planning__right-btn",
-  BTN: "planning__btn",
-  PAGE_SLOT_LIST: "planning__paging",
-  PAGE_SLOT: "planning__span",
-  ACTIVATED_PAGE_SLOT: "planning__activated-span",
-};
 
 class Planning extends Component {
   template() {
     return `
-        <ul class=${CSS_CLASS.CONTAINER}></ul>
-        <button class="${CSS_CLASS.LEFT_BTN} ${CSS_CLASS.BTN}"></button>
-        <button class="${CSS_CLASS.RIGHT_BTN} ${CSS_CLASS.BTN}"></button>
-        <div class="${CSS_CLASS.PAGE_SLOT_LIST}"></div>
+        <ul class=${style["container"]}></ul>
+        <button class="${style["left-btn"]} ${style["btn"]}"></button>
+        <button class="${style["right-btn"]} ${style["btn"]}"></button>
+        <div class="${style["page-slot-list"]}"></div>
     `;
   }
 
   mounted() {
     const $planningItemList = this.$target.querySelector(
-      `.${CSS_CLASS.CONTAINER}`
+      `.${style["container"]}`
     );
     const $pageSlotList = this.$target.querySelector(
-      `.${CSS_CLASS.PAGE_SLOT_LIST}`
+      `.${style["page-slot-list"]}`
     );
     fetch("http://localhost:3000/planningItems.json")
       .then((res) => res.json())
       .then((planningItemList) => {
         planningItemList.map((planningItem, idx) => {
           new PlanningItem($planningItemList, { ...planningItem, idx });
-          $pageSlotList.innerHTML += `<span class=${CSS_CLASS.PAGE_SLOT} data-id="${idx}"></span>`;
+          $pageSlotList.innerHTML += `<span class=${style["page-slot"]} data-id="${idx}"></span>`;
         });
         this.initCarousel();
       });
@@ -50,26 +36,26 @@ class Planning extends Component {
   setEvent() {
     this.addEvent(
       "mouseover",
-      `.${CSS_CLASS.PARENT}`,
+      `.${style["planning"]}`,
       this.handleMouseover.bind(this)
     );
 
     this.addEvent(
       "mouseleave",
-      `.${CSS_CLASS.PARENT}`,
+      `.${style["planning"]}`,
       this.handleMouseleave.bind(this)
     );
 
     this.addEvent(
       "click",
-      `.${CSS_CLASS.PARENT}`,
+      `.${style["planning"]}`,
       throttling(this.handleMouseclick.bind(this), CLICK_THROTTLING_DELAY)
     );
   }
 
   handleMouseclick(e) {
     const { target } = e;
-    if (target.classList.contains(CSS_CLASS.BTN)) {
+    if (target.classList.contains(style["btn"])) {
       this.moveCarouselWithBtn(target);
     }
   }
@@ -82,7 +68,7 @@ class Planning extends Component {
   handleMouseover(e) {
     const { target, type } = e;
 
-    if (target.classList.contains(CSS_CLASS.PAGE_SLOT)) {
+    if (target.classList.contains(style["page-slot"])) {
       this.moveCarouselWithPageSlot(target);
     } else {
       this.changeBtnColor(target, type);
@@ -92,12 +78,12 @@ class Planning extends Component {
   changeBtnColor(target, type) {
     const offset = type === "mouseleave" ? 0 : -60;
 
-    const $prevBtn = this.$target.querySelector(`.${CSS_CLASS.LEFT_BTN}`);
-    const $nextBtn = this.$target.querySelector(`.${CSS_CLASS.RIGHT_BTN}`);
+    const $prevBtn = this.$target.querySelector(`.${style["left-btn"]}`);
+    const $nextBtn = this.$target.querySelector(`.${style["right-btn"]}`);
 
-    if (target.classList.contains(CSS_CLASS.LEFT_BTN)) {
+    if (target.classList.contains(style["left-btn"])) {
       $prevBtn.style.backgroundPositionX = `${-60 + offset}px`;
-    } else if (target.classList.contains(CSS_CLASS.RIGHT_BTN)) {
+    } else if (target.classList.contains(style["right-btn"])) {
       $nextBtn.style.backgroundPositionX = `${-90 + offset}px`;
     } else {
       $prevBtn.style.backgroundPositionX = `${0 + offset}px`;
@@ -107,30 +93,32 @@ class Planning extends Component {
 
   initCarousel() {
     const $pageSlotList = this.$target.querySelector(
-      `.${CSS_CLASS.PAGE_SLOT_LIST}`
+      `.${style["page-slot-list"]}`
     );
     const $planningItemList = this.$target.querySelector(
-      `.${CSS_CLASS.CONTAINER}`
+      `.${style["container"]}`
     );
 
-    $pageSlotList.firstElementChild.classList.add(
-      CSS_CLASS.ACTIVATED_PAGE_SLOT
-    );
+    $pageSlotList.firstElementChild.classList.add(style["activated-slot"]);
 
-    $planningItemList.children[0].classList.add(CSS_CLASS.CENTER);
-    $planningItemList.children[1].classList.add(CSS_CLASS.RIGHT);
-    $planningItemList.lastElementChild.classList.add(CSS_CLASS.LEFT);
+    $planningItemList.children[0].classList.add(style["center-item"]);
+    $planningItemList.children[1].classList.add(style["right-item"]);
+    $planningItemList.lastElementChild.classList.add(style["left-item"]);
   }
 
   moveCarouselWithBtn(target) {
     const $planningItemList = this.$target.querySelector(
-      `.${CSS_CLASS.CONTAINER}`
+      `.${style["container"]}`
     );
-    const $leftPlanningItem = this.$target.querySelector(`.${CSS_CLASS.LEFT}`);
+    const $leftPlanningItem = this.$target.querySelector(
+      `.${style["left-item"]}`
+    );
     const $rightPlanningItem = this.$target.querySelector(
-      `.${CSS_CLASS.RIGHT}`
+      `.${style["right-item"]}`
     );
-    const $currentCenter = this.$target.querySelector(`.${CSS_CLASS.CENTER}`);
+    const $currentCenter = this.$target.querySelector(
+      `.${style["center-item"]}`
+    );
 
     const [
       TRANSFORM,
@@ -140,20 +128,20 @@ class Planning extends Component {
       $nextCenterCandidate,
       $nextCenterSecondCandidate,
       $notNextCenter,
-    ] = target.classList.contains(CSS_CLASS.RIGHT_BTN)
+    ] = target.classList.contains(style["right-btn"])
       ? [
-          CSS_CLASS.MOVE_LEFT,
-          CSS_CLASS.LEFT,
-          CSS_CLASS.RIGHT,
+          style["move-left"],
+          style["left-item"],
+          style["right-item"],
           $rightPlanningItem,
           $rightPlanningItem.nextElementSibling,
           $planningItemList.firstElementChild,
           $leftPlanningItem,
         ]
       : [
-          CSS_CLASS.MOVE_RIGHT,
-          CSS_CLASS.RIGHT,
-          CSS_CLASS.LEFT,
+          style["move-right"],
+          style["right-item"],
+          style["left-item"],
           $leftPlanningItem,
           $leftPlanningItem.previousElementSibling,
           $planningItemList.lastElementChild,
@@ -165,7 +153,7 @@ class Planning extends Component {
     $currentCenter.classList.add(TRANSFORM);
     $currentCenter.ontransitionend = () => {
       $currentCenter.classList.remove(TRANSFORM);
-      $currentCenter.classList.remove(CSS_CLASS.CENTER);
+      $currentCenter.classList.remove(style["center-item"]);
       $currentCenter.classList.add(NOT_NEXT_CENTER_POS);
     };
 
@@ -173,7 +161,7 @@ class Planning extends Component {
     $nextCenter.ontransitionend = () => {
       $nextCenter.classList.remove(TRANSFORM);
       $nextCenter.classList.remove(NEXT_CENTER_POS);
-      $nextCenter.classList.add(CSS_CLASS.CENTER);
+      $nextCenter.classList.add(style["center-item"]);
 
       $notNextCenter.classList.remove(NOT_NEXT_CENTER_POS);
       if ($nextCenterCandidate) {
@@ -194,44 +182,46 @@ class Planning extends Component {
     this.cleanCarousel();
 
     const $planningContainer = this.$target.querySelector(
-      `.${CSS_CLASS.CONTAINER}`
+      `.${style["container"]}`
     );
     const $targetPlanningItem = $planningContainer.children[id];
 
-    $targetPlanningItem.classList.add(CSS_CLASS.CENTER);
+    $targetPlanningItem.classList.add(style["center-item"]);
     if ($targetPlanningItem.nextElementSibling) {
-      $targetPlanningItem.nextElementSibling.classList.add(CSS_CLASS.RIGHT);
+      $targetPlanningItem.nextElementSibling.classList.add(style["right-item"]);
     } else {
-      $planningContainer.firstElementChild.classList.add(CSS_CLASS.RIGHT);
+      $planningContainer.firstElementChild.classList.add(style["right-item"]);
     }
     if ($targetPlanningItem.previousElementSibling) {
-      $targetPlanningItem.previousElementSibling.classList.add(CSS_CLASS.LEFT);
+      $targetPlanningItem.previousElementSibling.classList.add(
+        style["left-item"]
+      );
     } else {
-      $planningContainer.lastElementChild.classList.add(CSS_CLASS.LEFT);
+      $planningContainer.lastElementChild.classList.add(style["left-item"]);
     }
   }
 
   cleanCarousel() {
     this.$target
-      .querySelector(`.${CSS_CLASS.RIGHT}`)
-      .classList.remove(CSS_CLASS.RIGHT);
+      .querySelector(`.${style["right-item"]}`)
+      .classList.remove(style["right-item"]);
     this.$target
-      .querySelector(`.${CSS_CLASS.CENTER}`)
-      .classList.remove(CSS_CLASS.CENTER);
+      .querySelector(`.${style["center-item"]}`)
+      .classList.remove(style["center-item"]);
     this.$target
-      .querySelector(`.${CSS_CLASS.LEFT}`)
-      .classList.remove(CSS_CLASS.LEFT);
+      .querySelector(`.${style["left-item"]}`)
+      .classList.remove(style["left-item"]);
   }
 
   changeActivatedPageSlot(id) {
     const $pageSlotList = this.$target.querySelector(
-      `.${CSS_CLASS.PAGE_SLOT_LIST}`
+      `.${style["page-slot-list"]}`
     );
     Array.prototype.forEach.call($pageSlotList.children, (pageSlot) => {
       if (pageSlot.dataset.id === id) {
-        pageSlot.classList.add(CSS_CLASS.ACTIVATED_PAGE_SLOT);
+        pageSlot.classList.add(style["activated-slot"]);
       } else {
-        pageSlot.classList.remove(CSS_CLASS.ACTIVATED_PAGE_SLOT);
+        pageSlot.classList.remove(style["activated-slot"]);
       }
     });
   }

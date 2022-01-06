@@ -15,6 +15,7 @@ module.exports = {
       "@components": path.resolve(__dirname, "src/components"),
       "@core": path.resolve(__dirname, "src/core"),
       "@utils": path.resolve(__dirname, "src/utils"),
+      "@style": path.resolve(__dirname, "src/sass"),
     },
   },
   devServer: {
@@ -31,9 +32,40 @@ module.exports = {
         },
       },
       {
-        test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        test: /\.s[ac]ss$/,
         exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              // 2 => postcss-loader, sass-loader
+              importLoaders: 2,
+            },
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/i,
+        exclude: /\.module\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.module\.css$/i,
+        use: [
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+        ],
       },
     ],
   },
