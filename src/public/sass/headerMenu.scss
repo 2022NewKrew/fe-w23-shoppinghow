@@ -4,13 +4,32 @@
   border: 1px solid #cbcbcb;
   max-width: 1270px;
   margin: 40px auto;
+  .category {
+    position: relative;
+    .category__title {
+      height: 60px;
+      padding: 10px;
 
-  .category__title {
-    height: 60px;
-    padding: 10px;
-
-    .fas {
-      margin-right: 8px;
+      .fas {
+        margin-right: 8px;
+      }
+    }
+    .category__content {
+      width: 561px;
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      top: 54px;
+      z-index: 10;
+      height: 498px;
+      border: 1px solid #666;
+      background-color: #fff;
+      text-align: left;
+      display: none;
+      .category__content--screen-out {
+        font-size: 0;
+        line-height: 0;
+      }
     }
   }
 

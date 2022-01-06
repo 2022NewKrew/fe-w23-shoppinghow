@@ -34,7 +34,8 @@
 
       .planning {
         width: 790px;
-
+        height: 340px;
+        overflow: hidden;
         .planning__link {
           display: block;
           margin: 0 auto;
@@ -117,5 +118,12 @@
 }
 .footer {
   height: 280px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .footer__content {
+    font-size: xxx-large;
+    color: gray;
+    opacity: 0.5;
+  }
 }
