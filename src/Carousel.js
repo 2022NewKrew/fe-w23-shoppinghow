@@ -1,4 +1,4 @@
-export default class Carousel {
+export default class Carousel{
   /**
    * @param {HTMLElement} container
    * @param {HTMLElement} leftBtn
@@ -90,7 +90,7 @@ export default class Carousel {
         while(copyIndexOffset!==0){
           this.container.appendChild(this.container.firstElementChild);
           copyIndexOffset-=1;
-        }  
+        }
       }
       this.container.removeAttribute("style");
       this._setTimeout();

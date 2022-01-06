@@ -7,7 +7,7 @@ async function fetchItemData(){
   itemData=await (await fetch(itemDataUrl)).json();
 }
 
-function createsHotDealHtml() {
+function createsHotDealHtml(){
   const container = document.querySelector(".hot-deal-list");
   const hotdealItemTpl = `
       <li class="hot-deal__item">
@@ -61,7 +61,7 @@ function createItemsHtml(){
     if(e.target.closest(".theme-item__icon")!==null){
       axios.post("/api/dibs/", {
         itemId: itemId
-      });  
+      });
       return;
     }
     axios.post("/api/view/", {

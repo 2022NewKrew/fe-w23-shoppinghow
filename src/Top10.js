@@ -13,7 +13,7 @@ function Top10(element, input){
   /** @type {number} */
   this.childHeight;
   /** @type {number} */
-  this.length;  
+  this.length;
   /** @type {number} */
   this.timeoutHandler;
   /** @type {number} */

@@ -46,7 +46,7 @@ app.post(dibsReqPath, (req, res)=>{
   if(itemId===undefined){
     return res.sendStatus(400);
   }
-  dibsItemIds[itemId]=true;  
+  dibsItemIds[itemId]=true;
   return res.sendStatus(200);
 });
 
