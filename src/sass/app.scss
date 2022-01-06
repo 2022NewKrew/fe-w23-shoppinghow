@@ -111,7 +111,7 @@
       }
 
       .planning {
-        width: 790px;
+        width: 600px;
 
         .planning__link {
           display: block;
@@ -120,26 +120,49 @@
         }
 
         .planning-box {
-          width: 100px;
-          height: 100px;
           overflow: hidden;
 
           .planning-list {
-            width: 900px;
             display: flex;
-            height: 100px;
+          }
+        }
 
-            .planning-item,
-            .planning-item__last-clone,
-            .planning-item__first-clone {
-              background-color: rgb(255, 215, 187);
-              width: 100px;
-              height: 100px;
-              text-align: center;
-              line-height: 100px;
-              font-size: larger;
-              border: rgb(165, 165, 165) 0.5px solid;
+        .planning-comm {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .planning__left-ico {
+            @extend %planning-ico;
+            margin-right: 50px;
+            background-position: -128px -335px;
+          }
+
+          .planning__paging {
+            display: flex;
+
+            .planning__paging-btn {
+              display: flex;
+              width: 15px;
+              height: 5px;
+              margin: 1px;
+
+              .planning__paging-num {
+                display: block;
+                width: 15px;
+                height: 5px;
+                font-size: 0;
+                line-height: 0;
+                background-color: #ccc;
+                text-indent: -9999px;
+              }
             }
+          }
+
+          .planning__right-ico {
+            @extend %planning-ico;
+            margin-left: 50px;
+            background-position: -145px -335px;
           }
         }
       }
@@ -174,7 +197,7 @@
       .theme-item__icon {
         border: 0.5px solid #ff000069;
         padding: 4px;
-        width: 35px;
+        width: 40px;
       }
     }
   }
