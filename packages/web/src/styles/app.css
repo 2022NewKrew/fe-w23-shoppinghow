@@ -1,7 +1,52 @@
 @charset "UTF-8";
-@import url("./libs/reset.css");
-@import url("./global.css");
-@import url("./icon.css");
+/*https://elad2412.github.io/the-new-css-reset/*/
+/*** The new CSS Reset - version 1.4.2 (last updated 30.11.2021) ***/
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly. */
+:where([contenteditable]) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+}
 
 * {
   font-family: 돋움, dotum, sans-serif;
@@ -42,12 +87,9 @@ button {
 }
 
 .slide {
-  position: relative;
-  top: 0px;
-  left: -514px;
-  transform: translate3d(0px, 0px, 0px);
-  width: 1542px;
   display: flex;
+  width: max-content;
+  cursor: pointer;
 }
 .slide .panel {
   height: 100%;
@@ -140,8 +182,7 @@ button {
 
 #kakaoHead {
   padding-top: 43px;
-  font-family: Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, Dotum, 돋움,
-    sans-serif;
+  font-family: Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, Dotum, 돋움, sans-serif;
   background-color: #fff;
   text-align: center;
   min-width: 977px;
@@ -357,25 +398,13 @@ button {
   margin-left: 3px;
   padding: 5px 0;
 }
-.section_top
-  .cont_event
-  .evt_slide
-  .paging_comm
-  .inner_paging
-  .btn_paging
-  .num_page {
+.section_top .cont_event .evt_slide .paging_comm .inner_paging .btn_paging .num_page {
   display: block;
   width: 15px;
   height: 5px;
   background-color: #ccc;
 }
-.section_top
-  .cont_event
-  .evt_slide
-  .paging_comm
-  .inner_paging
-  .btn_paging
-  .select {
+.section_top .cont_event .evt_slide .paging_comm .inner_paging .btn_paging .select {
   background-color: #000;
 }
 .section_top .cont_event .evt_slide .paging_comm .btn_slide {

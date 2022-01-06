@@ -38,12 +38,9 @@ button {
 }
 
 .slide {
-  position: relative;
-  top: 0px;
-  left: -514px;
-  transform: translate3d(0px, 0px, 0px);
-  width: 1542px;
   display: flex;
+  width: max-content;
+  cursor: pointer;
 }
 .slide .panel {
   height: 100%;
