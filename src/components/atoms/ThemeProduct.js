@@ -7,6 +7,7 @@ export class ThemeProduct extends Component {
     } = this.$props;
 
     return /*html*/ `
+      <li class="product">
         <a href="#" class="product__link">
             <span class="product__thumb">
                 <img
@@ -18,6 +19,7 @@ export class ThemeProduct extends Component {
             <span class="product__desc">${desc}</span>
             <span class="product__themeIcon">테마</span>
         </a>
+      </li>
     `;
   }
 
