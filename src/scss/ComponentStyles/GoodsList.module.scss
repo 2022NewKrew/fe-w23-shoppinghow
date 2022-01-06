@@ -1,4 +1,4 @@
-$border-option: 1px solid rgba(0, 0, 0, 0.08);
+@use '../common/component_common' as common;
 
 .component {
   width: 100%;
@@ -7,21 +7,21 @@ $border-option: 1px solid rgba(0, 0, 0, 0.08);
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    border: $border-option;
+    border: common.$border-option;
     
     li {
       width: 20%;
       
       &:nth-child(n+1):nth-child(-n+4) {
-        border-right: $border-option
+        border-right: common.$border-option
       }
       
       &:nth-child(n+1):nth-child(-n+5) {
-        border-bottom: $border-option;
+        border-bottom: common.$border-option;
       }
       
       &:nth-child(n+6):nth-child(-n+9) {
-        border-right: $border-option;
+        border-right: common.$border-option;
       }
     }
   }
