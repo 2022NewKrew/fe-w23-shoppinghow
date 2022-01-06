@@ -5,6 +5,7 @@
  */
 import "./style/app.scss";
 import Carousel from "./Carousel.js";
+import Top10 from "./Top10";
 import axios from "axios";
 import {createRecentItems} from "./creates.js";
 
@@ -65,10 +66,17 @@ function initCarousel(){
   const leftBtn=carouselContainer.querySelector(".planning__left-btn");
   const rightBtn=carouselContainer.querySelector(".planning__right-btn");
   const navigationUl=carouselContainer.querySelector(".planning__navigation-ul");
-  new Carousel(container, leftBtn, rightBtn, navigationUl);
+  new Carousel(container, leftBtn, rightBtn, navigationUl, 3000);
+}
+
+function initTop10(){
+  const element=document.querySelector(".search-top10");
+  const input=document.querySelector(".search__input");
+  new Top10(element, input);
 }
 
 (function initDefault(){
   viewItemTab.click();
   initCarousel();
+  initTop10();
 })();

@@ -14,7 +14,10 @@
     .search {
         display: flex;
         position: relative;
-        border: 1px solid gray;
+        border: 1px solid #808080;
+        border-radius: 100px;
+        padding: 0 10px;
+        overflow: hidden;
 
         form {
             display: flex;
@@ -33,12 +36,20 @@
 
         .search-top10 {
             position: absolute;
-            transform: translateY(50%);
-            left: 10px;
+            display: block;
+            top: 0;
+            left: 20px;
             font-size: 1.2rem;
-            height: 50%;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            flex-direction: column;
+            z-index: -1;
+            height: 100%;
+            &__item {
+                display: block;
+                line-height: 60px;
+                color: $strongGreyColor;
+            }
         }
     }
 }
