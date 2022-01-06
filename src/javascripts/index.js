@@ -5,6 +5,7 @@ import GoodsCard from './Components/GoodsCard'
 import GoodsList from './Components/GoodsList'
 import SectionTitle from './Components/SectionTitle'
 import RecentGoodsButton from './Components/RecentGoodsButton'
+import RecentlyRelatedGoods from './Components/RecentlyRelatedGoods'
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -19,14 +20,14 @@ window.addEventListener('DOMContentLoaded', () => {
     const keywordTitle = new SectionTitle('쇼핑 급상승 키워드')
     const keywordGoodsList = new GoodsList('http://localhost:3000/json/keyword-goods.json')
     const howAboutTitle = new SectionTitle('이 상품 어때요?')
-    const howAboutGoodsList = new GoodsList('http://localhost:3000/json/how-about-goods.json')
+    const recentlyRelatedGoods = new RecentlyRelatedGoods()
     
     target.appendChild(hotDealTitle.rootEl)
     target.appendChild(hotDealGoodsList.rootEl)
     target.appendChild(keywordTitle.rootEl)
     target.appendChild(keywordGoodsList.rootEl)
     target.appendChild(howAboutTitle.rootEl)
-    target.appendChild(howAboutGoodsList.rootEl)
+    target.appendChild(recentlyRelatedGoods.rootEl)
     
     headerTopEl.appendChild(rollingText.rootEl)
     privateMenuEl.appendChild(recentGoodsButton.rootEl)
