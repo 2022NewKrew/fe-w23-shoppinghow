@@ -15,14 +15,20 @@ export function initTop10() {
       const rollboxSize = rollbox.clientHeight
       const size = searchTop10ContentArr[0].clientHeight
   
-      searchTop10.style.transition = "transform 0.3s ease-in-out";
       top10Counter += 1
-      if (top10Counter === searchTop10ContentArr.length) {
-        top10Counter = 0
-      }
-      
-      let pos = -size * top10Counter + (rollboxSize - size) * 0.5
 
+      if (top10Counter === searchTop10ContentArr.length) {
+        searchTop10.style.transition = "none";
+        top10Counter = 0
+        let pos = -size * top10Counter + (rollboxSize - size) * 0.5
+        searchTop10.style.transform = "translateY(" + pos + "px)";
+        slide()
+        return
+      }
+      else {
+        searchTop10.style.transition = "transform 0.3s ease-in-out";
+      }
+      let pos = -size * top10Counter + (rollboxSize - size) * 0.5
       searchTop10.style.transform = "translateY(" + pos + "px)";
     }
 
