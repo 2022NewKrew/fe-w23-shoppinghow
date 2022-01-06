@@ -2,7 +2,7 @@ import './styles/libs/reset.css';
 import './sass/app.scss';
 import PageRouter from './util/pageRouter';
 import { onLocationChangeHandler } from './util/changeLocation.js';
-import { header } from './components/header.js';
+import { header } from './components/header/header.js';
 
 window.onload = () => {
     const app = document.querySelector('body');
