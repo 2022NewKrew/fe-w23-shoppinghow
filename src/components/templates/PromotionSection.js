@@ -2,8 +2,8 @@ import { PromotionCard, SectionLayout, Slider, ThemeProduct } from '@components'
 import { $ } from '@utils';
 
 export class PromotionSection extends SectionLayout {
-  setup() {
-    this.$props = { className: 'promotion__section', ...this.$props };
+  constructor($target, $props) {
+    super($target, { className: 'promotion__section', ...$props });
   }
 
   render() {

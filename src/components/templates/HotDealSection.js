@@ -2,6 +2,10 @@ import { HotDealProduct, SectionLayout } from '@components';
 import { $ } from '@utils';
 
 export class HotDealSection extends SectionLayout {
+  constructor($target, $props) {
+    super($target, { className: 'hotDeal__section', ...$props });
+  }
+
   render() {
     super.render();
     this.renderHotDealProductList();

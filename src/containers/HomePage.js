@@ -25,15 +25,13 @@ export class HomePage extends MainLayout {
     super.mounted();
 
     new PromotionSection(this.$main, {
-      className: 'promotion__section',
       renderType: 'beforeend',
-      title: '품절주의, 역대급 핫딜',
+      title: '프로모션 세션',
       hideTitle: true,
       themeProductList: this.themeProductList,
     });
 
     new HotDealSection(this.$main, {
-      className: 'hotDeal__section',
       renderType: 'beforeend',
       title: '품절주의, 역대급 핫딜',
       hotDealProductList: this.hotDealProductList,
