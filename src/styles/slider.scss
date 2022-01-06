@@ -83,12 +83,11 @@
         background-color: #cccccc;
         transition: background-color 100ms ease-out;
       }
+    }
 
-      .--selected,
-      &:hover {
-        span {
-          background-color: black;
-        }
+    .slider__paging--selected {
+      span {
+        background-color: black;
       }
     }
   }

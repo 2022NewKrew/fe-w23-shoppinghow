@@ -68,25 +68,28 @@ export class Slider extends Component {
   }
 
   mounted() {
+    this.$sliderAction = $('.slider__action', this.target);
     this.$sliderTrack = $('.slider__track', this.$target);
     this.$sliderTrack.addEventListener('transitionend', () => {
       this.onSlideEnd();
     });
 
-    const $sliderPagingList = $$('.slider__pagingContainer', this.$target);
-    $sliderPagingList.forEach((el) => {
+    this.$sliderPagingList = $$('.slider__paging', this.$target);
+    this.$sliderPagingList.forEach((el) => {
       el.addEventListener('mouseover', (e) => {
-        const { dataset } = e.target;
+        const $pagging = e.target.closest('.slider__paging');
 
         this.clearTimerAction();
-        this.currentIndex = +dataset.index;
-        this.moveTrack();
+        this.currentIndex = +$pagging.dataset.index;
+        this.quickMoveTrack();
+        this.renderIndicator();
       });
 
       el.addEventListener('mouseout', (_) => {
         if (!this.timerId) this.startTimerAction();
       });
     });
+    this.renderIndicator();
 
     this.startTimerAction();
   }
@@ -94,7 +97,17 @@ export class Slider extends Component {
   // util
 
   renderIndicator() {
-    // console.log('render');
+    const SELECTED_CLASSNAME = 'slider__paging--selected';
+
+    this.$sliderPagingList.forEach((el) => {
+      const targetIndex = +el.dataset.index;
+
+      if (targetIndex !== this.currentIndex) {
+        el.classList.remove(SELECTED_CLASSNAME);
+      } else {
+        el.classList.add(SELECTED_CLASSNAME);
+      }
+    });
   }
 
   setBlockClickIndicator(bool) {
@@ -113,12 +126,16 @@ export class Slider extends Component {
     this.$sliderTrack.style.transform = `translateX(${x}px)`;
   }
 
+  quickMoveTrack() {
+    this.$sliderTrack.style.transition = 'none';
+    this.moveTrack();
+  }
+
   onSlideEnd() {
     const isOutOfIndex = this.maxIndex < this.currentIndex || this.currentIndex < 0;
     if (isOutOfIndex) {
-      this.$sliderTrack.style.transition = 'none';
       this.currentIndex = this.currentIndex < 0 ? this.maxIndex : 0;
-      this.moveTrack();
+      this.quickMoveTrack();
     }
 
     this.renderIndicator();
