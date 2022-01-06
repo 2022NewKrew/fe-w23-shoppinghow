@@ -32,33 +32,34 @@ class SearchBar extends Component {
   }
 
   mounted() {
-    const $searchInput = this.$target.querySelector(".search__input");
-
-    $searchInput.onfocus = () => {
-      $searchInput.style.backgroundColor = "white";
-      this.pauseRolling();
-    };
-    $searchInput.onblur = () => {
-      $searchInput.style.backgroundColor = "transparent";
-      this.resumeRolling();
-    };
-
     this.initRolling();
     this.doRolling();
   }
 
   setEvent() {
+    const searchSelector = ".search";
     const searchInputSelector = ".search__input";
 
+    this.addEvent("mouseover", searchSelector, this.pauseRolling.bind(this));
+    this.addEvent("mouseout", searchSelector, this.resumeRolling.bind(this));
     this.addEvent(
-      "mouseover",
+      "focus",
       searchInputSelector,
-      this.pauseRolling.bind(this)
+      (e) => {
+        e.target.style.backgroundColor = "white";
+        this.pauseRolling();
+      },
+      true
     );
+
     this.addEvent(
-      "mouseout",
+      "blur",
       searchInputSelector,
-      this.resumeRolling.bind(this)
+      (e) => {
+        e.target.style.backgroundColor = "transparent";
+        this.resumeRolling();
+      },
+      true
     );
   }
 
