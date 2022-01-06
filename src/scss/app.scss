@@ -10,33 +10,67 @@
     }
 
     .search {
-        display: flex;
         position: relative;
-        border: 1px solid gray;
+        color: #333;
 
         form {
-            display: flex;
+            .input_wrap {
+                position: relative;
+                width: 670px;
+                height: 54px;
+                padding: 16px 60px 14px 30px;
+                border: 1px solid #cecfd1;
+                border-radius: 10px;
+                box-sizing: border-box;
+            }
 
             .search__input {
-                width: 400px;
-                height: 60px;
-                padding: 10px;
+                width: 100%;
+                border: 0;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 22px;
+                color: #000;
+                outline: none;
             }
 
             .search__icon {
+                position: absolute;
+                top: 0;
+                right: 0;
                 font-size: 1.4rem;
                 padding: 10px;
             }
         }
 
-        .search-top10 {
+        .rolling_keywords_wrap {
             position: absolute;
-            transform: translateY(50%);
-            left: 10px;
-            font-size: 1.2rem;
-            height: 50%;
-            display: flex;
-            align-items: center;
+            overflow: hidden;
+            top: 16px;
+            left: 31px;
+            width: 578px;
+            height: 23px;
+            text-align: left;
+
+            .search-top10 {
+                position: absolute;
+                top: 0;
+                left: 0;
+                
+                &.animate {
+                    transition: all .5s linear;
+                }
+
+                .search-top10__item {
+                    overflow: hidden;
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 26px;
+                    color: #939393;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
         }
     }
 }
@@ -57,7 +91,6 @@
         .fas {
             margin-right: 8px;
         }
-
     }
 
     .top-menu {
@@ -77,6 +110,23 @@
 
         .private-menu__btn {
             padding: $button-padding;
+
+            &.recently_viewed {
+                position: relative;
+            }
+
+            .rvpv_products_wrap {
+                position: absolute;
+                top: 54px;
+                right: 2px;
+                z-index: 10;
+                padding: 0 28px;
+                border: 1px solid #979797;
+                background-color: red;
+                text-align: left;
+                width: 50px;
+                height: 50px;
+            }
         }
     }
 }
@@ -133,23 +183,29 @@
         .theme-container {
             display: flex;
         }
+        
         .theme-item {
             @extend %card;
             border: 1px solid #f1f1f1;
         }
+
         .theme__link {
             display: inline-block;
             vertical-align: top;
             margin-left: 5px;
+
             strong, span {
                 @extend %text-block;
             }
+
             .theme-item__title {
                 font-weight: bold;
             }
+
             .theme-item__desc {
                 padding-top: 0;
             }
+            
             .theme-item__icon {
                 color: #ff000069;
                 border: 0.5px solid #ff000069;
@@ -168,18 +224,21 @@
             padding-bottom: 20px;
             background-color: $bgColor;
         }
-        .hot-deal__title, .hot-deal__detail-price{
+
+        .hot-deal__title, .hot-deal__detail-price {
             @extend %text-block;
         }
 
         .hot-deal-list {
             display: flex;
             flex-wrap: wrap;
+
             .hot-deal__item {
                 width: 199px;
                 padding: 25px 27px 20px;
                 border-bottom: 1px solid #f1f1f1;
             }
+
             .hot-deal__item:not(:nth-child(5)) {
                 border-right: 1px solid #f1f1f1;
             }
@@ -188,6 +247,7 @@
         .hot-deal__detail-price {
             margin-top: 20px;
             position: relative;
+            
             .txt-price-percent {
                 position: absolute;
                 right: 10px;
