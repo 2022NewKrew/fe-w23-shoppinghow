@@ -1,0 +1,12 @@
+@import '@/static/styles/index.scss';
+
+.hot-item {
+  @extend %section-layout;
+  margin-top: 60px;
+
+  .section-title {
+    font-size: 1.25rem;
+    padding-bottom: 20px;
+    background-color: $bgColor;
+  }
+}
