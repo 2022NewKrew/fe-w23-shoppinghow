@@ -62,14 +62,12 @@
 
         .current-top-item {
           transform: translateY(0px);
-          display: flex;
-          align-items: center;
+          display: block;
         }
 
         .next-top-item {
           transform: translateY(60px);
-          display: flex;
-          align-items: center;
+          display: block;
         }
       }
     }
@@ -125,7 +123,7 @@
       border: 1px solid #979797;
       padding: 0 28px;
 
-      .recent-product-menu {
+      #recent-product-menu {
         display: flex;
         padding: 26px 0 17px;
         div + div {
