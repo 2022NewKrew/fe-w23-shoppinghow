@@ -141,20 +141,21 @@
           .planning__paging {
             display: flex;
 
-            .planning__paging-btn {
-              display: flex;
-              width: 15px;
-              height: 5px;
-              margin: 1px;
+            em.planning__paging-btn {
+              @extend %planning__paging-btn;
 
               .planning__paging-num {
-                display: block;
-                width: 15px;
-                height: 5px;
-                font-size: 0;
-                line-height: 0;
+                @extend %planning__paging-num;
+                background-color: #333;
+              }
+            }
+
+            span.planning__paging-btn {
+              @extend %planning__paging-btn;
+
+              .planning__paging-num {
+                @extend %planning__paging-num;
                 background-color: #ccc;
-                text-indent: -9999px;
               }
             }
           }

@@ -3,6 +3,15 @@ import "./sass/app.scss";
 
 const PLANNING_LIST_TRANSITION_STR = "transform 0.3s ease-in-out";
 const PLANNING_LIST_TRANSFORM_RATE = 1;
+const PAGING_NUM_MARK = "__paging-num__";
+const PLANNING_PAGING_BTN_SPAN_NODE = `<span class="planning__paging-btn"
+><span class="planning__paging-num">${PAGING_NUM_MARK}</span></span
+>
+`;
+const PLANNING_PAGING_BTN_EM_NODE = `<em class="planning__paging-btn"
+><span class="planning__paging-num">${PAGING_NUM_MARK}</span></em
+>
+`;
 const HOT_DEAL_ITEM_CNT = 10;
 
 // reference : https://velog.io/@wjddnjswjd12/javascript%EB%A1%9C-carousel-slide-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EA%B8%B0
@@ -15,45 +24,74 @@ const makePlanningCarousel = () => {
   ];
   const leftBtn = document.querySelector(".planning__left-btn");
   const rightBtn = document.querySelector(".planning__right-btn");
+  const planningPaging = document.querySelector(".planning__paging");
+
   let counter = 1;
   let size = planningItemArray[0].clientWidth;
 
+  const changePlanningList = (transitionStr, newCounter) => {
+    planningList.style.transition = transitionStr;
+    counter = newCounter;
+    planningList.style.transform =
+      "translateX(" + -size * counter * PLANNING_LIST_TRANSFORM_RATE + "px)";
+  };
+
   planningList.style.transform =
     "translateX(" + -size * counter * PLANNING_LIST_TRANSFORM_RATE + "px)";
+
   leftBtn.addEventListener("click", () => {
     if (counter <= 0) {
       return;
     }
 
-    planningList.style.transition = PLANNING_LIST_TRANSITION_STR;
-    counter--;
-    planningList.style.transform =
-      "translateX(" + -size * counter * PLANNING_LIST_TRANSFORM_RATE + "px)";
+    planningPaging.childNodes[counter - 1].innerHTML =
+      PLANNING_PAGING_BTN_SPAN_NODE.replace(PAGING_NUM_MARK, counter);
+    planningPaging.childNodes[
+      (planningPaging.childElementCount + counter - 2) %
+        planningPaging.childElementCount
+    ].innerHTML = PLANNING_PAGING_BTN_EM_NODE.replace(
+      PAGING_NUM_MARK,
+      counter - 1
+    );
+    changePlanningList(PLANNING_LIST_TRANSITION_STR, counter - 1);
   });
+
   rightBtn.addEventListener("click", () => {
     if (counter >= planningItemArray.length - 1) {
       return;
     }
 
-    planningList.style.transition = PLANNING_LIST_TRANSITION_STR;
-    counter++;
-    planningList.style.transform =
-      "translateX(" + -size * counter * PLANNING_LIST_TRANSFORM_RATE + "px)";
+    planningPaging.childNodes[counter - 1].innerHTML =
+      PLANNING_PAGING_BTN_SPAN_NODE.replace(PAGING_NUM_MARK, counter);
+    planningPaging.childNodes[
+      counter % planningPaging.childElementCount
+    ].innerHTML = PLANNING_PAGING_BTN_EM_NODE.replace(
+      PAGING_NUM_MARK,
+      counter + 1
+    );
+    changePlanningList(PLANNING_LIST_TRANSITION_STR, counter + 1);
   });
+
   planningList.addEventListener("transitionend", () => {
     if (planningItemArray[counter].className === "planning-item__last-clone") {
-      planningList.style.transition = "none";
-      counter = planningItemArray.length - 2;
-      planningList.style.transform =
-        "translateX(" + -size * counter * PLANNING_LIST_TRANSFORM_RATE + "px)";
+      changePlanningList("none", planningItemArray.length - 2);
     }
 
     if (planningItemArray[counter].className === "planning-item__first-clone") {
-      planningList.style.transition = "none";
-      counter = planningItemArray.length - counter;
-      planningList.style.transform =
-        "translateX(" + -size * counter * PLANNING_LIST_TRANSFORM_RATE + "px)";
+      changePlanningList("none", 1);
     }
+  });
+
+  debugger;
+
+  planningPaging.childNodes.forEach((element, index) => {
+    element.addEventListener("click", () => {
+      planningPaging.childNodes[counter - 1].innerHTML =
+        PLANNING_PAGING_BTN_SPAN_NODE.replace(PAGING_NUM_MARK, counter);
+      planningPaging.childNodes[index].innerHTML =
+        PLANNING_PAGING_BTN_EM_NODE.replace(PAGING_NUM_MARK, index + 1);
+      changePlanningList(PLANNING_LIST_TRANSITION_STR, index + 1);
+    });
   });
 
   return;
