@@ -1,12 +1,12 @@
-const themes = require("../data/themes.json").themes;
-
-export default function createBanners() {
+export default function createBanners(themeData) {
   const theme = document.createElement("div");
 
-  theme.innerHTML = `
+  theme.insertAdjacentHTML(
+    "afterbegin",
+    `
   <div class="theme">
     <ul class="theme-container">
-      ${themes
+      ${themeData
         .map(
           ({ title, description, img }) => `
           <li class="theme-item">
@@ -29,7 +29,8 @@ export default function createBanners() {
         .join("")}
     </ul>
   </div>
-    `;
+    `
+  );
 
   const promotion = document.getElementById("promotion");
   promotion.appendChild(theme);
