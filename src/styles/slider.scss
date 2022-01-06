@@ -2,7 +2,7 @@
 
 .slider {
   position: relative;
-  @extend %flex-center;
+  @include flex-center;
 }
 
 .slider__frame {
@@ -11,7 +11,7 @@
   overflow: hidden;
 
   .slider__track {
-    @extend %flex-center;
+    @include flex-center;
     transform: translateX(-485px);
 
     .slider__link {

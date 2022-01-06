@@ -9,32 +9,32 @@ $red-500: #fc363c;
 $btn-padding: 20px;
 $border-style: 1px solid #e4e2e2;
 
-%border-basic {
+@mixin border-basic {
   border: $border-style;
 }
 
-%section-layout {
+@mixin section-layout {
   width: 1270px;
-  margin: auto;
+  margin: 0 auto;
 }
 
-%card {
+@mixin card {
   width: 25%;
   padding: 20px 60px;
 }
 
-%text-block {
+@mixin text-block {
   display: block;
   padding: 0.25rem 0px;
   font-size: 0.875rem;
 }
 
-%flex {
+@mixin flex {
   display: flex;
   align-items: center;
 }
 
-%flex-center {
+@mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;

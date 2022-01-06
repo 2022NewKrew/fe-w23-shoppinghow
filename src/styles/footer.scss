@@ -1,10 +1,12 @@
+@import 'global';
+
 .footer {
   background-color: white;
   margin-top: 4rem;
   padding: 34px 0 71px;
 
   .footer__wrapper {
-    @extend %section-layout;
+    @include section-layout;
     position: relative;
   }
 

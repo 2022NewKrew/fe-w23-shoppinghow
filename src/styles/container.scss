@@ -1,8 +1,8 @@
 @import 'global';
 
 .container {
-  margin: 5rem auto 0rem auto;
-  @extend %section-layout;
+  @include section-layout;
+  margin-top: 5rem;
 
   .container__title {
     font-weight: 400;
@@ -11,7 +11,7 @@
   }
 
   .container__content {
-    @extend %border-basic;
+    @include border-basic;
     display: flex;
     flex-direction: column;
     background-color: white;
