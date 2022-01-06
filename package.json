@@ -5,33 +5,33 @@
   "main": "index.js",
   "scripts": {
     "start": "npx nodemon ./server.js",
-    "dev": "webpack serve --open --config ./webpack/webpack.dev.js",
-    "prod": "webpack --config ./webpack/webpack.prod.js"
+    "dev": "webpack --config ./config/webpack.dev.js",
+    "prod": "webpack --config ./config/webpack.prod.js"
   },
   "keywords": [],
   "author": "carter",
   "license": "MIT",
   "dependencies": {
-    "@babel/preset-env": "^7.16.7",
-    "babel-loader": "^8.2.3",
     "consolidate": "^0.16.0",
     "cookie-parser": "~1.4.4",
-    "css-loader": "^6.5.1",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "generator-express-es6": "^1.1.0",
-    "html-webpack-plugin": "^5.5.0",
     "http-errors": "~1.6.3",
-    "mini-css-extract-plugin": "^2.4.5",
     "morgan": "~1.9.1",
     "mustache": "^4.2.0",
-    "sass": "^1.45.2",
-    "sass-loader": "^12.4.0",
-    "style-loader": "^3.3.1"
+    "mysql2": "^2.3.3",
+    "sass": "^1.45.2"
   },
   "devDependencies": {
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.7.2"
+    "webpack-dev-server": "^4.7.2",
+    "sass-loader": "^12.4.0",
+    "@babel/preset-env": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "corejs": "^1.0.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "html-webpack-plugin": "^5.5.0",
+    "css-loader": "^6.5.1"
   }
 }

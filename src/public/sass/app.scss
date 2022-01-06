@@ -1,195 +1,175 @@
 @import "global";
-
-.header-top {
-    display: flex;
-    padding: 60px;
-    justify-content: center;
-
-    .title {
-        display: flex;
-        align-items: center;
-        margin-right: 50px;
-    }
-
-    .search {
-        display: flex;
-        position: relative;
-        border: 1px solid gray;
-
-        form {
-            display: flex;
-
-            .search__input {
-                width: 400px;
-                height: 60px;
-                padding: 10px;
-            }
-
-            .search__icon {
-                font-size: 1.4rem;
-                padding: 10px;
-            }
-        }
-
-        .search-top10 {
-            position: absolute;
-            transform: translateY(50%);
-            left: 10px;
-            font-size: 1.2rem;
-            height: 50%;
-            display: flex;
-            align-items: center;
-        }
-    }
-}
-
-.header-menu {
-    height: 60px;
-    display: flex;
-    border: 1px solid #cbcbcb;
-    max-width: 1270px;
-    margin: 0px auto;
-
-    .category__title {
-        height: 60px;
-        padding: 10px;
-
-        .fas {
-            margin-right: 8px;
-        }
-    }
-
-    .top-menu {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-
-        .top-menu__btn {
-            padding: 0 $button-padding;
-            line-height: 60px;
-        }
-    }
-
-    .private-menu {
-        margin-left: auto;
-        display: flex;
-
-        .private-menu__btn {
-            padding: $button-padding;
-        }
-    }
-}
+@import "headerMenu";
+@import "headerTop";
 
 .gubun-bar {
-    width: 1px;
-    height: 60px;
-    background: #cbcbcb;
-    margin: 0px 20px;
+  width: 1px;
+  height: 60px;
+  background: #cbcbcb;
+  margin: 0px 20px;
 }
 
 .container {
-    margin: auto;
-    background-color: #f5f5f5;
-    padding-top: 25px;
+  margin: auto;
+  background-color: #f5f5f5;
+  padding-top: 25px;
 
-    .promotion {
-        @extend %section-layout;
-        @extend %border-basic;
+  .promotion {
+    @extend %section-layout;
+    @extend %border-basic;
 
-        .banner {
-            display: flex;
-            justify-content: center;
-
-            .best {
-                float: left;
-                width: 510px;
-
-                .best__link {
-                    display: block;
-                    margin: 0 auto;
-                }
-            }
-
-            .planning {
-                width: 790px;
-
-                .planning__link {
-                    display: block;
-                    margin: 0 auto;
-                    width: 600px;
-                }
-            }
-        }
-
-        img {
-            margin: auto;
-            text-align: center;
-            display: flex;
-        }
-    }
-    .theme {
-        .theme-container {
-            display: flex;
-        }
-        .theme-item {
-            @extend %card;
-            border: 1px solid #f1f1f1;
-        }
-        .theme__link {
+    .promotion__banner {
+      display: flex;
+      justify-content: center;
+      width: $banner-width;
+      .promotion__best {
+        float: left;
+        width: $banner-width/2;
+        .promotion__best--wrap {
+          .promotion__best--link {
             display: block;
-            strong,
-            span {
-                @extend %text-block;
-            }
-            .theme-item__title {
-                font-weight: bold;
-            }
-            .theme-item__desc {
-                padding-top: 0;
-            }
-            .theme-item__icon {
-                border: 0.5px solid #ff000069;
-                padding: 4px;
-                width: 35px;
-            }
+            margin: 0 auto;
+          }
         }
+      }
+
+      .promotion__planning {
+        width: $banner-width/2;
+        height: $banner-promotion-height;
+        overflow: hidden;
+        border-left: 1px solid #f1f1f1;
+        .promotion__planning--wrap {
+          display: flex;
+          .promotion__planning--link {
+            display: block;
+            margin: 0 auto;
+            width: 600px;
+          }
+        }
+      }
     }
 
-    .hot-deal {
-        @extend %section-layout;
-        margin-top: 60px;
-
-        .section-title {
-            font-size: 1.25rem;
-            padding-bottom: 20px;
-            background-color: $bgColor;
+    img {
+      margin: auto;
+      text-align: center;
+      display: flex;
+    }
+    .promotion__theme {
+      width: $banner-width;
+      .theme-container {
+        display: flex;
+      }
+      .theme-item {
+        @extend %card;
+        border-left: 1px solid #f1f1f1;
+        border-top: 1px solid #f1f1f1;
+        width: $banner-promotion-item-width/2;
+      }
+      .theme-item:first-child {
+        border-left: none;
+      }
+      .theme__link {
+        display: block;
+        strong,
+        span {
+          @extend %text-block;
         }
-        .hot-deal__title,
-        .hot-deal__detail-price {
-            @extend %text-block;
+        .theme-item__title {
+          font-weight: bold;
         }
+        .theme-item__desc {
+          padding-top: 0;
+        }
+        .theme-item__icon {
+          border: 0.5px solid #ff000069;
+          padding: 4px;
+          width: 35px;
+        }
+      }
+    }
+  }
 
-        .hot-deal-list {
+  .hot-deal {
+    @extend %section-layout;
+    margin-top: 60px;
+    position: relative;
+
+    .section-title {
+      font-size: 1.25rem;
+      padding-bottom: 20px;
+      background-color: $bgColor;
+    }
+    .hot-deal__detail-price {
+      @extend %text-block;
+    }
+    .hot-deal__title {
+      position: absolute;
+      top: -35px;
+      line-height: 30px;
+      font-size: 30px;
+    }
+    .hot-deal__list {
+      display: flex;
+      flex-wrap: wrap;
+      .hot-deal__item {
+        width: 25%;
+        padding: 20px;
+        border-right: 1px solid #f1f1f1;
+        border-bottom: 1px solid #f1f1f1;
+        .hot-deal__item--title {
+          display: block;
+          margin-bottom: 30px;
+          margin-top: 5px;
+        }
+        .hot-deal__item--info {
+          .hot-deal__item--detail-price {
             display: flex;
-            flex-wrap: wrap;
-            .hot-deal__item {
-                width: 20%;
-                padding: 20px;
-                border-right: 1px solid #f1f1f1;
-                border-bottom: 1px solid #f1f1f1;
+            justify-content: space-between;
+            .hot-deal__item--discount {
+              font-size: 20px;
+              line-height: 23px;
+              color: #000;
+              font-weight: 700;
+              font-family: Tahoma, sans-serif;
             }
-        }
-
-        .hot-deal__detail-price {
-            margin-top: 20px;
-            position: relative;
-            .txt-price-percent {
-                position: absolute;
-                right: 10px;
-                font-size: 1.1rem;
-                line-height: 1.1rem;
-                color: red;
+            .hot-deal__item--percent {
+              font-size: 24px;
+              line-height: 30px;
+              color: #fc363c;
             }
+          }
+          .hot-deal__item--price {
+            font-size: 13px;
+            color: #888;
+            line-height: 22px;
+            font-family: Tahoma, sans-serif;
+            text-decoration: line-through;
+          }
         }
+      }
     }
+
+    .hot-deal__detail-price {
+      margin-top: 20px;
+      position: relative;
+      .txt-price-percent {
+        position: absolute;
+        right: 10px;
+        font-size: 1.1rem;
+        line-height: 1.1rem;
+        color: red;
+      }
+    }
+  }
+}
+.footer {
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .footer__content {
+    font-size: xxx-large;
+    color: gray;
+    opacity: 0.5;
+  }
 }
