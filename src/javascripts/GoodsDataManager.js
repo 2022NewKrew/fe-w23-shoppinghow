@@ -6,6 +6,7 @@ export default class GoodsDataManager {
     static #recentGoodsDataList = []
     static #taggedGoodsDataList = []
     
+    //TODO: Built in API인 CustomEvent로 교체해보기
     static #recentGoodsDataChangedEventListenerList = []
     static #taggedGoodsDataChangedEventListenerList = []
     
