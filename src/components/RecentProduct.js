@@ -1,5 +1,9 @@
 export default class RecentProduct {
-  constructor() {}
+  constructor() {
+    window.addEventListener("DOMContentLoaded", () => {
+      this.showRecentProduct();
+    });
+  }
   showRecentProduct() {
     const recentProductMenu = document.getElementById("recent-product-menu");
     const recentProductContainer = document.getElementById(
@@ -14,9 +18,6 @@ export default class RecentProduct {
     });
   }
   render() {
-    window.addEventListener("DOMContentLoaded", () => {
-      this.showRecentProduct();
-    });
     return /*html*/ `
             <div id="recent-product-container">
                 <div class="recent-product-menu">
