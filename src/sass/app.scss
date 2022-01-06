@@ -225,24 +225,38 @@
     }
 
     .suggestion-carousel {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: blueviolet;
+        @extend %y-center-align;
+        margin: 0 auto;
         .cell {
             @extend %x-center-align;
         }
 
         .cell__item {
-            background-color: aqua;
-            @extend %x-center-align;
+            @extend %center-align;
+            @extend %border-basic;
             .cell__thumbnail {
+                width: 78px;
+                height: 78px;
             }
 
-            .cell__title {
-            }
+            .cell__info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .cell__title {
+                    width: 105px;
+                    display: block;
+                    overflow: hidden;
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 18px;
+                    color: #444;
+                }
 
-            .cell__link {
+                .cell__link {
+                    font-size: 11px;
+                    color: #88888a;
+                }
             }
         }
     }

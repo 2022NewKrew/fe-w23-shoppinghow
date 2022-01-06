@@ -1,5 +1,5 @@
 import { best } from './best.js';
-import { planning } from './planning.js';
+import { planning } from './planning/planning.js';
 
 export const banner = () => {
     const target = document.createElement('div');

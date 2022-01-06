@@ -4,7 +4,7 @@ import PageRouter from './util/pageRouter';
 import { onLocationChangeHandler } from './util/changeLocation.js';
 import { header } from './components/header/header.js';
 
-window.onload = () => {
+window.addEventListener('DOMContentLoaded', () => {
     const app = document.querySelector('body');
     const mainHeader = header();
     const mainContents = document.createElement('div');
@@ -19,4 +19,4 @@ window.onload = () => {
     window.addEventListener('popstate', pageRouter.renderPage);
 
     pageRouter.renderPage();
-};
+});
