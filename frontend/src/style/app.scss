@@ -1,13 +1,23 @@
 @import "global";
 @import "kakaoHead";
+@import "icon";
+@import "footer";
+@import "content";
 
 #daumWrap {
     position: relative;
     width: 100%;
 }
 
+#daumContent, #daumContents {
+    width: 978px;
+    margin: 0 auto;
+    padding-top: 19px;
+}
+
 .shopping_top {
     min-width: 977px;
+    background-color: #f3f3f3;
 }
 
 .screen_out {
@@ -17,7 +27,5 @@
     left: -9999px;
     width: 1px;
     height: 1px;
-    text-indent: -9999px
-px
-;
+    text-indent: -9999px;
 }

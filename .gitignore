@@ -6,3 +6,4 @@
 *.xlsx
 
 node_modules
+backend/public/dist/*

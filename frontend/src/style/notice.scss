@@ -1,0 +1,45 @@
+.wrap_notice {
+    width: 978px;
+    overflow: hidden;
+    margin: 15px auto 0;
+    padding-bottom: 25px;
+
+    .section_notice {
+        overflow: hidden;
+        float: left;
+        padding-top: 12px;
+
+        .tit_notice {
+            float: left;
+            margin-right: 15px;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .link_notice {
+            float: left;
+            padding-top: 2px;
+            line-height: 14px;
+            letter-spacing: -1px;
+            color: #606060;
+        }
+
+        .ico_new {
+            background-position: 100% -650px;
+        }
+
+        .ico_comm2 {
+            float: left;
+            width: 15px;
+            height: 15px;
+            margin-top: 1px;
+            padding-left: 7px;
+        }
+    }
+}
+
+.shopping_top {
+    .wrap_notice {
+        width: 973px;
+    }
+}

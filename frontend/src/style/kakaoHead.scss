@@ -71,18 +71,7 @@
         }
 
         .wrap_rollkeywords {
-            overflow: hidden;
-            position: absolute;
-            left: 31px;
-            top: 16px;
-            width: 578px;
-            height: 23px;
-            line-height: 22px;
-            background-color: #fff;
-            text-align: left;
-        }
-
-        .wrap_rollkeywords {
+            pointer-events: none;
             overflow: hidden;
             position: absolute;
             left: 31px;
@@ -135,16 +124,6 @@ a {
 .screen_hide, .screen_out {
     font-size: 0;
     line-height: 0;
-}
-
-.ico_shwgnb {
-    display: block;
-    overflow: hidden;
-    font-size: 0;
-    line-height: 0;
-    text-indent: -9999px;
-    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
-        background-size: 130px 90px;
 }
 
 .ir_wa {
@@ -306,16 +285,6 @@ dl, li, menu, ol, ul {
 .mac .area_shwgnb .list_kwordgnb .link_shwgnb, .mac .area_shwgnb .list_shwgnb .link_shwgnb {
     line-height: 58px;
     letter-spacing: -.038em;
-}
-
-.ico_shwgnb {
-    display: block;
-    overflow: hidden;
-    font-size: 0;
-    line-height: 0;
-    text-indent: -9999px;
-    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
-        background-size: 130px 90px;
 }
 
 .area_rcntproducts {
