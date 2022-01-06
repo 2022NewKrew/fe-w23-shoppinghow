@@ -51,7 +51,7 @@
           position: absolute;
           width: 300px;
           height: 60px;
-          transition: transform 0.5s;
+          transition: transform 1s;
           display: none;
         }
 
@@ -162,7 +162,7 @@
               display: none;
               margin: 0 auto;
               width: 480px;
-              transition: transform 1s;
+              // transition: transform 0.3s;
             }
             .prev-item {
               transform: translateX(-480px);

@@ -78,29 +78,43 @@ export default class Carousel {
     }
   }
 
+  throttle(callback, delay) {
+    let timerId;
+    return (event) => {
+      if (timerId) clearTimeout(timerId);
+      timerId = setTimeout(callback, delay, event);
+    };
+  }
+
   addButtonEventListener() {
     const prevBtn = document.querySelector(".planning__left-btn");
     const nextBtn = document.querySelector(".planning__right-btn");
 
     let idx = this.findCurrentIndex();
-    prevBtn.addEventListener("click", () => {
-      idx -= 1;
-      idx = idx < 0 ? this.#slideLength - 1 : idx;
-      this.addTransition();
-      this.addActiveClass(idx, "prev");
-    });
-    nextBtn.addEventListener("click", () => {
-      idx += 1;
-      idx = idx === this.#slideLength ? 0 : idx;
-      this.addTransition();
-      this.addActiveClass(idx, "next");
-    });
+    prevBtn.addEventListener(
+      "click",
+      this.throttle(() => {
+        idx -= 1;
+        idx = idx < 0 ? this.#slideLength - 1 : idx;
+        this.addTransition();
+        this.addActiveClass(idx, "prev");
+      }, 300)
+    );
+    nextBtn.addEventListener(
+      "click",
+      this.throttle(() => {
+        idx += 1;
+        idx = idx === this.#slideLength ? 0 : idx;
+        this.addTransition();
+        this.addActiveClass(idx, "next");
+      }, 300)
+    );
   }
 
   addTransition() {
     const items = document.getElementsByClassName("planning__link");
     Array.from(items).forEach((e) => {
-      e.style.transition = "transform 1s";
+      e.style.transition = "transform 0.5s";
     });
   }
 

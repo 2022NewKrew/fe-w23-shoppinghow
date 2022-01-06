@@ -51,7 +51,7 @@ export default function createNavbar() {
                 <a href="#">최근본상품</a>
             </li>
         </ul>
-    </div>;
+    </div>
     `
   );
 
