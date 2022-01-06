@@ -1,4 +1,4 @@
-import ItemFrame from '../item-frame';
+import ItemFrame from '../../common/item-frame';
 import './index.scss';
 
 export default class HotDeal {
