@@ -15,13 +15,11 @@ const makePlanningCarousel = () => {
   ];
   const leftBtn = document.querySelector(".planning__left-btn");
   const rightBtn = document.querySelector(".planning__right-btn");
-
   let counter = 1;
   let size = planningItemArray[0].clientWidth;
 
   planningList.style.transform =
     "translateX(" + -size * counter * PLANNING_LIST_TRANSFORM_RATE + "px)";
-
   leftBtn.addEventListener("click", () => {
     if (counter <= 0) {
       return;
@@ -32,7 +30,6 @@ const makePlanningCarousel = () => {
     planningList.style.transform =
       "translateX(" + -size * counter * PLANNING_LIST_TRANSFORM_RATE + "px)";
   });
-
   rightBtn.addEventListener("click", () => {
     if (counter >= planningItemArray.length - 1) {
       return;
@@ -43,7 +40,6 @@ const makePlanningCarousel = () => {
     planningList.style.transform =
       "translateX(" + -size * counter * PLANNING_LIST_TRANSFORM_RATE + "px)";
   });
-
   planningList.addEventListener("transitionend", () => {
     if (planningItemArray[counter].className === "planning-item__last-clone") {
       planningList.style.transition = "none";
@@ -80,11 +76,7 @@ const makeHotDealHTML = () => {
                     </span>
                 </a>
             </li>`;
-
-  target.innerHTML = Array(HOT_DEAL_ITEM_CNT)
-    .fill(0)
-    .reduce((html, item) => html + hotdealItemTpl, ``);
-
+  target.innerHTML = Array(HOT_DEAL_ITEM_CNT).fill(hotdealItemTpl).join("");
   return;
 };
 
