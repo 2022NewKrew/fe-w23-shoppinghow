@@ -1,7 +1,30 @@
+@import 'global';
+
 .slider {
+  position: relative;
+  @extend %flex-center;
+}
+
+.slider__frame {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 485px;
+  overflow: hidden;
+
+  .slider__track {
+    @extend %flex-center;
+    transform: translateX(-485px);
+
+    .slider__link {
+      display: block;
+      width: 485px;
+    }
+  }
+}
+.slider__action {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  user-select: none;
 
   &:hover {
     .slider__prevBtn {
@@ -15,15 +38,17 @@
 
   .slider__prevBtn,
   .slider__nextBtn {
+    position: absolute;
+    top: calc(50% - 20px);
     overflow: hidden;
     cursor: pointer;
-    margin: auto;
     width: 23px;
     height: 45px;
     background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
   }
 
   .slider__prevBtn {
+    left: 45px;
     background-position: 0 0;
     &:hover {
       background-position: -120px 0;
@@ -31,43 +56,38 @@
   }
 
   .slider__nextBtn {
+    right: 45px;
     background-position: -30px 0;
     &:hover {
       background-position: -150px 0;
     }
   }
 
-  .slider__track {
-    position: relative;
-    .slider__link {
-      display: block;
-    }
-    .slider__pagingContainer {
-      position: absolute;
-      bottom: 1rem;
-      left: 0;
-      right: 0;
-      user-select: none;
-      display: flex;
-      justify-content: center;
+  .slider__pagingContainer {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    user-select: none;
+    display: flex;
+    justify-content: center;
 
-      .slider__paging {
-        padding: 0.5rem 0;
-        margin: 2px;
+    .slider__paging {
+      padding: 0.5rem 0;
+      margin: 2px;
 
+      span {
+        display: block;
+        width: 15px;
+        height: 5px;
+        background-color: #cccccc;
+        transition: background-color 100ms ease-out;
+      }
+
+      .--selected,
+      &:hover {
         span {
-          display: block;
-          width: 15px;
-          height: 5px;
-          background-color: #cccccc;
-          transition: background-color 100ms ease-out;
-        }
-
-        .--selected,
-        &:hover {
-          span {
-            background-color: black;
-          }
+          background-color: black;
         }
       }
     }
