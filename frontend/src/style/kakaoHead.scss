@@ -71,18 +71,7 @@
         }
 
         .wrap_rollkeywords {
-            overflow: hidden;
-            position: absolute;
-            left: 31px;
-            top: 16px;
-            width: 578px;
-            height: 23px;
-            line-height: 22px;
-            background-color: #fff;
-            text-align: left;
-        }
-
-        .wrap_rollkeywords {
+            pointer-events: none;
             overflow: hidden;
             position: absolute;
             left: 31px;
