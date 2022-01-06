@@ -6,7 +6,7 @@ export class Slider extends Component {
 
     return /*html*/ `
         <div class="slider">
-            <button type="button" class="slider__prevBtn"><</button>
+            <button type="button" class="slider__prevBtn"></button>
 
             <div class="slider__track">
                 <a href="#" target="_blank" class="slider__link">
@@ -18,7 +18,7 @@ export class Slider extends Component {
 
                 <div class="slider__pagingContainer">
                 <div class="slider__paging">
-                    <span class="--selected"></span>
+                    <span></span>
                 </div>
                 <div class="slider__paging">
                     <span></span>
@@ -26,7 +26,7 @@ export class Slider extends Component {
                 </div>
             </div>
 
-            <button type="button" class="slider__nextBtn">></button>
+            <button type="button" class="slider__nextBtn"></button>
         </div>
     `;
   }
