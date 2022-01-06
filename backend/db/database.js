@@ -15,10 +15,10 @@ const db = new sqlite3.Database(
 
 async function db_all(query) {
   return new Promise(function (resolve, reject) {
-    db.all(query, function (err, rows) {
-      if (err) {
-        console.log(err);
-        return reject(err);
+    db.all(query, function (error, rows) {
+      if (error) {
+        console.log(error);
+        reject(error);
       }
       resolve(rows);
     });

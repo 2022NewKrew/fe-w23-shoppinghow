@@ -1,6 +1,4 @@
 const getSql = (type, ...Args) => {
-  let sql = "";
-
   /*
     TODO: 베스트상품, 이벤트상품, 테마상품 등의 경우 타 테이블에서 가져오는 쿼리문을 써야하지만 
     임시 데이터이므로 product 테이블에서 테그를 통해 가져오도록 했습니다. 
@@ -8,29 +6,20 @@ const getSql = (type, ...Args) => {
   */
   switch (type) {
     case "getSearchKeywordGroup":
-      sql = "SELECT * FROM searchkeyword";
-      break;
+      return "SELECT * FROM searchkeyword";
     case "getBestProduct":
-      sql = 'SELECT * FROM product where tag="best"';
-      break;
+      return 'SELECT * FROM product where tag="best"';
     case "getSpecialProduct":
-      sql = 'SELECT * FROM product where tag="special"';
-      break;
+      return 'SELECT * FROM product where tag="special"';
     case "getThemaProduct":
-      sql = 'SELECT * FROM product where tag="thema"';
-      break;
+      return 'SELECT * FROM product where tag="thema"';
     case "getHotDealProduct":
-      sql = 'SELECT * FROM product where tag="hotdeal"';
-      break;
+      return 'SELECT * FROM product where tag="hotdeal"';
     case "getKeywordProduct":
-      sql = 'SELECT * FROM product where tag="keyword"';
-      break;
+      return 'SELECT * FROM product where tag="keyword"';
     case "getTagProduct":
-      sql = `SELECT * FROM product where tag="${Args[0]}"`;
-      break;
+      return `SELECT * FROM product where tag="${Args[0]}"`;
   }
-
-  return sql;
 };
 
 module.exports = getSql;

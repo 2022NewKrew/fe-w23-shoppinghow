@@ -2,28 +2,33 @@ const sqlGroup = require("./sqlGroup.js");
 const express = require("express");
 const router = express.Router();
 const db_all = require("./../db/database.js");
+const apiSateType = {
+  BadRequest:400
+}
+const messageType = {
+  Success:"success"
+}
 
-router.get("/", function (req, res, next) {
+router.get("/", () => {
   console.log("api");
 });
 
-router.get("/getSearchKeywordGroup", async function (req, res, next) {
+router.get("/getSearchKeywordGroup", async (req, res) => {
   console.log(`>> ${req.originalUrl}`);
 
   const sql = sqlGroup("getSearchKeywordGroup");
   try {
     const result = await db_all(sql);
     res.json({
-      message: "success",
+      message: messageType.Success,
       data: result,
     });
-  } catch(err) {
-    res.status(400).json({ err: err.message });
-    return;
+  } catch (error) {
+    res.status(apiSateType.BadRequest).json({ error: error.message });
   }
 });
 
-router.get("/getBannerData", async function (req, res, next) {
+router.get("/getBannerData", async (req, res) => {
   console.log(`>> ${req.originalUrl}`);
   try {
     const bestBannerSql = sqlGroup("getBestProduct");
@@ -32,90 +37,83 @@ router.get("/getBannerData", async function (req, res, next) {
       const specialBannerSql = sqlGroup("getSpecialProduct");
       const specialBanner = await db_all(specialBannerSql);
       res.json({
-        message: "success",
-        data: {best:bestBanner, special:specialBanner},
+        message: messageType.Success,
+        data: { best: bestBanner, special: specialBanner },
       });
-    } catch(err) {
-      res.status(400).json({ err: err.message });
-      return;
+    } catch (error) {
+      res.status(apiSateType.BadRequest).json({ error: error.message });
     }
-  } catch(err) {
-    res.status(400).json({ err: err.message });
-    return;
+  } catch (error) {
+    res.status(apiSateType.BadRequest).json({ error: error.message });
   }
 });
 
 //TODO: 사용예정
-router.get("/getEventProduct", async function (req, res, next) {
+router.get("/getEventProduct", async (req, res) => {
   console.log(`>> ${req.originalUrl}`);
   const sql = sqlGroup("getEventProduct");
   try {
     const result = await db_all(sql);
     res.json({
-      message: "success",
+      message: messageType.Success,
       data: result,
     });
-  } catch(err) {
-    res.status(400).json({ err: err.message });
-    return;
+  } catch (error) {
+    res.status(apiSateType.BadRequest).json({ error: error.message });
   }
 });
 
 //TODO: 사용예정
-router.get("/getThemaProduct", async function (req, res, next) {
+router.get("/getThemaProduct", async (req, res) => {
   console.log(`>> ${req.originalUrl}`);
   const sql = sqlGroup("getThemaProduct");
   try {
     const result = await db_all(sql);
     res.json({
-      message: "success",
+      message: messageType.Success,
       data: result,
     });
-  } catch(err) {
-    res.status(400).json({ err: err.message });
-    return;
+  } catch (error) {
+    res.status(apiSateType.BadRequest).json({ error: error.message });
   }
 });
 
 //TODO: 사용예정
-router.get("/getHotDealProduct", async function (req, res, next) {
+router.get("/getHotDealProduct", async (req, res) => {
   console.log(`>> ${req.originalUrl}`);
   const sql = sqlGroup("getHotDealProduct");
   try {
     const result = await db_all(sql);
     res.json({
-      message: "success",
+      message: messageType.Success,
       data: result,
     });
-  } catch(err) {
-    res.status(400).json({ err: err.message });
-    return;
+  } catch (error) {
+    res.status(apiSateType.BadRequest).json({ error: error.message });
   }
 });
 
 //TODO: 사용예정
-router.get("/getKeywordProduct", async function (req, res, next) {
+router.get("/getKeywordProduct", async (req, res) => {
   console.log(`>> ${req.originalUrl}`);
   const sql = sqlGroup("getKeywordProduct");
   try {
     const result = await db_all(sql);
     res.json({
-      message: "success",
+      message: messageType.Success,
       data: result,
     });
-  } catch(err) {
-    res.status(400).json({ err: err.message });
-    return;
+  } catch (error) {
+    res.status(apiSateType.BadRequest).json({ error: error.message });
   }
 });
 
 //TODO: 사용예정
-router.post("/getTagProduct", async function (req, res, next) {
+router.post("/getTagProduct", async (req, res) => {
   console.log(`>> ${req.originalUrl}`);
 
   if (!req.body.tag) {
-    res.status(400).json({ err: "add tag!" });
-    return;
+    res.status(apiSateType.BadRequest).json({ error: "add tag!" });
   }
 
   const tag = req.body.tag;
@@ -124,12 +122,11 @@ router.post("/getTagProduct", async function (req, res, next) {
   try {
     const result = await db_all(sql);
     res.json({
-      message: "success",
+      message: messageType.Success,
       data: result,
     });
-  } catch(err) {
-    res.status(400).json({ err: err.message });
-    return;
+  } catch (error) {
+    res.status(apiSateType.BadRequest).json({ error: error.message });
   }
 });
 
