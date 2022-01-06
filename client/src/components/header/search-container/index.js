@@ -23,7 +23,11 @@ export default class SearchContainer {
 
   deactivateInput() {
     this.search.classList.contains(cssNameForActivation) && this.search.classList.remove(cssNameForActivation);
-    this.searchForm.getInputLength() === 0 && this.searchForm.blurInput();
+    if (!this.searchForm.getInputLength()) {
+      this.searchForm.blurInput();
+      this.textRoller.deActivateRoller();
+      this.textRoller.activateRoller();
+    }
   }
 
   setState(props) {
