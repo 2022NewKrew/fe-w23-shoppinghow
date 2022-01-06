@@ -111,12 +111,59 @@
       }
 
       .planning {
-        width: 790px;
+        width: 600px;
 
         .planning__link {
           display: block;
           margin: 0 auto;
           width: 600px;
+        }
+
+        .planning-box {
+          overflow: hidden;
+
+          .planning-list {
+            display: flex;
+          }
+        }
+
+        .planning-comm {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .planning__left-ico {
+            @extend %planning-ico;
+            margin-right: 50px;
+            background-position: -128px -335px;
+          }
+
+          .planning__paging {
+            display: flex;
+
+            .planning__paging-btn {
+              display: flex;
+              width: 15px;
+              height: 5px;
+              margin: 1px;
+
+              .planning__paging-num {
+                display: block;
+                width: 15px;
+                height: 5px;
+                font-size: 0;
+                line-height: 0;
+                background-color: #ccc;
+                text-indent: -9999px;
+              }
+            }
+          }
+
+          .planning__right-ico {
+            @extend %planning-ico;
+            margin-left: 50px;
+            background-position: -145px -335px;
+          }
         }
       }
     }
@@ -150,7 +197,7 @@
       .theme-item__icon {
         border: 0.5px solid #ff000069;
         padding: 4px;
-        width: 35px;
+        width: 40px;
       }
     }
   }
