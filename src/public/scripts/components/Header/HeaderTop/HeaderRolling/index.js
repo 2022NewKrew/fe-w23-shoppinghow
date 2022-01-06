@@ -9,8 +9,8 @@ export default class HeaderRolling extends Component {
       currentSlide: 0,
     };
     this.totalRollingCount = 10;
-    this.rollingTimeout;
-    this.currentSlide = 0;
+    this.rollingTimeout = undefined;
+    this.finalRollingCheck = false;
   }
   template() {
     const { top10 } = this.$props;
@@ -25,29 +25,31 @@ export default class HeaderRolling extends Component {
       `;
   }
   setEvent() {
+    const { currentSlide } = this.$state;
     this.rollingTimeout = setTimeout(() => {
-      this.setState({ currentSlide: this.currentSlide === this.totalRollingCount ? 0 : ++this.currentSlide });
+      if (this.finalRollingCheck) this.finalRollingCheck = false;
+      this.setState({ currentSlide: currentSlide === this.totalRollingCount ? 1 : currentSlide + 1 });
     }, this.$state.rollingSpeed);
   }
-  async mounted() {
+
+  mounted() {
     const { rollingList } = this.$props;
     const { rollingSpeed, rollingHeight, currentSlide } = this.$state;
-
-    this.transition(rollingList, rollingSpeed, rollingHeight, currentSlide);
-    if (this.currentSlide === this.totalRollingCount) {
-      clearTimeout(this.rollingTimeout);
-      setTimeout(() => {
-        this.currentSlide = 0;
-        this.transition(rollingList, 0, rollingHeight, this.currentSlide);
-        // this.setState({ currentSlide: this.currentSlide === this.totalRollingCount ? 0 : ++this.currentSlide });
-        setTimeout(() => {
-          this.setState({ currentSlide: this.currentSlide === this.totalRollingCount ? 0 : ++this.currentSlide });
-        }, 0);
-      }, rollingSpeed);
-    }
+    this.transition(rollingList, rollingSpeed, rollingHeight, currentSlide, "A").then(() => {
+      if (currentSlide === this.totalRollingCount) {
+        //
+        this.transition(rollingList, 0, rollingHeight, 0, "B"); // 눈속임용
+        this.finalRollingCheck = true;
+      }
+    });
   }
-  transition(rollingList, rollingSpeed, rollingHeight, currentSlide) {
-    rollingList.style.transition = `${rollingSpeed}ms`;
-    rollingList.style.transform = `translate3d(0px, -${rollingHeight * currentSlide}px, 0px)`;
+  async transition(rollingList, rollingSpeed, rollingHeight, currentSlide, l) {
+    return new Promise((res, rej) => {
+      rollingList.style.transition = `${rollingSpeed}ms`;
+      rollingList.style.transform = `translate3d(0px, -${rollingHeight * currentSlide}px, 0px)`;
+      setTimeout(() => {
+        res();
+      }, rollingSpeed - 30); // 꼼수..
+    });
   }
 }
