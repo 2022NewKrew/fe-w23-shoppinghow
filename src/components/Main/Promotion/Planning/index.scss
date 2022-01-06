@@ -3,10 +3,27 @@
   flex: 1 1 0;
   border-left: 1px solid #f1f1f1;
 
+  .slide_wrapper {
+    position: relative;
+    width: 634px;
+    overflow: hidden;
+  }
+
+  .slide_box {
+    width: 100%;
+    margin: auto;
+    overflow-x: hidden;
+  }
+
   .planning__link {
-    display: block;
-    margin: 0 auto;
-    width: 600px;
+    display: table;
+    float: left;
+    width: 634px;
+
+    img {
+      width: 485px;
+      height: 340px;
+    }
   }
 
   .paging__comm {
@@ -54,12 +71,11 @@
     }
 
     .planning__paging {
-      width: 51px;
       display: flex;
-      justify-content: space-between;
       .paging__bar {
         display: block;
         width: 15px;
+        margin: 1.5px;
         height: 5px;
         font-size: 0;
         line-height: 0;
