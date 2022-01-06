@@ -6,7 +6,7 @@ const __dirname = path.resolve();
 
 export default {
     mode: "development",
-    entry: "./src/app.js",
+    entry: "./src/main.js",
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "static/js/bundle.js",
@@ -24,20 +24,21 @@ export default {
             },
             {
                 test: /\.(sc|c)ss$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
             },
         ],
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: [".js"],
         alias: {
-            // '@components': path.resolve(__dirname, 'src/components'),
-            // '@scss': path.resolve(__dirname, 'src/scss'),
+            "@components": path.resolve(__dirname, 'src/components'),
+            "@scss": path.resolve(__dirname, "src/scss"),
+            "@utils": path.resolve(__dirname, "src/utils"),
             // '@api': path.resolve(__dirname, 'src/api'),
         },
     },
     plugins: [
         new HtmlWebpackPlugin({ template: "./public/index.html" }),
-        new MiniCssExtractPlugin({ filename: 'static/css/style.css' }),
+        new MiniCssExtractPlugin({ filename: "static/css/style.css" }),
     ],
 };
