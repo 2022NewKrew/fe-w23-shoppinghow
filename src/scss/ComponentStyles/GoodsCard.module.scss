@@ -1,0 +1,72 @@
+.card-container {
+  padding: 20px;
+  background-color: #FFFFFF;
+  
+  .card {
+    cursor: pointer;
+  
+    .img-box {
+      
+      img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+      }
+    }
+  
+    .description-box {
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    
+      .title {
+        font-size: 0.8rem;
+      }
+    
+      .detail-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      
+        .price {
+        
+          .price-num {
+            font-weight: 800;
+          }
+          
+          .price-unit {
+          
+          }
+        }
+      
+        .heart-icon {
+          width: 18px;
+          height: 17px;
+          background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_190702.png) no-repeat;
+          background-position: -240px 0;
+          
+          &.heart-icon--tagged {
+            background-position: -240px -40px;
+          }
+        }
+      }
+    }
+    
+    &:hover {
+      
+      .img-box {
+        
+        img {
+          opacity: 0.6;
+        }
+      }
+      
+      .description-box {
+        
+        .title {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

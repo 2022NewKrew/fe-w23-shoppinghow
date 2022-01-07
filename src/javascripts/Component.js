@@ -1,5 +1,3 @@
-import { Obj } from 'nunjucks/src/object'
-
 export default class Component {
     
     #rootEl
@@ -24,6 +22,26 @@ export default class Component {
                 this.#childComponents.push(component)
             })
         }
+    }
+    
+    addChild(component, parentEl) {
+        parentEl.appendChild(component.rootEl)
+    }
+    
+    update() {
+    
+    }
+    
+    addEventListener(eventType, listener) {
+        this.rootEl.addEventListener(eventType, listener)
+    }
+    
+    show() {
+        this.rootEl.style.visibility = 'visible'
+    }
+    
+    hide() {
+        this.rootEl.style.visibility = 'hidden'
     }
     
     remove() {
