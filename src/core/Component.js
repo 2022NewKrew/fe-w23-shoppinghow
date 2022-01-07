@@ -7,6 +7,7 @@ export default class Component {
     this.props = props; // props 할당
     this.setup();
     this.render();
+    this.setEvent();
   }
 
   setup() {}
@@ -20,12 +21,13 @@ export default class Component {
 
   render() {
     this.$target.insertAdjacentHTML("beforeend", this.template());
-    this.setEvent();
     this.mounted(); // render 후에 mounted가 실행 된다.
   }
 
   // 이벤트 적용
-  setEvent() {}
+  setEvent() {
+    console.log(this.$target, "event");
+  }
 
   addEvent(eventType, selector, callback, options = {}) {
     const children = [...this.$target.querySelectorAll(selector)];
