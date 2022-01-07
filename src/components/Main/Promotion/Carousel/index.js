@@ -78,9 +78,18 @@ export default class Carousel extends Component {
     const slideSpeed = 300;
 
     let currentIndex = 0;
-    this.$(`.paging__bar:nth-child(${currentIndex + 1})`).classList.add(
-      'selected'
-    );
+
+    const removeSelectedClass = (currentIndex) =>
+      this.$(`.paging__bar:nth-child(${currentIndex + 1})`).classList.remove(
+        'selected'
+      );
+
+    const addSelectedClass = (currentIndex) =>
+      this.$(`.paging__bar:nth-child(${currentIndex + 1})`).classList.add(
+        'selected'
+      );
+
+    addSelectedClass(currentIndex);
 
     $slideBtnNext.addEventListener('click', () => {
       if (currentIndex <= slideLen - 1) {
@@ -88,9 +97,7 @@ export default class Carousel extends Component {
         $slideList.style.transform = `translate3d(-${
           slideWidth * (currentIndex + 2)
         }px, 0px, 0px)`;
-        this.$(`.paging__bar:nth-child(${currentIndex + 1})`).classList.remove(
-          'selected'
-        );
+        removeSelectedClass(currentIndex);
       }
       if (currentIndex === slideLen - 1) {
         setTimeout(() => {
@@ -99,10 +106,7 @@ export default class Carousel extends Component {
         }, slideSpeed);
         currentIndex = -1;
       }
-      currentIndex++;
-      this.$(`.paging__bar:nth-child(${currentIndex + 1})`).classList.add(
-        'selected'
-      );
+      addSelectedClass(++currentIndex);
     });
 
     $slideBtnPrev.addEventListener('click', () => {
@@ -111,9 +115,7 @@ export default class Carousel extends Component {
         $slideList.style.transform = `translate3d(-${
           slideWidth * currentIndex
         }px, 0px, 0px)`;
-        this.$(`.paging__bar:nth-child(${currentIndex + 1})`).classList.remove(
-          'selected'
-        );
+        removeSelectedClass(currentIndex);
       }
       if (currentIndex === 0) {
         setTimeout(() => {
@@ -124,10 +126,7 @@ export default class Carousel extends Component {
         }, slideSpeed);
         currentIndex = slideLen;
       }
-      currentIndex--;
-      this.$(`.paging__bar:nth-child(${currentIndex + 1})`).classList.add(
-        'selected'
-      );
+      addSelectedClass(--currentIndex);
     });
   }
 }
