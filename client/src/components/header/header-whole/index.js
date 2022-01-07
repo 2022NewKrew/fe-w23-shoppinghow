@@ -21,8 +21,7 @@ export default class Header {
   }
 
   initializeData() {
-    this.initializeHotItemsName();
-    this.initializeMenuBarList();
+    Promise.all([this.initializeHotItemsName(), this.initializeMenuBarList()]);
   }
 
   setState(newState) {

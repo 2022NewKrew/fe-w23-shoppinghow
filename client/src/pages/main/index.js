@@ -26,10 +26,12 @@ export default class MainPage {
 
   async initializeData() {
     try {
-      await this.initializeBannerItem();
-      await this.initializePromotionList();
-      await this.initializeHotDeal();
-      await this.initializeHotItem();
+      await Promise.all([
+        this.initializeBannerItem(),
+        this.initializePromotionList(),
+        this.initializeHotDeal(),
+        this.initializeHotItem(),
+      ]);
     } catch (e) {
       alert(e);
     }
