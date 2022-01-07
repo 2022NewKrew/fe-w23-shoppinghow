@@ -2,14 +2,14 @@ import Component from '../Component'
 import styles from '../../scss/ComponentStyles/GoodsFloatingLayer.module.scss'
 import GoodsDataManager from '../GoodsDataManager'
 
-export default class GoodsFloatingLayer extends Component {
+export default class RecentGoodsFloatingLayer extends Component {
     
     static #RECENT_KEY = 'recent'
     static #TAGGED_KEY = 'tagged'
     
     #recentGoodsList = []
     #taggedGoodsList = []
-    #whatToShow = GoodsFloatingLayer.#RECENT_KEY
+    #whatToShow = RecentGoodsFloatingLayer.#RECENT_KEY
     
     #recentGoodsTabEl
     #taggedGoodsTabEl
@@ -69,13 +69,13 @@ export default class GoodsFloatingLayer extends Component {
         this.#taggedGoodsNumEl.innerText = this.#taggedGoodsList.length
         
         switch (this.#whatToShow) {
-            case GoodsFloatingLayer.#RECENT_KEY:
+            case RecentGoodsFloatingLayer.#RECENT_KEY:
                 this.#goodsListEl.innerHTML = this.#getGoodsListHTML(this.#recentGoodsList)
                 this.#recentGoodsTabEl.classList.add(styles.selectedTabItem)
                 this.#taggedGoodsTabEl.classList.remove(styles.selectedTabItem)
                 break
             
-            case GoodsFloatingLayer.#TAGGED_KEY:
+            case RecentGoodsFloatingLayer.#TAGGED_KEY:
                 this.#goodsListEl.innerHTML = this.#getGoodsListHTML(this.#taggedGoodsList)
                 this.#taggedGoodsTabEl.classList.add(styles.selectedTabItem)
                 this.#recentGoodsTabEl.classList.remove(styles.selectedTabItem)
@@ -85,12 +85,12 @@ export default class GoodsFloatingLayer extends Component {
     
     #setTabMouseOverEventListener() {
         this.#recentGoodsTabEl.addEventListener('mouseover', () => {
-            this.#whatToShow = GoodsFloatingLayer.#RECENT_KEY
+            this.#whatToShow = RecentGoodsFloatingLayer.#RECENT_KEY
             this.update()
         })
         
         this.#taggedGoodsTabEl.addEventListener('mouseover', () => {
-            this.#whatToShow = GoodsFloatingLayer.#TAGGED_KEY
+            this.#whatToShow = RecentGoodsFloatingLayer.#TAGGED_KEY
             this.update()
         })
     }

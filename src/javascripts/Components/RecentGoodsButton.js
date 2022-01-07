@@ -1,6 +1,6 @@
 import Component from '../Component'
 import styles from '../../scss/ComponentStyles/RecentGoodsButton.module.scss'
-import GoodsFloatingLayer from './GoodsFloatingLayer'
+import RecentGoodsFloatingLayer from './RecentGoodsFloatingLayer'
 
 export default class RecentGoodsButton extends Component {
     
@@ -9,18 +9,18 @@ export default class RecentGoodsButton extends Component {
     #goodsFloatingLayer
     
     constructor() {
-        const goodsFloatingLayer = new GoodsFloatingLayer()
+        const recentGoodsFloatingLayer = new RecentGoodsFloatingLayer()
         
         super(`
             <div class="${ styles.buttonBox }">
                 <div class="${ styles.buttonText }">최근 본 상품</div>
-                <div data-component="GoodsFloatingLayer"></div>
+                <div data-component="RecentGoodsFloatingLayer"></div>
             </div>
         `, {
-            'GoodsFloatingLayer': goodsFloatingLayer
+            'RecentGoodsFloatingLayer': recentGoodsFloatingLayer
         })
         
-        this.#goodsFloatingLayer = goodsFloatingLayer
+        this.#goodsFloatingLayer = recentGoodsFloatingLayer
         this.#goodsFloatingLayer.hide()
         
         this.#setHoverEventListener()
