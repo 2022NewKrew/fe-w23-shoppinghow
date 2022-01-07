@@ -35,3 +35,33 @@ $button-padding: 20px;
   padding: 5px;
   font-size: 0.875rem;
 }
+
+%planning-ico {
+  display: inline-block;
+  overflow: hidden;
+  width: 15px;
+  height: 25px;
+  font-size: 0;
+  line-height: 0;
+  background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png)
+    no-repeat;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+
+%planning__paging-btn {
+  display: flex;
+  width: 15px;
+  height: 5px;
+  margin: 1px;
+  cursor: pointer;
+}
+
+%planning__paging-num {
+  display: block;
+  width: 15px;
+  height: 5px;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}

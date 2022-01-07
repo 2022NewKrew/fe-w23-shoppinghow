@@ -111,12 +111,60 @@
       }
 
       .planning {
-        width: 790px;
+        width: 600px;
 
         .planning__link {
           display: block;
           margin: 0 auto;
           width: 600px;
+        }
+
+        .planning-box {
+          overflow: hidden;
+
+          .planning-list {
+            display: flex;
+          }
+        }
+
+        .planning-comm {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .planning__left-ico {
+            @extend %planning-ico;
+            margin-right: 50px;
+            background-position: -128px -335px;
+          }
+
+          .planning__paging {
+            display: flex;
+
+            em.planning__paging-btn {
+              @extend %planning__paging-btn;
+
+              .planning__paging-num {
+                @extend %planning__paging-num;
+                background-color: #333;
+              }
+            }
+
+            span.planning__paging-btn {
+              @extend %planning__paging-btn;
+
+              .planning__paging-num {
+                @extend %planning__paging-num;
+                background-color: #ccc;
+              }
+            }
+          }
+
+          .planning__right-ico {
+            @extend %planning-ico;
+            margin-left: 50px;
+            background-position: -145px -335px;
+          }
         }
       }
     }
@@ -150,7 +198,7 @@
       .theme-item__icon {
         border: 0.5px solid #ff000069;
         padding: 4px;
-        width: 35px;
+        width: 40px;
       }
     }
   }
