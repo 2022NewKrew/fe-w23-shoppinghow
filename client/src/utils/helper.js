@@ -10,7 +10,7 @@ export const addMoneyUnitLogic = (money) => {
 
 export const adjustDiscount = (price, discountRate) => {
   const discountRateWithoutPerCent = discountRate.replace(/[^0-9]/g, '');
-  const adjustDiscountPrice = Number(discountRateWithoutPerCent) * 0.01 * price;
+  const adjustDiscountPrice = Number(100 - discountRateWithoutPerCent) * 0.01 * price;
   const stringPrice = adjustDiscountPrice.toLocaleString();
   return stringPrice + '원';
 };
