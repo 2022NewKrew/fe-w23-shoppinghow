@@ -1,29 +1,34 @@
-export default class GoodsDataManager {
+class GoodsDataManager {
     
     static #RECENT_GOODS_LIST_KEY = 'recentGoodsList'
     static #TAGGED_GOODS_LIST_KEY = 'taggedGoodsList'
     
-    static #recentGoodsDataList = []
-    static #taggedGoodsDataList = []
+    #recentGoodsDataList = []
+    #taggedGoodsDataList = []
     
     //TODO: Built in API인 CustomEvent로 교체해보기
-    static #recentGoodsDataChangedEventListenerList = []
-    static #taggedGoodsDataChangedEventListenerList = []
+    #recentGoodsDataChangedEventListenerList = []
+    #taggedGoodsDataChangedEventListenerList = []
     
     
-    static #notifyRecentGoodsDataChangedEvent() {
+    constructor() {
+        this.init()
+    }
+    
+    
+    #notifyRecentGoodsDataChangedEvent() {
         this.#recentGoodsDataChangedEventListenerList.forEach((eventListener) => {
             eventListener(this.#recentGoodsDataList)
         })
     }
     
-    static #notifyTaggedGoodsDataChangedEvent() {
+    #notifyTaggedGoodsDataChangedEvent() {
         this.#taggedGoodsDataChangedEventListenerList.forEach((eventListener) => {
             eventListener(this.#taggedGoodsDataList)
         })
     }
     
-    static #checkIfSameGoodsDataExists(goodsList, goodsData, callback) {
+    #checkIfSameGoodsDataExists(goodsList, goodsData, callback) {
         goodsList.forEach((goodsDataToCompare, idx) => {
             if (goodsDataToCompare.title === goodsData.title
                 && goodsDataToCompare.imgSrc === goodsData.imgSrc) {
@@ -33,7 +38,7 @@ export default class GoodsDataManager {
         })
     }
     
-    static init() {
+    init() {
         this.pullFromLocalStorage()
     
         window.addEventListener('beforeunload', () => {
@@ -41,7 +46,7 @@ export default class GoodsDataManager {
         })
     }
     
-    static checkIfSameTaggedGoodsDataExists(goodsData) {
+    checkIfSameTaggedGoodsDataExists(goodsData) {
         let doSameTaggedGoodsDataExists = false
         
         this.#checkIfSameGoodsDataExists(this.#taggedGoodsDataList, goodsData, () => {
@@ -51,9 +56,9 @@ export default class GoodsDataManager {
         return doSameTaggedGoodsDataExists
     }
     
-    static pullFromLocalStorage() {
-        const recentGoodsSerializedStr = localStorage.getItem(this.#RECENT_GOODS_LIST_KEY)
-        const taggedGoodsSerializedStr = localStorage.getItem(this.#TAGGED_GOODS_LIST_KEY)
+    pullFromLocalStorage() {
+        const recentGoodsSerializedStr = localStorage.getItem(GoodsDataManager.#RECENT_GOODS_LIST_KEY)
+        const taggedGoodsSerializedStr = localStorage.getItem(GoodsDataManager.#TAGGED_GOODS_LIST_KEY)
         
         if (recentGoodsSerializedStr) {
             this.#recentGoodsDataList = JSON.parse(recentGoodsSerializedStr)
@@ -64,12 +69,12 @@ export default class GoodsDataManager {
         }
     }
     
-    static pushToLocalStorage() {
-        localStorage.setItem(this.#RECENT_GOODS_LIST_KEY, JSON.stringify(this.#recentGoodsDataList))
-        localStorage.setItem(this.#TAGGED_GOODS_LIST_KEY, JSON.stringify(this.#taggedGoodsDataList))
+    pushToLocalStorage() {
+        localStorage.setItem(GoodsDataManager.#RECENT_GOODS_LIST_KEY, JSON.stringify(this.#recentGoodsDataList))
+        localStorage.setItem(GoodsDataManager.#TAGGED_GOODS_LIST_KEY, JSON.stringify(this.#taggedGoodsDataList))
     }
     
-    static addRecentGoodsData(goodsData) {
+    addRecentGoodsData(goodsData) {
         let isDuplicate = false
         
         this.#checkIfSameGoodsDataExists(this.#recentGoodsDataList, goodsData, () => {
@@ -82,7 +87,7 @@ export default class GoodsDataManager {
         }
     }
     
-    static addTaggedGoodsData(goodsData) {
+    addTaggedGoodsData(goodsData) {
         let isDuplicate = false
     
         this.#checkIfSameGoodsDataExists(this.#taggedGoodsDataList, goodsData, () => {
@@ -95,29 +100,31 @@ export default class GoodsDataManager {
         }
     }
     
-    static getRecentGoodsDataList() {
+    getRecentGoodsDataList() {
         return this.#recentGoodsDataList
     }
     
-    static getTaggedGoodsDataList() {
+    getTaggedGoodsDataList() {
         return this.#taggedGoodsDataList
     }
     
-    static removeTaggedGoodsData(goodsData) {
+    removeTaggedGoodsData(goodsData) {
         this.#checkIfSameGoodsDataExists(this.#taggedGoodsDataList, goodsData, (idx) => {
             this.#taggedGoodsDataList.splice(idx, 1)
             this.#notifyTaggedGoodsDataChangedEvent()
         })
     }
     
-    static addRecentGoodsDataChangedEventListener(eventListener) {
+    addRecentGoodsDataChangedEventListener(eventListener) {
         this.#recentGoodsDataChangedEventListenerList.push(eventListener)
     }
     
-    static addTaggedGoodsDataChangedEventListener(eventListener) {
+    addTaggedGoodsDataChangedEventListener(eventListener) {
         this.#taggedGoodsDataChangedEventListenerList.push(eventListener)
     }
 
 }
 
-GoodsDataManager.init()
+const goodsDataManager = new GoodsDataManager()
+
+export default goodsDataManager
