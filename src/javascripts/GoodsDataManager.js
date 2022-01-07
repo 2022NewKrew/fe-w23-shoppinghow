@@ -34,7 +34,7 @@ export default class GoodsDataManager {
     }
     
     static init() {
-        this.pullFormLocalStorage()
+        this.pullFromLocalStorage()
     
         window.addEventListener('beforeunload', () => {
             this.pushToLocalStorage()
@@ -51,7 +51,7 @@ export default class GoodsDataManager {
         return doSameTaggedGoodsDataExists
     }
     
-    static pullFormLocalStorage() {
+    static pullFromLocalStorage() {
         const recentGoodsSerializedStr = localStorage.getItem(this.#RECENT_GOODS_LIST_KEY)
         const taggedGoodsSerializedStr = localStorage.getItem(this.#TAGGED_GOODS_LIST_KEY)
         
