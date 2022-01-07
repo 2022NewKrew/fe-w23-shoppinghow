@@ -24,7 +24,7 @@
     width: 670px;
     @include border-basic;
     border-radius: 8px;
-    transition: border-color 400ms ease-in-out;
+    transition: border-color 300ms ease-in-out;
 
     & > form {
       display: flex;
@@ -86,9 +86,8 @@
   background-color: white;
   z-index: 100;
 
-  visibility: hidden;
   opacity: 0;
-  transition: opacity 400ms ease-out;
+  transition: opacity 300ms ease-out; // js에서 opacity 제어
 
   .top10modal__title {
     display: block;
@@ -112,9 +111,8 @@
     }
   }
 }
-.top10modal--show {
-  visibility: inherit;
-  opacity: 1;
+.top10modal--hide {
+  visibility: hidden;
 }
 
 .header__nav {
