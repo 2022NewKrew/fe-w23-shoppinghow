@@ -2,6 +2,19 @@ import { HotDealSection, PromotionSection, MainLayout } from '@components';
 
 export class HomePage extends MainLayout {
   setup() {
+    this.props.top10List = [
+      { rank: 1, text: '엔진코팅제' },
+      { rank: 2, text: '벽선반' },
+      { rank: 3, text: '키즈가방' },
+      { rank: 4, text: '마스크가드' },
+      { rank: 5, text: '대한민국지도' },
+      { rank: 6, text: '염색약' },
+      { rank: 7, text: '부츠' },
+      { rank: 8, text: '로봇청소기' },
+      { rank: 9, text: '화분' },
+      { rank: 10, text: '콩나물' },
+    ];
+
     this.hotDealProductList = [...Array(10)].map((_) => ({
       title: '구매1만↑우유앙빵10+10',
       img: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',

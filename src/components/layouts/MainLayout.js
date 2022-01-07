@@ -21,6 +21,7 @@ export class MainLayout extends Component {
   mounted() {
     new Header($('header', this.$target), {
       renderType: 'outerHTML',
+      top10List: this.props.top10List,
     });
 
     new Footer($('footer', this.$target), {
