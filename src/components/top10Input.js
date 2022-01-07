@@ -47,8 +47,6 @@ export default class Top10Input extends Component {
     const searchInput = ".search__input";
     const top10Container = this.$target.querySelector("#top10Container");
 
-    let timeId;
-
     this.addEvent("mouseover", searchInput, this.pauseSlide.bind(this));
 
     this.addEvent("mouseout", searchInput, this.resumeSlide.bind(this));

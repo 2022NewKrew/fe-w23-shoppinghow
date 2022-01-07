@@ -18,12 +18,10 @@ export default class Component {
     return "";
   }
 
-  init() {}
-
-  async render() {
-    this.$target.innerHTML += this.template();
-    await this.setEvent();
-    await this.mounted(); // render 후에 mounted가 실행 된다.
+  render() {
+    this.$target.insertAdjacentHTML("beforeend", this.template());
+    this.setEvent();
+    this.mounted(); // render 후에 mounted가 실행 된다.
   }
 
   // 이벤트 적용

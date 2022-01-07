@@ -1,4 +1,5 @@
 import Component from "../core/Component";
+import { throttle } from "../utils/common";
 
 export default class Carousel extends Component {
   slideList;
@@ -80,7 +81,7 @@ export default class Carousel extends Component {
     this.addEvent(
       "click",
       prevBtn,
-      this.throttle(() => {
+      throttle(() => {
         idx -= 1;
         idx = idx < 0 ? slideList.length - 1 : idx;
         this.addTransition();
@@ -91,7 +92,7 @@ export default class Carousel extends Component {
     this.addEvent(
       "click",
       nextBtn,
-      this.throttle(() => {
+      throttle(() => {
         idx += 1;
         idx = idx === slideList.length ? 0 : idx;
         this.addTransition();
@@ -149,28 +150,10 @@ export default class Carousel extends Component {
     }
   }
 
-  throttle(callback, delay) {
-    let timerId;
-    return (event) => {
-      if (timerId) clearTimeout(timerId);
-      timerId = setTimeout(callback, delay, event);
-    };
-  }
-
   addTransition() {
     const items = document.getElementsByClassName("planning__link");
     Array.from(items).forEach((e) => {
       e.style.transition = "transform 0.5s";
     });
-  }
-
-  findCurrentIndex(page) {
-    const idx = 0;
-    Array.from(page).forEach((e, idx) => {
-      if (e.classList.contains("cur-page")) {
-        idx = idx;
-      }
-    });
-    return idx;
   }
 }
