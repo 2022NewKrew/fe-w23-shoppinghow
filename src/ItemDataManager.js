@@ -4,53 +4,51 @@ const viewItemUrl="/api/view";
 const dibsItemUrl="/api/dibs";
 const itemDataUrl="/json/items.json";
 
-let instance=undefined;
-
 /**
  * Singleton item data manager.
  */
 class ItemDataManager{
   constructor(){
-    if(instance!==undefined){
-      return instance;
-    }
-    instance=this;
     /** @type {Array.<Object>} */
-    this.itemData;
+    this.itemData=undefined;
     /** @type {Object.<number, boolean>} */
-    this.viewItemIdsCache;
+    this.viewItemIds;
     /** @type {Object.<number, boolean>} */
-    this.dibsItemIdsCache;
+    this.dibsItemIds;
     /** @type {boolean} */
-    this.didUpdatedViewItems=false;
+    this.didUpdateViewItems=true;
     /** @type {boolean} */
-    this.didUpdatedDibsItems=false;
+    this.didUpdateDibsItems=true;
   }
 
   async fetchItemData(){
-    return (await this.#getFromUrl(itemDataUrl));
-  }
-  
-  async fetchViewItemIds(){
-    if(this.didUpdatedViewItems){
-      this.didUpdatedViewItems=false;
-      this.viewItemIdsCache=(await this.#getFromUrl(viewItemUrl));
+    if(this.itemData===undefined){
+      this.itemData=await this.#getFromUrl(itemDataUrl);
     }
-    return this.viewItemIdsCache;
+    return this.itemData;
+  }
+
+  async fetchViewItemIds(){
+    if(this.didUpdateViewItems){
+      this.didUpdateViewItems=false;
+      this.viewItemIds=(await this.#getFromUrl(viewItemUrl));
+    }
+    return this.viewItemIds;
   }
 
   async fetchDibsItemIds(){
-    if(this.didUpdatedDibsItems){
-      this.didUpdatedDibsItems=false;
-      this.viewItemIdsCache=(await this.#getFromUrl(dibsItemUrl));
+    if(this.didUpdateDibsItems){
+      this.didUpdateDibsItems=false;
+      this.dibsItemIds=(await this.#getFromUrl(dibsItemUrl));
     }
-    return this.viewItemIdsCache;
+    return this.dibsItemIds;
   }
 
   /**
    * @param {number} itemId
    */
   updateViewItem(itemId){
+    this.didUpdateViewItems=true;
     this.#updateToUrl(itemId, viewItemUrl);
   }
 
@@ -58,6 +56,7 @@ class ItemDataManager{
    * @param {number} itemId
    */
   updateDibsItem(itemId){
+    this.didUpdateDibsItems=true;
     this.#updateToUrl(itemId, dibsItemUrl);
   }
 
@@ -75,6 +74,7 @@ class ItemDataManager{
 
   /**
    * @param {string} url
+   * @returns {Promise.<any>}
    */
   #getFromUrl(url){
     return new Promise((resolve, reject)=>{
@@ -88,7 +88,8 @@ class ItemDataManager{
     });
   }
 }
+const instance=new ItemDataManager();
 /**
  * But is this the right singleton pattern...?
  */
-export default new ItemDataManager();
+export default instance;
