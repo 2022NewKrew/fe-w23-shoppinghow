@@ -1,9 +1,10 @@
 import Component from '../../core/Component';
+import {getApi} from '../../core/ApiService';
+import {ERROR_SELECTOR, API_SELECTOR} from '../../core/TemplateGroup';
 import {TARGET_SELECTOR, getTargetSelector, getTarget} from '../../core/ComponentGroup';
 import KaKaoBanner from './kakaoBanner/KaKaoBanner';
 import KaKaoShopingPartner from './KaKaoShopingPartner';
 import KaKaoNotice from './KaKaoNotice';
-import ApiService from '../../core/ApiService';
 export default class KaKaoContent extends Component {
   template() {
     return `
@@ -35,18 +36,25 @@ export default class KaKaoContent extends Component {
 
   async syncMounted() {
     const $kaKaoBanner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.TARGET_BANNER));
-    const bannerData = await this.getBannerData();
-    new KaKaoBanner($kaKaoBanner, {bannerData: bannerData});
+    try {
+      const bannerData = await this.getBannerData();
+      new KaKaoBanner($kaKaoBanner, {bannerData: bannerData});
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async getBannerData() {
-    const apiService = new ApiService();
-
-    const res = await apiService.getApi('getBannerData');
-    if (res == null) {
-      console.log('getBannerData err');
-      return;
+    try {
+      const res = await getApi(API_SELECTOR.GET_BANNER_DATA);
+      // TODO 데이터 체크와 에러메시지는 추가 예정
+      if (res == null) {
+        console.log('getBannerData err');
+        return new Error(ERROR_SELECTOR.NODATA);
+      }
+      return res.data;
+    } catch (error) {
+      console.log(error);
     }
-    return res.data;
   }
 }
