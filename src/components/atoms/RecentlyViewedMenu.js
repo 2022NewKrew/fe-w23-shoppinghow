@@ -1,6 +1,13 @@
 import { Component } from '@core';
+import { $ } from '@utils';
+
+const HOVER_DELAY_TIME = 1000;
 
 export class RecentlyViewedMenu extends Component {
+  setup() {
+    this.isMouseover;
+  }
+
   template() {
     const { recentlyViewedList = [] } = this.props;
 
@@ -13,7 +20,7 @@ export class RecentlyViewedMenu extends Component {
     `;
 
     return /*html*/ `
-        <a href="#">최근본상품</a>
+        <a class="recentlyViewedMenu__item" href="#">최근본상품</a>
         <div class="recentlyViewedMenu__modal">
             <h5>최근본 상품 ${recentlyViewedList.length}</h5>
             <ul class="recentlyViewedMenu__productList">
@@ -31,5 +38,24 @@ export class RecentlyViewedMenu extends Component {
             </div>
         </div>
     `;
+  }
+
+  mounted() {
+    this.$modal = $('.recentlyViewedMenu__modal', this.$target);
+
+    this.$target.onmouseenter = () => {
+      this.isMouseover = true;
+      this.$modal.classList.add('on');
+    };
+
+    this.$target.onmouseleave = () => {
+      this.isMouseover = false;
+
+      setTimeout(() => {
+        if (this.isMouseover) return;
+
+        this.$modal.classList.remove('on');
+      }, HOVER_DELAY_TIME);
+    };
   }
 }

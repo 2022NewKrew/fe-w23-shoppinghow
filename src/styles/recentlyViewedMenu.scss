@@ -1,5 +1,10 @@
 .recentlyViewedMenu {
   position: relative;
+
+  .on {
+    opacity: 1;
+    visibility: inherit;
+  }
 }
 
 .recentlyViewedMenu__modal {
@@ -10,6 +15,9 @@
   background-color: #fff;
   padding: 2rem;
   z-index: 10;
+
+  opacity: 0;
+  visibility: hidden;
 
   & > h5 {
     height: 26px;
