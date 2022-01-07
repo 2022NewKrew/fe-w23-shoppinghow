@@ -1,31 +1,15 @@
 import { Component } from '@core';
 import { $, $$ } from '@utils';
 
+const AUTO_SLIDE_TIME = 3000;
+const SLIDE_FRAME_WIDTH = 485;
 export class Slider extends Component {
   // life cycle
   setup() {
-    this.AUTO_SLIDE_TIME = 3000;
-    this.SLIDE_FRAME_WIDTH = 485;
-
     const { imgList = [] } = this.props;
     this.currentIndex = 0;
     this.maxIndex = imgList.length - 1;
-  }
-
-  setEvent() {
-    this.$target.addEventListener('click', (e) => {
-      const { className } = e.target;
-
-      if (!!this.blockClickIndicator) return;
-
-      if (className === 'slider__prevBtn') {
-        this.clearTimerAction();
-        this.onSlide(this.currentIndex - 1);
-      } else if (className === 'slider__nextBtn') {
-        this.clearTimerAction();
-        this.onSlide(this.currentIndex + 1);
-      }
-    });
+    this.isBlockClickIndicator = false;
   }
 
   template() {
@@ -68,23 +52,27 @@ export class Slider extends Component {
   }
 
   mounted() {
-    this.$sliderTrack = $('.slider__track', this.$target);
-    this.$sliderTrack.addEventListener('transitionend', () => {
-      this.onSlideEnd();
+    this.$target.addEventListener('click', ({ target: { className } }) => {
+      if (!!this.isBlockClickIndicator) return;
+
+      if (className === 'slider__prevBtn') {
+        this.onclickIdicator('prev');
+      } else if (className === 'slider__nextBtn') {
+        this.onclickIdicator('next');
+      }
     });
+
+    this.$sliderTrack = $('.slider__track', this.$target);
+    this.$sliderTrack.addEventListener('transitionend', this.onSlideEnd.bind(this));
 
     this.$sliderPagingList = $$('.slider__paging', this.$target);
     this.$sliderPagingList.forEach((el) => {
       el.addEventListener('mouseover', (e) => {
         const $pagging = e.target.closest('.slider__paging');
-
-        this.clearTimerAction();
-        this.currentIndex = +$pagging.dataset.index;
-        this.quickMoveTrack();
-        this.renderIndicator();
+        this.onhoverIndicator(+$pagging.dataset.index);
       });
 
-      el.addEventListener('mouseout', (_) => {
+      el.addEventListener('mouseout', () => {
         if (!this.timerId) this.startTimerAction();
       });
     });
@@ -109,24 +97,38 @@ export class Slider extends Component {
     });
   }
 
-  setBlockClickIndicator(bool) {
-    this.blockClickIndicator = bool;
+  onhoverIndicator(index) {
+    this.clearTimerAction();
+    this.currentIndex = index;
+    this.quickMoveTrack();
+    this.renderIndicator();
   }
 
-  onSlide(index) {
-    this.setBlockClickIndicator(true);
-    this.$sliderTrack.style.transition = 'transform 400ms ease-in-out';
-    this.currentIndex = index;
-    this.moveTrack();
+  /**
+   * @param { 'next' | 'prev'} type
+   */
+  onclickIdicator(type) {
+    const nextIndex = type === 'next' ? this.currentIndex + 1 : this.currentIndex - 1;
+    this.clearTimerAction();
+    this.onSlide(nextIndex);
   }
+
+  // silde animation
 
   moveTrack() {
-    const x = -this.SLIDE_FRAME_WIDTH * (this.currentIndex + 1);
+    const x = -SLIDE_FRAME_WIDTH * (this.currentIndex + 1);
     this.$sliderTrack.style.transform = `translateX(${x}px)`;
   }
 
   quickMoveTrack() {
     this.$sliderTrack.style.transition = 'none';
+    this.moveTrack();
+  }
+
+  onSlide(index) {
+    this.isBlockClickIndicator = true;
+    this.$sliderTrack.style.transition = 'transform 400ms ease-in-out';
+    this.currentIndex = index;
     this.moveTrack();
   }
 
@@ -138,14 +140,15 @@ export class Slider extends Component {
     }
 
     this.renderIndicator();
-    this.setBlockClickIndicator(false);
+    this.isBlockClickIndicator = false;
     if (!this.timerId) this.startTimerAction();
   }
 
   clearTimerAction() {
     this.timerId = clearInterval(this.timerId);
   }
+
   startTimerAction() {
-    this.timerId = setInterval(() => this.onSlide(this.currentIndex + 1), this.AUTO_SLIDE_TIME);
+    this.timerId = setInterval(() => this.onSlide(this.currentIndex + 1), AUTO_SLIDE_TIME);
   }
 }
