@@ -23,11 +23,11 @@ export default class GoodsDataManager {
         })
     }
     
-    static #checkIfSameGoodsDataExists(goodsList, goodsData, callbackIfSameGoodsDataExists) {
+    static #checkIfSameGoodsDataExists(goodsList, goodsData, callback) {
         goodsList.forEach((goodsDataToCompare, idx) => {
             if (goodsDataToCompare.title === goodsData.title
                 && goodsDataToCompare.imgSrc === goodsData.imgSrc) {
-                callbackIfSameGoodsDataExists(idx)
+                callback(idx)
                 return false
             }
         })
