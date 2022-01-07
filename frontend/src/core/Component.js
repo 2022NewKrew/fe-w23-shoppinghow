@@ -8,18 +8,18 @@ export default class Component {
     this.$target = $target;
     this.$props = $props;
     this.setup();
-    this.setEvent();
     this.render();
+    this.setEvent();
   }
 
   // sate설정하는 함수
   setup() {};
 
-  // 렌더링 후 후 추가기능
+  // 렌더링 후 추가기능
   mounted() {};
 
-  // 비동기 렌더링 후 후 추가기능
-  async asyncMounted() {};
+  // 비동기 동기 처리 후 추가기능
+  async syncMounted() {};
 
   // 화면에 보여줄 템플릿(레더링에 적용될 html)
   template() {
@@ -30,7 +30,7 @@ export default class Component {
   render() {
     this.$target.innerHTML = this.template();
     this.mounted();
-    this.asyncMounted();
+    this.syncMounted();
   }
 
   // 이벤트 설정
