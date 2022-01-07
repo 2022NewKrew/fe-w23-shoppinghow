@@ -4,7 +4,9 @@ import ThemeItem from "@components/ThemeItem";
 class Theme extends Component {
   template() {
     return `
-        <ul class="theme-container"></ul>
+        <div class="theme">
+            <ul class="theme-container"></ul>
+        </div>
     `;
   }
 

@@ -8,10 +8,12 @@ const CLICK_THROTTLING_DELAY = 300;
 class Planning extends Component {
   template() {
     return `
-        <ul class=${style["container"]}></ul>
-        <button class="${style["left-btn"]} ${style["btn"]}"></button>
-        <button class="${style["right-btn"]} ${style["btn"]}"></button>
-        <div class="${style["page-slot-list"]}"></div>
+        <div class="${style["planning"]}">
+            <ul class=${style["container"]}></ul>
+            <button class="${style["left-btn"]} ${style["btn"]}"></button>
+            <button class="${style["right-btn"]} ${style["btn"]}"></button>
+            <div class="${style["page-slot-list"]}"></div>
+        </div>
     `;
   }
 

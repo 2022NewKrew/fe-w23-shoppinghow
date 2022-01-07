@@ -5,17 +5,15 @@ import Component from "@core/Component";
 class Promotion extends Component {
   template() {
     return `
-      <div class="banner"></div>
-      <div class="theme"></div>
+      <div class="promotion"></div>
     `;
   }
 
   mounted() {
-    const $banner = this.$target.querySelector(".banner");
-    const $theme = this.$target.querySelector(".theme");
+    const $promotion = this.$target.querySelector(".promotion");
 
-    new Banner($banner);
-    new Theme($theme);
+    new Banner($promotion);
+    new Theme($promotion);
   }
 }
 

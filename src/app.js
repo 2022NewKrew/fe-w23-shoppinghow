@@ -1,14 +1,12 @@
 import "@style/app.scss";
-import Header from "@components/Header.js";
+import Header from "@components/Header";
 import Contents from "@components/Contents";
 
-const $body = document.querySelector("body");
-const $header = document.createElement("header");
-const $contents = document.createElement("div");
+const App = () => {
+  const $body = document.querySelector("body");
 
-$body.appendChild($header);
-$body.appendChild($contents);
-$contents.classList.add("container");
+  new Header($body);
+  new Contents($body);
+};
 
-new Header($header);
-new Contents($contents);
+App();
