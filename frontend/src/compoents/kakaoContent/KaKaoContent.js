@@ -1,4 +1,5 @@
 import Component from '../../core/Component';
+import {TARGET_SELECTOR, getTargetSelector, getTarget} from '../../core/ComponentGroup';
 import KaKaoBanner from './kakaoBanner/KaKaoBanner';
 import KaKaoShopingPartner from './KaKaoShopingPartner';
 import KaKaoNotice from './KaKaoNotice';
@@ -8,32 +9,32 @@ export default class KaKaoContent extends Component {
     return `
     <div id="cMain">
         <div id="mArticle">
-            <div data-component="kakao-banner" class="#banner @op section_top">
+            <div ${getTarget(TARGET_SELECTOR.TARGET_BANNER)} class="#banner @op section_top">
             </div>
-            <div data-component="kakao-hotitem" class="#hotitem @op section_hot section_hit">
+            <div ${getTarget(TARGET_SELECTOR.TARGET_HOTITEM)} class="#hotitem @op section_hot section_hit">
             </div>
-            <div data-component="kakao-keyword" id="topRecomKeywordWrap" class="#recomkeyword section_tab section_rank">
+            <div ${getTarget(TARGET_SELECTOR.TARGET_KEYWORD)} id="topRecomKeywordWrap" class="#recomkeyword section_tab section_rank">
             </div>
-            <div data-component="kakao-recommend" class="#foru section_tab section_how" style="">
+            <div ${getTarget(TARGET_SELECTOR.TARGET_RECOMMEND)} class="#foru section_tab section_how" style="">
             </div>
         </div>
     </div>
     <div id="cEtc">
-        <div class="wrap_shopping_partner _GL" data-component="kakao-shopping-partner"></div>
-        <div class="wrap_notice" data-component="kakao-notice"></div>
+        <div ${getTarget(TARGET_SELECTOR.TARGET_SHOPPING_PARTNER)} class="wrap_shopping_partner _GL"></div>
+        <div ${getTarget(TARGET_SELECTOR.TARGET_NOTICE)} class="wrap_notice"></div>
     </div>`;
   }
 
   mounted() {
-    const $kaKaoShopingPartner = this.$target.querySelector('[data-component="kakao-shopping-partner"]');
-    const $kaKaoNotice = this.$target.querySelector('[data-component="kakao-notice"]');
+    const $kaKaoShopingPartner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.TARGET_SHOPPING_PARTNER));
+    const $kaKaoNotice = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.TARGET_NOTICE));
 
     new KaKaoShopingPartner($kaKaoShopingPartner, {});
     new KaKaoNotice($kaKaoNotice, {});
   }
 
   async syncMounted() {
-    const $kaKaoBanner = this.$target.querySelector('[data-component="kakao-banner"]');
+    const $kaKaoBanner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.TARGET_BANNER));
     const bannerData = await this.getBannerData();
     new KaKaoBanner($kaKaoBanner, {bannerData: bannerData});
   }

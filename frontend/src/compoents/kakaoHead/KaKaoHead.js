@@ -1,4 +1,5 @@
 import Component from '../../core/Component';
+import {TARGET_SELECTOR, getTargetSelector, getTarget} from '../../core/ComponentGroup';
 import ApiService from '../../core/ApiService';
 import RollKeyword from './RollKeyword';
 // TODO 인기검색어리스트 추가기능 작업예정
@@ -33,7 +34,7 @@ export default class KaKaoHead extends Component {
             </form>
             <div class="wrap_rollkeywords" id="upwardKeywordWrap">
                 <strong class="screen_out">인기 쇼핑 키워드</strong>
-                <ol class="list_rollkeywords" data-component="roll-keyword" style="top: 0px;">
+                <ol ${getTarget(TARGET_SELECTOR.TARGET_ROLL_KEYWORD)} class="list_rollkeywords" style="top: 0px;">
                 </ol>
                 
             </div>
@@ -121,9 +122,7 @@ export default class KaKaoHead extends Component {
   }
 
   async syncMounted() {
-    const $rollKeyword = this.$target.querySelector(
-        '[data-component="roll-keyword"]',
-    );
+    const $rollKeyword = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.TARGET_ROLL_KEYWORD));
     const searchKeywordGroup = await this.getSearhKeyword();
 
     new RollKeyword($rollKeyword, {searchKeywordGroup: searchKeywordGroup});
@@ -139,9 +138,7 @@ export default class KaKaoHead extends Component {
     const totalPx = 32;
     const movePx = 2;
     const rollCycleTime = 3000;
-    const $rollKeyword = this.$target.querySelector(
-        '[data-component="roll-keyword"]',
-    );
+    const $rollKeyword = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.TARGET_ROLL_KEYWORD));
     this.$state.rollInterval = setInterval(() => {
       let top = parseInt($rollKeyword.style.top.split('px')[0]);
 
