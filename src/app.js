@@ -82,8 +82,6 @@ const makePlanningCarousel = () => {
     }
   });
 
-  debugger;
-
   planningPaging.childNodes.forEach((element, index) => {
     element.addEventListener("click", () => {
       planningPaging.childNodes[counter - 1].innerHTML =
