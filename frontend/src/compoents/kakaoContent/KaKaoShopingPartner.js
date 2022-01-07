@@ -1,6 +1,6 @@
-import Component from "../../core/Component";
+import Component from '../../core/Component';
 
-//TODO: cMain작업예정(상품 리스트)
+// TODO: cMain작업예정(상품 리스트)
 export default class KaKaoShopingPartner extends Component {
   template() {
     return `<h3 class="tit_home">쇼핑하우 파트너</h3>
@@ -210,6 +210,6 @@ export default class KaKaoShopingPartner extends Component {
                 </ul>
             </div>
         </div><button type="button" class="btn_home _GC_">더보기</button>
-    </div><a href="/siso/p/partner" class="link_all _GC_">전체보기</a>`
+    </div><a href="/siso/p/partner" class="link_all _GC_">전체보기</a>`;
   }
 }

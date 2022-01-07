@@ -1,11 +1,11 @@
-import Component from "../../../core/Component";
-import SlideBanner from "./SlideBanner";
+import Component from '../../../core/Component';
+import SlideBanner from './SlideBanner';
 
 export default class KaKaoBanner extends Component {
   template() {
     const bannerData = this.$props.bannerData;
-    const bannerBestImg = bannerData.best[0]
-    console.log(bannerData,bannerBestImg);
+    const bannerBestImg = bannerData.best[0];
+    console.log(bannerData, bannerBestImg);
     return `
     <div data-component="kakao-event" class="cont_event">
         <div class="#banner_event evt_item _GL">
@@ -21,8 +21,8 @@ export default class KaKaoBanner extends Component {
     `;
   }
 
-  mounted(){
+  mounted() {
     const $slideBanner = this.$target.querySelector('[data-component="slide-banner"]');
-    new SlideBanner($slideBanner,{bannerData:this.$props.bannerData.special})
+    new SlideBanner($slideBanner, {bannerData: this.$props.bannerData.special});
   }
 }
