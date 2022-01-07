@@ -68,7 +68,6 @@ export class Slider extends Component {
   }
 
   mounted() {
-    this.$sliderAction = $('.slider__action', this.target);
     this.$sliderTrack = $('.slider__track', this.$target);
     this.$sliderTrack.addEventListener('transitionend', () => {
       this.onSlideEnd();
@@ -89,8 +88,8 @@ export class Slider extends Component {
         if (!this.timerId) this.startTimerAction();
       });
     });
-    this.renderIndicator();
 
+    this.renderIndicator();
     this.startTimerAction();
   }
 

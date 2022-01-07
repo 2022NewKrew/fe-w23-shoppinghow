@@ -30,26 +30,26 @@ export class HeaderSearchBar extends Component {
     `;
 
     return /*html*/ `
-        <div class="search">
-            <form >
-                <input type="text" class="search__input" />
-                <button type="submit" class="search__icon">🔍</button>
-            </form>
-            <div class="top10">
-                <ul class="top10__track">
-                    ${top10TrackList.map(top10Template).join('')}
-                </ul>
-            </div>
-            <div class="top10modal">
-                <span class="top10modal__title">인기 쇼핑 키워드</span>
-                <ol class="top10modal__keywrodList">
-                    ${top10List.slice(0, 5).map(to10ModalItemTemplate).join('')}
-                </ol>
-                <ol class="top10modal__keywrodList">
-                    ${top10List.slice(5, 10).map(to10ModalItemTemplate).join('')}
-                </ol>
-            </div>
+      <div class="search">
+        <form >
+            <input type="text" class="search__input" />
+            <button type="submit" class="search__icon">🔍</button>
+        </form>
+        <div class="top10">
+            <ul class="top10__track">
+                ${top10TrackList.map(top10Template).join('')}
+            </ul>
         </div>
+        <div class="top10modal">
+            <span class="top10modal__title">인기 쇼핑 키워드</span>
+            <ol class="top10modal__keywrodList">
+                ${top10List.slice(0, 5).map(to10ModalItemTemplate).join('')}
+            </ol>
+            <ol class="top10modal__keywrodList">
+                ${top10List.slice(5, 10).map(to10ModalItemTemplate).join('')}
+            </ol>
+        </div>
+      </div>
     `;
   }
 

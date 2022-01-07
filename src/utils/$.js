@@ -1,7 +1,18 @@
+/**
+ *
+ * @param {string} selector
+ * @param {HTMLElement} element
+ * @returns {HTMLElement}
+ */
 export const $ = (selector, element = document) => {
   return element.querySelector(selector);
 };
 
+/**
+ * @param {string} selector
+ * @param {HTMLElement} element
+ * @returns {HTMLElement[]}
+ */
 export const $$ = (selector, element = document) => {
   return element.querySelectorAll(selector);
 };
