@@ -22,6 +22,7 @@ export class MainLayout extends Component {
     new Header($('header', this.$target), {
       renderType: 'outerHTML',
       top10List: this.props.top10List,
+      recentlyViewedList: this.props.recentlyViewedList,
     });
 
     new Footer($('footer', this.$target), {

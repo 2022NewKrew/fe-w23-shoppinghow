@@ -1,8 +1,10 @@
-import { HeaderSearchBar } from '@components';
+import { HeaderSearchBar, RecentlyViewedMenu } from '@components';
 import { Component } from '@core';
 import { $ } from '@utils';
 
 export class Header extends Component {
+  props = { top10List: [], recentlyViewedList: [] };
+
   template() {
     return /*html*/ `
         <header class="header">
@@ -36,20 +38,24 @@ export class Header extends Component {
                         <li class="topMenu__btn"><a href="">할인특가</a></li>
                         <li class="topMenu__btn"><a href="">기획전</a></li>
                     </ul>
-                    <ul class="private-menu">
-                        <li class="private-menu__btn"><a href="#">로그인</a></li>
-                        <li class="private-menu__btn"><a href="#">최근본상품</a></li>
+                    <ul class="privateMenu">
+                        <li class="loginMenu"><a href="#">로그인</a></li>
+                        <li class="recentlyViewedMenu"><a href="#">최근본상품</a></li>
                     </ul>
                 </div>
             </nav>
         </header>
-        `;
+    `;
   }
 
   mounted() {
     new HeaderSearchBar($('.search', this.$target), {
       renderType: 'outerHTML',
       top10List: this.props.top10List,
+    });
+
+    new RecentlyViewedMenu($('.recentlyViewedMenu', this.$target), {
+      recentlyViewedList: this.props.recentlyViewedList,
     });
   }
 }

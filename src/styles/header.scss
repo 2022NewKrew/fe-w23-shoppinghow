@@ -122,9 +122,9 @@
 }
 
 .header__navContent {
+  @include flex;
   width: 1270px;
   margin: 0px auto;
-  @include flex;
 
   .category {
     cursor: pointer;
@@ -156,11 +156,11 @@
     }
   }
 
-  .private-menu {
+  .privateMenu {
     margin-left: auto;
     display: flex;
 
-    .private-menu__btn {
+    & > li {
       padding: $btn-padding;
     }
   }

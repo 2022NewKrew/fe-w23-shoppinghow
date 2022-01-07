@@ -15,6 +15,14 @@ export class HomePage extends MainLayout {
       { rank: 10, text: '콩나물' },
     ];
 
+    this.props.recentlyViewedList = [
+      {
+        info: '스컬피그 [SA4235] 요가 토즈 삭스 피치핑크/실리콘/발가락/요가',
+        link: '#',
+        img: '//shop1.daumcdn.net/thumb/C120x120.q90/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FF7180681434.jpg%3Fut%3D20190807062214',
+      },
+    ];
+
     this.hotDealProductList = [...Array(10)].map((_) => ({
       title: '구매1만↑우유앙빵10+10',
       img: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',
