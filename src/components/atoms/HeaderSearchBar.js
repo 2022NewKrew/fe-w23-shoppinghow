@@ -1,15 +1,19 @@
 import { Component } from '@core';
 import { $ } from '@utils';
 
+const HOVER_DELAY_TIME = 400;
+const AUTO_SLIDE_TIME = 2000;
+const SLIDE_FRAME_HEIGHT = 30;
+const FOCUSE_SEARCH_CLASSNAME = 'search--focus';
+const HIDE_TOP10MODAL_CLASSNAME = 'top10modal--hide';
+
 export class HeaderSearchBar extends Component {
   setup() {
     const { top10List = [] } = this.props;
     this.currentIndex = 0;
     this.maxIndex = top10List.length - 1;
-    this.AUTO_SLIDE_TIME = 2000;
-    this.SLIDE_FRAME_HEIGHT = 30;
-    this.FOCUSE_SEARCH_CLASSNAME = 'search--focus';
-    this.HIDE_TOP10MODAL_CLASSNAME = 'top10modal--hide';
+    this.isSearchFocused = false;
+    this.isMouseover = false;
   }
 
   template() {
@@ -42,7 +46,7 @@ export class HeaderSearchBar extends Component {
                 ${top10TrackList.map(top10Template).join('')}
             </ul>
         </div>
-        <div class="top10modal ${this.HIDE_TOP10MODAL_CLASSNAME}" tabindex="-1">
+        <div class="top10modal ${HIDE_TOP10MODAL_CLASSNAME}" tabindex="-1">
             <span class="top10modal__title">인기 쇼핑 키워드</span>
             <ol class="top10modal__keywrodList">
                 ${top10List.slice(0, 5).map(to10ModalItemTemplate).join('')}
@@ -57,20 +61,16 @@ export class HeaderSearchBar extends Component {
 
   mounted() {
     this.$sliderTrack = $('.top10__track', this.$target);
-    this.$sliderTrack.addEventListener('transitionend', () => {
-      this.onSlideEnd();
-    });
+    this.$sliderTrack.addEventListener('transitionend', this.onSlideEnd.bind(this));
 
     this.$search = this.$target.closest('.search');
-
-    this.$search.addEventListener('focusin', () => this.focusinSearch());
-    this.$search.onmouseleave = () => {
-      if (this.isSearchFocused()) this.focusoutSearch();
-    };
+    this.$search.addEventListener('focusin', this.focusinSearch.bind(this));
+    this.$search.onmouseenter = this.mouseenterSearch.bind(this);
+    this.$search.onmouseleave = this.mouseleaveSearch.bind(this);
 
     this.$top10Modal = $('.top10modal', this.$target);
     this.$top10Modal.ontransitionend = () => {
-      if (!this.isSearchFocused()) this.disactiveTop10Modal();
+      if (!this.isSearchFocused) this.disactiveTop10Modal();
     };
 
     this.startSlideTimer();
@@ -79,24 +79,35 @@ export class HeaderSearchBar extends Component {
   /* util */
 
   // search focus animation
+  mouseenterSearch() {
+    this.isMouseover = true;
+  }
 
-  isSearchFocused() {
-    return this.$search.classList.contains(this.FOCUSE_SEARCH_CLASSNAME);
+  mouseleaveSearch() {
+    if (this.isSearchFocused) this.focusoutSearch();
   }
 
   focusinSearch() {
-    this.$search.classList.add(this.FOCUSE_SEARCH_CLASSNAME);
+    this.isSearchFocused = true;
+    this.$search.classList.add(FOCUSE_SEARCH_CLASSNAME);
     this.showTop10Modal();
   }
 
   focusoutSearch() {
-    this.$search.classList.remove(this.FOCUSE_SEARCH_CLASSNAME);
-    $('.search__input', this.$search).blur();
-    this.hideTop10Modal();
+    this.isMouseover = false;
+
+    setTimeout(() => {
+      if (this.isMouseover) return;
+
+      this.isSearchFocused = false;
+      this.$search.classList.remove(FOCUSE_SEARCH_CLASSNAME);
+      $('.search__input', this.$search).blur();
+      this.hideTop10Modal();
+    }, HOVER_DELAY_TIME);
   }
 
   showTop10Modal() {
-    this.$top10Modal.classList.remove(this.HIDE_TOP10MODAL_CLASSNAME);
+    this.$top10Modal.classList.remove(HIDE_TOP10MODAL_CLASSNAME);
     this.$top10Modal.style.opacity = 1;
     this.$sliderTrack.style.display = 'none';
     this.clearSlideTimer();
@@ -109,7 +120,7 @@ export class HeaderSearchBar extends Component {
   }
 
   disactiveTop10Modal() {
-    this.$top10Modal.classList.add(this.HIDE_TOP10MODAL_CLASSNAME);
+    this.$top10Modal.classList.add(HIDE_TOP10MODAL_CLASSNAME);
   }
 
   // slide animation
@@ -121,7 +132,7 @@ export class HeaderSearchBar extends Component {
   }
 
   moveTrack() {
-    const y = -this.SLIDE_FRAME_HEIGHT * (this.currentIndex + 1);
+    const y = -SLIDE_FRAME_HEIGHT * (this.currentIndex + 1);
     this.$sliderTrack.style.transform = `translateY(${y}px)`;
   }
 
@@ -140,6 +151,6 @@ export class HeaderSearchBar extends Component {
   }
 
   startSlideTimer() {
-    this.timerId = setInterval(() => this.onSlide(this.currentIndex + 1), this.AUTO_SLIDE_TIME);
+    this.timerId = setInterval(() => this.onSlide(this.currentIndex + 1), AUTO_SLIDE_TIME);
   }
 }
