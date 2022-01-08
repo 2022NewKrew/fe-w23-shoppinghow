@@ -33,7 +33,7 @@ h1 {
 }
 
 .hidden {
-  display: hidden;
+  visibility: hidden;
 }
 
 .none {
@@ -156,14 +156,25 @@ h1 {
   position: relative;
 }
 .container .promotion .banner .planning .planning__window .planning__link-container {
+  position: relative;
   display: flex;
-  width: calc(4*600px);
+  width: calc(3*600px);
   flex-wrap: wrap;
+  left: -600px;
 }
 .container .promotion .banner .planning .planning__window .planning__link-container .planning__link {
-  display: inline-block;
+  display: none;
   margin: 0 auto;
   width: 600px;
+}
+.container .promotion .banner .planning .planning__window .planning__link-container .planning__link:nth-child(1) {
+  display: inline-block;
+}
+.container .promotion .banner .planning .planning__window .planning__link-container .planning__link:nth-child(2) {
+  display: inline-block;
+}
+.container .promotion .banner .planning .planning__window .planning__link-container .planning__link:nth-child(3) {
+  display: inline-block;
 }
 .container .promotion .banner .planning .planning__window .planning__btn-container {
   position: absolute;

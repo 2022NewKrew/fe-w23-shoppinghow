@@ -1,7 +1,7 @@
 @import "global";
 
 $bannerimagewidth: 600px;
-$planningcontainersize: 4;
+$planningcontainersize: 3;
 
 .header-top {
     display: flex;
@@ -140,29 +140,23 @@ $planningcontainersize: 4;
                     position: relative;
 
                     .planning__link-container {
+                        position: relative;
                         display: flex;
                         width: calc(#{$planningcontainersize}*#{$bannerimagewidth});
                         flex-wrap: wrap;
+                        left: -#{$bannerimagewidth};
 
                         .planning__link {
-                            display: inline-block;
+                            display: none;
                             margin: 0 auto;
                             width: #{$bannerimagewidth};
         
+                            @for $i from 1 through 3 {
+                                &:nth-child(#{$i}) {
+                                    display: inline-block;
+                                }
+                            }
                         }
-        
-                        .prev {
-        
-                        }
-    
-                        .current {
-        
-                        }
-    
-                        .next {
-                            
-                        }
-
                     }
 
                     .planning__btn-container {
