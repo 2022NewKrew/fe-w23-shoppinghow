@@ -151,23 +151,66 @@ h1 {
 }
 .container .promotion .banner .planning .planning__window {
   width: 600px;
+  margin: 0 auto;
   overflow: hidden;
+  position: relative;
 }
-.container .promotion .banner .planning .planning__window .planning__container {
+.container .promotion .banner .planning .planning__window .planning__link-container {
   display: flex;
   width: calc(4*600px);
   flex-wrap: wrap;
 }
-.container .promotion .banner .planning .planning__window .planning__container .planning__link {
+.container .promotion .banner .planning .planning__window .planning__link-container .planning__link {
   display: inline-block;
   margin: 0 auto;
   width: 600px;
 }
-.container .promotion .banner .planning .planning__window .planning__container .planning__left-btn {
-  background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+.container .promotion .banner .planning .planning__window .planning__btn-container {
+  position: absolute;
+  top: calc(100% - 50px);
+  width: 100%;
+  text-align: center;
 }
-.container .promotion .banner .planning .planning__window .planning__container .planning__right-btn {
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__left-btn {
+  width: 35px;
+  height: 45px;
+  top: -14px;
+  position: absolute;
+  left: 150px;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__left-btn .planning__left-btn-icon {
+  display: inline-block;
   background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+  background-position: -128px -335px;
+  width: 15px;
+  height: 25px;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__right-btn {
+  width: 35px;
+  height: 45px;
+  top: -14px;
+  position: absolute;
+  right: 150px;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__right-btn .planning__right-btn-icon {
+  display: inline-block;
+  background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+  background-position: -145px -335px;
+  width: 15px;
+  height: 25px;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__paging {
+  display: inline-block;
+  height: 15px;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__paging .planning__page {
+  display: inline-block;
+  padding: 5px 0px;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__paging .planning__page .planning__page-btn {
+  width: 15px;
+  height: 5px;
+  background-color: lightgray;
 }
 .container .promotion img {
   margin: auto;

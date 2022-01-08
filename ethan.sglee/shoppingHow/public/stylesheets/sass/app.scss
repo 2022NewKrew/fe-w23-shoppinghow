@@ -135,9 +135,11 @@ $planningcontainersize: 4;
 
                 .planning__window {
                     width: #{$bannerimagewidth};
+                    margin: 0 auto;
                     overflow: hidden;
+                    position: relative;
 
-                    .planning__container {
+                    .planning__link-container {
                         display: flex;
                         width: calc(#{$planningcontainersize}*#{$bannerimagewidth});
                         flex-wrap: wrap;
@@ -161,14 +163,63 @@ $planningcontainersize: 4;
                             
                         }
 
+                    }
+
+                    .planning__btn-container {
+                        position: absolute;
+                        top: calc(100% - 50px);
+                        width: 100%;
+                        text-align: center;
+
                         .planning__left-btn {
-                            background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat
+                            width: 35px;
+                            height: 45px;
+                            top: -14px;
+                            position: absolute;
+                            left: 150px;
+                            
+                            .planning__left-btn-icon {
+                                display: inline-block;
+                                background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+                                background-position: -128px -335px;
+                                width: 15px;
+                                height: 25px;
+                            }
                         }
                         
                         .planning__right-btn {
-                            background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat
+                            width: 35px;
+                            height: 45px;
+                            top: -14px;
+                            position: absolute;
+                            right: 150px;
+                            
+                            .planning__right-btn-icon {
+                                display: inline-block;
+                                background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+                                background-position: -145px -335px;
+                                width: 15px;
+                                height: 25px;
+                            }
+                        }
+        
+                        .planning__paging {
+                            display: inline-block;
+                            height: 15px;
+    
+                            .planning__page {
+                                display: inline-block;
+                                padding: 5px 0px;
+    
+                                .planning__page-btn {
+                                    width: 15px;
+                                    height: 5px;
+                                    background-color: lightgray;
+                                }
+                            }
                         }
                     }
+
                 }
             }
         }
