@@ -148,12 +148,26 @@ h1 {
 }
 .container .promotion .banner .planning {
   width: 790px;
+}
+.container .promotion .banner .planning .planning__window {
+  width: 600px;
   overflow: hidden;
 }
-.container .promotion .banner .planning .planning__link {
+.container .promotion .banner .planning .planning__window .planning__container {
+  display: flex;
+  width: calc(4*600px);
+  flex-wrap: wrap;
+}
+.container .promotion .banner .planning .planning__window .planning__container .planning__link {
   display: inline-block;
   margin: 0 auto;
   width: 600px;
+}
+.container .promotion .banner .planning .planning__window .planning__container .planning__left-btn {
+  background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+}
+.container .promotion .banner .planning .planning__window .planning__container .planning__right-btn {
+  background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
 }
 .container .promotion img {
   margin: auto;

@@ -1,5 +1,8 @@
 @import "global";
 
+$bannerimagewidth: 600px;
+$planningcontainersize: 4;
+
 .header-top {
     display: flex;
     padding: 60px;
@@ -127,26 +130,45 @@
                     margin: 0 auto;
                 }
             }
-
             .planning {
                 width: 790px;
-                overflow: hidden;
 
-                .planning__link {
-                    display: inline-block;
-                    margin: 0 auto;
-                    width: 600px;
+                .planning__window {
+                    width: #{$bannerimagewidth};
+                    overflow: hidden;
 
-                }
+                    .planning__container {
+                        display: flex;
+                        width: calc(#{$planningcontainersize}*#{$bannerimagewidth});
+                        flex-wrap: wrap;
 
-                .prev {
+                        .planning__link {
+                            display: inline-block;
+                            margin: 0 auto;
+                            width: #{$bannerimagewidth};
+        
+                        }
+        
+                        .prev {
+        
+                        }
+    
+                        .current {
+        
+                        }
+    
+                        .next {
+                            
+                        }
 
-                }
-                .current {
-
-                }
-                .next {
-                    
+                        .planning__left-btn {
+                            background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat
+                        }
+                        
+                        .planning__right-btn {
+                            background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat
+                        }
+                    }
                 }
             }
         }
@@ -157,25 +179,33 @@
             display: flex;
         }
     }
+
     .theme {
+
         .theme-container {
             display: flex;
         }
+
         .theme-item {
             @extend %card;
             border: 1px solid #f1f1f1;
         }
+
         .theme__link {
             display: block;
+
             strong, span {
                 @extend %text-block;
             }
+
             .theme-item__title {
                 font-weight: bold;
             }
+
             .theme-item__desc {
                 padding-top:0;
             }
+
             .theme-item__icon {
                 border:0.5px solid #ff000069;
                 padding:4px;
@@ -193,6 +223,7 @@
             padding-bottom: 20px;
             background-color: $bgColor;
         }
+
         .hot-deal__title, .hot-deal__detail-price{
             @extend %text-block;
         }
@@ -200,6 +231,7 @@
         .hot-deal-list {
             display: flex;
             flex-wrap:wrap;
+
             .hot-deal__item {
                 width:20%;
                 padding:20px;
@@ -211,6 +243,7 @@
         .hot-deal__detail-price {
             margin-top: 20px;
             position: relative;
+
             .txt-price-percent {
                 position: absolute;
                 right: 10px;
