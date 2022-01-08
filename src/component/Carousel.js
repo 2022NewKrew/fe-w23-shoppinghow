@@ -24,47 +24,48 @@ export default class Carousel{
     /** @type {number} */
     this.timeoutHandler;
 
+    this.#init(leftBtn, rightBtn);
+  }
+
+  /**
+   * @param {HTMLElement} leftBtn
+   * @param {HTMLElement} rightBtn
+   */
+  #init(leftBtn, rightBtn){
     leftBtn.addEventListener("click", ()=>{
-      this._goByOffset(-1);
+      this.#goByOffset(-1);
     });
     rightBtn.addEventListener("click", ()=>{
-      this._goByOffset(1);
+      this.#goByOffset(1);
     });
     
-    tabContainer.innerHTML=Array(this.length).fill(0).map((_, index)=>(
+    this.tabContainer.innerHTML=Array(this.length).fill(0).map((_, index)=>(
       `<li data-tabIndex="${index}" class="planning__navigation-li"></li>`
     )).join("");
-    this._markCurrentTabActive();
-    tabContainer.addEventListener("click", (e)=>{
+    this.#markCurrentTabActive();
+    this.tabContainer.addEventListener("click", (e)=>{
       const tabIndex=e.target.getAttribute("data-tabIndex");
       if(tabIndex===null){
         return;
       }
       const offset=tabIndex-this.currentIndex;
-      this._goByOffset(offset);
+      this.#goByOffset(offset);
     });
 
-    this._setTimeout();
-  }
-
-  /**
-   * @param {number} targetIndex
-   */
-  goToIndexByNavgation(targetIndex){
-    this._goByOffset(targetIndex, this.currentIndex<targetIndex);
+    this.#setTimeout();
   }
   
   /**
    * Do not call this outside. Internal use only.
    * @param {number} indexOffset
    */
-  _goByOffset(indexOffset){
+  #goByOffset(indexOffset){
     if(this.isBusy || indexOffset===0){
       return;
     }
     this.isBusy=true;
     this.currentIndex=(this.currentIndex+indexOffset+this.length)%this.length;
-    this._markCurrentTabActive();
+    this.#markCurrentTabActive();
     let copyIndexOffset=indexOffset;
     if(indexOffset<0){
       while(copyIndexOffset!==0){
@@ -78,7 +79,7 @@ export default class Carousel{
        * and right after we alter the value of the 'transform' property.
        */
       this.container.scrollWidth;
-      this.container.style=`transition: ${this.transition}s; ease-out;transform: 0`;
+      this.container.style=`transition: ${this.transition}s ease-out;transform: 0`;
     }
     else {
       this.container.style=`transition: ${this.transition}s ease-out; transform: translateX(${-indexOffset*(this.imageWidth)}px)`;
@@ -93,22 +94,22 @@ export default class Carousel{
         }
       }
       this.container.removeAttribute("style");
-      this._setTimeout();
+      this.#setTimeout();
     };
   }
 
-  _markCurrentTabActive(){
+  #markCurrentTabActive(){
     Array.from(this.tabContainer.children).forEach((tab)=>{
       tab.classList.remove("planning__navigation-li-active");
     });
     this.tabContainer.children[this.currentIndex].classList.add("planning__navigation-li-active");
   }
 
-  _setTimeout(){
+  #setTimeout(){
     if(this.autoInterval){
       clearTimeout(this.timeoutHandler);
       this.timeoutHandler=setTimeout(()=>{
-        this._goByOffset(1);
+        this.#goByOffset(1);
       }, this.autoInterval);
     }
   }
