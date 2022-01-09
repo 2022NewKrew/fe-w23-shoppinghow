@@ -44,7 +44,7 @@ function createItemHtml({itemId, imageSrc, title, desc}){
 
 async function createItemsHtml(){
   const container = document.querySelector(".theme-container");
-  const themeItemData=(await ItemDataManager.fetchItemData()).slice(0, 5);
+  const themeItemData=await ItemDataManager.fetchItemData();
 
   container.innerHTML=themeItemData.map(
     (itemData)=>createItemHtml(itemData)

@@ -20,7 +20,6 @@ export default class RecentItems{
       recentItemsContainer.classList.remove("recent-items-container__hidden");
       ItemDataManager.fetchViewItemIds().then((data)=>{
         const viewItemIds=data;
-        console.log("view data", viewItemIds);
         this.#createHtml(viewItemsInnerContainer, viewItemIds);
         viewItemTab.innerHTML=viewTabName+Object.keys(viewItemIds).length;
       });

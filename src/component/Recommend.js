@@ -1,5 +1,4 @@
-import axios from "axios";
-import fetchItemData from "./fetchItemData";
+import itemDataManager from "../ItemDataManager";
 
 export default class Recommend{
   /**
@@ -9,41 +8,131 @@ export default class Recommend{
     /** @type {HTMLElement} */
     this.bodyElement=bodyElement;
     /** @type {HTMLElement} */
-    this.pickedItemsElement=bodyElement.querySelector(".picked-items");
+    this.viewedItemsContainer=bodyElement.querySelector(".viewed-items");
     /** @type {HTMLElement} */
-    this.recommendationItemsElement=bodyElement.querySelector(".recommendation-items");
+    this.recommendItemsContainer=bodyElement.querySelector(".recommendation-items");
     this.itemData;
     /** @type {Object.<number, string>} */
-    this.recentItemsData;
+    this.viewedItemsIds;
     /** @type {number} */
-    this.numItemsInPage=5;
+    this.numItemsInOnePage=5;
     /** @type {number} */
     this.currentPage=0;
 
-    fetchItemData().then((itemData)=>{
+    this.#init();
+  }
+
+  #init(){
+    itemDataManager.fetchItemData().then((itemData)=>{
       this.itemData=itemData;
-      axios.get("/api/view").then((res)=>{
-        this.recentItemsData=res.data;
-        this.showPickedItems();
+      itemDataManager.fetchViewItemIds().then((itemIds)=>{
+        this.viewedItemsIds=itemIds;
+        this.#goToRecentItemsPageByOffset(0);
       });
     });
+
+    this.viewedItemsContainer.addEventListener("click", (e)=>{
+      const button=e.target.closest("button");
+      if(button){
+        const isLeft=button.classList.contains("viewed-items__left-btn");
+        const isRight=button.classList.contains("viewed-items__right-btn");
+        if(isLeft){
+          this.#goToRecentItemsPageByOffset(-1);
+        }
+        else if(isRight){
+          this.#goToRecentItemsPageByOffset(1);
+        }
+        return;
+      }
+      const itemId=e.target.closest("li").getAttribute("data-itemId");
+      if(itemId===null){
+        return;
+      }
+      Array.from(this.viewedItemsContainer.children).some((viewedItem)=>(
+        viewedItem.classList.contains("viewed-items__item-active") ?
+          viewedItem.classList.remove("viewed-items__item-active") || true
+          : false
+      ));
+      e.target.closest("li").classList.add("viewed-items__item-active");
+      this.#showRecommendItems(itemId);
+    });
+  }
+
+  #showNavigationButtons(){
+    this.viewedItemsContainer.insertAdjacentHTML("beforeend",
+      `<button class="viewed-items__left-btn">
+        <img src="https://static-page.kakao.com/static/pc/ic-paging-back-nor.svg?2c964bb7a6b07a7941252b32ea13f03c" alt="left">
+      </button>
+      <button class="viewed-items__right-btn">
+        <img src="https://static-page.kakao.com/static/pc/ic-paging-next-nor.svg?b76f34a1b77e59514735b92464295b7c" alt="right">
+      </button>`
+    );
   }
 
   /**
    * @param {number} offset
    */
-  goToRecentItemsPageByOffset(offset){
-    if((this.currentPage+offset)<0 || (this.currentPage+offset)*this.numItemsInPage>Object.keys(this.recentItemsData)){
+  #goToRecentItemsPageByOffset(offset){
+    if((this.currentPage+offset)<0 || (this.currentPage+offset)*this.numItemsInOnePage>Object.keys(this.viewedItemsIds).length){
       return;
     }
+    this.currentPage+=offset;
+    this.#showViewedItems(this.currentPage);
+    this.#showNavigationButtons();
+    this.viewedItemsContainer.children[0].click();
   }
 
-  showPickedItems(){
-    this.pickedItemsElement.innerHTML=Object.keys(this.recentItemsData).map((itemId)=>(
-      `<li class="picked-items__item">
-        <img class="picked-items__item-image" src="${this.itemData[itemId].imageSrc}">
-        <span class="picked-items__item-title">${this.itemData[itemId].title}</span>
-      </li>`
-    ));
+  /**
+   * @param {number} pageIndex
+   */
+  #showViewedItems(pageIndex){
+    let viewedItemIdsinPage=Object.keys(this.viewedItemsIds).slice(pageIndex*this.numItemsInOnePage, (pageIndex+1)*this.numItemsInOnePage);
+    if(viewedItemIdsinPage.length<this.numItemsInOnePage){
+      // Fill 'undefined'.
+      viewedItemIdsinPage.push(...Array(this.numItemsInOnePage-viewedItemIdsinPage.length).fill(undefined));
+    }
+    this.viewedItemsContainer.innerHTML=viewedItemIdsinPage.map((itemId)=>(
+      itemId===undefined ?
+        `<li class="viewed-items__item">
+          <span class="viewed-items__empty">최근 본 상품이 없습니다.</span>
+        </li>`
+        : `<li class="viewed-items__item" data-itemId="${itemId}">
+          <img class="viewed-items__item-image" src="${this.itemData[itemId].imageSrc}">
+          <span class="viewed-items__item-title">${this.itemData[itemId].title}</span>
+        </li>`
+    )).join("");
+  }
+
+  /**
+   * Show related recommendation items.
+   * @param {number} itemId
+   */
+  async #showRecommendItems(itemId){
+    const recommendItemIds=this.#getRecommendItemIds(itemId);
+    const itemdata=await itemDataManager.fetchItemData();
+    this.recommendItemsContainer.innerHTML=recommendItemIds.map((itemId)=> {
+      const {imageSrc, title, desc}=itemdata[itemId];
+      return `<li class="theme-item" data-itemId="${itemId}">
+        <a href="#" class="theme__link">
+          <span class="theme-item__info">
+            <img src="${imageSrc}" width="200" height="200" class="img_top" alt="${title}">
+          </span>
+          <strong class="theme-item__title">${title}</strong>
+          <span class="theme-item__desc">${desc}</span>
+        </a>
+          <div class="theme-item__icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png">
+          </div>
+      </li>`;
+    }).join("");
+  }
+  /**
+   * Get related item IDs.
+   * @param {number} itemId
+   * @returns {Array.<number>}
+   */
+  #getRecommendItemIds(itemId){
+    const recommendItemIds=Array(10).fill(itemId);
+    return recommendItemIds;
   }
 }
