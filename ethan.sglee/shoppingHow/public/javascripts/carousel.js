@@ -21,13 +21,9 @@ export default function initCarousel () {
       ongoing = true
 
       const current = paging.querySelector('.planning__current')
-      console.log(current.parentElement.previousElementSibling)
       if (!current.parentElement.previousElementSibling) {
-        console.log('noprev')
-        console.log(paging.lastElementChild.firstElementChild)
         paging.lastElementChild.firstElementChild.classList.add('planning__current')
       } else {
-        console.log('yesprev')
         current.parentElement.previousElementSibling.firstElementChild.classList.add('planning__current')
       }
       current.classList.remove('planning__current')
