@@ -94,9 +94,45 @@ $planningcontainersize: 3;
     .private-menu {
         margin-left: auto;
         display: flex;
+        position:relative;
 
         .private-menu__btn {
             padding: $button-padding;
+        }
+
+        .private-menu__recent-window {
+            position: absolute;
+            z-index: 100;
+            width: 300px;
+            height: 500px;
+            background-color: white;
+            top: 100%;
+            right: 0;
+            padding: 0 30px;
+
+            .private-menu__recent-bar {
+
+                .private-menu__recent-tab-container {
+                    display: flex;
+
+                    .private-menu__recent-tab {
+                        text-align: center;
+                        margin: 15px 5px 5px 5px;
+                    }
+                }
+            }
+
+            .private-menu__recent-contents {
+                display: flex;
+                flex-wrap: wrap;
+
+                .private-menu__recent-contents__item {
+                    margin: 10px;
+                    background-color: grey;
+                    width: 60px;
+                    height: 80px;
+                }
+            }
         }
     }
 }

@@ -117,9 +117,37 @@ h1 {
 .header-menu .private-menu {
   margin-left: auto;
   display: flex;
+  position: relative;
 }
 .header-menu .private-menu .private-menu__btn {
   padding: 20px;
+}
+.header-menu .private-menu .private-menu__recent-window {
+  position: absolute;
+  z-index: 100;
+  width: 300px;
+  height: 500px;
+  background-color: white;
+  top: 100%;
+  right: 0;
+  padding: 0 30px;
+}
+.header-menu .private-menu .private-menu__recent-window .private-menu__recent-bar .private-menu__recent-tab-container {
+  display: flex;
+}
+.header-menu .private-menu .private-menu__recent-window .private-menu__recent-bar .private-menu__recent-tab-container .private-menu__recent-tab {
+  text-align: center;
+  margin: 15px 5px 5px 5px;
+}
+.header-menu .private-menu .private-menu__recent-window .private-menu__recent-contents {
+  display: flex;
+  flex-wrap: wrap;
+}
+.header-menu .private-menu .private-menu__recent-window .private-menu__recent-contents .private-menu__recent-contents__item {
+  margin: 10px;
+  background-color: grey;
+  width: 60px;
+  height: 80px;
 }
 
 .gubun-bar {
