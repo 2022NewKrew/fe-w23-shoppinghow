@@ -1,5 +1,7 @@
 import Component from '../../core/Component';
-import ApiService from '../../core/ApiService';
+import {TARGET_SELECTOR, getTargetSelector, getTarget} from '../../core/ComponentGroup';
+import {getApi} from '../../core/ApiService';
+import {ERROR_SELECTOR, API_SELECTOR} from '../../core/TemplateGroup';
 import RollKeyword from './RollKeyword';
 // TODO 인기검색어리스트 추가기능 작업예정
 export default class KaKaoHead extends Component {
@@ -33,7 +35,7 @@ export default class KaKaoHead extends Component {
             </form>
             <div class="wrap_rollkeywords" id="upwardKeywordWrap">
                 <strong class="screen_out">인기 쇼핑 키워드</strong>
-                <ol class="list_rollkeywords" data-component="roll-keyword" style="top: 0px;">
+                <ol ${getTarget(TARGET_SELECTOR.TARGET_ROLL_KEYWORD)} class="list_rollkeywords" style="top: 0px;">
                 </ol>
                 
             </div>
@@ -121,12 +123,13 @@ export default class KaKaoHead extends Component {
   }
 
   async syncMounted() {
-    const $rollKeyword = this.$target.querySelector(
-        '[data-component="roll-keyword"]',
-    );
-    const searchKeywordGroup = await this.getSearhKeyword();
-
-    new RollKeyword($rollKeyword, {searchKeywordGroup: searchKeywordGroup});
+    try {
+      const $rollKeyword = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.TARGET_ROLL_KEYWORD));
+      const searchKeywordGroup = await this.getSearhKeyword();
+      new RollKeyword($rollKeyword, {searchKeywordGroup: searchKeywordGroup});
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   setEvent() {
@@ -139,9 +142,7 @@ export default class KaKaoHead extends Component {
     const totalPx = 32;
     const movePx = 2;
     const rollCycleTime = 3000;
-    const $rollKeyword = this.$target.querySelector(
-        '[data-component="roll-keyword"]',
-    );
+    const $rollKeyword = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.TARGET_ROLL_KEYWORD));
     this.$state.rollInterval = setInterval(() => {
       let top = parseInt($rollKeyword.style.top.split('px')[0]);
 
@@ -185,13 +186,17 @@ export default class KaKaoHead extends Component {
   }
 
   async getSearhKeyword() {
-    const apiService = new ApiService();
+    try {
+      const res = await getApi(API_SELECTOR.GET_SEARCH_KEYWORD_GROUP);
 
-    const res = await apiService.getApi('getSearchKeywordGroup');
-    if (res == null) {
-      console.log('getSearhKeyword err');
-      return;
+      // TODO 데이터 체크와 에러메시지는 추가 예정
+      if (res == null) {
+        console.log('getSearhKeyword err');
+        return new Error(ERROR_SELECTOR.NODATA);
+      }
+      return res.data;
+    } catch (error) {
+      console.log(error);
     }
-    return res.data;
   }
 }

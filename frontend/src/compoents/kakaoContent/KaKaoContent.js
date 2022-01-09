@@ -1,51 +1,60 @@
 import Component from '../../core/Component';
+import {getApi} from '../../core/ApiService';
+import {ERROR_SELECTOR, API_SELECTOR} from '../../core/TemplateGroup';
+import {TARGET_SELECTOR, getTargetSelector, getTarget} from '../../core/ComponentGroup';
 import KaKaoBanner from './kakaoBanner/KaKaoBanner';
 import KaKaoShopingPartner from './KaKaoShopingPartner';
 import KaKaoNotice from './KaKaoNotice';
-import ApiService from '../../core/ApiService';
 export default class KaKaoContent extends Component {
   template() {
     return `
     <div id="cMain">
         <div id="mArticle">
-            <div data-component="kakao-banner" class="#banner @op section_top">
+            <div ${getTarget(TARGET_SELECTOR.TARGET_BANNER)} class="#banner @op section_top">
             </div>
-            <div data-component="kakao-hotitem" class="#hotitem @op section_hot section_hit">
+            <div ${getTarget(TARGET_SELECTOR.TARGET_HOTITEM)} class="#hotitem @op section_hot section_hit">
             </div>
-            <div data-component="kakao-keyword" id="topRecomKeywordWrap" class="#recomkeyword section_tab section_rank">
+            <div ${getTarget(TARGET_SELECTOR.TARGET_KEYWORD)} id="topRecomKeywordWrap" class="#recomkeyword section_tab section_rank">
             </div>
-            <div data-component="kakao-recommend" class="#foru section_tab section_how" style="">
+            <div ${getTarget(TARGET_SELECTOR.TARGET_RECOMMEND)} class="#foru section_tab section_how" style="">
             </div>
         </div>
     </div>
     <div id="cEtc">
-        <div class="wrap_shopping_partner _GL" data-component="kakao-shopping-partner"></div>
-        <div class="wrap_notice" data-component="kakao-notice"></div>
+        <div ${getTarget(TARGET_SELECTOR.TARGET_SHOPPING_PARTNER)} class="wrap_shopping_partner _GL"></div>
+        <div ${getTarget(TARGET_SELECTOR.TARGET_NOTICE)} class="wrap_notice"></div>
     </div>`;
   }
 
   mounted() {
-    const $kaKaoShopingPartner = this.$target.querySelector('[data-component="kakao-shopping-partner"]');
-    const $kaKaoNotice = this.$target.querySelector('[data-component="kakao-notice"]');
+    const $kaKaoShopingPartner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.TARGET_SHOPPING_PARTNER));
+    const $kaKaoNotice = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.TARGET_NOTICE));
 
     new KaKaoShopingPartner($kaKaoShopingPartner, {});
     new KaKaoNotice($kaKaoNotice, {});
   }
 
   async syncMounted() {
-    const $kaKaoBanner = this.$target.querySelector('[data-component="kakao-banner"]');
-    const bannerData = await this.getBannerData();
-    new KaKaoBanner($kaKaoBanner, {bannerData: bannerData});
+    const $kaKaoBanner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.TARGET_BANNER));
+    try {
+      const bannerData = await this.getBannerData();
+      new KaKaoBanner($kaKaoBanner, {bannerData: bannerData});
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async getBannerData() {
-    const apiService = new ApiService();
-
-    const res = await apiService.getApi('getBannerData');
-    if (res == null) {
-      console.log('getBannerData err');
-      return;
+    try {
+      const res = await getApi(API_SELECTOR.GET_BANNER_DATA);
+      // TODO 데이터 체크와 에러메시지는 추가 예정
+      if (res == null) {
+        console.log('getBannerData err');
+        return new Error(ERROR_SELECTOR.NODATA);
+      }
+      return res.data;
+    } catch (error) {
+      console.log(error);
     }
-    return res.data;
   }
 }
