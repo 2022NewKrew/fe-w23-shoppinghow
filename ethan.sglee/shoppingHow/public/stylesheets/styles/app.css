@@ -223,8 +223,8 @@ h1 {
   height: 5px;
   background-color: lightgray;
 }
-.container .promotion .banner .planning .planning__window .planning__btn-container .planning__paging .planning__page .planning__page-now {
-  background-color: grey;
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__paging .planning__page .planning__current {
+  background-color: gray;
 }
 .container .promotion img {
   margin: auto;
