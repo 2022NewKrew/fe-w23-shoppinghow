@@ -322,6 +322,10 @@ $planningcontainersize: 3;
                 padding:20px;
                 border-right: 1px solid #f1f1f1;
                 border-bottom: 1px solid #f1f1f1;
+
+                a {
+                    pointer-events: none;
+                }
             }
         }
 

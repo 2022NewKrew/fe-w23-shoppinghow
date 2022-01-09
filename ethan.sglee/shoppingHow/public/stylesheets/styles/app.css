@@ -297,6 +297,9 @@ h1 {
   border-right: 1px solid #f1f1f1;
   border-bottom: 1px solid #f1f1f1;
 }
+.container .hot-deal .hot-deal-list .hot-deal__item a {
+  pointer-events: none;
+}
 .container .hot-deal .hot-deal__detail-price {
   margin-top: 20px;
   position: relative;
