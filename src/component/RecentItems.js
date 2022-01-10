@@ -1,59 +1,93 @@
-import ItemDataManager from "../ItemDataManager";
+import dibsItemIdsModel from "../model/DibsItemIdsModel";
+import itemDataModel from "../model/ItemDataModel";
+import viewItemIdsModel from "../model/ViewItemIdsModel";
+
+const tabClassName="recent-items-container__tab";
+const activeTabClassName="recent-items-container__tab-active";
+const activeInnerContainerClassName="recent-items-container__container-active";
+const hiddenClassName="recent-items-container__hidden";
+const viewTabName="최근 본 상품";
+const dibsTabName="찜한 상품";
 
 export default class RecentItems{
   constructor(){
-    const tabClassName="recent-items-container__tab";
-    const activeTabClassName="recent-items-container__tab-active";
-    const activeInnerContainerClassName="recent-items-container__container-active";
-    const viewTabName="최근 본 상품";
-    const dibsTabName="찜한 상품";
+    this.itemData;
   
-    const recentItemsLi=document.getElementById("recent-items-li");
-    const recentItemsContainer=document.querySelector(".recent-items-container");
-    const recentItemsTabContainer=document.querySelector(".recent-items-container__tab-container");
-    const viewItemsInnerContainer=recentItemsContainer.querySelector(".recent-items-container__view-container");
-    const viewItemTab=document.querySelector(".recent-items-container__view-tab");
-    const dibsItemsInnerContainer=recentItemsContainer.querySelector(".recent-items-container__dibs-container");
-    const dibsItemTab=document.querySelector(".recent-items-container__dibs-tab");
-  
-    recentItemsLi.addEventListener("mouseenter", ()=>{
-      recentItemsContainer.classList.remove("recent-items-container__hidden");
-      ItemDataManager.fetchViewItemIds().then((data)=>{
-        const viewItemIds=data;
-        this.#createHtml(viewItemsInnerContainer, viewItemIds);
-        viewItemTab.innerHTML=viewTabName+Object.keys(viewItemIds).length;
-      });
-      ItemDataManager.fetchDibsItemIds().then((data)=>{
-        const dibsItemIds=data;
-        this.#createHtml(dibsItemsInnerContainer, dibsItemIds);
-        dibsItemTab.innerHTML=dibsTabName+Object.keys(dibsItemIds).length;
-      });
-    });
-  
-    recentItemsLi.addEventListener("mouseleave", ()=>{
-      recentItemsContainer.classList.add("recent-items-container__hidden");
-    });
-  
-    recentItemsTabContainer.addEventListener("click", (e)=>{
-      if(!e.target.classList.contains(tabClassName)){
-        return;
-      }
-      if(e.target===viewItemTab){
-        // Show view items.
-        dibsItemTab.classList.remove(activeTabClassName);
-        dibsItemsInnerContainer.classList.remove(activeInnerContainerClassName);
-        viewItemsInnerContainer.classList.add(activeInnerContainerClassName);
-      }
-      else{
-        // Show dibs items.
-        viewItemTab.classList.remove(activeTabClassName);
-        viewItemsInnerContainer.classList.remove(activeInnerContainerClassName);
-        dibsItemsInnerContainer.classList.add(activeInnerContainerClassName);
-      }
-      e.target.classList.add(activeTabClassName);
-    });
+    this.recentItemsLi=document.getElementById("recent-items-li");
+    this.recentItemsContainer=document.querySelector(".recent-items-container");
+    this.recentItemsTabContainer=document.querySelector(".recent-items-container__tab-container");
+    
+    this.viewItemsInnerContainer=this.recentItemsContainer.querySelector(".recent-items-container__view-container");
+    this.viewItemTab=document.querySelector(".recent-items-container__view-tab");
 
-    viewItemTab.click();
+    this.dibsItemsInnerContainer=this.recentItemsContainer.querySelector(".recent-items-container__dibs-container");
+    this.dibsItemTab=document.querySelector(".recent-items-container__dibs-tab");
+  
+    this.#init();
+  }
+
+  #init(){
+    viewItemIdsModel.subscribe((viewItemIds)=>{
+      this.#createViewItemTabHtml(viewItemIds);
+    });
+    dibsItemIdsModel.subscribe((dibsItemIds)=>{
+      this.#createDibsItemTabHtml(dibsItemIds);
+    });
+    
+    this.#fetchItemData().then(()=>{
+      // Call fetchData in order to update at first start.
+      viewItemIdsModel.fetchData();
+      dibsItemIdsModel.fetchData();
+      this.recentItemsLi.addEventListener("mouseenter", ()=>{
+        this.recentItemsContainer.classList.remove(hiddenClassName);
+      });
+    
+      this.recentItemsLi.addEventListener("mouseleave", ()=>{
+        this.recentItemsContainer.classList.add(hiddenClassName);
+      });
+    
+      this.recentItemsTabContainer.addEventListener("click", (e)=>{
+        if(!e.target.classList.contains(tabClassName)){
+          return;
+        }
+        if(e.target===this.viewItemTab){
+          // Show view items.
+          this.dibsItemTab.classList.remove(activeTabClassName);
+          this.dibsItemsInnerContainer.classList.remove(activeInnerContainerClassName);
+          this.viewItemsInnerContainer.classList.add(activeInnerContainerClassName);
+        }
+        else{
+          // Show dibs items.
+          this.viewItemTab.classList.remove(activeTabClassName);
+          this.viewItemsInnerContainer.classList.remove(activeInnerContainerClassName);
+          this.dibsItemsInnerContainer.classList.add(activeInnerContainerClassName);
+        }
+        e.target.classList.add(activeTabClassName);
+      });
+  
+      this.viewItemTab.click();
+    });
+  }
+
+  #fetchItemData(){
+    return new Promise((resolve)=>{
+      const helper=(itemData)=>{
+        this.itemData=itemData;
+        itemDataModel.unsubscribe(helper);
+        resolve();
+      };
+      itemDataModel.subscribe(helper);
+    });
+  }
+
+  #createViewItemTabHtml(viewItemIds){
+    this.#createHtml(this.viewItemsInnerContainer, viewItemIds);
+    this.viewItemTab.innerHTML=viewTabName+Object.keys(viewItemIds).length;
+  }
+
+  #createDibsItemTabHtml(dibsItemIds){
+    this.#createHtml(this.dibsItemsInnerContainer, dibsItemIds);
+    this.dibsItemTab.innerHTML=dibsTabName+Object.keys(dibsItemIds).length;
   }
 
   /**
@@ -61,9 +95,9 @@ export default class RecentItems{
    * @param {Object.<string, number>}
    */
   async #createHtml(container, itemIds){
-    const itemData=await ItemDataManager.fetchItemData();
+    // const itemData=await itemDataManager.fetchItemData();
     container.innerHTML=Object.keys(itemIds).map((itemId)=>(
-      `<div class="recent-item"><img src="${itemData[Number(itemId)].imageSrc}">
+      `<div class="recent-item"><img src="${this.itemData[Number(itemId)].imageSrc}">
       </img></div>`
     )).join("");
   }

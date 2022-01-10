@@ -1,12 +1,14 @@
-import ItemDataManager from "./ItemDataManager";
 import Carousel from "./component/Carousel";
-import Top10 from "./Top10";
-import Recommend from "./component/Recommend.js";
+import dibsItemIdsModel from "./model/DibsItemIdsModel";
+import itemDataModel from "./model/ItemDataModel";
 import RecentItems from "./component/RecentItems";
+import Recommend from "./component/Recommend.js";
+import Top10 from "./Top10";
+import viewItemIdsModel from "./model/ViewItemIdsModel";
 
 function createHotDealHtml(){
   const container = document.querySelector(".hot-deal-list");
-  const hotdealItemTpl = `
+  const hotDealItemTpl = `
       <li class="hot-deal__item">
           <a href="" class="hot-deal__link">
               <span class="hot-deal__thumb">
@@ -22,10 +24,12 @@ function createHotDealHtml(){
           </a>
       </li>`;
 
-  container.innerHTML = Array(10).fill(0).reduce( (html) => html+hotdealItemTpl, "");
+  container.innerHTML = Array(10).fill(0).reduce( (html) => html+hotDealItemTpl, "");
 }
 
 function createItemHtml({itemId, imageSrc, title, desc}){
+  // Empty Heart <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png">
+  // Full Heart <img src="https://cdn-icons-png.flaticon.com/512/1076/1076984.png">
   return `
   <li class="theme-item" data-itemId="${itemId}">
     <a href="#" class="theme__link">
@@ -40,11 +44,18 @@ function createItemHtml({itemId, imageSrc, title, desc}){
     </div>
   </li>`;
 }
-// <img src="https://cdn-icons-png.flaticon.com/512/1076/1076984.png">
 
 async function createItemsHtml(){
   const container = document.querySelector(".theme-container");
-  const themeItemData=await ItemDataManager.fetchItemData();
+  function fetchItemData(){
+    return new Promise((resolve)=>{
+      itemDataModel.subscribe((data)=>{
+        resolve(data);
+      });
+      itemDataModel.fetchData();
+    });
+  }
+  const themeItemData=await fetchItemData();
 
   container.innerHTML=themeItemData.map(
     (itemData)=>createItemHtml(itemData)
@@ -56,10 +67,10 @@ async function createItemsHtml(){
       return;
     }
     if(e.target.closest(".theme-item__icon")!==null){
-      ItemDataManager.updateDibsItem(itemId);
+      dibsItemIdsModel.addId(itemId);
       return;
     }
-    ItemDataManager.updateViewItem(itemId);
+    viewItemIdsModel.addId(itemId);
   });
 }
 

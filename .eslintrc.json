@@ -49,6 +49,12 @@
             {
                 "skipBlankLines": true
             }
+        ],
+        "sort-imports": [
+            "error",
+            {
+                "ignoreCase": true
+            }
         ]
     }
 }

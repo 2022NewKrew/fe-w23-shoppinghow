@@ -1,4 +1,5 @@
-import itemDataManager from "../ItemDataManager";
+import itemDataModel from "../model/ItemDataModel";
+import viewItemIdsModel from "../model/ViewItemIdsModel";
 
 export default class Recommend{
   /**
@@ -22,18 +23,18 @@ export default class Recommend{
     this.#init();
   }
 
-  #init(){
-    itemDataManager.fetchItemData().then((itemData)=>{
-      this.itemData=itemData;
-      itemDataManager.fetchViewItemIds().then((itemIds)=>{
-        this.viewedItemsIds=itemIds;
-        this.#goToRecentItemsPageByOffset(0);
-      });
-    });
+  async #init(){
+    await this.#fetchItemData();
 
+    viewItemIdsModel.subscribe((viewItemIds)=>{
+      this.viewedItemsIds=viewItemIds;
+      this.#goToRecentItemsPageByOffset(0);
+    });
+    
     this.viewedItemsContainer.addEventListener("click", (e)=>{
       const button=e.target.closest("button");
       if(button){
+        // Change page.
         const isLeft=button.classList.contains("viewed-items__left-btn");
         const isRight=button.classList.contains("viewed-items__right-btn");
         if(isLeft){
@@ -44,6 +45,7 @@ export default class Recommend{
         }
         return;
       }
+      // Show recommendation items.
       const itemId=e.target.closest("li").getAttribute("data-itemId");
       if(itemId===null){
         return;
@@ -55,6 +57,17 @@ export default class Recommend{
       ));
       e.target.closest("li").classList.add("viewed-items__item-active");
       this.#showRecommendItems(itemId);
+    });
+  }
+
+  #fetchItemData(){
+    return new Promise((resolve)=>{
+      const helper=(itemData)=>{
+        this.itemData=itemData;
+        itemDataModel.unsubscribe(helper);
+        resolve();
+      };
+      itemDataModel.subscribe(helper);
     });
   }
 
@@ -73,7 +86,7 @@ export default class Recommend{
    * @param {number} offset
    */
   #goToRecentItemsPageByOffset(offset){
-    if((this.currentPage+offset)<0 || (this.currentPage+offset)*this.numItemsInOnePage>Object.keys(this.viewedItemsIds).length){
+    if((this.currentPage+offset)<0 || (this.currentPage+offset)*this.numItemsInOnePage>=Object.keys(this.viewedItemsIds).length){
       return;
     }
     this.currentPage+=offset;
@@ -107,11 +120,10 @@ export default class Recommend{
    * Show related recommendation items.
    * @param {number} itemId
    */
-  async #showRecommendItems(itemId){
+  #showRecommendItems(itemId){
     const recommendItemIds=this.#getRecommendItemIds(itemId);
-    const itemdata=await itemDataManager.fetchItemData();
     this.recommendItemsContainer.innerHTML=recommendItemIds.map((itemId)=> {
-      const {imageSrc, title, desc}=itemdata[itemId];
+      const {imageSrc, title, desc}=this.itemData[Number(itemId)];
       return `<li class="theme-item" data-itemId="${itemId}">
         <a href="#" class="theme__link">
           <span class="theme-item__info">
