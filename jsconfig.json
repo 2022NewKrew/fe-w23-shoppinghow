@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": "client",
+    "baseUrl": "./client",
     "paths": {
       "@core": ["./core"],
       "@components": ["./components"],
       "@containers": ["./containers"],
+      "@services": ["./services"],
       "@styles/*": ["./styles/*"],
       "@utils": ["./utils"]
     }

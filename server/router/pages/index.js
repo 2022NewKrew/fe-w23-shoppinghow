@@ -4,7 +4,7 @@ const path = require('path');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../../dist/home.html'));
+  res.sendFile(path.resolve(__dirname, '../../../dist/home.html'));
 });
 
 router.get('/home', (req, res) => {
@@ -12,7 +12,7 @@ router.get('/home', (req, res) => {
 });
 
 router.get('/dummy', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../../dist/dummy.html'));
+  res.sendFile(path.resolve(__dirname, '../../../dist/dummy.html'));
 });
 
 module.exports = router;

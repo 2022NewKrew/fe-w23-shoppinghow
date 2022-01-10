@@ -38,11 +38,12 @@ module.exports = {
   plugins: [new MiniCssExtractPlugin()],
   resolve: {
     alias: {
-      '@core': path.resolve(__dirname, 'client/core/'),
-      '@components': path.resolve(__dirname, 'client/components/'),
-      '@containers': path.resolve(__dirname, 'client/containers/'),
-      '@styles': path.resolve(__dirname, 'client/styles/'),
-      '@utils': path.resolve(__dirname, 'client/utils/'),
+      '@core': path.resolve(__dirname, './client/core/'),
+      '@components': path.resolve(__dirname, './client/components/'),
+      '@containers': path.resolve(__dirname, './client/containers/'),
+      '@services': path.resolve(__dirname, './client/services/'),
+      '@styles': path.resolve(__dirname, './client/styles/'),
+      '@utils': path.resolve(__dirname, './client/utils/'),
     },
   },
 };

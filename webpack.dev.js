@@ -1,4 +1,6 @@
+const webpack = require('webpack');
 const { merge } = require('webpack-merge');
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common.js');
 
@@ -17,6 +19,11 @@ module.exports = merge(common, {
     static: './dist',
   },
   plugins: [
+    new Dotenv({ path: '.env.development' }),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+      DEBUG: true,
+    }),
     new HtmlWebpackPlugin({
       title: '개발모드 | 쇼핑나우',
       template: HTML_TEMPLATE,
