@@ -1,24 +1,75 @@
-import { LOGO } from '@/static/constants/image-path';
-import SearchForm from '../search-form';
 import './index.scss';
+import { $ } from '@/utils/helper';
 
-export default class HeaderTop {
-  constructor($parent) {
-    this.headerTop = document.createElement('div');
-    this.headerTop.className = 'header-top';
+const slideAnimationTime = 2000;
+const timeForLoop = 1000;
+
+export default class Carousel {
+  info = [];
+  intervalTimer = 0;
+  timeoutTimer = 0;
+
+  constructor({ $parent, info }) {
+    this.info = info;
+    this.carousel = document.createElement('div');
+    this.carousel.className = 'carousel';
+    this.carousel.innerHTML = `<div class='carousel-container'></div>`;
+    this.carouselContainer = $('.carousel-container', this.carousel);
     this.render();
-    this.searchForm = new SearchForm(this.headerTop);
-    $parent.appendChild(this.headerTop);
-  }
-
-  setState(props) {
-    this.searchForm.setState(props);
+    this.adjustSliding();
+    $parent.appendChild(this.carousel);
   }
 
   render() {
-    this.headerTop.innerHTML = `
-        <div class="title">
-            <img src=${LOGO} alt='로고'/>
-        </div>`;
+    const lastCarouselData = this.info[0].imageSrc;
+    const lastCarouselImgTag = `<img src=${lastCarouselData} alt="기획전 상품"/>`;
+    const resultCarousel = this.info
+      .map((info) => {
+        return `<img src=${info.imageSrc} alt="기획전 상품"/>`;
+      })
+      .join('');
+
+    this.carouselContainer.innerHTML = resultCarousel + lastCarouselImgTag;
+  }
+
+  setTransition(container, slideX, flag = '') {
+    if (container.style.transition === 'none 0s ease 0s') container.style.transition = 'all 1s ease';
+    if (flag === 'loop') container.style.transition = 'none';
+    container.style.transform = `translateX(${slideX}%)`;
+  }
+
+  adjustSliding() {
+    let slideX = 0;
+    let currentPage = 1;
+
+    this.intervalTimer = setInterval(() => {
+      moveSlide();
+      processLastSlideForLoop();
+    }, slideAnimationTime);
+
+    const moveSlide = () => {
+      slideX += -25;
+      currentPage += 1;
+      this.setTransition(this.carouselContainer, slideX);
+    };
+
+    const processLastSlideForLoop = () => {
+      if (this.info.length + 1 === currentPage) {
+        this.timeoutTimer = setTimeout(() => {
+          moveFirstPosition();
+        }, timeForLoop);
+      }
+    };
+
+    const moveFirstPosition = () => {
+      slideX = 0;
+      currentPage = 1;
+      this.setTransition(this.carouselContainer, slideX, 'loop');
+    };
+  }
+
+  clearCarouselTimer() {
+    clearInterval(thithis.s.intervalTimer);
+    clearTimeout(this.timeoutTimer);
   }
 }
