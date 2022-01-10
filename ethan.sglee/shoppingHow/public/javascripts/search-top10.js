@@ -1,9 +1,9 @@
 const SLIDE_DELAY_MS = 2000
 
 export function initTop10() {
-  let top10Counter = 0
-
   document.addEventListener("DOMContentLoaded", () => {
+    let top10Counter = 0
+
     function slide() {
       const rollbox = document.querySelector('.header-top .search .search-rollbox')
       const searchTop10 = rollbox.querySelector('.search-top10')

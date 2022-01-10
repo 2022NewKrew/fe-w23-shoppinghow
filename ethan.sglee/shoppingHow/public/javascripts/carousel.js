@@ -12,6 +12,9 @@ export default function initCarousel () {
   let ongoing = false
 
   btnContainer.addEventListener('click', (event) => {
+    console.log('clicked')
+    console.log(event.target)
+
     if (ongoing) {
       return
     }

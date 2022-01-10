@@ -214,6 +214,7 @@ $planningcontainersize: 3;
                                 background-position: -128px -335px;
                                 width: 15px;
                                 height: 25px;
+                                pointer-events: none;
                             }
                         }
                         
@@ -230,6 +231,7 @@ $planningcontainersize: 3;
                                 background-position: -145px -335px;
                                 width: 15px;
                                 height: 25px;
+                                pointer-events: none;
                             }
                         }
         
@@ -342,4 +344,53 @@ $planningcontainersize: 3;
             }
         }
     }
+}
+
+/*https://elad2412.github.io/the-new-css-reset/*/
+
+/*** The new CSS Reset - version 1.4.2 (last updated 30.11.2021) ***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+ *:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+    all: unset;
+    display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu {
+    list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+    max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+    border-collapse: collapse;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+    white-space: revert;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly. */
+:where([contenteditable]){
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    overflow-wrap: break-word;
+    -webkit-line-break: after-white-space;
 }
