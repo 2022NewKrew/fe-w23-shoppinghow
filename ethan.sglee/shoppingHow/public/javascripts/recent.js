@@ -6,19 +6,17 @@ function appendRecentItem(parent, product) {
     </a>
   </li>
   `
+
   parent.innerHTML += recentItemTpl
 }
 
 export default function initRecent() {
-  
   const recentBtn = document.querySelectorAll('.private-menu__btn')[1]
 
   const recentWindow = document.querySelector('.private-menu__recent-window')
   const recentContents = recentWindow.querySelector('.private-menu__recent-contents')
 
-  recentBtn.addEventListener('mouseenter', (event) => {
-    console.log('in')
-
+  recentBtn.addEventListener('mouseenter', () => {
     recentWindow.classList.remove('none')
 
     recentContents.innerHTML = ''
@@ -27,19 +25,17 @@ export default function initRecent() {
       const product = JSON.parse(sessionStorage.getItem(key))
       appendRecentItem(recentContents, product)
     }
-
   })
 
-  recentBtn.addEventListener('mouseleave', (event) => {
-    console.log('out')
+  recentBtn.addEventListener('mouseleave', () => {
     recentWindow.classList.add('none')
   })
 
-  recentWindow.addEventListener('mouseenter', (event) => {
+  recentWindow.addEventListener('mouseenter', () => {
     recentWindow.classList.remove('none')
   })
 
-  recentWindow.addEventListener('mouseleave', (event) => {
+  recentWindow.addEventListener('mouseleave', () => {
     recentWindow.classList.add('none')
   })
 

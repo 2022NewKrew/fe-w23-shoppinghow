@@ -34,7 +34,6 @@ const imgSrcArr = [
 ]
 
 export default function initHotdeal() {
-
   imgSrcArr.forEach((imgSrc, index) => {
     addHotDealHTML(imgSrc, index)
   })
@@ -53,8 +52,6 @@ export default function initHotdeal() {
     }
 
     sessionStorage.setItem(title, JSON.stringify(product))
-
   })
-
 }
 
