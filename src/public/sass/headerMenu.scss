@@ -12,10 +12,13 @@
     .category__title {
       height: 60px;
       padding: 10px;
-
+      cursor: pointer;
       .fas {
         margin-right: 8px;
       }
+    }
+    .category__title:hover {
+      background-color: rgba(255, 200, 153, 0.5);
     }
     .category__content {
       width: 561px;
@@ -113,9 +116,36 @@
   .private-menu {
     margin-left: auto;
     display: flex;
-
     .private-menu__btn {
       padding: $button-padding;
+      position: relative;
+      cursor: pointer;
+      button {
+        width: $private-menu-btn-width;
+      }
+      .private-menu__content {
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+        top: calc($button-padding * 2 + 1rem);
+        left: calc(-1 * $private-menu-content-width + $private-menu-btn-width + 72px);
+        width: $private-menu-content-width;
+        height: $private-menu-content-height;
+        border: 1px solid #ccc;
+        z-index: 1;
+        background-color: white;
+        .private-menu__title {
+          height: $private-menu-btn-height;
+          margin-top: $private-menu-btn-height/2;
+          margin-bottom: $private-menu-btn-height/2;
+        }
+        .private-menu__list {
+          display: flex;
+          justify-content: space-around;
+        }
+      }
     }
   }
 }

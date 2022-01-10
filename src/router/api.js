@@ -75,12 +75,22 @@ router.get("/view/:id", async (req, res) => {
     res.status(404);
   }
 });
+router.get("/recent", async (req, res) => {
+  try {
+    const [result] = await pool.query(`select * from hotdeal where not view_date is null order by view_date`);
+    res.status(200).json({
+      result,
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(404);
+  }
+});
 router.get("/category", async (req, res) => {
   try {
     const [result] = await pool.query(`select * from category`);
     const resData = {};
     result.map(item => {
-      console.log(item);
       if (typeof resData[item.top] === "undefined") {
         resData[item.top] = {};
         resData[item.top][item.middle] = [item.low];
@@ -92,7 +102,6 @@ router.get("/category", async (req, res) => {
         }
       }
     });
-    console.log(resData);
     res.status(200).json({ result: resData });
   } catch (e) {
     console.error(e);
