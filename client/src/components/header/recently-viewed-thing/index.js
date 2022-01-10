@@ -3,7 +3,7 @@ import { $ } from '@/utils/helper';
 import './index.scss';
 
 const enableModalTime = 200;
-const disableModalTime = 400;
+const disableModalTime = 2000;
 
 // RVT : RecentlyViewedThing
 export default class RecentlyViewedThing {
