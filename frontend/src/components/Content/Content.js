@@ -13,7 +13,7 @@ export default class Content extends Component {
         <div id="mArticle">
             <div data-component="${TARGET_SELECTOR.BANNER}" class="#banner @op section_top">
             </div>
-            <div data-component="${TARGET_SELECTOR.ITEM_GROUP_WRAP}" class="#hotitem @op section_hot section_hit">
+            <div data-component="${TARGET_SELECTOR.ITEM_GROUP_WRAP}" class="section_tab section_rank">
             </div>
             <div data-component="${TARGET_SELECTOR.KEYWORD}" id="topRecomKeywordWrap" class="#recomkeyword section_tab section_rank">
             </div>
