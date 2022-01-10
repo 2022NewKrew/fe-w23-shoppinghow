@@ -1,0 +1,27 @@
+.recent-search-name {
+  flex: auto;
+  .recent-search-name__title {
+    color: var(--color-grey2);
+    font-weight: bold;
+  }
+
+  .recent-search-name__list {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .recent-search-name__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .recent-search-name__item-name {
+      cursor: pointer;
+    }
+    .recent-search-name__remove {
+      cursor: pointer;
+    }
+  }
+}
