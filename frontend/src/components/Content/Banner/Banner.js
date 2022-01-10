@@ -2,7 +2,7 @@ import Component from '../../../core/Component';
 import {TARGET_SELECTOR, getTargetSelector} from '../../../util/ComponentGroup';
 import SlideBanner from './SlideBanner';
 
-export default class KaKaoBanner extends Component {
+export default class Banner extends Component {
   template() {
     const bannerData = this.$props.bannerData;
     const bannerBestImg = bannerData.best[0];

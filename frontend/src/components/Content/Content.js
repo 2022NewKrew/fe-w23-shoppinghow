@@ -2,10 +2,10 @@ import Component from '../../core/Component';
 import {getApi} from '../../core/ApiService';
 import {ERROR_MESSAGE, API_URL} from '../../util/TemplateGroup';
 import {TARGET_SELECTOR, getTargetSelector} from '../../util/ComponentGroup';
-import KaKaoBanner from './kakaoBanner/KaKaoBanner';
-import KaKaoShopingPartner from './KaKaoShopingPartner';
-import KaKaoNotice from './KaKaoNotice';
-export default class KaKaoContent extends Component {
+import Banner from './Banner/Banner';
+import ShopingPartner from './ShopingPartner';
+import Notice from './Notice';
+export default class Content extends Component {
   template() {
     return `
     <div id="cMain">
@@ -27,18 +27,18 @@ export default class KaKaoContent extends Component {
   }
 
   mounted() {
-    const $kaKaoShopingPartner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.SHOPPING_PARTNER));
-    const $kaKaoNotice = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.NOTICE));
+    const $shopingPartner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.SHOPPING_PARTNER));
+    const $notice = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.NOTICE));
 
-    new KaKaoShopingPartner($kaKaoShopingPartner, {});
-    new KaKaoNotice($kaKaoNotice, {});
+    new ShopingPartner($shopingPartner, {});
+    new Notice($notice, {});
   }
 
   async syncMounted() {
-    const $kaKaoBanner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.BANNER));
+    const $banner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.BANNER));
     try {
       const bannerData = await this.getBannerData();
-      new KaKaoBanner($kaKaoBanner, {bannerData: bannerData});
+      new Banner($banner, {bannerData: bannerData});
     } catch (error) {
       console.log(error);
     }
