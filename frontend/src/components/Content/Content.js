@@ -65,22 +65,12 @@ export default class Content extends Component {
   // TODO 서버에서 데이터 받아올 얘정 지금은 임시 데이터
   async setHotDealForm() {
     const $hotDealItemGroupWrap = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.ITEM_GROUP_WRAP));
-    const tempData = [{
+    const tempData = Array(10).fill({
       category: '호빵찜기',
       name: 'JY-507 호빵찜기 소형',
       imgUrl: 'asset/img/product_hotdeal/product_hotdeal_01.jpeg',
       price: 705150,
-    }, {
-      category: '호빵찜기',
-      name: 'JY-507 호빵찜기 소형',
-      imgUrl: 'asset/img/product_hotdeal/product_hotdeal_01.jpeg',
-      price: 705150,
-    }, {
-      category: '호빵찜기',
-      name: 'JY-507 호빵찜기 소형',
-      imgUrl: 'asset/img/product_hotdeal/product_hotdeal_01.jpeg',
-      price: 705150,
-    }];
+    });
     new ItemGroupWrap($hotDealItemGroupWrap, {itemType: 'hotdeal', title: '쇼핑 급상승 키워드', itemGroup: tempData});
   }
 }
