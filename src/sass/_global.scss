@@ -25,6 +25,10 @@ $button-padding: 20px;
     border: 1px solid #979797;
 }
 
+%border-highlight {
+    border: 1px solid #f95139;
+}
+
 %section-layout {
     width: 1270px;
     margin: auto;
@@ -65,4 +69,8 @@ $button-padding: 20px;
     font-size: 1.25rem;
     padding-bottom: 20px;
     background-color: $bgColor;
+}
+
+.hidden {
+    visibility: hidden;
 }

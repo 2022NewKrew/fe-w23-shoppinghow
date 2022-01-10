@@ -1,4 +1,4 @@
-import { verticalRolling } from '../verticalRolling/verticalRolling';
+import { verticalRolling } from '../../verticalRolling/verticalRolling';
 
 // fetch되어온 데이터라 가정
 const dummyData = [
@@ -15,5 +15,7 @@ const dummyData = [
 ];
 
 export const searchTop10 = () => {
-    return verticalRolling(dummyData);
+    const top10 = verticalRolling(dummyData);
+    top10.classList.add('search-top10');
+    return top10;
 };

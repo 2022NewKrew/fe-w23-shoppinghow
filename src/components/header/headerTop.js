@@ -1,4 +1,4 @@
-import { searchTop10 } from './searchTop10';
+import { search } from './search/search';
 
 export const headerTop = () => {
     const target = document.createElement('div');
@@ -9,14 +9,8 @@ export const headerTop = () => {
             <div class="title">
                 <h1>쇼핑하우</h1>
             </div>
-            <div class="search">
-                <form>
-                    <input type="text" class="search__input">
-                    <button class="search__icon">🔍</button>
-                </form>
-            </div>
         `;
-        target.querySelector('form').appendChild(searchTop10());
+        target.appendChild(search());
         return target;
     };
 

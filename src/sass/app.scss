@@ -16,7 +16,8 @@
     .search {
         display: flex;
         position: relative;
-        border: 1px solid gray;
+        border-radius: 10px;
+        @extend %border-distinct;
 
         form {
             display: flex;
@@ -24,7 +25,10 @@
             .search__input {
                 width: 400px;
                 height: 60px;
-                padding: 10px;
+                padding: 10px 10px 10px 20px;
+                z-index: 1;
+                font-size: 1.2rem;
+                font-weight: 700;
             }
 
             .search__icon {
@@ -32,6 +36,10 @@
                 padding: 10px;
             }
         }
+    }
+
+    .search.highlight {
+        @extend %border-highlight;
     }
 }
 

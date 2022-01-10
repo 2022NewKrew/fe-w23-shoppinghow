@@ -1,29 +1,29 @@
+const ROLLING_INTERVAL_TIME = 3000;
+
 const appendFirstClone = (itemArray) => {
     const firstNode = itemArray[0].cloneNode(true);
     return [...itemArray, firstNode];
 };
 
-const addRollingAnimation = (container) => {
-    const rollingIntervalTime = 3000;
-    let count = 0;
-    const rollItem = (count, container) => () => {
-        const rollingTransitionTime = 300;
-        const itemHeight = 30;
-        count++;
-        container.style.transitionDuration = rollingTransitionTime + 'ms';
-        container.style.transform = `translateY(-${count * itemHeight}px)`;
-        container.ontransitionend = () => {
-            if (count == container.children.length - 1) {
-                console.log('end');
-                container.style.transitionDuration = '0ms';
-                container.style.transform = 'translateY(0px)';
-                count = 0;
-            }
-            setTimeout(rollItem(count, container), rollingIntervalTime);
-        };
+const rollItem = (count, container) => () => {
+    const rollingTransitionTime = 300;
+    const itemHeight = 30;
+    count++;
+    container.style.transitionDuration = rollingTransitionTime + 'ms';
+    container.style.transform = `translateY(-${count * itemHeight}px)`;
+    container.ontransitionend = () => {
+        if (count == container.children.length - 1) {
+            container.style.transitionDuration = '0ms';
+            container.style.transform = 'translateY(0px)';
+            count = 0;
+        }
+        setTimeout(rollItem(count, container), ROLLING_INTERVAL_TIME);
     };
+};
 
-    setTimeout(rollItem(count, container), rollingIntervalTime);
+const addRollingAnimation = (container) => {
+    let count = 0;
+    setTimeout(rollItem(count, container), ROLLING_INTERVAL_TIME);
 };
 
 const renderItem = (title, index) => {
@@ -51,7 +51,6 @@ export const verticalRolling = (contentsData) => {
 
     const render = () => {
         verticalRollingWindow.appendChild(renderVerticalList(contentsData));
-
         return verticalRollingWindow;
     };
 
