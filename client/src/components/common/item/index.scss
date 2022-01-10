@@ -1,0 +1,47 @@
+@import '@/static/styles/index.scss';
+
+.item {
+  width: 25%;
+  padding: 30px;
+  border-right: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+
+  .item-img {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+.item-title,
+.item-detail-price {
+  @extend %text-block;
+}
+
+.item-title {
+  margin-top: 8px;
+}
+
+.item-detail-price {
+  margin-top: 20px;
+  position: relative;
+  font-weight: 500;
+
+  .txt-price-percent {
+    position: absolute;
+    right: 10px;
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    color: red;
+  }
+  .txt-price-before-discount {
+    position: absolute;
+    left: 5;
+    top: 20;
+    color: var(--color-grey2);
+    text-decoration: line-through;
+  }
+}
+
+.hot-item-title {
+  font-weight: 500;
+}

@@ -1,0 +1,17 @@
+.header-top {
+  display: flex;
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+
+  .title {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    cursor: pointer;
+
+    img {
+      width: 120px;
+    }
+  }
+}

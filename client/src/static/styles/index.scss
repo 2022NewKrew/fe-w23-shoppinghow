@@ -1,0 +1,53 @@
+:root {
+  --color-grey: #888888;
+  --color-grey2: #939393;
+  --color-grey3: #cecfd1;
+  --color-orange: #f95139;
+  --color-red: #fc363c;
+  --color-black: #333333;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f5f5f5;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+* {
+  font-family: 돋움, dotum, sans-serif;
+}
+
+body {
+  margin: 0px auto;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+$primaryColor: #eeffcc;
+$bgColor: #f5f5f5;
+
+$button-padding: 20px;
+%border-basic {
+  border: 1px solid #e4e2e2;
+}
+
+%section-layout {
+  width: 1270px;
+  margin: auto;
+  background: #fff;
+}
+
+%card {
+  width: 25%;
+  padding: 20px 60px;
+}
+
+%text-block {
+  display: block;
+  padding: 5px;
+  font-size: 0.875rem;
+}

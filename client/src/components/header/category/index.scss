@@ -1,0 +1,17 @@
+.category {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  .category-img {
+    width: 40px;
+  }
+}
+
+.gubun-bar {
+  width: 1px;
+  height: 25px;
+  background: var(--color-grey3);
+  margin: 0px 5px 0px 25px;
+}

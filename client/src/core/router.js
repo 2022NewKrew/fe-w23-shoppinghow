@@ -1,4 +1,4 @@
-import MainPage from '../pages/index';
+import MainPage from '@/pages/main';
 
 const pathToRegex = (path) => new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
 
@@ -34,7 +34,7 @@ const router = () => {
   const $app = document.querySelector('.app');
   $app.scrollTop = 0;
   $app.innerHTML = '';
-  new match.route.view($app);
+  new match.route.view({ $parent: $app });
 };
 
 export { router, navigateTo };

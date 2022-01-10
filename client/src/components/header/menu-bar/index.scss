@@ -1,0 +1,19 @@
+.top-menu {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+  .top-menu__btn {
+    padding: 0 15;
+    line-height: 60px;
+
+    a {
+      color: black;
+      font-weight: bold;
+
+      &:hover {
+        color: var(--color-orange);
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@import '@/static/styles/index.scss';
+
+.header-menu {
+  height: 60px;
+  display: flex;
+  border: 1px solid #eee;
+  margin: 0px auto;
+  padding-left: 10%;
+  padding-right: 10%;
+  align-items: center;
+  justify-content: space-between;
+}

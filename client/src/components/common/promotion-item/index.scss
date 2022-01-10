@@ -1,0 +1,32 @@
+@import '@/static/styles/index.scss';
+
+.promotion-item {
+  width: 25%;
+  padding: 30px 30px 20px 30px;
+  border-right: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+
+  .promotion-item-img {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+.promotion-item-link {
+  position: relative;
+}
+
+.promotion-item-title {
+  @extend %text-block;
+  margin-top: 8px;
+}
+
+.promotion-item-content {
+  margin-left: 5px;
+  font-size: 0.8rem;
+  color: var(--color-grey2);
+}
+.promotion-item-theme {
+  margin-top: 5px;
+  width: 45px;
+}
