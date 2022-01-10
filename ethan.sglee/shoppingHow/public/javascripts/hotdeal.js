@@ -10,7 +10,7 @@ function addHotDealHTML(imgSrc, idx) {
           <strong class="hot-deal__title">${idx}번째 상품</strong>
 
           <span class="hot-deal__detail-price">
-              <span class="txt-price">${idx+1},500 </span>
+              <span class="txt-price">${idx + 1},500 </span>
               <span class="txt-price-percent">핫딜가</span>
           </span>
       </a>
@@ -34,13 +34,13 @@ const imgSrcArr = [
 ]
 
 export default function initHotdeal() {
-  
+
   imgSrcArr.forEach((imgSrc, index) => {
     addHotDealHTML(imgSrc, index)
   })
 
   const hotdealList = document.querySelector(".hot-deal-list")
-  
+
   hotdealList.addEventListener('click', (event) => {
     const imgSrc = event.target.querySelector('.hot-deal__thumb > img').src
     const title = event.target.querySelector('.hot-deal__title').innerText

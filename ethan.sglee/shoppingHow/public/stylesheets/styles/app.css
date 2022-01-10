@@ -125,7 +125,7 @@ h1 {
 .header-menu .private-menu .private-menu__recent-window {
   position: absolute;
   z-index: 100;
-  width: 300px;
+  width: 360px;
   height: 500px;
   background-color: white;
   top: 100%;
@@ -146,7 +146,7 @@ h1 {
 .header-menu .private-menu .private-menu__recent-window .private-menu__recent-contents .private-menu__recent-contents__item {
   margin: 10px;
   background-color: grey;
-  width: 60px;
+  width: 80px;
   height: 80px;
 }
 

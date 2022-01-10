@@ -103,7 +103,7 @@ $planningcontainersize: 3;
         .private-menu__recent-window {
             position: absolute;
             z-index: 100;
-            width: 300px;
+            width: 360px;
             height: 500px;
             background-color: white;
             top: 100%;
@@ -129,7 +129,7 @@ $planningcontainersize: 3;
                 .private-menu__recent-contents__item {
                     margin: 10px;
                     background-color: grey;
-                    width: 60px;
+                    width: 80px;
                     height: 80px;
                 }
             }
