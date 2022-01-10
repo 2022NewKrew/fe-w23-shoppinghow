@@ -5,6 +5,7 @@ import {TARGET_SELECTOR, getTargetSelector} from '../../util/ComponentGroup';
 import Banner from './Banner/Banner';
 import ShopingPartner from './ShopingPartner';
 import Notice from './Notice';
+import ItemGroupWrap from './ItemGroup/ItemGroupWrap';
 export default class Content extends Component {
   template() {
     return `
@@ -12,7 +13,7 @@ export default class Content extends Component {
         <div id="mArticle">
             <div data-component="${TARGET_SELECTOR.BANNER}" class="#banner @op section_top">
             </div>
-            <div data-component="${TARGET_SELECTOR.HOTITEM}" class="#hotitem @op section_hot section_hit">
+            <div data-component="${TARGET_SELECTOR.ITEM_GROUP_WRAP}" class="#hotitem @op section_hot section_hit">
             </div>
             <div data-component="${TARGET_SELECTOR.KEYWORD}" id="topRecomKeywordWrap" class="#recomkeyword section_tab section_rank">
             </div>
@@ -32,9 +33,12 @@ export default class Content extends Component {
 
     new ShopingPartner($shopingPartner, {});
     new Notice($notice, {});
+
+    this.setBannerForm();
+    this.setHotDealForm();
   }
 
-  async syncMounted() {
+  async setBannerForm() {
     const $banner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.BANNER));
     try {
       const bannerData = await this.getBannerData();
@@ -56,5 +60,27 @@ export default class Content extends Component {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  // TODO 서버에서 데이터 받아올 얘정 지금은 임시 데이터
+  async setHotDealForm() {
+    const $hotDealItemGroupWrap = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.ITEM_GROUP_WRAP));
+    const tempData = [{
+      category: '호빵찜기',
+      name: 'JY-507 호빵찜기 소형',
+      imgUrl: 'asset/img/product_hotdeal/product_hotdeal_01.jpeg',
+      price: 705150,
+    }, {
+      category: '호빵찜기',
+      name: 'JY-507 호빵찜기 소형',
+      imgUrl: 'asset/img/product_hotdeal/product_hotdeal_01.jpeg',
+      price: 705150,
+    }, {
+      category: '호빵찜기',
+      name: 'JY-507 호빵찜기 소형',
+      imgUrl: 'asset/img/product_hotdeal/product_hotdeal_01.jpeg',
+      price: 705150,
+    }];
+    new ItemGroupWrap($hotDealItemGroupWrap, {itemType: 'hotdeal', title: '쇼핑 급상승 키워드', itemGroup: tempData});
   }
 }
