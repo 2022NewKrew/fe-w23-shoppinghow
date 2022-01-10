@@ -1,7 +1,52 @@
 @charset "UTF-8";
-@import url("./libs/reset.css");
-@import url("./global.css");
-@import url("./icon.css");
+/*https://elad2412.github.io/the-new-css-reset/*/
+/*** The new CSS Reset - version 1.4.2 (last updated 30.11.2021) ***/
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly. */
+:where([contenteditable]) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+}
 
 * {
   font-family: 돋움, dotum, sans-serif;
@@ -17,6 +62,10 @@ h1 {
 }
 
 button {
+  cursor: pointer;
+}
+
+a {
   cursor: pointer;
 }
 
@@ -42,12 +91,8 @@ button {
 }
 
 .slide {
-  position: relative;
-  top: 0px;
-  left: -514px;
-  transform: translate3d(0px, 0px, 0px);
-  width: 1542px;
-  display: flex;
+  width: max-content;
+  cursor: pointer;
 }
 .slide .panel {
   height: 100%;
@@ -138,10 +183,18 @@ button {
   background-position: 0 -850px;
 }
 
+.ico_heart {
+  position: static;
+  display: inline-block;
+  min-width: 18px;
+  height: 15px;
+  margin: 5px 4px 0 0;
+  background-position: -70px -60px;
+}
+
 #kakaoHead {
   padding-top: 43px;
-  font-family: Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, Dotum, 돋움,
-    sans-serif;
+  font-family: Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, Dotum, 돋움, sans-serif;
   background-color: #fff;
   text-align: center;
   min-width: 977px;
@@ -170,13 +223,20 @@ button {
   z-index: 10;
 }
 .wrap_shwsearch .frm_shwsearch {
+  z-index: 3;
   position: relative;
   width: 670px;
   height: 54px;
   padding: 16px 60px 14px 30px;
   border: 1px solid #cecfd1;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: transparent;
+}
+.wrap_shwsearch .frm_shwsearch input {
+  float: left;
+  height: 22px;
+  width: 100%;
+  text-align: left;
 }
 .wrap_shwsearch .frm_shwsearch button {
   position: absolute;
@@ -185,8 +245,7 @@ button {
   width: 52px;
   height: 52px;
 }
-
-.wrap_rollkeywords {
+.wrap_shwsearch .wrap_rollkeywords {
   overflow: hidden;
   position: absolute;
   left: 31px;
@@ -196,12 +255,13 @@ button {
   line-height: 23px;
   text-align: left;
 }
-.wrap_rollkeywords ol {
+.wrap_shwsearch .wrap_rollkeywords ol {
   position: absolute;
+  top: -32px;
   left: 0;
   width: 100%;
 }
-.wrap_rollkeywords ol li {
+.wrap_shwsearch .wrap_rollkeywords ol li {
   overflow: hidden;
   height: 22px;
   font-weight: 700;
@@ -211,9 +271,12 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.wrap_rollkeywords ol li span {
+.wrap_shwsearch .wrap_rollkeywords ol li span {
   margin-right: 15px;
   font-family: robotoitalic, Apple SD Gothic Neo;
+}
+.wrap_shwsearch .wrap_rollkeywords ol :not(li:first-child) {
+  margin-top: 10px;
 }
 
 #kakaoGnb {
@@ -259,6 +322,9 @@ button {
 .wrap_shwgnb .list_shwgnb li > a .txt_new {
   right: 10px;
 }
+.wrap_shwgnb .list_shwgnb li > a:hover {
+  color: #f65b3d;
+}
 .wrap_shwgnb .list_kwordgnb {
   float: left;
   display: flex;
@@ -291,12 +357,67 @@ button {
   text-align: left;
   position: relative;
 }
+.wrap_shwgnb .list_usergnb .area_rcntproducts {
+  position: relative;
+}
 .wrap_shwgnb .list_usergnb .area_rcntproducts > a {
   display: block;
   width: 122px;
   height: 54px;
   padding: 0 16px 0 34px;
   position: relative;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts {
+  display: none;
+  position: absolute;
+  right: 2px;
+  top: 54px;
+  z-index: 10;
+  padding: 0 28px;
+  border: 1px solid #979797;
+  background-color: #fff;
+  text-align: left;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .list_tab {
+  overflow: hidden;
+  padding: 26px 0 17px;
+  display: flex;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .list_tab li:nth-child(2) {
+  margin-left: 38px;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .list_tab li > a {
+  display: flex;
+  height: 26px;
+  font-size: 14px;
+  color: #444;
+  box-sizing: border-box;
+  letter-spacing: -0.05em;
+  line-height: 1.5;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .list_tab li > a .txt_tab {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .list_tab li > a .txt_tab .num_products {
+  margin-left: 3px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .list_tab .on .txt_tab {
+  border-bottom: 2px solid #4a4a4a;
+  font-weight: 700;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .box_pannel .list_rcntproducts {
+  overflow: hidden;
+  width: 363px;
+  height: 363px;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .box_pannel .info_login {
+  overflow: hidden;
+  height: 46px;
+  padding: 37px 0 23px;
 }
 
 #kakaoMain {
@@ -357,25 +478,13 @@ button {
   margin-left: 3px;
   padding: 5px 0;
 }
-.section_top
-  .cont_event
-  .evt_slide
-  .paging_comm
-  .inner_paging
-  .btn_paging
-  .num_page {
+.section_top .cont_event .evt_slide .paging_comm .inner_paging .btn_paging .num_page {
   display: block;
   width: 15px;
   height: 5px;
   background-color: #ccc;
 }
-.section_top
-  .cont_event
-  .evt_slide
-  .paging_comm
-  .inner_paging
-  .btn_paging
-  .select {
+.section_top .cont_event .evt_slide .paging_comm .inner_paging .btn_paging .select {
   background-color: #000;
 }
 .section_top .cont_event .evt_slide .paging_comm .btn_slide {
@@ -398,6 +507,7 @@ button {
 }
 .section_top .list_item {
   display: flex;
+  border-bottom: 1px solid #e4e4e4;
 }
 .section_top .list_item li {
   padding: 21px 27px;

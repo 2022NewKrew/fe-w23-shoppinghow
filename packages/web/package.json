@@ -6,22 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
+    "prestart": "webpack",
     "start": "webpack serve --open",
     "server": "node server.js",
     "build": "webpack",
     "sas": "sass --watch src/sass:src/styles"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tjdgus3160/fe-w23-shoppinghow.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tjdgus3160/fe-w23-shoppinghow/issues"
-  },
-  "homepage": "https://github.com/tjdgus3160/fe-w23-shoppinghow#readme",
   "devDependencies": {
     "@babel/cli": "^7.16.7",
     "@babel/core": "^7.16.7",
@@ -30,7 +23,6 @@
     "copy-webpack-plugin": "^10.2.0",
     "core-js": "^3.20.2",
     "css-loader": "^6.5.1",
-    "express": "^4.17.2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.5",

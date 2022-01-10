@@ -1,11 +1,10 @@
+import Header from "./components/header";
+import Main from "./components/main";
 import "./styles/app.css";
 
-window.addEventListener("DOMContentLoaded", () => {
-  const targetEl = document.querySelector("#log");
+function App($app) {
+  const header = new Header({ $app });
+  const main = new Main({ $app });
+}
 
-  const service = new MainService({ targetEl });
-  const datalist = [1, 2, 3, 4, 5, 6, 7];
-  const subHtml = service.init(datalist);
-
-  targetEl.innerHTML += `datalist is ${subHtml}`;
-});
+export default App;
