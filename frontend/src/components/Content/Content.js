@@ -13,9 +13,9 @@ export default class Content extends Component {
         <div id="mArticle">
             <div data-component="${TARGET_SELECTOR.BANNER}" class="section_top section_tab">
             </div>
-            <div data-component="${TARGET_SELECTOR.HOTITEM}" class="section_tab section_rank">
+            <div data-component="${TARGET_SELECTOR.HOTITEM}" class="section_tab section_hotdeal">
             </div>
-            <div data-component="${TARGET_SELECTOR.KEYWORD}" id="topRecomKeywordWrap" class="#recomkeyword section_tab section_rank">
+            <div data-component="${TARGET_SELECTOR.KEYWORD}" class="section_tab section_rank">
             </div>
             <div data-component="${TARGET_SELECTOR.RECOMMEND}" class="section_tab section_how" style="">
             </div>
@@ -66,24 +66,25 @@ export default class Content extends Component {
   // TODO 서버에서 데이터 받아올 얘정 지금은 임시 데이터
   async setHotDealForm() {
     const $hotDealItemGroupWrap = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.HOTITEM));
-    const tempData = Array(10).fill({
-      category: '호빵찜기',
-      name: 'JY-507 호빵찜기 소형',
+    const tempData = Array(8).fill({
+      name: '겉바속촉mini고구마붕어빵',
       imgUrl: 'asset/img/product_hotdeal/product_hotdeal_01.jpeg',
-      price: 705150,
+      discountPrice: 12500,
+      discountPercent: 55,
+      regularPrice: 27800,
     });
     new ItemGroupWrap($hotDealItemGroupWrap, {itemType: 'hotdeal', title: '품절주의! 역대급 핫딜', itemGroup: tempData});
   }
 
   // TODO 서버에서 데이터 받아올 얘정 지금은 임시 데이터
   async setKeywordForm() {
-    const $hotDealItemGroupWrap = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.KEYWORD));
-    const tempData = Array(10).fill({
+    const $keywordItemGroupWrap = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.KEYWORD));
+    const tempData = Array(8).fill({
       category: '호빵찜기',
       name: 'JY-507 호빵찜기 소형',
-      imgUrl: 'asset/img/product_hotdeal/product_hotdeal_01.jpeg',
+      imgUrl: 'asset/img/product_keyword/product_keyword_01.jpeg',
       price: 705150,
     });
-    new ItemGroupWrap($hotDealItemGroupWrap, {itemType: 'hotdeal', title: '쇼핑 급상승 키워드', itemGroup: tempData});
+    new ItemGroupWrap($keywordItemGroupWrap, {itemType: 'keyword', title: '쇼핑 급상승 키워드', itemGroup: tempData});
   }
 }
