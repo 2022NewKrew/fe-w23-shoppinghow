@@ -32,14 +32,30 @@
             }
         }
 
-        .search-top10 {
+        .search-top10__window {
             position: absolute;
-            transform: translateY(50%);
+            height: 30px;
+            top: 15px;
             left: 10px;
+            width: 390px;
+            overflow: hidden;
+        }
+
+        .search-top10__container {
+            padding-left: 10px;
             font-size: 1.2rem;
-            height: 50%;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            .search-top10__item {
+                height: 30px;
+                @extend %y-center-align;
+                color: $darkGray;
+                font-weight: 700;
+                .search-top10__item--numbering {
+                    width: 30px;
+                    font-style: italic;
+                }
+            }
         }
     }
 }

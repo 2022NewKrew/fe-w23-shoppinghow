@@ -8,9 +8,8 @@ export const headerInnerHTML = `
             <input type="text" class="search__input">
             <button class="search__icon">🔍</button>
         </form>
-        <ul class="search-top10">
-            <li class="search-top10__item">3. 아디다스 런닝화</li>
-        </ul>
+        <div class="search-top10__window">
+        </div>
     </div>
 </div>
 

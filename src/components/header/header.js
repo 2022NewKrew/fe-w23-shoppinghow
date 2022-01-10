@@ -1,4 +1,5 @@
 import { headerInnerHTML } from './headerInnerHTML';
+import { searchTop10 } from './searchTop10';
 
 const addMouseEvent = (button) => {
     button.addEventListener('click', (e) => {
@@ -21,7 +22,7 @@ export const header = () => {
         const currentBtn = target.querySelector('.private-menu__current-button');
         addMouseEvent(categoryBtn);
         addMouseEvent(currentBtn);
-
+        searchTop10(target);
         return target;
     };
 
