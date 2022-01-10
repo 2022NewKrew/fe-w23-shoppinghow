@@ -33,6 +33,69 @@
         font-size: 0;
         line-height: 0;
       }
+      ul.category__content--tab-list {
+        width: 179px;
+        height: 100%;
+        padding-bottom: 70px;
+        padding-top: 10px;
+        background-color: #f7f7f7;
+        box-sizing: border-box;
+        li {
+          display: block;
+          width: 100%;
+          height: 44px;
+          padding-left: 32px;
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 47px;
+          letter-spacing: -0.06em;
+          box-sizing: border-box;
+          color: #333;
+        }
+        li:hover {
+          background-color: rgba(255, 255, 128, 0.5);
+        }
+      }
+      ul.category__content--middle-tab {
+        width: 179px;
+        height: 100%;
+        padding-bottom: 70px;
+        padding-top: 10px;
+        box-sizing: border-box;
+        li {
+          display: block;
+          width: 100%;
+          height: 44px;
+          padding-left: 32px;
+          line-height: 47px;
+          letter-spacing: -0.06em;
+          box-sizing: border-box;
+          color: #333;
+        }
+        li:hover {
+          background-color: rgba(255, 255, 128, 0.5);
+        }
+      }
+      ul.category__content--low-tab {
+        width: 179px;
+        height: 100%;
+        padding-bottom: 70px;
+        padding-top: 10px;
+        box-sizing: border-box;
+        li {
+          display: block;
+          width: 100%;
+          height: 44px;
+          padding-left: 32px;
+          line-height: 47px;
+          letter-spacing: -0.06em;
+          box-sizing: border-box;
+          color: #333;
+        }
+        li:hover {
+          background-color: rgba(255, 255, 128, 0.5);
+        }
+      }
     }
   }
 

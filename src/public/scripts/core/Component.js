@@ -20,7 +20,9 @@ export class Component {
     this.mounted();
   }
   setEvent() {}
+  removeEvent() {}
   setState(newState) {
+    this.removeEvent();
     this.$state = { ...this.$state, ...newState };
     this.#render();
   }

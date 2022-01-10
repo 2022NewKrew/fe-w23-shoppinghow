@@ -65,15 +65,22 @@ router.get("/event/items", async (req, res) => {
 });
 router.get("/category", async (req, res) => {
   try {
-    const [result] = await pool.query(`select * from Category`);
+    const [result] = await pool.query(`select * from category`);
     const resData = {};
     result.map(item => {
+      console.log(item);
       if (typeof resData[item.top] === "undefined") {
-        resData[item.top] = [{ middle: item.middle, low: item.low }];
-      } else {
-        resData[item.top].push({ middle: item.middle, low: item.low });
+        resData[item.top] = {};
+        resData[item.top][item.middle] = [item.low];
+      } else if (typeof resData[item.top] !== "undefined") {
+        if (typeof resData[item.top][item.middle] === "undefined") {
+          resData[item.top][item.middle] = [item.low];
+        } else if (typeof resData[item.top][item.middle] !== "undefined") {
+          resData[item.top][item.middle].push([item.low]);
+        }
       }
     });
+    console.log(resData);
     res.status(200).json({ result: resData });
   } catch (e) {
     console.error(e);
