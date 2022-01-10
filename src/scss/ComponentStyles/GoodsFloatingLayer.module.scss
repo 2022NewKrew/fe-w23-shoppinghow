@@ -17,6 +17,7 @@ $floating-layer-border: 1px;
   border: $floating-layer-border solid #AAAAAA;
   padding: $floating-layer-padding;
   overflow: hidden;
+  z-index: 100;
 }
 
 .tab {
