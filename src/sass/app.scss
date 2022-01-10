@@ -179,7 +179,7 @@ $SearchHeight: 60px;
         }
     }
 
-    .hot-deal {
+    .product-group {
         @extend %section-layout;
         margin-top:60px;
 
@@ -188,14 +188,14 @@ $SearchHeight: 60px;
             padding-bottom: 20px;
             background-color: $bgColor;
         }
-        .hot-deal__title, .hot-deal__detail-price{
+        .product__title, .product__detail-price{
             @extend %text-block;
         }
 
-        .hot-deal-list {
+        .product-list {
             display: flex;
             flex-wrap:wrap;
-            .hot-deal__item {
+            .product__item {
                 width:20%;
                 padding:20px;
                 border-right: 1px solid #f1f1f1;
@@ -203,13 +203,28 @@ $SearchHeight: 60px;
             }
         }
 
-        .hot-deal__detail-price {
+        .product__detail-price {
             margin-top: 20px;
             position: relative;
-            .txt-price-percent {
+            .product__price-wrapper{
+                display: flex;
+                flex-direction: column;
+                .txt-price{
+                    font-size: 1.1rem;
+                }
+
+                .txt-original-price{
+                    font-size: 13px;
+                    color: #888;
+                    text-decoration: line-through;
+                }
+            }
+
+            .txt-discount-tag {
                 position: absolute;
+                top: 10px;
                 right: 10px;
-                font-size: 1.1rem;
+                font-size: 1.3rem;
                 line-height: 1.1rem;
                 color: red;
             }
