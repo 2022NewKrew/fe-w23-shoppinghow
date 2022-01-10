@@ -11,13 +11,13 @@ export default class Content extends Component {
     return `
     <div id="cMain">
         <div id="mArticle">
-            <div data-component="${TARGET_SELECTOR.BANNER}" class="#banner @op section_top">
+            <div data-component="${TARGET_SELECTOR.BANNER}" class="section_top section_tab">
             </div>
-            <div data-component="${TARGET_SELECTOR.ITEM_GROUP_WRAP}" class="section_tab section_rank">
+            <div data-component="${TARGET_SELECTOR.HOTITEM}" class="section_tab section_rank">
             </div>
             <div data-component="${TARGET_SELECTOR.KEYWORD}" id="topRecomKeywordWrap" class="#recomkeyword section_tab section_rank">
             </div>
-            <div data-component="${TARGET_SELECTOR.RECOMMEND}" class="#foru section_tab section_how" style="">
+            <div data-component="${TARGET_SELECTOR.RECOMMEND}" class="section_tab section_how" style="">
             </div>
         </div>
     </div>
@@ -36,6 +36,7 @@ export default class Content extends Component {
 
     this.setBannerForm();
     this.setHotDealForm();
+    this.setKeywordForm();
   }
 
   async setBannerForm() {
@@ -64,7 +65,19 @@ export default class Content extends Component {
 
   // TODO 서버에서 데이터 받아올 얘정 지금은 임시 데이터
   async setHotDealForm() {
-    const $hotDealItemGroupWrap = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.ITEM_GROUP_WRAP));
+    const $hotDealItemGroupWrap = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.HOTITEM));
+    const tempData = Array(10).fill({
+      category: '호빵찜기',
+      name: 'JY-507 호빵찜기 소형',
+      imgUrl: 'asset/img/product_hotdeal/product_hotdeal_01.jpeg',
+      price: 705150,
+    });
+    new ItemGroupWrap($hotDealItemGroupWrap, {itemType: 'hotdeal', title: '품절주의! 역대급 핫딜', itemGroup: tempData});
+  }
+
+  // TODO 서버에서 데이터 받아올 얘정 지금은 임시 데이터
+  async setKeywordForm() {
+    const $hotDealItemGroupWrap = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.KEYWORD));
     const tempData = Array(10).fill({
       category: '호빵찜기',
       name: 'JY-507 호빵찜기 소형',
