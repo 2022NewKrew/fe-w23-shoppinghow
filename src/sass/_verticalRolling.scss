@@ -1,0 +1,25 @@
+.vertical-rolling__window {
+    position: absolute;
+    height: 30px;
+    top: 15px;
+    left: 10px;
+    width: 390px;
+    // overflow: hidden;
+}
+
+.vertical-rolling__container {
+    padding-left: 10px;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    .vertical-rolling__item {
+        height: 30px;
+        @extend %y-center-align;
+        color: $darkGray;
+        font-weight: 700;
+        .vertical-rolling__item--numbering {
+            width: 30px;
+            font-style: italic;
+        }
+    }
+}

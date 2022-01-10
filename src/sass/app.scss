@@ -1,5 +1,6 @@
 @import 'global';
 @import 'carousel';
+@import 'verticalRolling';
 
 .header-top {
     display: flex;
@@ -29,32 +30,6 @@
             .search__icon {
                 font-size: 1.4rem;
                 padding: 10px;
-            }
-        }
-
-        .search-top10__window {
-            position: absolute;
-            height: 30px;
-            top: 15px;
-            left: 10px;
-            width: 390px;
-            overflow: hidden;
-        }
-
-        .search-top10__container {
-            padding-left: 10px;
-            font-size: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            .search-top10__item {
-                height: 30px;
-                @extend %y-center-align;
-                color: $darkGray;
-                font-weight: 700;
-                .search-top10__item--numbering {
-                    width: 30px;
-                    font-style: italic;
-                }
             }
         }
     }
