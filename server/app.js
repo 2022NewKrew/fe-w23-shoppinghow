@@ -1,17 +1,11 @@
 const express = require('express');
-const path = require('path');
+const router = require('./router');
 
 const app = express();
 const PORT = process.env.PORT || 1129;
 
 app.use(express.static('dist'));
-
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../dist/home.html'));
-});
-app.get('/dummy', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../dist/dummy.html'));
-});
+app.use(router);
 
 app.listen(PORT, () => {
   console.log(`
