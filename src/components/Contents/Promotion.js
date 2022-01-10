@@ -1,5 +1,5 @@
-import Banner from "@components/Banner";
-import Theme from "@components/Theme";
+import Banner from "@components/Contents/Banner";
+import Theme from "@components/Contents/Theme";
 import Component from "@core/Component";
 
 class Promotion extends Component {

@@ -1,5 +1,5 @@
 import Component from "@core/Component";
-import PlanningItem from "@components/PlanningItem";
+import PlanningItem from "@components/Contents/PlanningItem";
 import { throttling } from "@utils/eventutils";
 import style from "@style/planning.module.scss";
 

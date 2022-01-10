@@ -1,5 +1,5 @@
 import Component from "@core/Component";
-import Promotion from "@components/Promotion";
+import Promotion from "@components/Contents/Promotion";
 
 class Contents extends Component {
   template() {

@@ -1,5 +1,5 @@
-import Best from "@components/Best";
-import Planning from "@components/Planning";
+import Best from "@components/Contents/Best";
+import Planning from "@components/Contents/Planning";
 import Component from "@core/Component";
 
 class Banner extends Component {

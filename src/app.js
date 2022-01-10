@@ -1,6 +1,6 @@
 import "@style/app.scss";
-import Header from "@components/Header";
-import Contents from "@components/Contents";
+import Header from "@components/Header/Header";
+import Contents from "@components/Contents/Contents";
 
 const App = () => {
   const $body = document.querySelector("body");

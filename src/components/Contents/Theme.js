@@ -1,5 +1,5 @@
 import Component from "@core/Component";
-import ThemeItem from "@components/ThemeItem";
+import ThemeItem from "@components/Contents/ThemeItem";
 
 class Theme extends Component {
   template() {
