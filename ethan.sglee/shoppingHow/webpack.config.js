@@ -38,6 +38,10 @@ module.exports = {
         template: 'views/index.html'
       }
     ),
-    new MiniCssExtractPlugin({ filename: 'css/style.css' }),
+    new MiniCssExtractPlugin(
+      { 
+        filename: 'css/style.css' 
+      }
+    ),
   ]
 };
