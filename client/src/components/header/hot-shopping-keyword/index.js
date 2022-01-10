@@ -3,7 +3,7 @@ import './index.scss';
 export default class HotShoppingKeyword {
   keywords = [];
 
-  constructor({ $parent, init }) {
+  constructor({ $parent }) {
     this.hotShoppingKeyword = document.createElement('div');
     this.hotShoppingKeyword.className = 'hot-shopping-keyword';
     this.hotShoppingKeyword.innerHTML = this.getFixedHTML();
@@ -12,13 +12,11 @@ export default class HotShoppingKeyword {
     this.hotShoppingListOne = hotShoppingList[0];
     this.hotShoppingListTwo = hotShoppingList[1];
 
-    this.keywords = init;
-    this.render();
     $parent.appendChild(this.hotShoppingKeyword);
   }
 
   setState(props) {
-    this.keywords = props;
+    this.keywords = props.hotItemsName;
     this.render();
   }
 

@@ -1,5 +1,5 @@
 .hot-shopping-keyword {
-  flex: auto;
+  width: 60%;
 
   .hot-shopping-keyword__list-container {
     display: flex;
@@ -33,6 +33,7 @@
       left: 25;
       top: 0;
       cursor: pointer;
+      font-size: 0.8rem;
     }
   }
 }
