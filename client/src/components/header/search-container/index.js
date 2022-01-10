@@ -34,8 +34,7 @@ export default class SearchContainer {
   handleClickHelpSearch(e) {
     if (e.target.className === 'recent-search-name__remove') {
       removeItemInLocalStroage('search-name', e.target.dataset.idx);
-      this.state = { ...this.state, searchName: getItemInLocalStroage('search-name') };
-      this.setState(this.state);
+      this.refreshSearchNameState();
     }
   }
 
