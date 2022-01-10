@@ -1,7 +1,7 @@
 import { Component } from '@core';
 import { $ } from '@utils';
 
-const HOVER_DELAY_TIME = 1000;
+const HOVER_DELAY_TIME = 400;
 
 export class RecentlyViewedMenu extends Component {
   setup() {
