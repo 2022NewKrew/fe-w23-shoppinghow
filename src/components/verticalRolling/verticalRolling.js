@@ -13,7 +13,7 @@ const addRollingAnimation = (container) => {
         container.style.transitionDuration = rollingTransitionTime + 'ms';
         container.style.transform = `translateY(-${count * itemHeight}px)`;
         container.ontransitionend = () => {
-            if (count == top10Container.children.length - 1) {
+            if (count == container.children.length - 1) {
                 console.log('end');
                 container.style.transitionDuration = '0ms';
                 container.style.transform = 'translateY(0px)';
@@ -26,7 +26,7 @@ const addRollingAnimation = (container) => {
     setTimeout(rollItem(count, container), rollingIntervalTime);
 };
 
-const renderItem = (item, index) => {
+const renderItem = (title, index) => {
     const item = document.createElement('div');
     item.classList.add('vertical-rolling__item');
     item.innerHTML = `

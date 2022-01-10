@@ -1,3 +1,5 @@
+import { verticalRolling } from '../verticalRolling/verticalRolling';
+
 // fetch되어온 데이터라 가정
 const dummyData = [
     '엔진 코팅제',
@@ -12,14 +14,6 @@ const dummyData = [
     '콩나물',
 ];
 
-// TODO: parent 없도록 리팩토링하기
-export const searchTop10 = (parent) => {
-    const target = parent.querySelector('.search-top10__window');
-
-    const render = () => {
-        // return target;
-    };
-
-    // TODO: headerInnerHTML을 다 js파일로 변환 후에는 return render()
-    render();
+export const searchTop10 = () => {
+    return verticalRolling(dummyData);
 };
