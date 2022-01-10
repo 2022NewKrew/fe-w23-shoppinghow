@@ -15,6 +15,8 @@ class Component {
     this.props = props; // props 할당
     this.setup();
     this.render();
+    this.mounted(); // render 후에 mounted가 실행 된다.
+    this.setEvent();
   }
 
   setup() {}
@@ -41,8 +43,6 @@ class Component {
     } else {
       this.$target.appendChild($element);
     }
-    this.setEvent();
-    this.mounted(); // render 후에 mounted가 실행 된다.
   }
 
   // 이벤트 적용
