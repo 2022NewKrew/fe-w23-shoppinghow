@@ -63,6 +63,18 @@ router.get("/event/items", async (req, res) => {
     res.status(404);
   }
 });
+router.get("/view/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [result] = await pool.query(`update hotdeal set view = view + 1, view_date = NOW() where id = ${id}`);
+    res.status(200).json({
+      result,
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(404);
+  }
+});
 router.get("/category", async (req, res) => {
   try {
     const [result] = await pool.query(`select * from category`);

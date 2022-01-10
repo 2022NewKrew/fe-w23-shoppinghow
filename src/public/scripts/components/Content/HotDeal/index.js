@@ -18,8 +18,8 @@ export default class HotDeal extends Component {
           hotDealList
             .map(item => {
               return `
-            <li class="hot-deal__item">
-              <a href="${item.href}">
+            <li class="hot-deal__item" data-value="${item.id}">
+              <div class="hot-deal__item-wrapper">
                 <img src="${item.src}" alt="${item.name}"/>
                 <strong class="hot-deal__item--title">${item.name}</strong>
                 <div class="hot-deal__item--info">
@@ -29,7 +29,7 @@ export default class HotDeal extends Component {
                   </div>
                   <div class="hot-deal__item--price">${item.price}</div>
                 </div>
-              </a>
+              </div>
             </li>
           `;
             })
@@ -38,11 +38,30 @@ export default class HotDeal extends Component {
       </ul>
     `;
   }
-  setEvent() {}
+  setEvent() {
+    $(".hot-deal__list", this.$target).addEventListener("click", this.hotDealClickHandler.bind(this));
+  }
+  removeEvent() {
+    $(".hot-deal__list", this.$target).removeEventListener("click", this.hotDealClickHandler.bind(this));
+  }
+
+  hotDealClickHandler({ target }) {
+    if (target.closest(".hot-deal__item") === undefined) {
+      return;
+    }
+    const clickedItem = target.closest(".hot-deal__item");
+    const clickedId = clickedItem.getAttribute("data-value");
+    this.viewItemRequest(clickedId);
+    alert("물품 클릭");
+  }
   async mounted() {
     const { result } = await api.get("hotdeal");
     if (JSON.stringify(this.$state.hotDealList) !== JSON.stringify(result)) {
       this.setState({ hotDealList: result });
     }
+  }
+
+  async viewItemRequest(viewItemId) {
+    await api.get(`view/${viewItemId}`);
   }
 }
