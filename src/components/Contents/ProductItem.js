@@ -4,13 +4,13 @@ class ProductItem extends Component {
   template() {
     const { title, img, price, originalPrice, discountTag } = this.props;
     return `
-        <li class="product__item">
-            <a href="" class="product__link">
+        <li class="product__item item">
+            <a href="#" class="product__link">
                 <span class="product__thumb">
-                    <img src="${img}" class="product__img" alt="">
+                    <img src="${img}" class="product__img item-img" alt="">
                 </span>
 
-                <strong class="product__title">${title}</strong>
+                <strong class="product__title item-title">${title}</strong>
 
                 <span class="product__detail-price">
                     <div class="product__price-wrapper">

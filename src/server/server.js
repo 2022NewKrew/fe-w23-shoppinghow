@@ -31,8 +31,8 @@ app.get("/planningItems.json", (req, res) => {
   res.sendFile(path.join(__dirname, "/data", "planningItems.json"));
 });
 
-app.get("/hotDealItems.json", (req, res) => {
-  res.sendFile(path.join(__dirname, "/data", "hotDealItems.json"));
+app.get("/productGroups.json", (req, res) => {
+  res.sendFile(path.join(__dirname, "/data", "productGroups.json"));
 });
 
 app.listen(port, function () {

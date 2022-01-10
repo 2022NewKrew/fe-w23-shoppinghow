@@ -94,6 +94,10 @@ $SearchHeight: 60px;
 
     }
 
+    .category__lists-wrapper{
+        display: none;
+    }
+
     .top-menu {
         display: flex;
         align-items: center;
@@ -229,5 +233,14 @@ $SearchHeight: 60px;
                 color: red;
             }
         }
+    }
+}
+
+.item:hover{
+    .item-img{
+        opacity: 0.7;
+    }
+    .item-title{
+        text-decoration: underline;
     }
 }

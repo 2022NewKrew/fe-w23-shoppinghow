@@ -1,0 +1,114 @@
+[
+  {
+    "title": "품절주의! 역대급 핫딜",
+    "products": [
+      {
+        "title": "[컬럼비아]패딩 초특가",
+        "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211231103537908_144955",
+        "price": "50,000",
+        "originalPrice": "199,000",
+        "discountTag": "75%"
+      },{
+        "title": "플레이보이1+1+1+1+1쟁여!",
+        "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211029130644735_336847",
+        "price": "15,900",
+        "originalPrice": "53,000",
+        "discountTag": "70%"
+      },{
+        "title": "쫄깃쫄깃쌀가래떡1kg+1kg",
+        "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220105141632864_315230\n",
+        "price": "7,800",
+        "originalPrice": "14,200",
+        "discountTag": "45%"
+      },{
+        "title": "재구매율1위!겨울슈즈best",
+        "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220105132742658_596275",
+        "price": "12,900",
+        "originalPrice": "25,900",
+        "discountTag": "50%"
+      },{
+        "title": "버팔로윙1kg",
+        "img": "https://shop1.daumcdn.net/shophow/c/image/content/set/ad8255/20211014114401830_24251",
+        "price": "100",
+        "originalPrice": "99,999,999",
+        "discountTag": "100%"
+      },{
+        "title": "코코코~코지마~",
+        "img": "\thttps://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220105101012302_630208",
+        "price": "79,100",
+        "originalPrice": "99,000",
+        "discountTag": "20%"
+      },{
+        "title": "집들이?슬리퍼~",
+        "img": "\thttps://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220105160736669_875262\n",
+        "price": "7,900",
+        "originalPrice": "",
+        "discountTag": "핫딜가"
+      },{
+        "title": "새콤달콤제주귤",
+        "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211217172150999_469472",
+        "price": "8,900",
+        "originalPrice": "17,340",
+        "discountTag": "49%"
+      },{
+        "title": "MLB특가!",
+        "img": "\thttps://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220105161018869_210428",
+        "price": "39,900",
+        "originalPrice": "59,900",
+        "discountTag": "33%"
+      },{
+        "title": "버즈2이어폰 가격시롸?",
+        "img": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211214135716989_909914",
+        "price": "39,800",
+        "originalPrice": "75,600",
+        "discountTag": "47%"
+      }
+    ]
+  },
+  {
+    "title": "쇼핑 급상승 키워드",
+    "products": [
+      {
+        "title": "호빵찜기",
+        "img": "https://shop1.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FC5092037214.jpg%3Fut%3D20211101185935",
+        "price": "705,150"
+      },{
+        "title": "키보드",
+        "img": "https://shop1.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FB5092175424.jpg%3Fut%3D20200601222744",
+        "price": "34,850"
+      },{
+        "title": "췜기름",
+        "img": "https://shop2.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FB5097730583.jpg%3Fut%3D20200907191140",
+        "price": "12,710"
+      },{
+        "title": "우드 테이블",
+        "img": "https://shop1.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FC5103015944.jpg%3Fut%3D20210701171121",
+        "price": "13,647"
+      },{
+        "title": "포기김치",
+        "img": "https://shop2.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FE5084732177.jpg%3Fut%3D20190517203857",
+        "price": "25,930"
+      },{
+        "title": "곤약젤리",
+        "img": "https://shop1.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FD5099233492.jpg%3Fut%3D20201028224309",
+        "price": "570"
+      },{
+        "title": "갈색병",
+        "img": "https://shop1.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FE5099253846.jpg%3Fut%3D20201022111524",
+        "price": "122,650"
+      },{
+        "title": "햇대~츄!",
+        "img": "https://shop1.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FB2388150642.jpg%3Fut%3D20181026161325",
+        "price": "7,640"
+      },{
+        "title": "빨대컵",
+        "img": "https://shop1.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FD2786510528.jpg%3Fut%3D20181026172009",
+        "price": "24,190"
+      },{
+        "title": "핸드크림",
+        "img": "https://shop1.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FD22420890.jpg%3Fut%3D20181026140841",
+        "price": "19,330"
+      }
+    ]
+  }
+]
