@@ -27,6 +27,19 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
+          options: {
+            presets: [
+              [
+                "@babel/preset-env",
+                {
+                  targets: "> 0.25%, not dead",
+                  useBuiltIns: "usage",
+                  corejs: { version: 3, proposals: true },
+                },
+              ],
+            ],
+            plugins: ["@babel/transform-runtime"], // 폴리필 플러그인
+          },
         },
       },
       {
