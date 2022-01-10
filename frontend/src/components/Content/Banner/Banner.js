@@ -1,7 +1,7 @@
 import Component from '../../../core/Component';
 import {TARGET_SELECTOR, getTargetSelector} from '../../../util/ComponentGroup';
 import SlideBanner from './SlideBanner';
-import HotDealItemGroup from '../ItemGroup/HotDealItemGroup';
+import MallEventItemGroup from '../ItemGroup/MallEventItemGroup';
 export default class Banner extends Component {
   template() {
     const bannerData = this.$props.bannerData;
@@ -32,12 +32,11 @@ export default class Banner extends Component {
   // TODO 서버에서 데이터 받아올 얘정 지금은 임시 데이터
   async setHotDealForm() {
     const tempData = Array(4).fill({
-      category: '호빵찜기',
-      name: 'JY-507 호빵찜기 소형',
-      imgUrl: 'asset/img/product_hotdeal/product_hotdeal_01.jpeg',
-      price: 705150,
+      content: '부드러운 감촉의 실크 잠옷',
+      subContent: '덕분에 기분 좋게 잠들 것 같아요',
+      imgUrl: 'asset/img/product_thema/product_thema_01.jpeg',
     });
     const $hotDealItemGroup = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.ITEM_GROUP));
-    new HotDealItemGroup($hotDealItemGroup, {itemGroup: tempData});
+    new MallEventItemGroup($hotDealItemGroup, {itemGroup: tempData});
   }
 }
