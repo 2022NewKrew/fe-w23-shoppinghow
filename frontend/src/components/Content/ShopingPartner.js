@@ -1,7 +1,7 @@
 import Component from '../../core/Component';
 
 // TODO: cMain작업예정(상품 리스트)
-export default class KaKaoShopingPartner extends Component {
+export default class ShopingPartner extends Component {
   template() {
     return `<h3 class="tit_home">쇼핑하우 파트너</h3>
     <div class="section_etc">

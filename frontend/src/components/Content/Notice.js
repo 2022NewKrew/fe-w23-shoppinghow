@@ -1,7 +1,7 @@
 import Component from '../../core/Component';
 
 // TODO: cMain작업예정(상품 리스트)
-export default class KaKaoNotice extends Component {
+export default class Notice extends Component {
   template() {
     return `
     <div class="section_notice">
