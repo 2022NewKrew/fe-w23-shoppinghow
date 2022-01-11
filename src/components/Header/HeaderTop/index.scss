@@ -1,0 +1,59 @@
+.title {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+  .title__img {
+    width: 119px;
+    height: auto;
+  }
+}
+
+.search {
+  display: flex;
+  position: relative;
+  padding: 16px 60px 14px 30px;
+  border: 1px solid #cecfd1;
+  border-radius: 10px;
+  width: 670px;
+  height: 54px;
+
+  form {
+      display: flex;
+      width: 100%;
+      height: 100%;
+
+      .search__input {
+        width: 100%;
+        height: 100%;
+        font-weight: 700;
+        font-size: 20px;
+      }
+      
+      .search_btn{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 52px;
+        height: 52px;
+        .search__icon {
+          background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
+          background-size: 130px 90px;
+          position: absolute;
+          left: 14px;
+          top: 15px;
+          width: 23px;
+          height: 23px;
+        }
+      }
+  }
+
+  .search-top10 {
+      position: absolute;
+      transform: translateY(50%);
+      left: 10px;
+      font-size: 1.2rem;
+      height: 50%;
+      display: flex;
+      align-items: center;
+  }
+}
