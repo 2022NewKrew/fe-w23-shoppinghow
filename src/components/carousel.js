@@ -1,15 +1,20 @@
 import Component from "../core/Component";
 import { throttle } from "../utils/common";
+const data = require("../data/plannings.json");
 
 export default class Carousel extends Component {
   slideList;
+  element;
   setup() {
-    this.slideList = require("../data/plannings.json").plannings;
+    this.createTemplate();
   }
 
-  template() {
-    // const slideList = require("../data/plannings.json").plannings;
-    return `
+  createTemplate() {
+    this.element = document.createElement("div");
+    this.slideList = data.plannings;
+    this.element.insertAdjacentHTML(
+      "beforeend",
+      `
       <div class="planning">
         <button class="planning__left-btn planning__btn"><</button>
         <div class="planning__lists__container">
@@ -54,12 +59,17 @@ export default class Carousel extends Component {
             .join("")}
         </div>
       </div>
-    `;
+      `
+    );
+  }
+
+  template() {
+    return this.element.innerHTML;
   }
 
   setEvent() {
-    const $page = this.$target.querySelector(".planning__pages").children;
-    const $list = this.$target.querySelector(".planning__lists").children;
+    const $page = this.element.querySelector(".planning__pages").children;
+    const $list = this.element.querySelector(".planning__lists").children;
 
     this.addEvent(
       "mouseover",
@@ -76,7 +86,7 @@ export default class Carousel extends Component {
 
     const slideList = require("../data/plannings.json").plannings;
 
-    let idx = Number(this.$target.querySelector(".cur-page").dataset.index);
+    let idx = Number(this.element.querySelector(".cur-page").dataset.index);
 
     this.addEvent(
       "click",
@@ -143,7 +153,11 @@ export default class Carousel extends Component {
       curItem.style.zIndex = "1";
       nextItem.style.zIndex = "1";
     } else {
+<<<<<<< HEAD
       const $items = document.getElementsByClassName("planning__link");
+=======
+      const $items = this.$target.getElementsByClassName("planning__link");
+>>>>>>> c8605b3a781d87cc2d284c2d491e143f9b140b33
       Array.from($items).forEach((e) => {
         e.style.transition = "none";
       });
@@ -151,7 +165,7 @@ export default class Carousel extends Component {
   }
 
   addTransition() {
-    const items = document.getElementsByClassName("planning__link");
+    const items = this.$target.getElementsByClassName("planning__link");
     Array.from(items).forEach((e) => {
       e.style.transition = "transform 0.5s";
     });

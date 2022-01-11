@@ -1,8 +1,12 @@
 import Component from "../core/Component";
-
+import Item from "./Item.js";
+const data = require("../data/hotdeals.json");
 export default class Hotdeals extends Component {
+  hotdealData;
+  setup() {
+    this.hotdealData = data.hotdeals;
+  }
   template() {
-    const hotdealData = require("../data/hotdeals.json").hotdeals;
     return `
       <div class="hot-deal">
         <h2 class="section-title">품절주의, 역대급 핫딜</h2>
@@ -29,5 +33,13 @@ export default class Hotdeals extends Component {
         </ul>
       </div>
     `;
+  }
+
+  mounted() {
+    const $hotdealList = this.$target.querySelector(".hot-deal-list");
+    this.hotdealData.forEach((data) => {
+      new Item($hotdealList, data);
+    });
+    // new Items($hotdealList, this.hotdealData);
   }
 }

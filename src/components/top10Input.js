@@ -1,23 +1,27 @@
 import Component from "../core/Component";
 
 const ROLLING_TIME = 2000;
-const HEIGHT = 60;
-// const TRANSITION_DURATION = "500ms";
-const FOCUS_OUT_TIME = 500;
+const data = require("../data/searchTop10.json");
 
 export default class Top10Input extends Component {
   slidePlaying;
   timeId;
+  element;
 
   setup() {
     this.timeId = 0;
     this.slidePlaying = null;
+    this.element = this.createTemplate();
+    this.initSlide(this.element);
   }
 
-  template() {
-    // const { top10List } = this.props;
-    const top10List = require("../data/searchTop10.json").top10;
-    return `
+  createTemplate() {
+    const element = document.createElement("div");
+    const top10List = data.top10;
+
+    element.insertAdjacentHTML(
+      "beforeend",
+      `
         <div class="search">
           <form>
             <input type="text" class="search__input" />
@@ -35,17 +39,18 @@ export default class Top10Input extends Component {
             </ul>
           </div>
         </div>
-    `;
+    `
+    );
+    return element;
   }
 
-  mounted() {
-    this.initSlide();
-    this.runSlide();
+  template() {
+    return this.element.innerHTML;
   }
 
   setEvent() {
     const searchInput = ".search__input";
-    const top10Container = this.$target.querySelector("#top10Container");
+    const top10Container = this.element.querySelector("#top10Container");
 
     this.addEvent("mouseover", searchInput, this.pauseSlide.bind(this));
 
@@ -72,9 +77,12 @@ export default class Top10Input extends Component {
     );
   }
 
-  initSlide() {
-    const $top10Container = this.$target.querySelector("#top10Container");
+  afterRender() {
+    this.runSlide();
+  }
 
+  initSlide(element) {
+    const $top10Container = element.querySelector("#top10Container");
     $top10Container.children[0].classList.add("current-top-item");
     $top10Container.children[1].classList.add("next-top-item");
     $top10Container.lastElementChild.classList.add("previous-top-item");
