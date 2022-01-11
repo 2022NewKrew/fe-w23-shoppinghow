@@ -1,5 +1,6 @@
 import { $, $All } from "@utils/query.js";
 import { Component } from "@core/Component";
+import { Carousel } from "@core/Carousel";
 import { api } from "@utils/api.js";
 
 export default class PromotionPlanning extends Component {
@@ -7,13 +8,13 @@ export default class PromotionPlanning extends Component {
     this.$state = {
       planningList: [],
     };
-    this.slidingSpeed = 3500;
-    this.slidingWidth = 635;
-    this.totalSlideCount = 3;
-    this.slidingInterval = undefined;
-    this.currentSlide = 0;
-    this.slidingList = null;
-    this.slidingBtnList = null;
+    this.carousel = null;
+    this.carouselSpeed = 3500;
+    this.carouselItemWidth = 635;
+    this.totalCarouselCount = 3;
+    this.currentCarouselItem = 0;
+    this.carouselList = null;
+    this.carouselBtnList = null;
   }
   template() {
     const { planningList } = this.$state;
@@ -24,15 +25,15 @@ export default class PromotionPlanning extends Component {
           planningList
             .map(
               item => `
-          <a href="#" target="_blank" class="promotion__planning--link"
-            ><img
-              src="${item.src}"
-              width="${item.width}"
-              height="${item.height}"
-              class="img_g"
-              alt="${item.alt}"
-          /></a>
-        `,
+                          <a href="#" target="_blank" class="promotion__planning--link"
+                            ><img
+                              src="${item.src}"
+                              width="${item.width}"
+                              height="${item.height}"
+                              class="img_g"
+                              alt="${item.alt}"
+                          /></a>
+                        `,
             )
             .join("")
         }
@@ -41,62 +42,76 @@ export default class PromotionPlanning extends Component {
         <button class="promotion__planning--left-btn"><</button>
         
         <div class="promotion__planning--paging">
-          <span class="promotion__planning--btn-paging">
-            <span class="promotion__planning--num-page"></span>
-          </span>
-          <span class="promotion__planning--btn-paging">
-            <span class="promotion__planning--num-page"></span>
-          </span>
-          <span class="promotion__planning--btn-paging">
-            <span class="promotion__planning--num-page"></span>
-          </span>
+          ${[0, 1, 2]
+            .map(
+              item => `
+                    <span class="promotion__planning--btn-paging">
+                      <span class="promotion__planning--num-page" data-value="${item}"></span>
+                    </span>
+                  `,
+            )
+            .join("")}
         </div>
         <button class="promotion__planning--right-btn">></button>
       </div>
     `;
   }
-  setEvent() {}
-
+  setEvent() {
+    $(".promotion__planning--paging", this.$target).addEventListener("mouseover", this.pagingBtnMouseoverHandler.bind(this));
+    $(".promotion__planning--left-btn", this.$target).addEventListener("click", this.pagingPrevClickHandler.bind(this));
+    $(".promotion__planning--right-btn", this.$target).addEventListener("click", this.pagingNextClickHandler.bind(this));
+  }
+  removeEvent() {
+    $(".promotion__planning--paging", this.$target).removeEventListener("mouseover", this.pagingBtnMouseoverHandler.bind(this));
+    $(".promotion__planning--left-btn", this.$target).removeEventListener("click", this.pagingPrevClickHandler.bind(this));
+    $(".promotion__planning--right-btn", this.$target).removeEventListener("click", this.pagingNextClickHandler.bind(this));
+  }
+  pagingBtnMouseoverHandler({ target }) {
+    if (target.classList.contains("promotion__planning--num-page")) {
+      const selectedSlideOrder = target.getAttribute("data-value");
+      this.carousel.jumpTo(selectedSlideOrder);
+    }
+  }
+  pagingNextClickHandler({ target }) {
+    if (target.classList.contains("promotion__planning--right-btn")) {
+      this.carousel.nextBtnClick();
+    }
+  }
+  pagingPrevClickHandler({ target }) {
+    if (target.classList.contains("promotion__planning--left-btn")) {
+      this.carousel.prevBtnClick();
+    }
+  }
   mounted() {
-    this.slidingList = $(".promotion__planning--wrap", this.$target);
-    this.slidingBtnList = $All(".promotion__planning--num-page", this.$target);
-    this.slidingBtnList[0].style["background-color"] = "black";
-    this.transitionInterval();
+    const { planningList } = this.$state;
+    this.carouselList = $(".promotion__planning--wrap", this.$target);
+    this.carouselBtnList = $All(".promotion__planning--num-page", this.$target);
     this.getSlide();
+    if (planningList.length > 0) {
+      this.carousel =
+        this.carousel ??
+        new Carousel(planningList, this.carouselList, this.currentCarouselItem, this.carouselSpeed, this.carouselItemWidth, 1, this.carouselBtnList);
+    }
   }
   async getSlide() {
     const { result } = await api.get("event/slide");
-    result.push(result[0]);
-    this.slidingList.style.width = result.length * 635 + "px";
-    if (JSON.stringify(this.$state.planningList) !== JSON.stringify(result)) {
-      if (typeof this.slidingInterval === "number") {
-        clearTimeout(this.slidingInterval);
-      }
-      this.setState({ planningList: result });
+    const transResult = this.transSlideResult(result);
+    this.settingCarouselCSS(transResult.length);
+    if (JSON.stringify(this.$state.planningList) !== JSON.stringify(transResult)) {
+      this.setState({ planningList: transResult });
     }
+    // Object.entries().sort().toString()
   }
-  transition(list, speed, size, to) {
-    list.style.transition = `${speed}ms`;
-    list.style.transform = `translate3d(-${size * to}px, 0px, 0px)`;
+  settingCarouselCSS(length) {
+    this.carouselBtnList[0].style["background-color"] = "black";
+    this.carouselList.style.width = length * this.carouselItemWidth + "px";
+    this.carouselList.style.transform = "translate3d(-" + this.carouselItemWidth + "px, 0px, 0px)";
   }
-  transitionInterval() {
-    // 다음 슬라이드로 일단 이동! -> setTimeout 의 delay 이전에 모든 애니메이션이 끝나야 한다.
-    this.slidingInterval = setTimeout(() => {
-      this.checkBtn(this.currentSlide, "#ccc");
-      this.transition(this.slidingList, this.slidingSpeed / 2, this.slidingWidth, ++this.currentSlide);
-      this.checkBtn(this.currentSlide, "#000");
-      // 맨 마지막이면 처음으로 몰래 이동
-      if (this.currentSlide === this.totalSlideCount) {
-        this.currentSlide = 0;
-        setTimeout(() => {
-          this.transition(this.slidingList, 0, this.slidingWidth, this.currentSlide);
-        }, this.slidingSpeed / 2 + 10);
-      }
-      this.transitionInterval();
-    }, this.slidingSpeed);
-  }
-  checkBtn(to, color) {
-    to = to === this.totalSlideCount ? 0 : to;
-    this.slidingBtnList[to].style["background-color"] = color;
+  transSlideResult(result) {
+    const lastSlide = result[result.length - 1];
+    const firstSlide = result[0];
+    result.unshift(lastSlide);
+    result.push(firstSlide);
+    return result;
   }
 }
