@@ -1,0 +1,86 @@
+@import '../../global.scss';
+
+.hot-deal {
+  @extend %section-layout;
+  margin-top:60px;
+
+  .section-title {
+    font-size: 1.25rem;
+    padding-bottom: 20px;
+    background-color: $bgColor;
+  }
+
+  .hot-deal-list {
+    display: flex;
+    flex-wrap:wrap;
+    .hot-deal__item {
+      padding: 25px 27px 20px;
+      width: 20%;
+      overflow: hidden;
+      float: left;
+      position: relative;
+      border-right: 1px solid #f1f1f1;
+      border-bottom: 1px solid #f1f1f1;
+      line-height: 14px;
+      letter-spacing: -1px;
+      text-align: left;
+
+      .hot-deal__link {
+        .hot-deal__thumb {
+          .hot-deal__img {
+            width: 200px;
+            height: 200px;
+          }
+        }
+
+        .hot-deal__title {
+          height: 40px;
+          margin: 11px 0 0;
+          font-size: 13px;
+          line-height: 20px;
+          color: #555;
+          display: block;
+          font-weight: 400;
+        }
+
+        .hot-deal__detail-price {
+          display: block;
+          height: 43px;
+          padding-top: 7px;
+          letter-spacing: 0;
+
+          .discount-info {
+            display: block;
+            overflow: hidden;
+            height: 30px;
+            position: relative;
+            .txt-price {
+              float: left;
+              font-size: 14px;
+              line-height: 23px;
+              color: #000;
+              font-weight: 700;
+              font-family: Tahoma,sans-serif;
+            }
+            .txt-price-percent {
+              float: right;
+              font-size: 24px;
+              line-height: 30px;
+              color: #fc363c;
+            }
+          }
+
+          .original-price {
+            display: block;
+            margin-top: -9px;
+            font-size: 13px;
+            color: #888;
+            line-height: 22px;
+            font-family: Tahoma,sans-serif;
+            text-decoration: line-through;
+          }
+        }
+      }
+    }
+  }
+}

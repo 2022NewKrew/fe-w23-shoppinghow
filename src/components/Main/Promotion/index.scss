@@ -1,0 +1,32 @@
+@import '../../global.scss';
+
+.promotion {
+  @extend %section-layout;
+  @extend %border-basic;
+
+  .banner {
+    display: flex;
+    justify-content: center;
+
+    .best {
+      float: left;
+      flex: 1 1 0;
+
+      .best__link {
+        display: block;
+        margin: 0 auto;
+
+        .img_g {
+          width: 485px;
+          height: 340px;
+        }
+      }
+    }
+  }
+
+  img {
+    margin: auto;
+    text-align: center;
+    display: flex;
+  }
+}
