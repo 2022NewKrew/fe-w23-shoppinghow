@@ -6,13 +6,13 @@ export default class App {
         this.target = target;
     }
 
-    mount() {
+    render() {
         const header = new Header(this.target);
         const main = new Main(this.target);
         // const footer = new Footer($app);
-
-        header.mount();
-        main.mount();
+        
+        header.render();
+        main.render();
     }
     
 }
