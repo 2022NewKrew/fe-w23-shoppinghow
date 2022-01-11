@@ -1,6 +1,6 @@
 import css from '../scss/main.scss'
 import InputWithTopRankingGoods from './Components/InputWithTopRankingGoods'
-import RecentGoodsFloatingLayer from './Components/RecentGoodsFloatingLayer'
+import RecentAndTaggedGoodsTab from './Components/RecentAndTaggedGoodsTab'
 import GoodsCard from './Components/GoodsCard'
 import GoodsList from './Components/GoodsList'
 import SectionTitle from './Components/SectionTitle'
