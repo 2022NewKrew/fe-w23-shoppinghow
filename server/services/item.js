@@ -1,4 +1,5 @@
 import { Item } from '../database/index.js';
+import { getRegExp } from 'korean-regexp';
 
 const getItems = async (req, res) => {
   try {
@@ -46,4 +47,16 @@ const getHotDealItems = async (req, res) => {
   }
 };
 
-export const ItemService = { getItems, getHotItems, getHotItemsName, getHotDealItems };
+const getAutocompleteList = async (search) => {
+  try {
+    const startPoint = 0;
+    const endPoint = 10;
+    const autoCompleteWord = await Item.find({ title: getRegExp(search) });
+    const result = autoCompleteWord.slice(startPoint, endPoint);
+    return result;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const ItemService = { getItems, getHotItems, getHotItemsName, getHotDealItems, getAutocompleteList };

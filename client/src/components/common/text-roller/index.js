@@ -12,11 +12,15 @@ export default class TextRoller {
   timeOutTimer = 0;
 
   constructor({ $parent, onClick }) {
+    this.textRollerContainer = document.createElement('div');
+    this.textRollerContainer.className = 'roller-container';
+
     this.roller = document.createElement('ul');
     this.roller.className = 'search-top10';
     this.render();
     this.activateRoller();
-    $parent.appendChild(this.roller);
+    this.textRollerContainer.appendChild(this.roller);
+    $parent.appendChild(this.textRollerContainer);
 
     this.roller.addEventListener('click', onClick);
   }

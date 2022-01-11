@@ -16,6 +16,7 @@
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.2",
+    "korean-regexp": "^1.0.9",
     "nedb-promises": "^5.0.3"
   },
   "devDependencies": {

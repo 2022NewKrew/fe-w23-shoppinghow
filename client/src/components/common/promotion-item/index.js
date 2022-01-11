@@ -6,7 +6,7 @@ export default class PromotionItem {
     const promotionItem = document.createElement('li');
     promotionItem.className = 'promotion-item';
     promotionItem.innerHTML = `
-        <a href="" class="promotion-item-link">
+        <a href="#" class="promotion-item-link">
             <img src=${info.imageSrc} class="promotion-item-img" alt="상품 이미지">
             <strong class="promotion-item-title">${info.title}</strong>
             <div class="promotion-item-content">${info.content}</div>
