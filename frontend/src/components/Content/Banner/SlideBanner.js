@@ -61,7 +61,7 @@ export default class SlideBanner extends Component {
       if (targetPage == this.$state.currentPage) {
         return;
       }
-      this.setState({currentPage: targetPage});
+      this.$state.currentPage = targetPage;
       console.log(this.$state);
     });
   }
@@ -99,9 +99,9 @@ export default class SlideBanner extends Component {
       topMileageSlide.style.transitionDuration = '0ms';
       topMileageSlide.style.transform = 'translate3d(0px, 0px, 0px)';
       if (moveDirection==directionType.right) {
-        this.setState({currentPage: (this.$state.currentPage+1)%totalPage});
+        this.$state.currentPage = (this.$state.currentPage+1)%totalPage;
       } else if (moveDirection==directionType.left) {
-        this.setState({currentPage: (this.$state.currentPage+2)%totalPage});
+        this.$state.currentPage = (this.$state.currentPage+1)%totalPage;
       }
     });
   }

@@ -1,3 +1,5 @@
+import {observable, observe} from './Observer.js';
+
 export default class Component {
   $target;// 컴포넌트 타겟이 되는 element
   $props;// 컴포넌트에 넘어온 값들
@@ -14,10 +16,12 @@ export default class Component {
 
   // 생성자 설정
   setup() {
-    this.$state = this.initState();
-    this.render();
-    this.setEvent();
-    this.mounted();
+    this.$state = observable(this.initState());
+    observe(()=>{
+      this.render();
+      this.setEvent();
+      this.mounted();
+    });
   };
 
   // 초기 상태 설정
@@ -50,14 +54,6 @@ export default class Component {
       this.$target.removeEventListener(eventInfo.type, eventInfo.listener);
     });
     this.$eventGroup=[];
-  }
-
-  // 상태 설정(상태 설정 후에 렌더링)
-  setState(newState) {
-    this.$state = {...this.$state, ...newState};
-    this.render();
-    this.setEvent();
-    this.mounted();
   }
 
   // 이벤트 설정 메소드
