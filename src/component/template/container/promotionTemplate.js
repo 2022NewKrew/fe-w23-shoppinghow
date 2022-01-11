@@ -1,28 +1,14 @@
 import { carouselTemplate } from "./carouselTemplate.js";
 
-export const promotionTemplate = ({best, carouselList,themeList}) => {
-    
-    const carouselTpl = `
-        <div class="planning">
-            <a href="#" target="_blank" class="planning__link"><img
-                    src="//shop2.daumcdn.net/shophow/sib/0_211202145115_cjUvJCvuztdGHrYUNDAIqoswLScKwQct"
-                    width="485" height="340" class="img_g" alt=""></a>
-            <button class="planning__left-btn"></button>
-            <button class="planning__right-btn"></button>
-            <div class="planning__paging">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-    `;
-
+export const promotionTemplate = ({best, carouselList, themeList}) => {
     const planningTpl = carouselTemplate(carouselList);
 
     return `
         <div class="promotion">
             <div class="banner">
                 <div class="best">
-                    <a href="${best.href}" class="best__link">
-                        <img src="${best.imgUrl}"
+                    <a href="${best ? best.herf : ""}" class="best__link">
+                        <img src="${best ? best.imgUrl : ""}"
                             width="485" height="340" class="img_g" alt="기획전 이벤트">
                     </a>
                 </div>

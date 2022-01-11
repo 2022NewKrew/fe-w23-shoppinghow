@@ -1,8 +1,10 @@
 export const searchTemplate = (searchList) => {
-    const list = [
-        ...searchList,
-        searchList[0] // dummy item for smooth animation.
-    ];
+    const list = searchList.length > 0
+        ? [
+            ...searchList,
+            searchList[0] // dummy item for smooth animation.
+        ]
+        : [];
     
     const top10Template = `
         <ul class="search-top10">

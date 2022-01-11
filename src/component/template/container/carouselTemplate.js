@@ -1,20 +1,24 @@
 export const carouselTemplate = (itemList) => {
     // add dummy items for smooth animation
-    const list = [
-        itemList[itemList.length - 1],
-        ...itemList,
-        itemList[0]
-    ];
+    const list = itemList.length > 0 
+        ? [
+            itemList[itemList.length - 1],
+            ...itemList,
+            itemList[0]
+        ]
+        : [];
+
+    const itemTpl = ({href, imgUrl}) => `
+        <li class="carousel-item">
+            <img class="carousel-item__img" src="${imgUrl}">
+        </li>
+    `;
 
     return `
         <div class="planning carousel">
             <div class="carousel-window">
                 <ul class="carousel-container">
-                    ${list.map(({href, imgUrl}) => `
-                        <li class="carousel-item">
-                            <img class="carousel-item__img" src="${imgUrl}">
-                        </li>
-                    `).join('')}
+                    ${list.map(itemTpl).join('')}
                 </ul>
             </div>
             <div class="carousel-controller">
