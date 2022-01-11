@@ -26,9 +26,11 @@ function makeHotDealHTML() {
 }
 
 export const makeContainerElement = async (containerElement) => {
+    // data fetch
     const response = await fetch('../data/content.json');
     const fetchedData = await response.json();
 
+    // template 적용
     const promotionTpl = promotionTemplate({
         best: fetchedData.best,
         carouselList: fetchedData.carouselList,
@@ -36,10 +38,12 @@ export const makeContainerElement = async (containerElement) => {
     });
     const hotDealTpl = hotDealTemplate();
 
+    // html 채우기
+    containerElement.innerHTML = '';
     containerElement.insertAdjacentHTML('beforeend',promotionTpl);
     containerElement.insertAdjacentHTML('beforeend', hotDealTpl);
 
-    // add event
+    // add event listener
     addCarouselEvent({
         leftBtnEl: $('.carousel__left-btn', containerElement),
         rightBtnEl: $('.carousel__right-btn', containerElement),
@@ -47,4 +51,54 @@ export const makeContainerElement = async (containerElement) => {
     })
 
     makeHotDealHTML();
+}
+
+export class Container {
+    state = {
+        best: undefined,
+        carouselList: [],
+        themeList: [],
+    };
+
+    constructor($container) {
+        this.$element = $container;
+
+        fetch('../data/content.json')
+            .then(response => response.json())
+            .then(data => this.setState({
+                best: data.best,
+                carouselList: data.carouselList,
+            }));
+        
+        this.render();
+    }
+
+    setState(newState) {
+        this.state = {...this.state, ...newState};
+        this.render();
+    }
+
+    template() {
+        const promotionTpl = promotionTemplate(this.state);
+        const hotDealTpl = hotDealTemplate();
+        return `
+            ${promotionTpl}
+            ${hotDealTpl}
+        `;
+    }
+
+    setEvent() {
+        addCarouselEvent({
+            leftBtnEl: $('.carousel__left-btn', this.$element),
+            rightBtnEl: $('.carousel__right-btn', this.$element),
+            containerEl: $('.carousel-container', this.$element)
+        })
+    }
+
+    render() {
+        this.$element.innerHTML = this.template();
+        this.setEvent();
+
+        makeHotDealHTML();
+    }
 }
