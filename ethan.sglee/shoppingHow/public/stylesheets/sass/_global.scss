@@ -1,7 +1,7 @@
 * {
-    font-family: 돋움,dotum,sans-serif;
-    //outline:1px solid gray; //for debugging
-  }
+  font-family: 돋움,dotum,sans-serif;
+  //outline:1px solid gray; //for debugging
+}
 
 body {
   margin: 0px auto;
@@ -9,6 +9,14 @@ body {
 
 h1 {
   font-size: 2rem;
+}
+  
+.hidden {
+  visibility: hidden;
+}
+
+.none {
+  display: none;
 }
 
 $primaryColor: #eeffcc;
@@ -36,10 +44,3 @@ $button-padding: 20px;
   font-size: 0.875rem;
 }
 
-.hidden {
-  visibility: hidden;
-}
-
-.none {
-  display: none;
-}

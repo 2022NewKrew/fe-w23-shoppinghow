@@ -118,6 +118,7 @@ $planningcontainersize: 3;
                     .private-menu__recent-tab {
                         text-align: center;
                         margin: 15px 5px 5px 5px;
+                        cursor: pointer;
                     }
                 }
             }
@@ -311,7 +312,25 @@ $planningcontainersize: 3;
             background-color: $bgColor;
         }
 
-        .hot-deal__title, .hot-deal__detail-price{
+        .hot-deal__title-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .hot-deal__title {
+                @extend %text-block;
+            }
+
+            .hot-deal__favorite-icon {
+
+                svg {
+                    pointer-events: none;
+                }
+            }
+
+        }
+
+        .hot-deal__detail-price{
             @extend %text-block;
         }
 
@@ -324,10 +343,6 @@ $planningcontainersize: 3;
                 padding:20px;
                 border-right: 1px solid #f1f1f1;
                 border-bottom: 1px solid #f1f1f1;
-
-                a {
-                    pointer-events: none;
-                }
             }
         }
 
