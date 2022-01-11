@@ -77,5 +77,9 @@ export default class SearchBar {
       },
       true
     );
+    $(".tf_keyword").addEventListener("input", (e) => {
+      $(".wrap_suggestion").style.display =
+        e.target.value !== "" ? "none" : "block";
+    });
   }
 }
