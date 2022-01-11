@@ -4,7 +4,6 @@ const commonConfig = require('./webpack.config.common');
 
 module.exports = merge(commonConfig, {
   mode: 'production',
-  entry: './src/index.js',
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css'

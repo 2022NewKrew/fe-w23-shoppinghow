@@ -1,6 +1,6 @@
-window.onload(() => {
-  const bodyTag = document.querySelector('body');
-  const headerTag = document.createElement('h1');
-  headerTag.innerText = 'dongyun';
-  bodyTag.appendChild(headerTag);
-});
+import { $ } from './utils/helper';
+import Header from './components/header/header.js';
+import './index.scss';
+
+const $app = document.getElementById('app');
+const header = new Header($app);
