@@ -118,47 +118,52 @@ $SearchHeight: 60px;
             padding: $button-padding;
         }
 
-        .recent-items__wrapper{
-            visibility: hidden;
-            position: absolute;
-            height: 500px;
-            width: 400px;
-            z-index: 10;
-            right: 0;
-            top: 58px;
-            border: 1px solid #979797;
-            background-color: #fff;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            .recent-items__title-wrapper{
-                margin: 10px;
+        .activate-recent-wrapper{
+            position: relative;
+            .recent-items__wrapper{
+                visibility: hidden;
+                position: absolute;
+                height: 500px;
+                width: 400px;
+                z-index: 10;
+                right: 0;
+                top: 58px;
+                border: 1px solid #979797;
+                background-color: #fff;
+                text-align: left;
                 display: flex;
-                flex-direction: row;
-                height: 26px;
-                font-size: 16px;
-                color: #444;
-                letter-spacing: -.05em;
-                align-items: center;
+                flex-direction: column;
+                padding: 20px;
+                .recent-items__title-wrapper{
+                    margin: 10px;
+                    display: flex;
+                    flex-direction: row;
+                    height: 26px;
+                    font-size: 16px;
+                    color: #444;
+                    letter-spacing: -.05em;
+                    align-items: center;
 
-                .recent-items__title{
-                    margin-right: 10px;
+                    .recent-items__title{
+                        margin-right: 10px;
+                    }
                 }
-            }
-            .recent-items__products-wrapper{
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                overflow: hidden;
-                justify-content: space-between;
-                img {
-                    margin: 2px;
-                    height: 120px;
-                    width: 120px;
+                .recent-items__products-wrapper{
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    overflow: hidden;
+                    justify-content: space-between;
+                    img {
+                        margin: 2px;
+                        height: 120px;
+                        width: 120px;
+                    }
                 }
             }
         }
+
+
     }
 }
 

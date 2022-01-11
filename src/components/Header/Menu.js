@@ -1,5 +1,5 @@
 import Component from "@core/Component";
-import Recent from "@components/Header/Recent";
+import RecentViewed from "@components/Header/RecentViewed";
 
 class Menu extends Component {
   template() {
@@ -37,14 +37,18 @@ class Menu extends Component {
             </ul>
             <ul class="private-menu">
                 <li class="private-menu__btn"><a href="#">로그인</a></li>
-                <li class="private-menu__btn activate-recent-wrapper"><a href="#">최근본상품</a></li>
+                <div class="activate-recent-wrapper">
+                    <li class="private-menu__btn"><a href="#">최근본상품</a></li>
+                </div>
             </ul>
         </div>`;
   }
 
   mounted() {
-    const $privateMenu = this.$target.querySelector(".private-menu");
-    new Recent($privateMenu);
+    const $activateRecentWrapper = this.$target.querySelector(
+      ".activate-recent-wrapper"
+    );
+    new RecentViewed($activateRecentWrapper);
   }
 
   setEvent() {
@@ -54,7 +58,7 @@ class Menu extends Component {
 
   handleMouseover(e) {
     const { target } = e;
-    if (target.classList.contains("activate-recent-wrapper")) {
+    if (target.closest(".activate-recent-wrapper")) {
       this.activateRecentWrapper();
     }
   }
