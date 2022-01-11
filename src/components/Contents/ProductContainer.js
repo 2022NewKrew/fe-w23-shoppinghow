@@ -1,6 +1,5 @@
 import Component from "@core/Component";
 import ProductItem from "@components/Contents/ProductItem";
-import recentItemModel from "../../models/RecentItemModel";
 
 class ProductContainer extends Component {
   template() {
