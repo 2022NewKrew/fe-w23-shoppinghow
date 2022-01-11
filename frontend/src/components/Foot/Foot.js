@@ -1,6 +1,6 @@
 import Component from '../../core/Component';
 
-export default class KaKaoFoot extends Component {
+export default class Foot extends Component {
   template() {
     return `
     <div class="footer_shw">

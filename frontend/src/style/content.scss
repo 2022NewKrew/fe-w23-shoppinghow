@@ -1,3 +1,11 @@
 @import "banner";
 @import "shoppingPartner";
 @import "notice";
+@import "itemGroupWrap";
+
+#cMain {
+    overflow: hidden;
+    width: 977px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}

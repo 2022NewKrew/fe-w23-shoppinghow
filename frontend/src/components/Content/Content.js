@@ -1,0 +1,90 @@
+import Component from '../../core/Component';
+import {getApi} from '../../core/ApiService';
+import {ERROR_MESSAGE, API_URL} from '../../util/TemplateGroup';
+import {TARGET_SELECTOR, getTargetSelector} from '../../util/ComponentGroup';
+import Banner from './Banner/Banner';
+import ShopingPartner from './ShopingPartner';
+import Notice from './Notice';
+import ItemGroupWrap from './ItemGroup/ItemGroupWrap';
+export default class Content extends Component {
+  template() {
+    return `
+    <div id="cMain">
+        <div id="mArticle">
+            <div data-component="${TARGET_SELECTOR.BANNER}" class="section_top section_tab">
+            </div>
+            <div data-component="${TARGET_SELECTOR.HOTITEM}" class="section_tab section_hotdeal">
+            </div>
+            <div data-component="${TARGET_SELECTOR.KEYWORD}" class="section_tab section_rank">
+            </div>
+            <div data-component="${TARGET_SELECTOR.RECOMMEND}" class="section_tab section_how" style="">
+            </div>
+        </div>
+    </div>
+    <div id="cEtc">
+        <div data-component="${TARGET_SELECTOR.SHOPPING_PARTNER}" class="wrap_shopping_partner _GL"></div>
+        <div data-component="${TARGET_SELECTOR.NOTICE}" class="wrap_notice"></div>
+    </div>`;
+  }
+
+  mounted() {
+    const $shopingPartner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.SHOPPING_PARTNER));
+    const $notice = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.NOTICE));
+
+    new ShopingPartner($shopingPartner, {});
+    new Notice($notice, {});
+
+    this.setBannerForm();
+    this.setHotDealForm();
+    this.setKeywordForm();
+  }
+
+  async setBannerForm() {
+    const $banner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.BANNER));
+    try {
+      const bannerData = await this.getBannerData();
+      new Banner($banner, {bannerData: bannerData});
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getBannerData() {
+    try {
+      const res = await getApi(API_URL.GET_BANNER_DATA);
+      // TODO 데이터 체크와 에러메시지는 추가 예정
+      if (res == null) {
+        console.log('getBannerData err');
+        return new Error(ERROR_MESSAGE.NODATA);
+      }
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // TODO 서버에서 데이터 받아올 얘정 지금은 임시 데이터
+  async setHotDealForm() {
+    const $hotDealItemGroupWrap = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.HOTITEM));
+    const tempData = Array(8).fill({
+      name: '겉바속촉mini고구마붕어빵',
+      imgUrl: 'asset/img/product_hotdeal/product_hotdeal_01.jpeg',
+      discountPrice: 12500,
+      discountPercent: 55,
+      regularPrice: 27800,
+    });
+    new ItemGroupWrap($hotDealItemGroupWrap, {itemType: 'hotdeal', title: '품절주의! 역대급 핫딜', itemGroup: tempData});
+  }
+
+  // TODO 서버에서 데이터 받아올 얘정 지금은 임시 데이터
+  async setKeywordForm() {
+    const $keywordItemGroupWrap = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.KEYWORD));
+    const tempData = Array(8).fill({
+      category: '호빵찜기',
+      name: 'JY-507 호빵찜기 소형',
+      imgUrl: 'asset/img/product_keyword/product_keyword_01.jpeg',
+      price: 705150,
+    });
+    new ItemGroupWrap($keywordItemGroupWrap, {itemType: 'keyword', title: '쇼핑 급상승 키워드', itemGroup: tempData});
+  }
+}

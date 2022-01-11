@@ -40,21 +40,20 @@ export default class SlideBanner extends Component {
     </div>`;
   }
 
-  setup() {
-    this.$state = {
+  initState() {
+    return {
       currentPage: 0,
       pagingGroup: [0, 1, 2],
     };
   }
 
-  mounted() {
+  setEvent() {
     this.setPagingBtnEvent();
-    this.setPageSlide();
+    this.setPageSlideBtnWithSlidePageEvnet();
   }
 
   setPagingBtnEvent() {
-    const innerPageEl = this.$target.querySelector('[id="mileageSildePage"]');
-    innerPageEl.addEventListener('mouseover', (event) => {
+    this.addEvent('mouseover', '[id="mileageSildePage"]', (event) => {
       const targetPage = parseInt(event.target.innerText);
       if (event.target.className != 'num_page') {
         return;
@@ -67,37 +66,42 @@ export default class SlideBanner extends Component {
     });
   }
 
-  setPageSlide() {
-    this.setPageSlideBtnWithSlidePageEvnet();
-  }
-
   setPageSlideBtnWithSlidePageEvnet() {
     const transitionDuration = 300;
     const translateXlength = 484;
-    const topMileageSlide = this.$target.querySelector('[id="topMileageSlide"]');
-    const nextBtn = this.$target.querySelector('[class="btn_slide btn_next _GC_"]');
-    const prevBtn = this.$target.querySelector('[class="btn_slide btn_prev _GC_"]');
     let moveDirection = '';
+    // TODO: 질문) 아래와 같이 나눠서 써야하는게 맞나요? 추가로 맞다면 util에 넣어서 보관해야할까요?
+    const totalPage = 3;
+    const directionType = {
+      left: 'left',
+      right: 'right',
+    };
+    const selectorTarget = {
+      nextBtn: '[class="btn_slide btn_next _GC_"]',
+      prevBtn: '[class="btn_slide btn_prev _GC_"]',
+      topMileageSlide: '[id="topMileageSlide"]',
+    };
+    const topMileageSlide = this.$target.querySelector('[id="topMileageSlide"]');
 
-    nextBtn.addEventListener('click', (evnet) => {
-      moveDirection='right';
+    this.addEvent('click', selectorTarget.nextBtn, (evnet) => {
+      moveDirection=directionType.right;
       topMileageSlide.style.transitionDuration = `${transitionDuration}ms`;
       topMileageSlide.style.transform = `translate3d(-${translateXlength}px, 0px, 0px)`;
     });
 
-    prevBtn.addEventListener('click', (evnet) => {
-      moveDirection='left';
+    this.addEvent('click', selectorTarget.prevBtn, (evnet) => {
+      moveDirection=directionType.left;
       topMileageSlide.style.transitionDuration = `${transitionDuration}ms`;
       topMileageSlide.style.transform = `translate3d(${translateXlength}px, 0px, 0px)`;
     });
-
-    topMileageSlide.addEventListener('transitionend', () => {
+    this.addEvent('transitionend', selectorTarget.topMileageSlide, () => {
+      console.log(this.$state);
       topMileageSlide.style.transitionDuration = '0ms';
       topMileageSlide.style.transform = 'translate3d(0px, 0px, 0px)';
-      if (moveDirection=='right') {
-        this.setState({currentPage: (this.$state.currentPage+1)%3});
-      } else if (moveDirection=='left') {
-        this.setState({currentPage: (this.$state.currentPage+2)%3});
+      if (moveDirection==directionType.right) {
+        this.setState({currentPage: (this.$state.currentPage+1)%totalPage});
+      } else if (moveDirection==directionType.left) {
+        this.setState({currentPage: (this.$state.currentPage+2)%totalPage});
       }
     });
   }

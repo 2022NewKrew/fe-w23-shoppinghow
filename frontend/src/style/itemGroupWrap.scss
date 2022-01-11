@@ -1,0 +1,194 @@
+.tit_info {
+    overflow: hidden;
+    width: 100%;
+    height: 24px;
+    margin-bottom: 11px;
+
+    .tit_home {
+        float: left;
+        height: 24px;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 22px;
+        font-family: NanumGothic,'나눔고딕','Nanum Gothic','Malgun Gothic','맑은 고딕',Dotum,'돋움',Helvetica,AppleSDGothicNeo,Arial,sans-serif;
+        color: #000;
+        letter-spacing: -2px;
+    }
+}
+
+.section_rank{
+    .cont_item {
+        height: 667px;
+
+        .list_item{
+            li {
+                height: 293px;
+            }
+        }
+    }
+}
+
+.link_prod {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+}
+
+
+.section_tab{
+    overflow: visible;
+    position: relative;
+    width: 973px;
+    margin: 50px auto 0;
+    clear: both;
+
+    .cont_item {
+        width: 971px;
+        border: 1px solid #e4e4e4;
+
+        .list_item {
+            display: block;
+            width: 973px;
+            li {
+                width: 200px;
+                padding: 20px 21px;
+                text-align: left;
+            }
+        }
+
+        .tit_rank {
+            display: block;
+            padding-bottom: 15px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .tit_g {
+            overflow: hidden;
+            width: 100%;
+            height: 30px;
+            margin: 5px 0 12px;
+            font-weight: 400;
+            line-height: 16px;
+        }
+
+        .txt_desc {
+            display: block;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+
+        .num_price {
+            font-family: tahoma,sans-serif;
+        }
+    }
+}
+
+.cont_item {
+    overflow: hidden;
+    z-index: 0;
+
+    .list_item {
+        overflow: hidden;
+        width: 1275px;
+        background-color: #fff;
+
+        li {
+            overflow: hidden;
+            float: left;
+            position: relative;
+            border-right: 1px solid #f1f1f1;
+            border-bottom: 1px solid #f1f1f1;
+            line-height: 14px;
+            letter-spacing: -1px;
+            text-align: center;
+        }
+    }
+}
+
+.tit_g {
+    display: block;
+    margin: 14px 0 2px;
+    line-height: 22px;
+}
+
+.section_hotdeal{
+    .thumb_hotdeal {
+        display: block;
+        overflow: hidden;
+        width: 200px;
+        height: 200px;
+
+        .img_g {
+            width: 100%;
+        }
+    }
+
+    .cont_item{
+        float: none;
+        .tit_g {
+            display: -webkit-box;
+            height: 40px;
+            margin: 11px 0 0;
+            font-size: 13px;
+            line-height: 20px;
+            color: #555;
+            word-break: break-all;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+    }
+
+    .detail_price {
+        display: block;
+        height: 43px;
+        padding-top: 7px;
+        letter-spacing: 0;
+
+        .info_discount {
+            display: block;
+            overflow: hidden;
+            height: 30px;
+        }
+    }
+
+    .txt_discount {
+        float: left;
+        font-size: 14px;
+        line-height: 23px;
+        color: #000;
+        font-weight: 700;
+        font-family: Tahoma,sans-serif;
+
+        .txt_unit {
+            font-weight: 400;
+            font-family: '돋움',dotum,sans-serif;
+        }
+    }
+
+    .txt_percent {
+        float: right;
+        font-size: 24px;
+        line-height: 30px;
+        color: #fc363c;
+
+        .txt_unit {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 16px;
+            vertical-align: top;
+        }
+    }
+
+    .txt_price {
+        display: block;
+        margin-top: -9px;
+        font-size: 13px;
+        color: #888;
+        line-height: 22px;
+        font-family: Tahoma,sans-serif;
+        text-decoration: line-through;
+    }
+}
