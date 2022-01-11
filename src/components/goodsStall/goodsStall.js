@@ -1,5 +1,5 @@
-import { smallTitle } from '../smallTitle';
-import { goodsList } from './goodsList';
+import { smallTitle } from '@components/smallTitle';
+import { goodsList } from '@components/goodsStall/goodsList';
 
 export const goodsStall = ({ title, goodsData }) => {
     const target = document.createElement('div');

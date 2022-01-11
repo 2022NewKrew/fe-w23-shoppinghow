@@ -1,8 +1,8 @@
-import './styles/libs/reset.css';
-import './sass/app.scss';
-import PageRouter from './util/pageRouter';
-import { onLocationChangeHandler } from './util/changeLocation.js';
-import { header } from './components/header/header.js';
+import '@styles/libs/reset.css';
+import '@sass/app.scss';
+import PageRouter from '@utils/pageRouter';
+import { onLocationChangeHandler } from '@utils/changeLocation.js';
+import { header } from '@components/header/header.js';
 
 window.addEventListener('DOMContentLoaded', () => {
     const app = document.querySelector('body');

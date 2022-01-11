@@ -1,5 +1,5 @@
-import { headerTop } from './headerTop';
-import { menuBar } from './menuBar';
+import { headerTop } from '@components/header/headerTop';
+import { menuBar } from '@components/header/menuBar';
 
 export const header = () => {
     const target = document.createElement('header');

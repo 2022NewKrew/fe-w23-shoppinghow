@@ -1,7 +1,7 @@
-import { carousel } from '../carousel/carousel';
-import { suggestItemContainer } from './suggestItemContainer';
-import { hoverButtons } from './hoverButtons';
-import { smallTitle } from '../smallTitle';
+import { carousel } from '@components/carousel/carousel';
+import { suggestItemContainer } from '@components/suggestion/suggestItemContainer';
+import { hoverButtons } from '@components/suggestion/hoverButtons';
+import { smallTitle } from '@components/smallTitle';
 
 // fetch되어온 데이터라 가정
 const dummyData = [

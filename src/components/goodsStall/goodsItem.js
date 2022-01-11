@@ -1,4 +1,4 @@
-import { priceTag } from '../priceTag.js';
+import { priceTag } from '@components/priceTag.js';
 
 export const goodsItem = ({ title, imgSrc, price, priceEvent }) => {
     const target = document.createElement('li');

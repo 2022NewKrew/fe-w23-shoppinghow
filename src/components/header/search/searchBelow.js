@@ -1,4 +1,4 @@
-export const searchBlow = () => {
+export const searchBelow = () => {
     const target = document.createElement('div');
 
     const render = () => {

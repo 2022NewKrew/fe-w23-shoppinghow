@@ -1,4 +1,4 @@
-import { search } from './search/search';
+import { search } from '@components/header/search/search';
 
 export const headerTop = () => {
     const target = document.createElement('div');
