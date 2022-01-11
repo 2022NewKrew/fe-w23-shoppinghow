@@ -2,15 +2,23 @@ import dibsItemIdsModel from "../model/DibsItemIdsModel";
 import viewItemIdsModel from "../model/ViewItemIdsModel";
 
 export default class ThemeItem{
-  constructor({itemId, imageSrc, title, desc, dibsed}){
+  /**
+   * @param {object} param
+   * @param {number} param.itemId
+   * @param {string} param.imageSrc
+   * @param {string} param.title
+   * @param {string} param.desc
+   * @param {boolean} param.isDibsItem
+   */
+  constructor({itemId, imageSrc, title, desc, isDibsItem}){
     this.itemId=itemId;
     this.imageSrc=imageSrc;
     this.title=title;
     this.desc=desc;
-    this.dibsed=dibsed;
+    this.isDibsItem=isDibsItem;
   }
   getHtml(){
-    const {itemId, imageSrc, title, desc, dibsed}=this;
+    const {itemId, imageSrc, title, desc, isDibsItem}=this;
     return `
     <li class="theme-item" data-itemId="${itemId}">
       <a href="#" class="theme__link">
@@ -21,7 +29,7 @@ export default class ThemeItem{
         <span class="theme-item__desc">${desc}</span>
       </a>
       <div class="theme-item__icon">
-    ${dibsed ?
+    ${isDibsItem ?
     "<img src=\"https://cdn-icons-png.flaticon.com/512/833/833472.png\">"
     : "<img src=\"https://cdn-icons-png.flaticon.com/512/833/833300.png\">"}
       </div>
