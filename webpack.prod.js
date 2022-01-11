@@ -1,4 +1,6 @@
+const webpack = require('webpack');
 const { merge } = require('webpack-merge');
+const Dotenv = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -20,6 +22,11 @@ module.exports = merge(common, {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new Dotenv({ path: '.env.production' }),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'production',
+      DEBUG: false,
+    }),
     new HtmlWebpackPlugin({
       template: HTML_TEMPLATE,
       filename: 'home.html',

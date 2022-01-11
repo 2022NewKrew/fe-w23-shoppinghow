@@ -1,0 +1,128 @@
+.search {
+  @include flex-center;
+  @include border-basic;
+  border-radius: 8px;
+  position: relative;
+  width: 670px;
+  transition: border-color 300ms ease-in-out;
+
+  & > form {
+    display: flex;
+    width: 100%;
+    padding: 1rem 1rem 1rem 2rem;
+
+    .search__input {
+      width: 100%;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 22px;
+    }
+
+    .search__icon {
+      cursor: pointer;
+      font-size: 1.4rem;
+      user-select: none;
+    }
+  }
+}
+.search--focus {
+  border-color: $red-300;
+}
+
+.top10slider {
+  position: absolute;
+  left: 2rem;
+  height: 30px;
+  overflow: hidden;
+  pointer-events: none;
+
+  .top10slider__track {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-30px);
+
+    .top10slider__item {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      & > span {
+        font-size: 1.2rem;
+        color: #939393;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.search__modal {
+  position: absolute;
+  width: 100%;
+  top: 64px;
+  padding: 1.5rem;
+  border: 1px solid $red-300;
+  border-radius: 8px;
+  background-color: white;
+  z-index: 100;
+
+  opacity: 0;
+  transition: opacity 300ms ease-out; // js에서 opacity 제어
+}
+.search__modal--hide {
+  visibility: hidden;
+}
+
+.top10content {
+  float: left;
+  width: 50%;
+
+  .top10content__keywrodList {
+    width: 50%;
+  }
+
+  .top10content__rank {
+    margin-right: 10px;
+    font-weight: 700;
+    font-style: italic;
+  }
+}
+
+.recentSearchContent {
+  float: left;
+  width: 50%;
+}
+
+.recentSearchContent__title,
+.top10content__title {
+  display: block;
+  color: #939393;
+  font-weight: 700;
+}
+
+.recentSearchContent__list,
+.top10content__keywrodList {
+  margin-top: 0.75rem;
+  float: left;
+  & > li {
+    margin-top: 0.5rem;
+  }
+}
+
+.recentSearchContent__list {
+  width: 100%;
+
+  .recentSearchContent__item {
+    display: flex;
+    align-items: center;
+  }
+  .closeBtn {
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 2rem;
+    display: block;
+    overflow: hidden;
+    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+    width: 14px;
+    height: 14px;
+    background-position: -150px -55px;
+  }
+}

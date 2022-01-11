@@ -4,8 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   target: 'node',
   entry: {
-    home: './src/pages/home.js',
-    dummy: './src/pages/dummy.js',
+    home: './client/pages/home.js',
+    dummy: './client/pages/dummy.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -38,11 +38,13 @@ module.exports = {
   plugins: [new MiniCssExtractPlugin()],
   resolve: {
     alias: {
-      '@core': path.resolve(__dirname, 'src/core/'),
-      '@components': path.resolve(__dirname, 'src/components/'),
-      '@containers': path.resolve(__dirname, 'src/containers/'),
-      '@styles': path.resolve(__dirname, 'src/styles/'),
-      '@utils': path.resolve(__dirname, 'src/utils/'),
+      '@core': path.resolve(__dirname, './client/core/'),
+      '@components': path.resolve(__dirname, './client/components/'),
+      '@containers': path.resolve(__dirname, './client/containers/'),
+      '@services': path.resolve(__dirname, './client/services/'),
+      '@stores': path.resolve(__dirname, './client/stores/'),
+      '@styles': path.resolve(__dirname, './client/styles/'),
+      '@utils': path.resolve(__dirname, './client/utils/'),
     },
   },
 };

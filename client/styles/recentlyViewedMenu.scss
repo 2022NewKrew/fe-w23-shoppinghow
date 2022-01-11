@@ -1,0 +1,59 @@
+.recentlyViewedMenu {
+  position: relative;
+
+  .on {
+    opacity: 1;
+    visibility: inherit;
+  }
+}
+
+.recentlyViewedMenu__modal {
+  position: absolute;
+  top: 58px;
+  right: 0px;
+  border: 1px solid #979797;
+  background-color: #fff;
+  padding: 2rem;
+  z-index: 10;
+
+  opacity: 0;
+  visibility: hidden;
+
+  & > h5 {
+    height: 26px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #444;
+  }
+}
+
+.recentlyViewedMenu__productList {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, minmax(120px, auto));
+  overflow: hidden;
+  width: 362px;
+  height: 362px;
+  & > li {
+    height: 120px;
+  }
+}
+
+.recentlyViewedMenu__login {
+  margin-top: 1rem;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+
+  & > span {
+    font-size: 14px;
+    line-height: 23px;
+    color: #888;
+  }
+  & > a {
+    display: block;
+    margin-top: auto;
+    margin-left: auto;
+  }
+}

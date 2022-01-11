@@ -1,0 +1,79 @@
+@import 'global';
+
+.header {
+  background-color: white;
+}
+
+.header__top {
+  display: flex;
+  padding: 4rem 0px 3rem 0px;
+  justify-content: center;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    img {
+      width: 119px;
+      height: auto;
+    }
+  }
+}
+
+.header__nav {
+  height: 60px;
+  border-top: 1px solid #efefef;
+  box-shadow: 0 1px rgb(0 0 0 / 16%);
+}
+
+.header__navContent {
+  @include flex;
+  width: 1270px;
+  margin: 0px auto;
+
+  .category {
+    cursor: pointer;
+
+    .category__title {
+      height: 60px;
+      padding: 10px;
+      .fas {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .topMenu {
+    @include flex;
+
+    .topMenu__btn {
+      cursor: pointer;
+      padding: 0 $btn-padding;
+      font-weight: 700;
+
+      :hover {
+        color: $red-500;
+      }
+
+      a {
+        transition: color 200ms ease-out;
+      }
+    }
+  }
+
+  .privateMenu {
+    margin-left: auto;
+    display: flex;
+
+    & > li {
+      padding: $btn-padding;
+    }
+  }
+}
+
+.separator {
+  width: 1px;
+  height: 18px;
+  background: #e3e3e3;
+  margin: 0px 20px;
+}
