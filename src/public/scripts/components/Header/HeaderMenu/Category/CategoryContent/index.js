@@ -4,18 +4,18 @@ import { Component } from "@core/Component";
 export default class CategoryContent extends Component {
   setUp() {
     this.$state = {
-      categoryTabList: [],
+      categoryTabData: {},
     };
     this.curTop = null;
     this.curMiddle = null;
   }
   template() {
-    const { categoryTabList } = this.$state;
+    const { categoryTabData } = this.$state;
     return `
             <ul class="category__content--tab-list">
                 ${
-                  Object.keys(categoryTabList).length > 0 &&
-                  Object.keys(categoryTabList)
+                  Object.keys(categoryTabData).length > 0 &&
+                  Object.keys(categoryTabData)
                     .map(item => {
                       return `
                         <li class="top">
@@ -40,34 +40,34 @@ export default class CategoryContent extends Component {
   }
 
   tabMouseOverHandler({ target }) {
-    const { categoryTabList } = this.$state;
+    const { categoryTabData } = this.$state;
     if (target.tagName === "LI") {
       this.curTop = target.innerText;
-      this.curMiddle = Object.keys(categoryTabList[this.curTop])[0];
+      this.curMiddle = Object.keys(categoryTabData[this.curTop])[0];
       this.setMiddleCategory.call(this); // default는 첫번째 top 이 선택된 걸로
       this.setLowCategory.call(this);
     }
   }
   middleMouseOverHandler({ target }) {
-    const { categoryTabList } = this.$state;
+    const { categoryTabData } = this.$state;
     if (target.tagName === "LI") {
       this.curMiddle = target.innerText;
       this.setLowCategory.call(this);
     }
   }
   mounted() {
-    const { categoryTabList } = this.$state;
-    this.getCategory(categoryTabList);
-    if (Object.keys(categoryTabList).length > 0) {
-      this.curTop = Object.keys(categoryTabList)[0];
-      this.curMiddle = Object.keys(categoryTabList[this.curTop])[0];
+    const { categoryTabData } = this.$state;
+    this.getCategory(categoryTabData);
+    if (Object.keys(categoryTabData).length > 0) {
+      this.curTop = Object.keys(categoryTabData)[0];
+      this.curMiddle = Object.keys(categoryTabData[this.curTop])[0];
       this.setMiddleCategory.call(this); // default는 첫번째 top 이 선택된 걸로
       this.setLowCategory.call(this);
     }
   }
   setMiddleCategory() {
-    const { categoryTabList } = this.$state;
-    const selectedMiddleList = Object.keys(categoryTabList[this.curTop]);
+    const { categoryTabData } = this.$state;
+    const selectedMiddleList = Object.keys(categoryTabData[this.curTop]);
     const middleTemplate = selectedMiddleList
       .map(item => {
         return `
@@ -80,8 +80,8 @@ export default class CategoryContent extends Component {
     $(".category__content--middle-tab", this.$target).innerHTML = middleTemplate;
   }
   setLowCategory() {
-    const { categoryTabList } = this.$state;
-    const selectedLowList = categoryTabList[this.curTop][this.curMiddle];
+    const { categoryTabData } = this.$state;
+    const selectedLowList = categoryTabData[this.curTop][this.curMiddle];
     const lowTemplate = selectedLowList
       .map(item => {
         return `
@@ -96,7 +96,7 @@ export default class CategoryContent extends Component {
   async getCategory(watch) {
     const { result } = await api.get("category");
     if (JSON.stringify(watch) !== JSON.stringify(result)) {
-      this.setState({ categoryTabList: result });
+      this.setState({ categoryTabData: result });
     }
   }
 }

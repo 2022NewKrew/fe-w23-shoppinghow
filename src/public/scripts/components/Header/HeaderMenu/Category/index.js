@@ -12,7 +12,6 @@ export default class Category extends Component {
     this.$contentMouseLeaveHandler = this.contentMouseLeaveHandler.bind(this);
   }
   template() {
-    const { categoryDisplay } = this.$state.categoryDisplay;
     return `
         <button class="category__title"><i class="fas fa-bars"></i>카테고리</button>
         <div component="category-content" class="category__content"></div>
