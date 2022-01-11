@@ -11,7 +11,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: '쇼핑하우',
       template: './src/index.html',
     }),
     new CleanWebpackPlugin(),

@@ -4,11 +4,15 @@ const commonConfig = require('./webpack.config.common');
 module.exports = merge(commonConfig, {
   mode: 'development',
   devtool: 'source-map',
+  devServer: {
+    hot: true,
+    port: 8080,
+  },
   module: {
     rules: [
       {
-        test: /\.s[ac]ss$/i,
-        use: ['css-loader', 'sass-loader'],
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
         exclude: /node_modules/,
       },
     ]
