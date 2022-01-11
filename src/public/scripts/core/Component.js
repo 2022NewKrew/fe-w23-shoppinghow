@@ -16,8 +16,8 @@ export class Component {
   }
   #render() {
     this.$target.innerHTML = this.template();
-    this.setEvent();
     this.mounted();
+    this.setEvent();
   }
   setEvent() {}
   removeEvent() {}
