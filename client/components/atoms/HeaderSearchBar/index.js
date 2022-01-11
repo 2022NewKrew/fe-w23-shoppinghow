@@ -2,6 +2,7 @@ import { Component } from '@core';
 import { RecentlySearchStore } from '@stores';
 import { $, getURLParams } from '@utils';
 import { SearchBarModal } from './SearchBarModal';
+import { SearchInput } from './SearchInput';
 import { Top10Slider } from './Top10Slider';
 
 const HOVER_DELAY_TIME = 400;
@@ -17,10 +18,7 @@ export class HeaderSearchBar extends Component {
   template() {
     return /*html*/ `
       <div class="search">
-        <form>
-            <input type="text" class="search__input" />
-            <button type="submit" class="search__icon">🔍</button>
-        </form>
+        <form class="search__form"></form>
         <div class="top10slider"></div>
         <div class="search__modal"></div>
       </div>
@@ -35,29 +33,14 @@ export class HeaderSearchBar extends Component {
       if (!this.isSearchFocused) this.SearchBarModal.disactiveModal();
     };
 
+    this.SearchInput = new SearchInput($('.search__form', this.$target), { renderType: 'replaceHTML' });
+
     this.$target.addEventListener('focusin', this.focusinSearch.bind(this));
     this.$target.onmouseenter = this.mouseenterSearch.bind(this);
     this.$target.onmouseleave = this.mouseleaveSearch.bind(this);
-
-    $('form', this.$target).addEventListener('submit', (e) => {
-      e.preventDefault();
-      this.onSearch();
-    });
-
-    this.$input = $('.search__input', this.$target);
-    const { search } = getURLParams();
-    if (search) this.$input.value = search;
   }
 
   /* util */
-
-  onSearch() {
-    const text = this.$input.value;
-    if (!text) return;
-
-    RecentlySearchStore.dispatch({ actionKey: 'search', item: text });
-    this.$input.value = '';
-  }
 
   // search focus animation
   mouseenterSearch() {
@@ -81,12 +64,12 @@ export class HeaderSearchBar extends Component {
     setTimeout(() => {
       if (this.isMouseover) return;
 
-      this.$input.blur();
+      this.SearchInput.$input.blur();
       this.isSearchFocused = false;
       this.$target.classList.remove(FOCUSE_SEARCH_CLASSNAME);
       this.SearchBarModal.hideModal();
 
-      if (!this.$input.value) this.Top10Slider.showSliderTrack();
+      if (!this.SearchInput.$input.value) this.Top10Slider.showSliderTrack();
     }, HOVER_DELAY_TIME);
   }
 }
