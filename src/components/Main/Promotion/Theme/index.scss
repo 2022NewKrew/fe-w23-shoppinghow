@@ -14,23 +14,40 @@
   }
   .theme__link {
       display: block;
-      strong, span {
-          @extend %text-block;
-      }
       .img_top {
         width: 200px;
         height: 200px;
       }
       .theme-item__title {
-          font-weight: bold;
+        display: block;
+        overflow: hidden;
+        margin: 10px 0 1px;
+        font-size: 14px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-weight: bold;
       }
       .theme-item__desc {
-          padding-top:0;
+        color: #888;
+        font-size: 12px;
+        display: block;
       }
       .theme-item__icon {
-          border:0.5px solid #ff000069;
-          padding:4px;
-          width: 35px;
+        width: 31px;
+        background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/img/ico_comm2_150514.gif) no-repeat;
+        background-position: 0 -850px;
+        float: left;
+        height: 18px;
+        margin: 11px 4px 0 0;
+      }
+  }
+  .theme__link:hover {
+      cursor: pointer;
+      .theme-item__info > img {
+        opacity: .75;
+      }
+      .theme-item__title {
+          text-decoration: underline;
       }
   }
 }

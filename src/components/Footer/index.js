@@ -1,9 +1,10 @@
 import Component from '../../core/Component.js';
+import './index.scss';
 
 export default class Footer extends Component {
   template() {
     return `
-    <div>hi i'm footer</div>
+    <div class="footer-top">hi i'm footer</div>
     `;
   }
 

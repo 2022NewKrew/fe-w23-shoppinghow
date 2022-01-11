@@ -11,6 +11,10 @@ h1 {
   font-size: 2rem;
 }
 
+a {
+  user-select: none;
+}
+
 *:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
   all: unset;
   display: revert;

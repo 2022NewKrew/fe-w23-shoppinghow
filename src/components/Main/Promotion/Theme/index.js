@@ -42,7 +42,7 @@ export default class Theme extends Component {
               </span>
               <strong class="theme-item__title">${item.title}</strong>
               <span class="theme-item__desc">${item.desc}</span>
-              <span class="theme-item__icon">테마</span>
+              <span class="theme-item__icon"></span>
             </a>
           </li>`
           )

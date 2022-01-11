@@ -7,10 +7,7 @@ export default class Main extends Component {
   template() {
     return `
     <div class="promotion"></div>
-    <div class="hot-deal">
-      <h2 class="section-title">품절주의, 역대급 핫딜</h2>
-      <ul class="hot-deal-list"></ul>
-    </div>
+    <div class="hot-deal"></div>
     <div class="rising-keyword">
       <ul>
         <li class="rising-keyword__item"></li>
@@ -44,8 +41,8 @@ export default class Main extends Component {
   }
 
   mounted() {
-    const $hotdealList = this.$('.hot-deal-list');
-    new HotDeal($hotdealList, {});
+    const $hotdeal = this.$('.hot-deal');
+    new HotDeal($hotdeal, {});
     const $promotion = this.$('.promotion');
     new Promotion($promotion, {});
   }
