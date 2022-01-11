@@ -1,5 +1,5 @@
 import Component from "../core/Component";
-import Items from "./Items.js";
+import Item from "./Item.js";
 const data = require("../data/hotdeals.json");
 export default class Hotdeals extends Component {
   hotdealData;
@@ -18,6 +18,9 @@ export default class Hotdeals extends Component {
 
   mounted() {
     const $hotdealList = this.$target.querySelector(".hot-deal-list");
-    new Items($hotdealList, this.hotdealData);
+    this.hotdealData.forEach((data) => {
+      new Item($hotdealList, data);
+    });
+    // new Items($hotdealList, this.hotdealData);
   }
 }

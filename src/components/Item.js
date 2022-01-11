@@ -1,10 +1,9 @@
 import Component from "../core/Component";
 
-export default class Items extends Component {
+export default class Item extends Component {
   template() {
-    const hotdealData = this.$props;
-    const item = ({ title, price, original, discounted, img }) => {
-      return `
+    const { title, price, original, discounted, img } = this.$props;
+    return `
         <li class="hot-deal__item">
           <a href="" class="hot-deal__link">
               <span class="hot-deal__thumb">
@@ -20,9 +19,5 @@ export default class Items extends Component {
           </a>
         </li>
       `;
-    };
-    return `
-      ${hotdealData.map(item).join("")}
-    `;
   }
 }
