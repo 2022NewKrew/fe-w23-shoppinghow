@@ -363,13 +363,17 @@ $planningcontainersize: 3;
     .recommendation {
         width: 1270px;
         margin: auto;
-        padding: 10px 35px;
+        padding: 10px 0px;
 
         .picked-items {
             display: flex;
 
+            .exist {
+                background-color: #fff;
+            }
+
             .picked-items__item {
-                width: 240px;
+                width: 254px;
                 display: flex;
                 align-items: center;
                 height: 100px;
@@ -403,9 +407,15 @@ $planningcontainersize: 3;
         }
 
         .recommendation-items {
+            @extend %section-layout;
+            display: flex;
+            flex-wrap:wrap;
 
             .recommendation-items__item {
-
+                width:20%;
+                padding:20px;
+                border-right: 1px solid #f1f1f1;
+                border-bottom: 1px solid #f1f1f1;
             }
         }
     }
