@@ -23,5 +23,5 @@ export class ThemeProduct extends Component {
     `;
   }
 
-  mounted() {}
+  rendered() {}
 }

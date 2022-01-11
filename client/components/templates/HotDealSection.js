@@ -2,26 +2,31 @@ import { HotDealProduct, SectionLayout } from '@components';
 import { $ } from '@utils';
 
 export class HotDealSection extends SectionLayout {
-  constructor($target, props) {
-    super($target, { className: 'hotDeal__section', ...props });
+  setup() {
+    this.props = { className: 'hotDeal__section', title: '품절주의, 역대급 핫딜', ...this.props };
+    this.state = { hotDealProductList: [] };
   }
 
   render() {
     super.render();
+    this.$contentContainer.innerHTML = `<ul class="hotDeal__container"></ul>`;
+    this.$hotDealContainer = $('.hotDeal__container', this.$contentContainer);
     this.renderHotDealProductList();
   }
 
+  // util
+
   renderHotDealProductList() {
-    const { hotDealProductList } = this.props;
-
-    this.$contentContainer.innerHTML = `<ul class="hotDeal__container"></ul>`;
-    const $hotDealList = $('.hotDeal__container', this.$contentContainer);
-
-    hotDealProductList.forEach((product) => {
-      new HotDealProduct($hotDealList, {
-        renderType: 'beforeend',
+    this.state.hotDealProductList.forEach((product) => {
+      new HotDealProduct(this.$hotDealContainer, {
+        renderType: 'appendHTML',
         product,
       });
     });
+  }
+
+  setHotDealProductList(hotDealProductList) {
+    this.state = { ...this.state, hotDealProductList };
+    this.renderHotDealProductList();
   }
 }

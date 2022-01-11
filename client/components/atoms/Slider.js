@@ -3,25 +3,24 @@ import { $, $$ } from '@utils';
 
 const AUTO_SLIDE_TIME = 3000;
 const SLIDE_FRAME_WIDTH = 485;
+
 export class Slider extends Component {
-  // life cycle
   setup() {
-    const { imgList = [] } = this.props;
+    this.state = { imageList: [] };
+    this.maxIndex = -1;
     this.currentIndex = 0;
-    this.maxIndex = imgList.length - 1;
     this.isBlockClickIndicator = false;
   }
 
   template() {
-    const { imgList = [] } = this.props;
+    const { imageList } = this.state;
+    const trackList = !imageList.length ? [] : [imageList[this.maxIndex], ...imageList, imageList[0]];
 
     const pagingTemplate = (index) => /* html */ `
         <div class="slider__paging" data-index="${index}">
             <span></span>
         </div>
     `;
-
-    const trackList = [imgList[this.maxIndex], ...imgList, imgList[0]];
 
     const sliderTrackTemplate = (img) => /* html */ `
         <a href="#" target="_blank" class="slider__link">
@@ -43,7 +42,7 @@ export class Slider extends Component {
             <div class="slider__action">
                 <button type="button" class="slider__prevBtn"></button>
                 <div class="slider__pagingContainer">
-                    ${imgList.map((_, index) => pagingTemplate(index)).join('')}
+                    ${imageList.map((_, index) => pagingTemplate(index)).join('')}
                 </div>    
                 <button type="button" class="slider__nextBtn"></button>
             </div>
@@ -51,7 +50,9 @@ export class Slider extends Component {
     `;
   }
 
-  mounted() {
+  rendered() {
+    this.clearTimerAction();
+
     this.$target.addEventListener('click', ({ target: { className } }) => {
       if (!!this.isBlockClickIndicator) return;
 
@@ -82,6 +83,12 @@ export class Slider extends Component {
   }
 
   // util
+
+  setImageList(imageList) {
+    this.state = { ...this.state, imageList };
+    this.maxIndex = imageList.length - 1;
+    this.render();
+  }
 
   renderIndicator() {
     const SELECTED_CLASSNAME = 'slider__paging--selected';

@@ -18,7 +18,7 @@ export class SectionLayout extends Component {
     `;
   }
 
-  mounted() {
+  rendered() {
     const { className } = this.props;
     this.$contentContainer = $(`.${className} .container__content`, this.$target);
   }

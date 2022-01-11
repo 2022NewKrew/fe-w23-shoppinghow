@@ -42,6 +42,7 @@ module.exports = {
       '@components': path.resolve(__dirname, './client/components/'),
       '@containers': path.resolve(__dirname, './client/containers/'),
       '@services': path.resolve(__dirname, './client/services/'),
+      '@stores': path.resolve(__dirname, './client/stores/'),
       '@styles': path.resolve(__dirname, './client/styles/'),
       '@utils': path.resolve(__dirname, './client/utils/'),
     },

@@ -26,7 +26,7 @@ const reducer = (state, { actionKey, payload = {} }) => {
   }
 
   getState() {
-    return { ...state };
+    return { ...this.#state };
   }
 
   subscribe(func) {
@@ -37,8 +37,8 @@ const reducer = (state, { actionKey, payload = {} }) => {
     this.#listeners.forEach((func) => func());
   }
 
-  dispatch({ actionKey, payload = {} }) {
-    this.#state = this.#reducer(this.#state, { actionKey, ...payload });
+  async dispatch({ actionKey, payload = {} }) {
+    this.#state = await this.#reducer(this.#state, { actionKey, ...payload });
     this.publish();
   }
 }

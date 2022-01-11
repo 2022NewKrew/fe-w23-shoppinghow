@@ -40,7 +40,7 @@ export class RecentlyViewedMenu extends Component {
     `;
   }
 
-  mounted() {
+  rendered() {
     this.$modal = $('.recentlyViewedMenu__modal', this.$target);
 
     this.$target.onmouseenter = () => {

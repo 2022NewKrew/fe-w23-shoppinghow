@@ -2,8 +2,14 @@ import { PromotionCard, SectionLayout, Slider, ThemeProduct } from '@components'
 import { $ } from '@utils';
 
 export class PromotionSection extends SectionLayout {
-  constructor($target, props) {
-    super($target, { className: 'promotion__section', ...props });
+  setup() {
+    this.props = {
+      className: 'promotion__section',
+      title: '프로모션 세션',
+      hideTitle: true,
+      ...this.props,
+    };
+    this.state = { themeProductList: [] };
   }
 
   render() {
@@ -13,37 +19,34 @@ export class PromotionSection extends SectionLayout {
         <div class="banner"></div>
         <ul class="theme__container"></ul>
     `;
+    this.$themeContainer = $('.theme__container', this.$contentContainer);
+
     this.renderBanner();
     this.renderThemeProductList();
   }
 
+  renderBanner() {
+    this.$banner = $('.banner', this.$contentContainer);
+    this.PromotionCard = new PromotionCard(this.$banner, {
+      renderType: 'appendHTML',
+      url: '#',
+      img: '//shop1.daumcdn.net/shophow/sib/0_211210142533_BedHMJMFxJiJcYPqWFiZwzldCrXJHrcC',
+    });
+
+    this.Slider = new Slider(this.$banner, { renderType: 'appendHTML' });
+  }
+
   renderThemeProductList() {
-    const { themeProductList = [] } = this.props;
-
-    const $themeContainer = $('.theme__container', this.$contentContainer);
-
-    themeProductList.forEach((product) => {
-      new ThemeProduct($themeContainer, {
-        renderType: 'beforeend',
+    this.state.themeProductList.forEach((product) => {
+      new ThemeProduct(this.$themeContainer, {
+        renderType: 'appendHTML',
         product,
       });
     });
   }
 
-  renderBanner() {
-    const { sliderImgList = [] } = this.props;
-
-    const $banner = $('.banner', this.$contentContainer);
-
-    new PromotionCard($banner, {
-      renderType: 'beforeend',
-      url: '#',
-      img: '//shop1.daumcdn.net/shophow/sib/0_211210142533_BedHMJMFxJiJcYPqWFiZwzldCrXJHrcC',
-    });
-
-    new Slider($banner, {
-      renderType: 'beforeend',
-      imgList: sliderImgList,
-    });
+  setThemeProductionList(themeProductList) {
+    this.state = { ...this.state, themeProductList };
+    this.renderThemeProductList();
   }
 }

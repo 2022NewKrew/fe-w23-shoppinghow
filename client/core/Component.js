@@ -5,36 +5,28 @@ import { htmlToElement } from '@utils';
  */
 export default class Component {
   /**
-   * @param {HTMLElement} $target
-   */
-  $target;
-  /**
-   * 넘겨받을 데이터 객체입니다.
-   */
-  props;
-
-  /**
    * @param {HTMLElement} $target 타겟 기준으로 컴포넌트를 삽입합니다.
-   * @param { { renderType: "innerHTML" | "outerHTML" | "beforebegin" | "afterbegin" | "beforeend" | "afterend" } } props
-   *
-   * outerHTML은 className과 innerHTML을 복사합니다.
-   * insertAdjacentHTML의 position 참고하세요. https://developer.mozilla.org/ko/docs/Web/API/Element/insertAdjacentHTML
+   * @param {{ renderType: "innerHTML" | "replaceHTML" | "appendHTML" }} props
    */
   constructor($target, props = {}) {
+    /**
+     * @param {HTMLElement} $target
+     * 렌더링 이후 $target은 해당 컴포넌트의 root를 가리키게 됩니다.
+     */
     this.$target = $target;
+
+    /**
+     * 넘겨받을 데이터 객체입니다.
+     */
     this.props = { renderType: 'innerHTML', ...props };
+    this.state = {};
 
     this.setup();
-    this.setEvent();
     this.render();
+    this.mounted();
   }
 
   setup() {}
-
-  /**
-   * `$target` 바탕으로 이벤트는 등록합니다.
-   */
-  setEvent() {}
 
   /**
    * 렌더링할 html litterial template을 반환합니다.
@@ -42,23 +34,29 @@ export default class Component {
   template() {
     return /* html */ ``;
   }
-  /**
-   * render이후에 수행되는 동작입니다.
-   */
-  mounted() {}
+
   render() {
     const { renderType } = this.props;
 
     if (renderType === 'innerHTML') {
       this.$target.innerHTML = this.template();
-    } else if (renderType === 'outerHTML') {
+    } else if (renderType === 'replaceHTML') {
       const element = htmlToElement(this.template());
-      this.$target.className = element.className;
-      this.$target.innerHTML = element.innerHTML;
+      this.$target.parentNode.replaceChild(element, this.$target);
+      this.$target = element;
     } else {
-      this.$target.insertAdjacentHTML(renderType, this.template());
+      const element = htmlToElement(this.template());
+      this.$target.appendChild(element);
+      this.$target = element;
+      this.props.renderType = 'replaceHTML'; // 리렌더링할 때는 replace를하게 된다.
     }
 
-    this.mounted();
+    this.rendered();
   }
+  /**
+   * render이후에 수행되는 동작입니다.
+   */
+  rendered() {}
+
+  mounted() {}
 }

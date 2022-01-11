@@ -1,5 +1,6 @@
 import { Component } from '@core';
 import { $ } from '@utils';
+import { Top10Store } from '@stores';
 
 const HOVER_DELAY_TIME = 400;
 const AUTO_SLIDE_TIME = 2000;
@@ -9,16 +10,16 @@ const HIDE_TOP10MODAL_CLASSNAME = 'top10modal--hide';
 
 export class HeaderSearchBar extends Component {
   setup() {
-    const { top10List = [] } = this.props;
     this.currentIndex = 0;
-    this.maxIndex = top10List.length - 1;
     this.isSearchFocused = false;
     this.isMouseover = false;
   }
 
   template() {
-    const { top10List = [] } = this.props;
-    const top10TrackList = [top10List[this.maxIndex], ...top10List, top10List[0]];
+    const { list: top10List = [] } = Top10Store.getState();
+    this.maxIndex = top10List.length - 1;
+
+    const top10TrackList = !top10List.length ? [] : [top10List[this.maxIndex], ...top10List, top10List[0]];
 
     const top10Template = ({ rank, text }) => /* html */ `
         <li class="top10__item">
@@ -59,7 +60,9 @@ export class HeaderSearchBar extends Component {
     `;
   }
 
-  mounted() {
+  rendered() {
+    this.clearSlideTimer();
+
     this.$sliderTrack = $('.top10__track', this.$target);
     this.$sliderTrack.addEventListener('transitionend', this.onSlideEnd.bind(this));
 
@@ -74,6 +77,10 @@ export class HeaderSearchBar extends Component {
     };
 
     this.startSlideTimer();
+  }
+
+  mounted() {
+    Top10Store.subscribe(this.render.bind(this));
   }
 
   /* util */

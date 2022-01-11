@@ -3,8 +3,6 @@ import { Component } from '@core';
 import { $ } from '@utils';
 
 export class Header extends Component {
-  props = { top10List: [], recentlyViewedList: [] };
-
   template() {
     return /*html*/ `
         <header class="header">
@@ -48,10 +46,9 @@ export class Header extends Component {
     `;
   }
 
-  mounted() {
+  rendered() {
     new HeaderSearchBar($('.search', this.$target), {
-      renderType: 'outerHTML',
-      top10List: this.props.top10List,
+      renderType: 'replaceHTML',
     });
 
     new RecentlyViewedMenu($('.recentlyViewedMenu', this.$target), {

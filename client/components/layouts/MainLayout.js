@@ -3,11 +3,6 @@ import { $ } from '@utils';
 import { Footer, Header } from '@components';
 
 export class MainLayout extends Component {
-  /**
-   *  @type {HTMLElement}
-   */
-  $main;
-
   template() {
     return /*html*/ `
         <header></header>
@@ -18,17 +13,19 @@ export class MainLayout extends Component {
     `;
   }
 
-  mounted() {
+  rendered() {
     new Header($('header', this.$target), {
-      renderType: 'outerHTML',
-      top10List: this.props.top10List,
+      renderType: 'replaceHTML',
       recentlyViewedList: this.props.recentlyViewedList,
     });
 
     new Footer($('footer', this.$target), {
-      renderType: 'outerHTML',
+      renderType: 'replaceHTML',
     });
 
+    /**
+     *  @type {HTMLElement}
+     */
     this.$main = $('main', this.$target);
   }
 }
