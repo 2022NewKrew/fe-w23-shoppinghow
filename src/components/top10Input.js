@@ -2,8 +2,8 @@ import Component from "../core/Component";
 
 const ROLLING_TIME = 2000;
 const HEIGHT = 60;
-// const TRANSITION_DURATION = "500ms";
 const FOCUS_OUT_TIME = 500;
+const data = require("../data/searchTop10.json");
 
 export default class Top10Input extends Component {
   slidePlaying;
@@ -15,8 +15,7 @@ export default class Top10Input extends Component {
   }
 
   template() {
-    // const { top10List } = this.props;
-    const top10List = require("../data/searchTop10.json").top10;
+    const top10List = data.top10;
     return `
         <div class="search">
           <form>

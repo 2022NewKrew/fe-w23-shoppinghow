@@ -1,14 +1,15 @@
 import Component from "../core/Component";
 import { throttle } from "../utils/common";
 
+const data = require("../data/plannings.json");
+
 export default class Carousel extends Component {
   slideList;
   setup() {
-    this.slideList = require("../data/plannings.json").plannings;
+    this.slideList = data.plannings;
   }
 
   template() {
-    // const slideList = require("../data/plannings.json").plannings;
     return `
       <div class="planning">
         <button class="planning__left-btn planning__btn"><</button>
@@ -143,7 +144,7 @@ export default class Carousel extends Component {
       curItem.style.zIndex = "1";
       nextItem.style.zIndex = "1";
     } else {
-      const $items = document.getElementsByClassName("planning__link");
+      const $items = this.$target.getElementsByClassName("planning__link");
       Array.from($items).forEach((e) => {
         e.style.transition = "none";
       });
@@ -151,7 +152,7 @@ export default class Carousel extends Component {
   }
 
   addTransition() {
-    const items = document.getElementsByClassName("planning__link");
+    const items = this.$target.getElementsByClassName("planning__link");
     Array.from(items).forEach((e) => {
       e.style.transition = "transform 0.5s";
     });

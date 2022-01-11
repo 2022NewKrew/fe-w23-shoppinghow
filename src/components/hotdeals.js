@@ -1,8 +1,10 @@
 import Component from "../core/Component";
 
+const data = require("../data/hotdeals.json");
 export default class Hotdeals extends Component {
+  hotdealData;
   template() {
-    const hotdealData = require("../data/hotdeals.json").hotdeals;
+    const hotdealData = data.hotdeals;
     return `
       <div class="hot-deal">
         <h2 class="section-title">품절주의, 역대급 핫딜</h2>
