@@ -25,34 +25,6 @@ function makeHotDealHTML() {
     target.innerHTML = Array(10).fill(0).reduce( (html, item) => html+hotdealItemTpl, ``);
 }
 
-export const makeContainerElement = async (containerElement) => {
-    // data fetch
-    const response = await fetch('../data/content.json');
-    const fetchedData = await response.json();
-
-    // template 적용
-    const promotionTpl = promotionTemplate({
-        best: fetchedData.best,
-        carouselList: fetchedData.carouselList,
-        themeList: []
-    });
-    const hotDealTpl = hotDealTemplate();
-
-    // html 채우기
-    containerElement.innerHTML = '';
-    containerElement.insertAdjacentHTML('beforeend',promotionTpl);
-    containerElement.insertAdjacentHTML('beforeend', hotDealTpl);
-
-    // add event listener
-    addCarouselEvent({
-        leftBtnEl: $('.carousel__left-btn', containerElement),
-        rightBtnEl: $('.carousel__right-btn', containerElement),
-        containerEl: $('.carousel-container', containerElement)
-    })
-
-    makeHotDealHTML();
-}
-
 export class Container {
     state = {
         best: undefined,
