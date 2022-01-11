@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="stylesheets/styles/reset.css">
-  <link rel="stylesheet" href="stylesheets/styles/app.css">
   <script src="https://kit.fontawesome.com/d69dc18532.js" crossorigin="anonymous"></script>
   <title>Document</title>
 </head>
@@ -72,7 +70,19 @@
       </ul>
       <ul class="private-menu">
         <li class="private-menu__btn"><a href="#">로그인</a></li>
-        <li class="private-menu__btn"><a href="#">최근본상품</a></li>
+        <li class="private-menu__btn">
+          <a href="#">최근본상품</a>
+        </li>
+        <div class="private-menu__recent-window none">
+          <div class="private-menu__recent-bar">
+            <div class="private-menu__recent-tab-container">
+              <div class="private-menu__recent-tab">최근 본 상품</div>
+              <div class="private-menu__recent-tab">내가 찜한 상품</div>
+            </div>
+          </div>
+          <ul class="private-menu__recent-contents">
+          </ul>
+        </div>
       </ul>
     </div>
   </header>
@@ -86,13 +96,43 @@
           </a>
         </div>
         <div class="planning">
-          <a href="#" target="_blank" class="planning__link"><img
-              src="//shop2.daumcdn.net/shophow/sib/0_211202145115_cjUvJCvuztdGHrYUNDAIqoswLScKwQct" width="485"
-              height="340" class="img_g" alt=""></a>
-          <button class="planning__left-btn"></button>
-          <button class="planning__right-btn"></button>
-          <div class="planning__paging">
-            <span></span><span></span><span></span>
+          <div class="planning__window">
+            <div class="planning__link-container">
+              <a href="#" target="_blank" class="planning__link"><img
+                  src="//shop2.daumcdn.net/shophow/sib/0_211202145115_cjUvJCvuztdGHrYUNDAIqoswLScKwQct" width="485"
+                  height="340" class="img_g" alt=""></a>
+              <a href="#" target="_blank" class="planning__link"><img
+                  src="//shop3.daumcdn.net/shophow/sib/0_211220170158_owNwlIYMPjCOmpLzLBZpBGQkATLoNNWG" width="485"
+                  height="340" class="img_g" alt=""></a>
+              <a href="#" target="_blank" class="planning__link"><img
+                  src="//shop3.daumcdn.net/shophow/sib/0_211220170214_KnBppOYCunaKIzTENvoRdzZivpnaGYdc" width="485"
+                  height="340" class="img_g" alt=""></a>
+              <a href="#" target="_blank" class="planning__link"><img
+                  src="//shop2.daumcdn.net/shophow/sib/0_211220170154_lPdfLnRSayayFBdHisdeeCypQQWWgaeu" width="485"
+                  height="340" class="img_g" alt=""></a>
+            </div>
+            <div class="planning__btn-container">
+              <button class="planning__left-btn">
+                <span class="planning__left-btn-icon"></span>
+              </button>
+              <button class="planning__right-btn">
+                <span class="planning__right-btn-icon"></span>
+              </button>
+              <div class="planning__paging">
+                <span class="planning__page">
+                  <div class="planning__page-btn planning__current  "></div>
+                </span>
+                <span class="planning__page">
+                  <div class="planning__page-btn"></div>
+                </span>
+                <span class="planning__page">
+                  <div class="planning__page-btn"></div>
+                </span>
+                <span class="planning__page">
+                  <div class="planning__page-btn"></div>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -176,31 +216,6 @@
 
   </div>
   <footer></footer>
-
-  <script type="module" src="javascripts/index.js"></script>
-  <script>
-    function makeHotDealHTML() {
-      const target = document.querySelector(".hot-deal-list");
-      const hotdealItemTpl = `
-              <li class="hot-deal__item">
-                  <a href="" class="hot-deal__link">
-                      <span class="hot-deal__thumb">
-                          <img src="//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895" class="hot-deal__img" alt="">
-                      </span>
-
-                      <strong class="hot-deal__title">구매1만↑우유앙빵10+10</strong>
-
-                      <span class="hot-deal__detail-price">
-                          <span class="txt-price">18,500 </span>
-                          <span class="txt-price-percent">핫딜가</span>
-                      </span>
-                  </a>
-              </li>`
-
-      target.innerHTML = Array(10).fill(0).reduce((html, item) => html + hotdealItemTpl, ``);
-    }
-    makeHotDealHTML();
-  </script>
 </body>
 
 </html>

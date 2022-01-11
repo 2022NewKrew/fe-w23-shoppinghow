@@ -1,5 +1,8 @@
 @import "global";
 
+$bannerimagewidth: 600px;
+$planningcontainersize: 3;
+
 .header-top {
     display: flex;
     padding: 60px;
@@ -91,9 +94,46 @@
     .private-menu {
         margin-left: auto;
         display: flex;
+        position:relative;
 
         .private-menu__btn {
             padding: $button-padding;
+        }
+
+        .private-menu__recent-window {
+            position: absolute;
+            z-index: 100;
+            width: 360px;
+            height: 500px;
+            background-color: white;
+            top: 100%;
+            right: 0;
+            padding: 0 30px;
+
+            .private-menu__recent-bar {
+
+                .private-menu__recent-tab-container {
+                    display: flex;
+
+                    .private-menu__recent-tab {
+                        text-align: center;
+                        margin: 15px 5px 5px 5px;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .private-menu__recent-contents {
+                display: flex;
+                flex-wrap: wrap;
+
+                .private-menu__recent-contents__item {
+                    margin: 10px;
+                    background-color: grey;
+                    width: 80px;
+                    height: 80px;
+                }
+            }
         }
     }
 }
@@ -127,14 +167,95 @@
                     margin: 0 auto;
                 }
             }
-
             .planning {
                 width: 790px;
 
-                .planning__link {
-                    display: block;
+                .planning__window {
+                    width: #{$bannerimagewidth};
                     margin: 0 auto;
-                    width: 600px;
+                    overflow: hidden;
+                    position: relative;
+
+                    .planning__link-container {
+                        position: relative;
+                        display: flex;
+                        width: calc(#{$planningcontainersize}*#{$bannerimagewidth});
+                        flex-wrap: wrap;
+                        left: -#{$bannerimagewidth};
+
+                        .planning__link {
+                            display: none;
+                            margin: 0 auto;
+                            width: #{$bannerimagewidth};
+        
+                            @for $i from 1 through 3 {
+                                &:nth-child(#{$i}) {
+                                    display: inline-block;
+                                }
+                            }
+                        }
+                    }
+
+                    .planning__btn-container {
+                        position: absolute;
+                        top: calc(100% - 50px);
+                        width: 100%;
+                        text-align: center;
+
+                        .planning__left-btn {
+                            width: 35px;
+                            height: 45px;
+                            top: -14px;
+                            position: absolute;
+                            left: 150px;
+                            
+                            .planning__left-btn-icon {
+                                display: inline-block;
+                                background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+                                background-position: -128px -335px;
+                                width: 15px;
+                                height: 25px;
+                                pointer-events: none;
+                            }
+                        }
+                        
+                        .planning__right-btn {
+                            width: 35px;
+                            height: 45px;
+                            top: -14px;
+                            position: absolute;
+                            right: 150px;
+                            
+                            .planning__right-btn-icon {
+                                display: inline-block;
+                                background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+                                background-position: -145px -335px;
+                                width: 15px;
+                                height: 25px;
+                                pointer-events: none;
+                            }
+                        }
+        
+                        .planning__paging {
+                            display: inline-block;
+                            height: 15px;
+    
+                            .planning__page {
+                                display: inline-block;
+                                padding: 5px 0px;
+    
+                                .planning__page-btn {
+                                    width: 15px;
+                                    height: 5px;
+                                    background-color: lightgray;
+                                }
+
+                                .planning__current {
+                                    background-color: gray;
+                                }
+                            }
+                        }
+                    }
 
                 }
             }
@@ -146,25 +267,33 @@
             display: flex;
         }
     }
+
     .theme {
+
         .theme-container {
             display: flex;
         }
+
         .theme-item {
             @extend %card;
             border: 1px solid #f1f1f1;
         }
+
         .theme__link {
             display: block;
+
             strong, span {
                 @extend %text-block;
             }
+
             .theme-item__title {
                 font-weight: bold;
             }
+
             .theme-item__desc {
                 padding-top:0;
             }
+
             .theme-item__icon {
                 border:0.5px solid #ff000069;
                 padding:4px;
@@ -182,13 +311,33 @@
             padding-bottom: 20px;
             background-color: $bgColor;
         }
-        .hot-deal__title, .hot-deal__detail-price{
+
+        .hot-deal__title-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .hot-deal__title {
+                @extend %text-block;
+            }
+
+            .hot-deal__favorite-icon {
+
+                svg {
+                    pointer-events: none;
+                }
+            }
+
+        }
+
+        .hot-deal__detail-price{
             @extend %text-block;
         }
 
         .hot-deal-list {
             display: flex;
             flex-wrap:wrap;
+
             .hot-deal__item {
                 width:20%;
                 padding:20px;
@@ -200,6 +349,7 @@
         .hot-deal__detail-price {
             margin-top: 20px;
             position: relative;
+
             .txt-price-percent {
                 position: absolute;
                 right: 10px;
@@ -209,4 +359,53 @@
             }
         }
     }
+}
+
+/*https://elad2412.github.io/the-new-css-reset/*/
+
+/*** The new CSS Reset - version 1.4.2 (last updated 30.11.2021) ***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+ *:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+    all: unset;
+    display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu {
+    list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+    max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+    border-collapse: collapse;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+    white-space: revert;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly. */
+:where([contenteditable]){
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    overflow-wrap: break-word;
+    -webkit-line-break: after-white-space;
 }
