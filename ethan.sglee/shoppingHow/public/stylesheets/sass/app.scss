@@ -359,6 +359,56 @@ $planningcontainersize: 3;
             }
         }
     }
+
+    .recommendation {
+        width: 1270px;
+        margin: auto;
+        padding: 10px 35px;
+
+        .picked-items {
+            display: flex;
+
+            .picked-items__item {
+                width: 240px;
+                display: flex;
+                align-items: center;
+                height: 100px;
+                border: 1px solid lightgray;
+                padding: 20px 10px;
+
+                .picked-items__empty-text {
+                    color: gray;
+                }
+
+                .picked-items__thumb {
+                    width: 60px;
+                    height: 60px;
+                    background-color: gray;
+                }
+
+                .picekd-items__detail {
+                    height: 60px;
+                    margin: 0 10px;
+
+                    .picked-items__title {
+                        height: 75%;
+                        margin: auto;
+                    }
+
+                    .picked-items__link {
+                        color: gray;
+                    }
+                }
+            }
+        }
+
+        .recommendation-items {
+
+            .recommendation-items__item {
+
+            }
+        }
+    }
 }
 
 /*https://elad2412.github.io/the-new-css-reset/*/
