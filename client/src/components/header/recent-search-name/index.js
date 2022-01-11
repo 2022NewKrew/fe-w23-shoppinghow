@@ -4,17 +4,14 @@ import './index.scss';
 export default class RecentSearchName {
   recentSearchNameList = [];
 
-  constructor({ $parent, init, onClick }) {
+  constructor({ $parent, init }) {
     this.recentSearchName = document.createElement('div');
     this.recentSearchName.className = 'recent-search-name';
     this.recentSearchName.innerHTML = this.getFixedHTML();
     this.recentSearchUl = $('.recent-search-name__list', this.recentSearchName);
     this.recentSearchNameList = init;
-    this.onClick = onClick;
     this.render();
     $parent.appendChild(this.recentSearchName);
-
-    this.recentSearchName.addEventListener('click', this.onClick);
   }
 
   setState(props) {

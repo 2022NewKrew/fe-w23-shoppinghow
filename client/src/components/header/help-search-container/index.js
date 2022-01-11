@@ -4,13 +4,12 @@ import './index.scss';
 import { getItemInLocalStroage } from '@/utils/local-storage';
 
 export default class HelpSearchContainer {
-  constructor({ $parent, onClick }) {
+  constructor({ $parent }) {
     this.helpSearchContainer = document.createElement('div');
     this.helpSearchContainer.className = 'help-search-container';
     this.recentSearchName = new RecentSearchName({
       $parent: this.helpSearchContainer,
       init: getItemInLocalStroage('search-name'),
-      onClick,
     });
     this.hotShoppingKeyword = new HotShoppingKeyword({
       $parent: this.helpSearchContainer,

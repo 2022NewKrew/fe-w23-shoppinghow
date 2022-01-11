@@ -34,9 +34,9 @@ export default class HotShoppingKeyword {
     return list
       .map((name, index) => {
         return `<li class='hot-shopping-keyword__item'>
-                <span class='hot-shopping-keyword__item-rank'>${index + startPoint + 1}</span>
-                <span class='hot-shopping-keyword__item-name'>${name}</span>
-              </li>`;
+                  <span class='hot-shopping-keyword__item-rank'>${index + startPoint + 1}</span>
+                  <span class='hot-shopping-keyword__item-name'>${name}</span>
+                </li>`;
       })
       .join('');
   }

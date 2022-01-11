@@ -16,14 +16,12 @@ export default class SearchContainer {
     this.search.className = 'search';
     this.textRoller = new TextRoller({ $parent: this.search, onClick: this.activateInput.bind(this) });
     this.searchForm = new SearchForm({ $parent: this.search, onSubmit: this.refreshSearchNameState.bind(this) });
-    this.helpSearchContainer = new HelpSearchContainer({
-      $parent: this.search,
-      onClick: this.handleClickHelpSearch.bind(this),
-    });
+    this.helpSearchContainer = new HelpSearchContainer({ $parent: this.search });
 
     $parent.appendChild(this.search);
 
     this.search.addEventListener('mouseleave', this.deactivateInput.bind(this));
+    this.search.addEventListener('click', this.handleClickHelpSearch.bind(this));
   }
 
   refreshSearchNameState() {
@@ -36,7 +34,10 @@ export default class SearchContainer {
     if (e.target.className === 'recent-search-name__remove') {
       removeItemInLocalStroage('search-name', e.target.dataset.idx);
       this.refreshSearchNameState();
-    } else if (e.target.className === 'recent-search-name__item-name') {
+    } else if (
+      e.target.className === 'recent-search-name__item-name' ||
+      e.target.className === 'hot-shopping-keyword__item-name'
+    ) {
       this.searchForm.setInputValue(e.target.innerText);
     }
   }
