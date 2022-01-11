@@ -1,6 +1,6 @@
 import Component from '../Component'
 import styles from '../../scss/ComponentStyles/GoodsCard.module.scss'
-import GoodsDataManager from '../GoodsDataManager'
+import GoodsDataManager from '../Data/GoodsDataManager'
 
 export default class GoodsCard extends Component {
     
