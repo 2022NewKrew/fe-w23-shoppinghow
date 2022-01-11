@@ -39,14 +39,14 @@ export default class SearchForm {
   }
 
   focusInput() {
-    $('.search__input', this.searchForm).focus();
+    this.searchInput.focus();
   }
 
   blurInput() {
-    $('.search__input', this.searchForm).blur();
+    this.searchInput.blur();
   }
 
   getInputLength() {
-    return $('.search__input', this.searchForm).value.length;
+    return this.searchInput.value.length;
   }
 }
