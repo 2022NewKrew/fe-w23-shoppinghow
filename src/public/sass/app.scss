@@ -12,6 +12,8 @@
   margin: auto;
   background-color: #f5f5f5;
   padding-top: 25px;
+  margin-top: $header-height;
+  border-top: 1px solid #ccc;
 
   .promotion {
     @extend %section-layout;

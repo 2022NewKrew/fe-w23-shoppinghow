@@ -42,7 +42,97 @@ $search-padding-left: 31px;
         font-size: 1.4rem;
         padding: 10px;
       }
-    }
+        .search__info--wrap {
+          width: 100%;
+          height: 300px; // 임시
+          border: 1px solid #f95139;
+          background-color: white;
+          border-radius: 10px;
+          position: absolute;
+          left: 0;
+          top: $search-height;
+          display: none;
+          flex-direction: row;
+          z-index: 1;
+          .search__recent {
+            width: 50%;
+            padding: 20px;
+            .search__recent--title {
+              margin-bottom: $search-margin-bottom;
+              font-size: 16px;
+              font-weight: 700;
+              line-height: 24px;
+              color: #a6a6a6;
+            }
+            .search__recent--content {
+              display: flex;
+              flex-direction: column;
+              .search__recent--items {
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+                button {
+                  color: red;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+          .search__keyword {
+            width: 50%;
+            padding: 20px;
+
+            .search__keyword--title {
+              margin-bottom: $search-margin-bottom;
+              font-size: 16px;
+              font-weight: 700;
+              line-height: 24px;
+              color: #a6a6a6;
+            }
+            .search__keyword--content {
+              display: flex;
+              flex-direction: column;
+              flex-wrap: wrap;
+              height: calc(100% - 50px);
+              border-bottom: 30px;
+              .search__keyword--items {
+                margin-bottom: 10px;
+                height: $search-keyword-items-height;
+                width: 50%;
+                strong {
+                  font-weight: 800;
+                  margin-right: 5px;
+                }
+              }
+            }
+          }
+        }
+
+        .search__auto {
+          width: 100%;
+          height: 300px; // 임시
+          border: 1px solid #f95139;
+          background-color: white;
+          border-radius: 10px;
+          position: absolute;
+          left: 0;
+          top: $search-height;
+          display: none;
+          flex-direction: row;
+          z-index: 1;
+          .search__auto--content {
+            padding: 20px 20px 20px 31px;
+            height: 100%;
+            overflow-y: hidden;
+            .search__auto--items {
+              margin-bottom: 5px;
+              height: $search-keyword-items-height;
+              width: 100%;
+              font-size: large;
+            }
+          }
+        }
+      }
     .top10-wrap {
       width: $search-width;
       height: $search-top10-height;
@@ -58,7 +148,7 @@ $search-padding-left: 31px;
       line-height: 22px;
       color: #939393;
       text-overflow: ellipsis;
-      white-space: nowrap;
+        white-space: nowrap;
     }
   }
 }
