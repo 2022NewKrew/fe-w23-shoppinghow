@@ -79,7 +79,6 @@ export class Carousel {
     this.$carouselBtnList[to].style["background-color"] = color;
   }
   jumpTo(selectedSlide) {
-    console.log(this);
     this.clearInterval();
     this.checkBtn(this.$curCarouselIdx, BTN_UNCHECKED);
     this.$curCarouselIdx = selectedSlide - 1;

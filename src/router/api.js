@@ -102,6 +102,7 @@ router.get("/category", async (req, res) => {
         }
       }
     });
+    console.log(resData);
     res.status(200).json({ result: resData });
   } catch (e) {
     console.error(e);
