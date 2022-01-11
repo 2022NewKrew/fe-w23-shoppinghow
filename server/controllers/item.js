@@ -37,4 +37,13 @@ const getHotDealItems = async (req, res) => {
   }
 };
 
-export const ItemController = { getItems, getHotItems, getHotItemsName, getHotDealItems };
+const getAutocompleteList = async (req, res) => {
+  try {
+    const result = await ItemService.getAutocompleteList();
+    return res.json({ success: true, result });
+  } catch (e) {
+    return res.json({ success: false, message: error.GET_AUTO_COMPLETE_ERROR });
+  }
+};
+
+export const ItemController = { getItems, getHotItems, getHotItemsName, getHotDealItems, getAutocompleteList };
