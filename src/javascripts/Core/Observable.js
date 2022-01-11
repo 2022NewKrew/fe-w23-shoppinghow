@@ -15,11 +15,11 @@ export default class Observable {
         })
     }
     
-    get dataList() {
+    get data() {
         return this.#data
     }
     
-    set dataList(newData) {
+    set data(newData) {
         this.#data = newData
         this.notify()
     }
