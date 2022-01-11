@@ -209,6 +209,15 @@ a {
   position: static;
 }
 
+.ico_remove {
+  background: url("../../assets/images/img_home_190702.png");
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-position: -150px -58px;
+  float: right;
+}
+
 #kakaoHead {
   padding-top: 43px;
   font-family: Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, Dotum, 돋움, sans-serif;
@@ -306,6 +315,13 @@ a {
 .wrap_suggestion .inner_suggestion {
   overflow: hidden;
   padding: 25px 29px 23px;
+  display: flex;
+}
+.wrap_suggestion .inner_suggestion .rcnt {
+  flex: 1;
+}
+.wrap_suggestion .inner_suggestion .pop {
+  flex: 1.5;
 }
 .wrap_suggestion .inner_suggestion .tit_suggestion {
   display: block;
@@ -332,6 +348,9 @@ a {
   font-size: 14px;
   letter-spacing: -0.05em;
   color: #222;
+}
+.wrap_suggestion .inner_suggestion .list_keyword[id=rcnt] {
+  width: 90%;
 }
 
 #kakaoGnb {

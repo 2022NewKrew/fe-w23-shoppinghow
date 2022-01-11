@@ -94,4 +94,13 @@
   position: static;
 }
 
+.ico_remove {
+  background: url("../../assets/images/img_home_190702.png");
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-position: -150px -58px;
+  float: right;
+}
+
 /*# sourceMappingURL=icon.css.map */

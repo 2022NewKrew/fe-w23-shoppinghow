@@ -99,6 +99,13 @@
   .inner_suggestion {
     overflow: hidden;
     padding: 25px 29px 23px;
+    display: flex;
+    .rcnt {
+      flex: 1;
+    }
+    .pop {
+      flex: 1.5;
+    }
     .tit_suggestion {
       display: block;
       padding-bottom: 5px;
@@ -124,6 +131,9 @@
           color: #222;
         }
       }
+    }
+    .list_keyword[id="rcnt"] {
+      width: 90%;
     }
   }
 }
