@@ -7,6 +7,7 @@ export default class HotDeal extends Component {
     this.$state = {
       hotDealList: [],
     };
+    this.$hotDealClickHandler = this.hotDealClickHandler.bind(this);
   }
   template() {
     const { hotDealList } = this.$state;
@@ -39,10 +40,10 @@ export default class HotDeal extends Component {
     `;
   }
   setEvent() {
-    $(".hot-deal__list", this.$target).addEventListener("click", this.hotDealClickHandler.bind(this));
+    $(".hot-deal__list", this.$target).addEventListener("click", this.$hotDealClickHandler);
   }
   removeEvent() {
-    $(".hot-deal__list", this.$target).removeEventListener("click", this.hotDealClickHandler.bind(this));
+    $(".hot-deal__list", this.$target).removeEventListener("click", this.$hotDealClickHandler);
   }
 
   hotDealClickHandler({ target }) {
@@ -61,7 +62,7 @@ export default class HotDeal extends Component {
     }
   }
 
-  async viewItemRequest(viewItemId) {
-    await api.get(`view/${viewItemId}`);
+  viewItemRequest(viewItemId) {
+    api.get(`view/${viewItemId}`);
   }
 }

@@ -28,6 +28,9 @@ export default class HeaderTop extends Component {
     this.$headerRecent = null;
     this.$headerKeyword = null;
     this.$headerInfoWrap = null;
+    this.$searchFocusHandler = this.searchFocusHandler.bind(this);
+    this.$searchBlurHandler = this.searchBlurHandler.bind(this);
+    this.$searchInputHandler = this.searchInputHandler.bind(this);
   }
   template() {
     return `
@@ -51,14 +54,14 @@ export default class HeaderTop extends Component {
     `;
   }
   setEvent() {
-    $("input.search__input", this.$target).addEventListener("focus", this.searchFocusHandler.bind(this));
-    $("input.search__input", this.$target).addEventListener("blur", this.searchBlurHandler.bind(this));
-    $("input.search__input", this.$target).addEventListener("input", this.searchInputHandler.bind(this));
+    $("input.search__input", this.$target).addEventListener("focus", this.$searchFocusHandler);
+    $("input.search__input", this.$target).addEventListener("blur", this.$searchBlurHandler);
+    $("input.search__input", this.$target).addEventListener("input", this.$searchInputHandler);
   }
   removeEvent() {
-    $("input.search__input", this.$target).removeEventListener("focus", this.searchFocusHandler.bind(this));
-    $("input.search__input", this.$target).removeEventListener("blur", this.searchBlurHandler.bind(this));
-    $("input.search__input", this.$target).removeEventListener("input", this.searchInputHandler.bind(this));
+    $("input.search__input", this.$target).removeEventListener("focus", this.$searchFocusHandler);
+    $("input.search__input", this.$target).removeEventListener("blur", this.$searchBlurHandler);
+    $("input.search__input", this.$target).removeEventListener("input", this.$searchInputHandler);
   }
   searchFocusHandler({ target }) {
     this.$headerRolling.style.display = "none";

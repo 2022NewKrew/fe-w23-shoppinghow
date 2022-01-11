@@ -1,4 +1,5 @@
 import { $ } from "@utils/query.js";
+import { checkButtonTag, checkDivTag } from "@utils/check";
 import { Component } from "@core/Component";
 import CategoryContent from "./CategoryContent";
 
@@ -7,6 +8,8 @@ export default class Category extends Component {
     this.$state = {
       categoryDisplay: false,
     };
+    this.$contentMouseEnterHandler = this.contentMouseEnterHandler.bind(this);
+    this.$contentMouseLeaveHandler = this.contentMouseLeaveHandler.bind(this);
   }
   template() {
     const { categoryDisplay } = this.$state.categoryDisplay;
@@ -21,23 +24,23 @@ export default class Category extends Component {
     new CategoryContent($categoryContent, { categoryDisplay: this.$state.categoryDisplay });
   }
   setEvent() {
-    $(".category__title", this.$target).addEventListener("mouseenter", ({ target }) => {
-      if (this.checkButtonTag(target)) {
-        target.nextElementSibling.style.display = "flex";
-      }
-    });
-    $(".category__content", this.$target).addEventListener("mouseleave", ({ target }) => {
-      if (this.checkDivTag(target)) {
-        setTimeout(() => {
-          target.style.display = "none";
-        }, 1000);
-      }
-    });
+    $(".category__title", this.$target).addEventListener("mouseenter", this.$contentMouseEnterHandler);
+    $(".category__content", this.$target).addEventListener("mouseleave", this.$contentMouseLeaveHandler);
   }
-  checkButtonTag(target) {
-    return target.tagName === "BUTTON";
+  removeEvent() {
+    $(".category__title", this.$target).removeEventListener("mouseenter", this.$contentMouseEnterHandler);
+    $(".category__content", this.$target).removeEventListener("mouseleave", this.$contentMouseLeaveHandler);
   }
-  checkDivTag(target) {
-    return target.tagName === "DIV";
+  contentMouseEnterHandler({ target }) {
+    if (checkButtonTag(target)) {
+      target.nextElementSibling.style.display = "flex";
+    }
+  }
+  contentMouseLeaveHandler({ target }) {
+    if (checkDivTag(target)) {
+      setTimeout(() => {
+        target.style.display = "none";
+      }, 1000);
+    }
   }
 }
