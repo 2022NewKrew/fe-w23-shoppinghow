@@ -1,25 +1,12 @@
-export default class RecentProduct {
-  constructor() {}
-  showRecentProduct() {
-    const recentProductMenu = document.getElementById("recent-product-menu");
-    const recentProductContainer = document.getElementById(
-      "recent-product-container"
-    );
-    recentProductMenu.addEventListener("mouseenter", (e) => {
-      recentProductContainer.style.display = "block";
-    });
+import Component from "../core/Component.js";
 
-    recentProductContainer.addEventListener("mouseleave", (e) => {
-      recentProductContainer.style.display = "none";
-    });
-  }
-  render() {
-    window.addEventListener("DOMContentLoaded", () => {
-      this.showRecentProduct();
-    });
-    return /*html*/ `
+export default class RecentProduct extends Component {
+  setup() {}
+
+  template() {
+    return `
             <div id="recent-product-container">
-                <div class="recent-product-menu">
+                <div id="recent-product-menu">
                     <div id="recent-products">
                         최근 본 상품 2
                     </div>
@@ -30,5 +17,32 @@ export default class RecentProduct {
                 <div class="recent-product-items">
             </div>
         `;
+  }
+
+  setEvent() {
+    const recentProductMenu = "#recent-product-menu";
+    const recentProductContainer = "#recent-product-container";
+
+    const $recentProductContainer = document.getElementById(
+      "recent-product-container"
+    );
+
+    this.addEvent(
+      "mouseenter",
+      recentProductMenu,
+      (e) => {
+        $recentProductContainer.style.display = "block";
+      },
+      true
+    );
+
+    this.addEvent(
+      "mouseleave",
+      recentProductContainer,
+      (e) => {
+        $recentProductContainer.style.display = "none";
+      },
+      true
+    );
   }
 }

@@ -1,12 +1,13 @@
 import css from "./scss/main.scss";
-import createHeader from "./layouts/header.js";
-import createNavbar from "./layouts/navbar.js";
-import createMain from "./components/main.js";
+import Header from "./layouts/Header.js";
+import Navbar from "./layouts/Navbar.js";
+import Main from "./layouts/Main.js";
 
-function init() {
-  createHeader();
-  createNavbar();
-  createMain();
-}
+const $body = document.querySelector("body");
+const $header = document.querySelector("#header");
+const $container = document.querySelector("#container");
 
-init();
+// createHeader();
+new Header($header);
+new Navbar($header);
+new Main($container);

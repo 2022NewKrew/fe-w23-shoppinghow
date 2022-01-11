@@ -1,10 +1,8 @@
-export default function createBanners(themeData) {
-  const theme = document.createElement("div");
-
-  theme.insertAdjacentHTML(
-    "afterbegin",
-    `
-  <div class="theme">
+import Component from "../core/Component";
+export default class Themes extends Component {
+  template() {
+    const themeData = require("../data/themes.json").themes;
+    return `
     <ul class="theme-container">
       ${themeData
         .map(
@@ -28,10 +26,6 @@ export default function createBanners(themeData) {
         )
         .join("")}
     </ul>
-  </div>
-    `
-  );
-
-  const promotion = document.getElementById("promotion");
-  promotion.appendChild(theme);
+    `;
+  }
 }

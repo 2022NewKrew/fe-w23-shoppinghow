@@ -1,139 +1,122 @@
-const ROLLING_TIME = 3000;
+import Component from "../core/Component";
+
+const ROLLING_TIME = 2000;
 const HEIGHT = 60;
-const TRANSITION_DURATION = "500ms";
+// const TRANSITION_DURATION = "500ms";
 const FOCUS_OUT_TIME = 500;
 
-export default class Top10Input {
-  #top10Idx;
-  #top10List;
-  #top10ListLength;
-  #slidePlaying;
+export default class Top10Input extends Component {
+  slidePlaying;
+  timeId;
 
-  constructor() {
-    this.#top10Idx = 0;
-    this.#top10List = this.#fetchTop10List();
-    this.#top10ListLength = this.#top10List.length;
+  setup() {
+    this.timeId = 0;
+    this.slidePlaying = null;
   }
 
-  #fetchTop10List() {
-    const top10 = require("../data/searchTop10.json").top10;
-    return top10;
+  template() {
+    // const { top10List } = this.props;
+    const top10List = require("../data/searchTop10.json").top10;
+    return `
+        <div class="search">
+          <form>
+            <input type="text" class="search__input" />
+            <button class="search__icon">🔍</button>
+          </form>
+          <div class="search__box">
+            <ul class="search-top10" id="top10Container">
+              ${top10List
+                .map(
+                  ({ rank, title }) => `
+                  <li class="search-top10__item">${rank}. ${title}</li>
+                  `
+                )
+                .join("")}
+            </ul>
+          </div>
+        </div>
+    `;
   }
 
-  findActiveSlide(top10Container) {
-    // current active-slide 찾기
-    const top10List = Array.from(top10Container.children);
-    top10List.forEach((e, idx) => {
-      if (e.classList.contains("current-top-item")) {
-        this.#top10Idx = idx;
-      }
-    });
+  mounted() {
+    this.initSlide();
+    this.runSlide();
+  }
 
-    const prevItem =
-      top10Container.children[
-        this.#top10Idx - 1 < 0 ? this.#top10ListLength - 1 : this.#top10Idx - 1
-      ];
-    const curItem = top10Container.children[this.#top10Idx];
-    const nextItem =
-      top10Container.children[
-        this.#top10Idx + 1 === this.#top10ListLength ? 0 : this.#top10Idx + 1
-      ];
-    const nextNextItem =
-      top10Container.children[
-        this.#top10Idx + 2 >= this.#top10ListLength
-          ? this.#top10Idx - this.#top10ListLength + 2
-          : this.#top10Idx + 2
-      ];
+  setEvent() {
+    const searchInput = ".search__input";
+    const top10Container = this.$target.querySelector("#top10Container");
 
-    return [prevItem, curItem, nextItem, nextNextItem];
+    this.addEvent("mouseover", searchInput, this.pauseSlide.bind(this));
+
+    this.addEvent("mouseout", searchInput, this.resumeSlide.bind(this));
+
+    this.addEvent(
+      "focus",
+      searchInput,
+      (e) => {
+        e.target.style.backgroundColor = "white";
+        this.pauseSlide();
+      },
+      true
+    );
+
+    this.addEvent(
+      "blur",
+      searchInput,
+      (e) => {
+        e.target.style.backgroundColor = "transparent";
+        this.runSlide();
+      },
+      true
+    );
   }
 
   initSlide() {
-    top10Container.style.transitionDuration = TRANSITION_DURATION;
+    const $top10Container = this.$target.querySelector("#top10Container");
 
-    const [prevItem, curItem, nextItem] = this.findActiveSlide(top10Container);
-
-    curItem.classList.add("current-top-item");
-    nextItem.classList.add("next-top-item");
+    $top10Container.children[0].classList.add("current-top-item");
+    $top10Container.children[1].classList.add("next-top-item");
+    $top10Container.lastElementChild.classList.add("previous-top-item");
   }
 
-  runSlide(top10Container) {
-    const run = () => {
-      top10Container.style.transitionDuration = TRANSITION_DURATION;
+  runSlide() {
+    const $top10Container = this.$target.querySelector("#top10Container");
 
-      // previous, current, next active-slide 찾기
-      const [prevItem, curItem, nextItem, nextNextItem] =
-        this.findActiveSlide(top10Container);
+    const $prevItem = $top10Container.querySelector(".previous-top-item");
+    const $curItem = $top10Container.querySelector(".current-top-item");
+    const $nextItem = $top10Container.querySelector(".next-top-item");
 
-      prevItem.classList.remove("previous-top-item");
+    $curItem.classList.add("current-top-item");
+    $nextItem.classList.add("next-top-item");
 
-      curItem.classList.remove("current-top-item");
-      curItem.classList.add("previous-top-item");
+    this.slidePlaying = setTimeout(() => {
+      $prevItem.classList.remove("previous-top-item");
 
-      nextItem.classList.remove("next-top-item");
-      nextItem.classList.add("current-top-item");
+      $curItem.classList.add("previous-top-item");
+      $curItem.classList.remove("current-top-item");
 
-      nextNextItem.classList.add("next-top-item");
-    };
+      $nextItem.classList.remove("next-top-item");
+      $nextItem.classList.add("current-top-item");
 
-    this.#slidePlaying = setInterval(run, ROLLING_TIME);
+      if ($nextItem.nextElementSibling) {
+        $nextItem.nextElementSibling.classList.add("next-top-item");
+      } else {
+        $top10Container.firstElementChild.classList.add("next-top-item");
+      }
+
+      this.runSlide();
+    }, ROLLING_TIME);
   }
 
   pauseSlide() {
-    clearInterval(this.#slidePlaying);
+    clearTimeout(this.slidePlaying);
+    this.slidePlaying = null;
   }
 
-  addSlideEventListner(input) {
-    let timeId;
-
-    input.addEventListener("mouseover", (e) => {
-      clearTimeout(timeId);
-    });
-
-    input.addEventListener("mouseout", (e) => {
-      timeId = setTimeout(() => {
-        input.blur();
-      }, FOCUS_OUT_TIME);
-    });
-
-    input.addEventListener("focus", (e) => {
-      input.style.backgroundColor = "white";
-      this.pauseSlide();
-    });
-
-    input.addEventListener("blur", (e) => {
-      input.style.backgroundColor = "transparent";
-      this.runSlide(top10Container);
-    });
-  }
-
-  render() {
-    window.addEventListener("DOMContentLoaded", () => {
-      const top10Container = document.querySelector("#top10Container");
-      const input = document.querySelector(".search__input");
-      this.initSlide(top10Container);
-      this.runSlide(top10Container);
-      this.addSlideEventListner(input);
-    });
-
-    return `
-        <div class="search">
-            <form>
-              <input type="text" class="search__input" />
-              <button class="search__icon">🔍</button>
-            </form>
-            <div class="search__box">
-                <ul class="search-top10" id="top10Container">
-                ${this.#top10List
-                  .map(
-                    ({ rank, title }) => `
-                    <li class="search-top10__item">${rank}. ${title}</li>
-                    `
-                  )
-                  .join("")}
-                </ul>
-            </div>
-        </div>
-      `;
+  resumeSlide() {
+    if (!this.slidePlaying) {
+      this.runSlide();
+    }
   }
 }
