@@ -21,12 +21,12 @@ export default class Category extends Component {
     new CategoryContent($categoryContent, { categoryDisplay: this.$state.categoryDisplay });
   }
   setEvent() {
-    $(".category__title", this.$target).addEventListener("mouseover", ({ target }) => {
+    $(".category__title", this.$target).addEventListener("mouseenter", ({ target }) => {
       if (this.checkButtonTag(target)) {
         target.nextElementSibling.style.display = "flex";
       }
     });
-    $(".category__content", this.$target).addEventListener("mouseout", ({ target }) => {
+    $(".category__content", this.$target).addEventListener("mouseleave", ({ target }) => {
       if (this.checkDivTag(target)) {
         setTimeout(() => {
           target.style.display = "none";
