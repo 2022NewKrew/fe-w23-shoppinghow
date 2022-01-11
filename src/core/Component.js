@@ -1,13 +1,23 @@
 class Component {
+  static componentId = 0;
+
+  #componentId;
   $target;
   props;
   state;
 
   constructor($target, props = {}) {
+    this.#componentId = Component.generateComponentId();
     this.$target = $target;
     this.props = props; // props 할당
     this.setup();
     this.render();
+    this.mounted(); // render 후에 mounted가 실행 된다.
+    this.setEvent();
+  }
+
+  static generateComponentId() {
+    return `component-${this.componentId++}`;
   }
 
   setup() {}
@@ -19,10 +29,21 @@ class Component {
     return "";
   }
 
+  /*
+   리렌더링을 고려하여, 이미 동일한 id를 가진 엘리먼트가 $target 내부에 있을 경우
+   해당 엘리먼트를 새로운 엘리먼트로 replace하도록 추가.
+   */
   render() {
-    this.$target.innerHTML += this.template();
-    this.setEvent();
-    this.mounted(); // render 후에 mounted가 실행 된다.
+    const $temp = document.createElement("div");
+    $temp.innerHTML = this.template();
+    const $element = $temp.firstElementChild;
+    $element.classList.add(this.#componentId);
+    const $prevElement = this.$target.querySelector(`.${this.#componentId}`);
+    if ($prevElement) {
+      this.$target.replaceChild($element, $prevElement);
+    } else {
+      this.$target.appendChild($element);
+    }
   }
 
   // 이벤트 적용

@@ -94,6 +94,10 @@ $SearchHeight: 60px;
 
     }
 
+    .category__lists-wrapper{
+        display: none;
+    }
+
     .top-menu {
         display: flex;
         align-items: center;
@@ -106,12 +110,71 @@ $SearchHeight: 60px;
     }
 
     .private-menu {
+        position: relative;
         margin-left: auto;
         display: flex;
 
         .private-menu__btn {
             padding: $button-padding;
         }
+
+        .activate-recent-wrapper{
+            position: relative;
+            .recent-items__wrapper{
+                visibility: hidden;
+                position: absolute;
+                height: 500px;
+                width: 400px;
+                z-index: 10;
+                right: 0;
+                top: 58px;
+                border: 1px solid #979797;
+                background-color: #fff;
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+                padding: 20px 10px 0 10px;
+                .recent-items__title-wrapper{
+                    margin: 10px;
+                    display: flex;
+                    flex-direction: row;
+                    height: 26px;
+                    font-size: 16px;
+                    color: #444;
+                    letter-spacing: -.05em;
+                    align-items: center;
+
+                    .recent-items__title{
+                        margin-right: 10px;
+                    }
+                }
+                .recent-items__products-wrapper{
+                    height: 90%;
+                    .recent-items__products-list{
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-start;
+                        flex-wrap: wrap;
+                        overflow-y: scroll;
+                        width: 100%;
+                        img {
+                            margin: 2px;
+                            height: 115px;
+                            width: 115px;
+                        }
+                    }
+                }
+                .recent-items__clear-btn{
+                    text-align: center;
+                    margin: 10px 0 10px 0;
+                }
+                .recent-items__clear-btn:hover{
+                    color: grey;
+                }
+            }
+        }
+
+
     }
 }
 
@@ -179,7 +242,7 @@ $SearchHeight: 60px;
         }
     }
 
-    .hot-deal {
+    .product-group {
         @extend %section-layout;
         margin-top:60px;
 
@@ -188,14 +251,14 @@ $SearchHeight: 60px;
             padding-bottom: 20px;
             background-color: $bgColor;
         }
-        .hot-deal__title, .hot-deal__detail-price{
+        .product__title, .product__detail-price{
             @extend %text-block;
         }
 
-        .hot-deal-list {
+        .product-list {
             display: flex;
             flex-wrap:wrap;
-            .hot-deal__item {
+            .product__item {
                 width:20%;
                 padding:20px;
                 border-right: 1px solid #f1f1f1;
@@ -203,16 +266,40 @@ $SearchHeight: 60px;
             }
         }
 
-        .hot-deal__detail-price {
+        .product__detail-price {
             margin-top: 20px;
             position: relative;
-            .txt-price-percent {
+            .product__price-wrapper{
+                display: flex;
+                flex-direction: column;
+                .txt-price{
+                    font-size: 1.1rem;
+                }
+
+                .txt-original-price{
+                    font-size: 13px;
+                    color: #888;
+                    text-decoration: line-through;
+                }
+            }
+
+            .txt-discount-tag {
                 position: absolute;
+                top: 10px;
                 right: 10px;
-                font-size: 1.1rem;
+                font-size: 1.3rem;
                 line-height: 1.1rem;
                 color: red;
             }
         }
+    }
+}
+
+.item:hover{
+    .item-img{
+        opacity: 0.7;
+    }
+    .item-title{
+        text-decoration: underline;
     }
 }
