@@ -16,6 +16,7 @@ module.exports = {
       "@core": path.resolve(__dirname, "src/core"),
       "@utils": path.resolve(__dirname, "src/utils"),
       "@style": path.resolve(__dirname, "src/sass"),
+      "@models": path.resolve(__dirname, "src/models"),
     },
   },
   devServer: {

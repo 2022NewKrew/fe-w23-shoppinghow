@@ -4,5 +4,6 @@ System.config({
     "@components/*": "./src/components/*",
     "@utils/*": "./src/utils/*",
     "@style/*": "./src/sass/*",
+    "@models/*": "./src/models/*",
   },
 });

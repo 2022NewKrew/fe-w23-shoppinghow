@@ -1,11 +1,13 @@
 import Component from "@core/Component";
 import ProductItem from "@components/Contents/ProductItem";
+import recentItemModel from "../../models/RecentItemModel";
 
 class ProductContainer extends Component {
   template() {
+    const { idx, title } = this.props;
     return `
-        <div class="product-group group-${this.props.idx}">
-            <h2 class="section-title">${this.props.title}</h2>
+        <div class="product-group" data-idx=${idx}>
+            <h2 class="section-title">${title}</h2>
             <ul class="product-list"></ul>
         </div>
     `;
@@ -13,10 +15,12 @@ class ProductContainer extends Component {
 
   mounted() {
     const { idx, products } = this.props;
-    const $productListWrapper = this.$target.querySelector(`.group-${idx}`);
+    const $productListWrapper = this.$target.querySelector(
+      `.product-group[data-idx='${idx}']`
+    );
     const $productList = $productListWrapper.querySelector(".product-list");
-    products.map((product) => {
-      new ProductItem($productList, product);
+    products.map((product, idx) => {
+      new ProductItem($productList, { ...product, idx });
     });
   }
 }

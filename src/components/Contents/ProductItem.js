@@ -2,9 +2,9 @@ import Component from "@core/Component";
 
 class ProductItem extends Component {
   template() {
-    const { title, img, price, originalPrice, discountTag } = this.props;
+    const { idx, title, img, price, originalPrice, discountTag } = this.props;
     return `
-        <li class="product__item item">
+        <li class="product__item item" data-idx="${idx}">
             <a href="#" class="product__link">
                 <span class="product__thumb">
                     <img src="${img}" class="product__img item-img" alt="">
