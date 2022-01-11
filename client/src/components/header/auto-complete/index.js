@@ -12,7 +12,7 @@ export default class AutoComplete {
   }
 
   setState(props) {
-    this.words = [...props.autoCompleteWords];
+    this.words = props.autoCompleteWords;
     this.render();
   }
 
