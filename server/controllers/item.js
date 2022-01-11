@@ -39,7 +39,8 @@ const getHotDealItems = async (req, res) => {
 
 const getAutocompleteList = async (req, res) => {
   try {
-    const result = await ItemService.getAutocompleteList();
+    const search = req.query.search;
+    const result = await ItemService.getAutocompleteList(search);
     return res.json({ success: true, result });
   } catch (e) {
     return res.json({ success: false, message: error.GET_AUTO_COMPLETE_ERROR });
