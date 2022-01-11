@@ -91,7 +91,7 @@ export default class Carousel extends Component {
 
     addSelectedClass(currentIndex);
 
-    $slideBtnNext.addEventListener('click', () => {
+    const slideNext = () => {
       if (currentIndex <= slideLen - 1) {
         $slideList.style.transition = `${slideSpeed}ms`;
         $slideList.style.transform = `translate3d(-${
@@ -107,9 +107,9 @@ export default class Carousel extends Component {
         currentIndex = -1;
       }
       addSelectedClass(++currentIndex);
-    });
+    };
 
-    $slideBtnPrev.addEventListener('click', () => {
+    const slidePrev = () => {
       if (currentIndex >= 0) {
         $slideList.style.transition = `${slideSpeed}ms`;
         $slideList.style.transform = `translate3d(-${
@@ -127,6 +127,11 @@ export default class Carousel extends Component {
         currentIndex = slideLen;
       }
       addSelectedClass(--currentIndex);
-    });
+    };
+
+    $slideBtnNext.addEventListener('click', slideNext);
+    $slideBtnPrev.addEventListener('click', slidePrev);
+
+    setInterval(slideNext, 3000);
   }
 }
