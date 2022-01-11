@@ -33,4 +33,12 @@ export default class RecentSearchName {
   getFixedHTML() {
     return '<h2 class="recent-search-name__title">최근 검색어</h2><ul class="recent-search-name__list"></ul>';
   }
+
+  activate() {
+    this.recentSearchName.style.display = 'block';
+  }
+
+  deActivate() {
+    this.recentSearchName.style.display = 'none';
+  }
 }
