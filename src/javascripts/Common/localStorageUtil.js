@@ -3,5 +3,11 @@ export function pushToLocalStorage(key, data) {
 }
 
 export function pullFromLocalStorage(key) {
-    return JSON.parse(localStorage.getItem(key))
+    const jsonStr = localStorage.getItem(key)
+    
+    if (jsonStr) {
+        return JSON.parse(localStorage.getItem(key))
+    } else {
+        return null
+    }
 }
