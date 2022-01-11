@@ -1,4 +1,5 @@
 import { $, createHTML } from "../../../utils/dom";
+import { addRcntKeywords } from "../../../utils/localStorage";
 import RollKeyword from "./RollKeyword";
 import Suggestion from "./Suggestion";
 
@@ -80,6 +81,13 @@ export default class SearchBar {
     $(".tf_keyword").addEventListener("input", (e) => {
       $(".wrap_suggestion").style.display =
         e.target.value !== "" ? "none" : "block";
+    });
+    $(".frm_shwsearch button").addEventListener("click", (e) => {
+      e.preventDefault();
+      const input = $(".tf_keyword").value;
+      if (input !== "") {
+        addRcntKeywords(input);
+      }
     });
   }
 }
