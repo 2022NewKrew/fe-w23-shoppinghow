@@ -24,6 +24,13 @@ class DibsItemIdsModel extends Observable{
     await postRequestToUrl(itemId, this.url);
     this.fetchData();
   }
+
+  /**
+   * @param {number} itemId
+   */
+  isDibsedItem(itemId){
+    return (itemId in this.data);
+  }
 }
 
 const dibsItemIdsModel=new DibsItemIdsModel();

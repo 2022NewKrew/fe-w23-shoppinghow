@@ -3,8 +3,8 @@ import dibsItemIdsModel from "./model/DibsItemIdsModel";
 import itemDataModel from "./model/ItemDataModel";
 import RecentItems from "./component/RecentItems";
 import Recommend from "./component/Recommend.js";
+import ThemeItem from "./component/ThemeItem";
 import Top10 from "./Top10";
-import viewItemIdsModel from "./model/ViewItemIdsModel";
 
 function createHotDealHtml(){
   const container = document.querySelector(".hot-deal-list");
@@ -27,51 +27,14 @@ function createHotDealHtml(){
   container.innerHTML = Array(10).fill(0).reduce( (html) => html+hotDealItemTpl, "");
 }
 
-function createItemHtml({itemId, imageSrc, title, desc}){
-  // Empty Heart <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png">
-  // Full Heart <img src="https://cdn-icons-png.flaticon.com/512/1076/1076984.png">
-  return `
-  <li class="theme-item" data-itemId="${itemId}">
-    <a href="#" class="theme__link">
-      <span class="theme-item__info">
-        <img src="${imageSrc}" width="200" height="200" class="img_top" alt="${title}">
-      </span>
-      <strong class="theme-item__title">${title}</strong>
-      <span class="theme-item__desc">${desc}</span>
-    </a>
-    <div class="theme-item__icon">
-      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png">
-    </div>
-  </li>`;
-}
-
 async function createItemsHtml(){
   const container = document.querySelector(".theme-container");
-  function fetchItemData(){
-    return new Promise((resolve)=>{
-      itemDataModel.subscribe((data)=>{
-        resolve(data);
-      });
-      itemDataModel.fetchData();
-    });
-  }
-  const themeItemData=await fetchItemData();
+  const themeItemData=await itemDataModel.getData();
 
-  container.innerHTML=themeItemData.map(
-    (itemData)=>createItemHtml(itemData)
-  ).join("");
-
-  container.addEventListener("click", (e)=>{
-    const itemId=e.target.closest("li").getAttribute("data-itemId");
-    if(itemId===null){
-      return;
-    }
-    if(e.target.closest(".theme-item__icon")!==null){
-      dibsItemIdsModel.addId(itemId);
-      return;
-    }
-    viewItemIdsModel.addId(itemId);
-  });
+  container.innerHTML=themeItemData.map((itemData)=>{
+    const dibsed=dibsItemIdsModel.isDibsedItem(itemData.itemId);
+    return new ThemeItem({...itemData, dibsed}).getHtml();
+  }).join("");
 }
 
 function createRecentItems(){
@@ -100,11 +63,16 @@ function createRecommend(){
 
 function createAll(){
   createHotDealHtml();
-  createItemsHtml();
   createRecentItems();
   createCarousel();
   createTop10();
   createRecommend();
+
+  const themeContainer = document.querySelector(".theme-container");
+  ThemeItem.addClickEventListener(themeContainer);
+  dibsItemIdsModel.subscribe(()=>{
+    createItemsHtml();
+  });
 }
 
 export { createAll };

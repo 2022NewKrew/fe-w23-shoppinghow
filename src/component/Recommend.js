@@ -1,4 +1,6 @@
+import dibsItemIdsModel from "../model/DibsItemIdsModel";
 import itemDataModel from "../model/ItemDataModel";
+import ThemeItem from "./ThemeItem";
 import viewItemIdsModel from "../model/ViewItemIdsModel";
 
 export default class Recommend{
@@ -25,11 +27,6 @@ export default class Recommend{
 
   async #init(){
     await this.#fetchItemData();
-
-    viewItemIdsModel.subscribe((viewItemIds)=>{
-      this.viewedItemsIds=viewItemIds;
-      this.#goToRecentItemsPageByOffset(0);
-    });
     
     this.viewedItemsContainer.addEventListener("click", (e)=>{
       const button=e.target.closest("button");
@@ -58,17 +55,20 @@ export default class Recommend{
       e.target.closest("li").classList.add("viewed-items__item-active");
       this.#showRecommendItems(itemId);
     });
+
+    ThemeItem.addClickEventListener(this.recommendItemsContainer);
+
+    viewItemIdsModel.subscribe((viewItemIds)=>{
+      this.viewedItemsIds=viewItemIds;
+      this.#goToRecentItemsPageByOffset(0);
+    });
+    dibsItemIdsModel.subscribe(()=>{
+      this.#goToRecentItemsPageByOffset(0);
+    });
   }
 
-  #fetchItemData(){
-    return new Promise((resolve)=>{
-      const helper=(itemData)=>{
-        this.itemData=itemData;
-        itemDataModel.unsubscribe(helper);
-        resolve();
-      };
-      itemDataModel.subscribe(helper);
-    });
+  async #fetchItemData(){
+    this.itemData=await itemDataModel.getData();
   }
 
   #showNavigationButtons(){
@@ -124,18 +124,9 @@ export default class Recommend{
     const recommendItemIds=this.#getRecommendItemIds(itemId);
     this.recommendItemsContainer.innerHTML=recommendItemIds.map((itemId)=> {
       const {imageSrc, title, desc}=this.itemData[Number(itemId)];
-      return `<li class="theme-item" data-itemId="${itemId}">
-        <a href="#" class="theme__link">
-          <span class="theme-item__info">
-            <img src="${imageSrc}" width="200" height="200" class="img_top" alt="${title}">
-          </span>
-          <strong class="theme-item__title">${title}</strong>
-          <span class="theme-item__desc">${desc}</span>
-        </a>
-          <div class="theme-item__icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png">
-          </div>
-      </li>`;
+      const dibsed=dibsItemIdsModel.isDibsedItem(itemId);
+      const themeItem=new ThemeItem({itemId, imageSrc, title, desc, dibsed});
+      return themeItem.getHtml();
     }).join("");
   }
   /**

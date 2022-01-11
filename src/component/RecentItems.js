@@ -27,17 +27,13 @@ export default class RecentItems{
   }
 
   #init(){
-    viewItemIdsModel.subscribe((viewItemIds)=>{
-      this.#createViewItemTabHtml(viewItemIds);
-    });
-    dibsItemIdsModel.subscribe((dibsItemIds)=>{
-      this.#createDibsItemTabHtml(dibsItemIds);
-    });
-    
     this.#fetchItemData().then(()=>{
-      // Call fetchData in order to update at first start.
-      viewItemIdsModel.fetchData();
-      dibsItemIdsModel.fetchData();
+      viewItemIdsModel.subscribe((viewItemIds)=>{
+        this.#createViewItemTabHtml(viewItemIds);
+      });
+      dibsItemIdsModel.subscribe((dibsItemIds)=>{
+        this.#createDibsItemTabHtml(dibsItemIds);
+      });
       this.recentItemsLi.addEventListener("mouseenter", ()=>{
         this.recentItemsContainer.classList.remove(hiddenClassName);
       });
@@ -69,33 +65,25 @@ export default class RecentItems{
     });
   }
 
-  #fetchItemData(){
-    return new Promise((resolve)=>{
-      const helper=(itemData)=>{
-        this.itemData=itemData;
-        itemDataModel.unsubscribe(helper);
-        resolve();
-      };
-      itemDataModel.subscribe(helper);
-    });
+  async #fetchItemData(){
+    this.itemData=await itemDataModel.getData();
   }
-
+  
   #createViewItemTabHtml(viewItemIds){
     this.#createHtml(this.viewItemsInnerContainer, viewItemIds);
     this.viewItemTab.innerHTML=viewTabName+Object.keys(viewItemIds).length;
   }
-
+  
   #createDibsItemTabHtml(dibsItemIds){
     this.#createHtml(this.dibsItemsInnerContainer, dibsItemIds);
     this.dibsItemTab.innerHTML=dibsTabName+Object.keys(dibsItemIds).length;
   }
-
+  
   /**
    * @param {HTMLElement}
    * @param {Object.<string, number>}
    */
   async #createHtml(container, itemIds){
-    // const itemData=await itemDataManager.fetchItemData();
     container.innerHTML=Object.keys(itemIds).map((itemId)=>(
       `<div class="recent-item"><img src="${this.itemData[Number(itemId)].imageSrc}">
       </img></div>`

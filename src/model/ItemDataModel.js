@@ -16,6 +16,17 @@ class ItemDataModel extends Observable{
     }
     super.notify();
   }
+
+  /**
+   * Return data without subscribing.
+   * @returns {Promise.<Array.<Object>>}
+   */
+  async getData(){
+    if(this.data===undefined){
+      await this.fetchData();
+    }
+    return this.data;
+  }
 }
 
 const itemDataModel=new ItemDataModel();
