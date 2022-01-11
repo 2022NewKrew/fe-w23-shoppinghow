@@ -1,6 +1,6 @@
-import { consoleButtons } from '../../carousel/consoleButtons';
-import { carousel } from '../../carousel/carousel';
-import { imageContainer } from '../../carousel/imageContainer';
+import { carousel } from '@components/carousel/carousel';
+import { consoleButtons } from '@components/promotion/banner/planning/consoleButtons';
+import { imageContainer } from '@components/promotion/banner/planning/imageContainer';
 
 // fetch되어온 데이터라 가정
 const dummyData = [

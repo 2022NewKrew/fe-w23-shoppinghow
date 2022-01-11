@@ -1,0 +1,15 @@
+.vertical-rolling__window {
+    position: absolute;
+    height: 30px;
+    top: 15px;
+    left: 10px;
+    width: 390px;
+    overflow: hidden;
+}
+
+.vertical-rolling__container {
+    padding-left: 10px;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}

@@ -37,3 +37,27 @@
         }
     }
 }
+
+.hover-buttons__container {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        cursor: pointer;
+        width: 41px;
+        height: 41px;
+        z-index: 1;
+        color: rgba(0, 0, 0, 0);
+        .hover-buttons__arrow {
+            text-align: center;
+            font-size: 41px;
+        }
+    }
+
+    button:hover {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}

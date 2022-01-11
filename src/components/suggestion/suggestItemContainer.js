@@ -10,10 +10,10 @@ const renderItem = (itemWidth, itemHeight, itemInfo) => {
     }
     const { title, imgSrc, url } = itemInfo;
     item.innerHTML = `
-            <img src=${imgSrc} alt=${title} class=".cell__thumbnail" >
-            <div>
-                <span class=".cell__link" >${title}</span>
-                <a class="suggestion__cell--link" href=${url} >상품보기 &gt;</a>
+            <img src=${imgSrc} alt=${title} class="cell__thumbnail" >
+            <div class="cell__info">
+                <span class="cell__title" >${title}</span>
+                <a class="cell__link" href=${url} >상품보기 &gt;</a>
             </div>
     `;
     return item;

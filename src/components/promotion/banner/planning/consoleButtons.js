@@ -13,10 +13,10 @@ const renderConsole = (dataCount) => {
     const target = document.createElement('div');
     target.className = 'console__container';
     target.innerHTML = `
-        <button>
+        <button class="arrow-button">
             <div class="console__arrow">&lt</div>
         </button>
-        <button>
+        <button class="arrow-button">
             <div class="console__arrow">&gt</div>
         </button>
     `;

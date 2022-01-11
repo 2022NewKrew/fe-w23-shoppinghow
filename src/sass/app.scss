@@ -1,5 +1,6 @@
 @import 'global';
 @import 'carousel';
+@import 'verticalRolling';
 
 .header-top {
     display: flex;
@@ -15,31 +16,92 @@
     .search {
         display: flex;
         position: relative;
-        border: 1px solid gray;
+        width: 670px;
+        border-radius: 10px;
+        @extend %border-distinct;
 
         form {
             display: flex;
 
             .search__input {
-                width: 400px;
+                width: 610px;
                 height: 60px;
-                padding: 10px;
+                padding: 10px 10px 10px 20px;
+                z-index: 1;
+                font-size: 1.2rem;
+                font-weight: 700;
             }
 
             .search__icon {
                 font-size: 1.4rem;
+                width: 60px;
+                height: 60px;
                 padding: 10px;
+                @extend %center-align;
             }
         }
+    }
 
-        .search-top10 {
-            position: absolute;
-            transform: translateY(50%);
-            left: 10px;
-            font-size: 1.2rem;
-            height: 50%;
-            display: flex;
-            align-items: center;
+    .top10__item {
+        height: 30px;
+        color: $darkGray;
+        font-weight: 700;
+        .rank-keyword__numbering {
+            margin-right: 0px;
+            width: 30px;
+        }
+    }
+
+    .search-below {
+        width: 670px;
+        border-radius: 10px;
+        @extend %border-highlight;
+        position: absolute;
+        top: 60px;
+        background-color: #fff;
+        z-index: 2;
+        visibility: hidden;
+
+        .search-below__container {
+            .search-below__section {
+                padding: 30px;
+                font-size: 15px;
+
+                .search-below__vertical-container {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+
+            .search-below__section--top10 {
+                @extend %grid-row-2;
+            }
+
+            .search-below__title {
+                color: $darkGray;
+                font-weight: bold;
+                font-size: 1rem;
+            }
+            .search-below__content {
+                padding-top: 10px;
+                .search-below__keyword {
+                    height: 40px;
+                    .rank-keyword__numbering {
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .search-below__recent-keyword {
+                padding: 5px;
+            }
+        }
+    }
+
+    .search.focus {
+        @extend %border-highlight;
+        .search-below {
+            visibility: visible;
         }
     }
 }
@@ -225,25 +287,47 @@
     }
 
     .suggestion-carousel {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: blueviolet;
+        @extend %y-center-align;
+        margin: 0 auto;
         .cell {
             @extend %x-center-align;
         }
 
         .cell__item {
-            background-color: aqua;
-            @extend %x-center-align;
+            @extend %center-align;
+            @extend %border-basic;
             .cell__thumbnail {
+                width: 78px;
+                height: 78px;
             }
 
-            .cell__title {
-            }
+            .cell__info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .cell__title {
+                    width: 105px;
+                    display: block;
+                    overflow: hidden;
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 18px;
+                    color: #444;
+                }
 
-            .cell__link {
+                .cell__link {
+                    font-size: 11px;
+                    color: #88888a;
+                }
             }
         }
+    }
+}
+
+.rank-keyword {
+    @extend %y-center-align;
+    .rank-keyword__numbering {
+        font-style: italic;
+        margin-right: 10px;
     }
 }

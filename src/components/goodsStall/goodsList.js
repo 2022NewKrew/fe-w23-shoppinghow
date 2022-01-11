@@ -1,4 +1,4 @@
-import { goodsItem } from './goodsItem';
+import { goodsItem } from '@components/goodsStall/goodsItem';
 
 export const goodsList = (goodsData) => {
     const target = document.createElement('ul');
