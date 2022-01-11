@@ -29,6 +29,7 @@ export default class SearchContainer {
   refreshSearchNameState() {
     this.state = { ...this.state, searchName: getItemInLocalStroage('search-name') };
     this.setState(this.state);
+    this.searchForm.setInputValue('');
   }
 
   handleClickHelpSearch(e) {
