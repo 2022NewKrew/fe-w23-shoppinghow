@@ -51,8 +51,6 @@ export class Header extends Component {
       renderType: 'replaceHTML',
     });
 
-    new RecentlyViewedMenu($('.recentlyViewedMenu', this.$target), {
-      recentlyViewedList: this.props.recentlyViewedList,
-    });
+    new RecentlyViewedMenu($('.recentlyViewedMenu', this.$target));
   }
 }

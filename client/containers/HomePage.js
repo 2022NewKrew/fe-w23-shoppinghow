@@ -3,16 +3,6 @@ import { API } from '@services';
 import { Top10Store } from '@stores';
 
 export class HomePage extends MainLayout {
-  setup() {
-    this.props.recentlyViewedList = [
-      {
-        info: '스컬피그 [SA4235] 요가 토즈 삭스 피치핑크/실리콘/발가락/요가',
-        link: '#',
-        img: '//shop1.daumcdn.net/thumb/C120x120.q90/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FF7180681434.jpg%3Fut%3D20190807062214',
-      },
-    ];
-  }
-
   rendered() {
     super.rendered();
     this.PromotionSection = new PromotionSection(this.$main, {

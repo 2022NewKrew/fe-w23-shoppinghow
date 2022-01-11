@@ -1,31 +1,20 @@
 import { Component } from '@core';
+import { RecentlyViewedStore } from '@stores';
 import { $ } from '@utils';
 
 const HOVER_DELAY_TIME = 400;
 
 export class RecentlyViewedMenu extends Component {
   setup() {
-    this.isMouseover;
+    this.isMouseover = false;
   }
 
   template() {
-    const { recentlyViewedList = [] } = this.props;
-
-    const recentlyViewdItemTemplate = ({ info, link, img }) => /* html */ `
-        <li>
-            <a href="${link}" target="_blank">
-                <img src="${img}" alt="${info}">
-            </a>
-        </li>
-    `;
-
     return /*html*/ `
         <a class="recentlyViewedMenu__item" href="#">최근본상품</a>
         <div class="recentlyViewedMenu__modal">
-            <h5>최근본 상품 ${recentlyViewedList.length}</h5>
-            <ul class="recentlyViewedMenu__productList">
-                ${recentlyViewedList.map(recentlyViewdItemTemplate).join('')}
-            </ul>
+            <h5 class ="recentlyViewedMenu__title">최근본 상품 0</h5>
+            <ul class="recentlyViewedMenu__productList"></ul>
             <div class="recentlyViewedMenu__login">
                 <span>
                     로그인 하시면 더 많은
@@ -43,19 +32,47 @@ export class RecentlyViewedMenu extends Component {
   rendered() {
     this.$modal = $('.recentlyViewedMenu__modal', this.$target);
 
-    this.$target.onmouseenter = () => {
-      this.isMouseover = true;
-      this.$modal.classList.add('on');
-    };
+    this.$title = $('.recentlyViewedMenu__title', this.$modal);
+    this.$productList = $('.recentlyViewedMenu__productList', this.$modal);
+    this.renderModalContent();
 
-    this.$target.onmouseleave = () => {
-      this.isMouseover = false;
+    this.$target.onmouseenter = this.onhover.bind(this);
+    this.$target.onmouseleave = this.onleave.bind(this);
+  }
 
-      setTimeout(() => {
-        if (this.isMouseover) return;
+  mounted() {
+    RecentlyViewedStore.subscribe(this.renderModalContent.bind(this));
+  }
 
-        this.$modal.classList.remove('on');
-      }, HOVER_DELAY_TIME);
-    };
+  // util
+
+  renderModalContent() {
+    const { list: recentlyViewedList } = RecentlyViewedStore.getState();
+
+    this.$title.innerText = `최근본 상품 ${recentlyViewedList.length}`;
+
+    const recentlyViewdItemTemplate = ({ title, img, url }) => /* html */ `
+        <li>
+            <a href="${url}" target="_blank">
+                <img src="${img}" alt="${title}">
+            </a>
+        </li>
+    `;
+    this.$productList.innerHTML = recentlyViewedList.map(recentlyViewdItemTemplate).join('');
+  }
+
+  onhover() {
+    this.isMouseover = true;
+    this.$modal.classList.add('on');
+  }
+
+  onleave() {
+    this.isMouseover = false;
+
+    setTimeout(() => {
+      if (this.isMouseover) return;
+
+      this.$modal.classList.remove('on');
+    }, HOVER_DELAY_TIME);
   }
 }

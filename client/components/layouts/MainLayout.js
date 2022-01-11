@@ -16,7 +16,6 @@ export class MainLayout extends Component {
   rendered() {
     new Header($('header', this.$target), {
       renderType: 'replaceHTML',
-      recentlyViewedList: this.props.recentlyViewedList,
     });
 
     new Footer($('footer', this.$target), {

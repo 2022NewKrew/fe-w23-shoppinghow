@@ -1,5 +1,6 @@
 import { Component } from '@core';
-
+import { RecentlyViewedStore } from '@stores';
+import { $ } from '@utils';
 export class HotDealProduct extends Component {
   template() {
     const {
@@ -15,7 +16,7 @@ export class HotDealProduct extends Component {
 
     return /*html*/ `
       <li class="product">
-        <a href="${url}" class="product__link">
+        <a href="${url}" target="_blank" class="product__link">
             <span class="product__thumb">
                 <img alt="썸네일" src="${img}">
             </span>
@@ -33,5 +34,18 @@ export class HotDealProduct extends Component {
         </a>
       </li>
     `;
+  }
+
+  rendered() {
+    const {
+      product: { title, img, url },
+    } = this.props;
+
+    $('.product__link', this.$target).addEventListener('click', (e) => {
+      RecentlyViewedStore.dispatch({
+        actionKey: 'view',
+        item: { title, img, url },
+      });
+    });
   }
 }
