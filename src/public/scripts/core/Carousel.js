@@ -13,14 +13,14 @@ export class Carousel {
   $carouselMode;
   $carouselIntervalId;
   $carouselBtnList;
-  constructor($carouselList, $carousel, $curCarouselIdx, $carouselSpeed, $carouselItemWidth, $carouselMode, $carouselBtnList = []) {
-    this.$carouselList = $carouselList;
-    this.$carousel = $carousel;
-    this.$curCarouselIdx = $curCarouselIdx;
-    this.$carouselSpeed = $carouselSpeed;
-    this.$carouselItemWidth = $carouselItemWidth;
-    this.$carouselMode = $carouselMode;
-    this.$carouselBtnList = $carouselBtnList;
+  constructor($params) {
+    this.$carouselList = $params.carouselList;
+    this.$carousel = $params.carousel;
+    this.$curCarouselIdx = $params.curCarouselIdx;
+    this.$carouselSpeed = $params.carouselSpeed;
+    this.$carouselItemWidth = $params.carouselItemWidth;
+    this.$carouselMode = $params.carouselMode;
+    this.$carouselBtnList = $params.carouselBtnList;
     this.$carouselIntervalId = setInterval(() => {
       this.next();
     }, this.$carouselSpeed);

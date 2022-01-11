@@ -29,15 +29,15 @@ export default class PromotionPlanning extends Component {
           planningList
             .map(
               item => `
-                          <a href="#" target="_blank" class="promotion__planning--link"
-                            ><img
-                              src="${item.src}"
-                              width="${item.width}"
-                              height="${item.height}"
-                              class="img_g"
-                              alt="${item.alt}"
-                          /></a>
-                        `,
+                    <a href="#" target="_blank" class="promotion__planning--link"
+                      ><img
+                        src="${item.src}"
+                        width="${item.width}"
+                        height="${item.height}"
+                        class="img_g"
+                        alt="${item.alt}"
+                    /></a>
+                  `,
             )
             .join("")
         }
@@ -102,7 +102,15 @@ export default class PromotionPlanning extends Component {
     if (planningList.length > 0) {
       this.carousel =
         this.carousel ??
-        new Carousel(planningList, this.carouselList, this.currentCarouselItem, this.carouselSpeed, this.carouselItemWidth, 1, this.carouselBtnList);
+        new Carousel({
+          carouselList: planningList,
+          carousel: this.carouselList,
+          curCarouselIdx: this.currentCarouselItem,
+          carouselSpeed: this.carouselSpeed,
+          carouselItemWidth: this.carouselItemWidth,
+          carouselMode: 1,
+          carouselBtnList: this.carouselBtnList,
+        });
     }
   }
   async getSlide() {
@@ -112,7 +120,6 @@ export default class PromotionPlanning extends Component {
     if (JSON.stringify(this.$state.planningList) !== JSON.stringify(transResult)) {
       this.setState({ planningList: transResult });
     }
-    // Object.entries().sort().toString()
   }
   settingCarouselCSS(length) {
     this.carouselBtnList[0].style["background-color"] = "black";
