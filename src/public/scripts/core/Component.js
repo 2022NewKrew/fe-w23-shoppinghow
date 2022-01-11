@@ -16,11 +16,13 @@ export class Component {
   }
   #render() {
     this.$target.innerHTML = this.template();
-    this.setEvent();
     this.mounted();
+    this.setEvent();
   }
   setEvent() {}
+  removeEvent() {}
   setState(newState) {
+    this.removeEvent();
     this.$state = { ...this.$state, ...newState };
     this.#render();
   }

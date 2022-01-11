@@ -21,20 +21,23 @@ export default class Category extends Component {
     new CategoryContent($categoryContent, { categoryDisplay: this.$state.categoryDisplay });
   }
   setEvent() {
-    $(".category__title", this.$target).addEventListener("mouseover", event => {
-      const { target } = event;
+    $(".category__title", this.$target).addEventListener("mouseenter", ({ target }) => {
       if (this.checkButtonTag(target)) {
-        target.nextElementSibling.style.display = "block";
+        target.nextElementSibling.style.display = "flex";
       }
     });
-    $(".category__title", this.$target).addEventListener("mouseout", event => {
-      const { target } = event;
-      if (this.checkButtonTag(target)) {
-        target.nextElementSibling.style.display = "none";
+    $(".category__content", this.$target).addEventListener("mouseleave", ({ target }) => {
+      if (this.checkDivTag(target)) {
+        setTimeout(() => {
+          target.style.display = "none";
+        }, 1000);
       }
     });
   }
   checkButtonTag(target) {
     return target.tagName === "BUTTON";
+  }
+  checkDivTag(target) {
+    return target.tagName === "DIV";
   }
 }

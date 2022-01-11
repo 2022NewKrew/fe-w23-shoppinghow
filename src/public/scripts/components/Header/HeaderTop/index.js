@@ -21,6 +21,7 @@ export default class HeaderTop extends Component {
         "2. 스테비아토마토",
       ],
     };
+    this.$headerRolling = null;
   }
   template() {
     return `
@@ -30,7 +31,6 @@ export default class HeaderTop extends Component {
       <div class="search">
         <form>
           <input type="text" class="search__input" />
-          
           <button class="search__icon">🔍</button>
         </form>
         <div class="top10-wrap"  >
@@ -39,13 +39,29 @@ export default class HeaderTop extends Component {
       </div>
     `;
   }
+  setEvent() {
+    $("input.search__input", this.$target).addEventListener("focus", this.searchInputFocusHandler.bind(this));
+    $("input.search__input", this.$target).addEventListener("blur", this.searchInputBlurHandler.bind(this));
+  }
+  removeEvent() {
+    $("input.search__input", this.$target).removeEventListener("focus", this.searchInputFocusHandler.bind(this));
+    $("input.search__input", this.$target).removeEventListener("blur", this.searchInputBlurHandler.bind(this));
+  }
+  searchInputFocusHandler({ target }) {
+    this.$headerRolling.style.display = "none";
+    target.closest("form").style.border = "1px solid pink";
+  }
+  searchInputBlurHandler({ target }) {
+    this.$headerRolling.style.display = "";
+    target.value = "";
+    target.closest("form").style.border = "1px solid #cecfd1";
+  }
   mounted() {
-    const $headerRolling = $('[component="header-rolling"]', this.$target);
+    this.$headerRolling = $('[component="header-rolling"]', this.$target);
 
-    new HeaderRolling($headerRolling, {
+    new HeaderRolling(this.$headerRolling, {
       top10: this.$state.top10,
       rollingList: $(".search-top10", this.$target),
     });
   }
-  setEvent() {}
 }

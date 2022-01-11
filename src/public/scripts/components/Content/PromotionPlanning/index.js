@@ -1,19 +1,21 @@
-import { $ } from "@utils/query.js";
+import { $, $All } from "@utils/query.js";
 import { Component } from "@core/Component";
+import { Carousel } from "@core/Carousel";
 import { api } from "@utils/api.js";
 
 export default class PromotionPlanning extends Component {
   setUp() {
     this.$state = {
       planningList: [],
-      slidingSpeed: 3500,
-      slidingWidth: 635,
     };
-    this.totalSlideCount = 3;
-    this.slidingTimeout = undefined;
-    this.finalRollingCheck = false;
-    this.currentSlide = 0;
-    this.slidingList = undefined;
+    this.carousel = null;
+    this.carouselSpeed = 3500;
+    this.carouselItemWidth = 635;
+    this.totalCarouselCount = 3;
+    this.currentCarouselItem = 0;
+    this.carouselList = null;
+    this.carouselBtnList = null;
+    this.carouselBtnOn = false;
   }
   template() {
     const { planningList } = this.$state;
@@ -24,65 +26,101 @@ export default class PromotionPlanning extends Component {
           planningList
             .map(
               item => `
-          <a href="#" target="_blank" class="promotion__planning--link"
-            ><img
-              src="${item.src}"
-              width="${item.width}"
-              height="${item.height}"
-              class="img_g"
-              alt="${item.alt}"
-          /></a>
-        `,
+                          <a href="#" target="_blank" class="promotion__planning--link"
+                            ><img
+                              src="${item.src}"
+                              width="${item.width}"
+                              height="${item.height}"
+                              class="img_g"
+                              alt="${item.alt}"
+                          /></a>
+                        `,
             )
             .join("")
         }
       </div>
       <div class="promotion__planning--btn-box">
-        <button class="promotion__planning--left-btn"></button>
-        <button class="promotion__planning--right-btn"></button>
+        <button class="promotion__planning--left-btn"><</button>
+        
         <div class="promotion__planning--paging">
-          <span>_</span><span>_</span><span>_</span>
+          ${[0, 1, 2]
+            .map(
+              item => `
+                    <span class="promotion__planning--btn-paging">
+                      <span class="promotion__planning--num-page" data-value="${item}"></span>
+                    </span>
+                  `,
+            )
+            .join("")}
         </div>
+        <button class="promotion__planning--right-btn">></button>
       </div>
     `;
   }
   setEvent() {
-    const { slidingSpeed, slidingWidth } = this.$state;
-    this.slidingList = $(".promotion__planning--wrap", this.$target);
-    this.rollingTimeout = setInterval(() => {
-      this.transition(this.slidingList, slidingSpeed, slidingWidth, ++this.currentSlide, "A").then(() => {
-        if (this.currentSlide === this.totalSlideCount) {
-          this.currentSlide = 0;
-          this.transition(this.slidingList, 0, slidingWidth, this.currentSlide, "B");
-        }
-      });
-    }, slidingSpeed);
+    $(".promotion__planning--paging", this.$target).addEventListener("mouseover", this.pagingBtnMouseoverHandler.bind(this));
+    $(".promotion__planning--left-btn", this.$target).addEventListener("click", this.pagingPrevClickHandler.bind(this));
+    $(".promotion__planning--right-btn", this.$target).addEventListener("click", this.pagingNextClickHandler.bind(this));
   }
-
-  async mounted() {
-    const { result } = await api.get("event/slide");
-    result.push(result[0]);
-    this.slidingList.style.width = result.length * 635 + "px";
-
-    if (JSON.stringify(this.$state.planningList) !== JSON.stringify(result)) {
-      this.callSetState({ planningList: result });
+  removeEvent() {
+    $(".promotion__planning--paging", this.$target).removeEventListener("mouseover", this.pagingBtnMouseoverHandler.bind(this));
+    $(".promotion__planning--left-btn", this.$target).removeEventListener("click", this.pagingPrevClickHandler.bind(this));
+    $(".promotion__planning--right-btn", this.$target).removeEventListener("click", this.pagingNextClickHandler.bind(this));
+  }
+  pagingBtnMouseoverHandler({ target }) {
+    if (target.classList.contains("promotion__planning--num-page")) {
+      const selectedSlideOrder = target.getAttribute("data-value");
+      this.carousel.jumpTo(selectedSlideOrder);
     }
   }
-
-  async transition(list, speed, size, to, l) {
-    return new Promise((res, rej) => {
-      list.style.transition = `${speed}ms`;
-      list.style.transform = `translate3d(-${size * to}px, 0px, 0px)`;
+  pagingNextClickHandler({ target }) {
+    if (!this.carouselBtnOn && target.classList.contains("promotion__planning--right-btn")) {
+      this.carouselBtnOn = true;
+      this.carousel.nextBtnClick();
       setTimeout(() => {
-        res();
-      }, speed - 30); // 꼼수..
-    });
-  }
-
-  callSetState(newState) {
-    if (typeof this.rollingTimeout === "number") {
-      clearInterval(this.rollingTimeout);
+        this.carouselBtnOn = false;
+      }, this.carouselSpeed / 2);
     }
-    this.setState(newState);
+  }
+  pagingPrevClickHandler({ target }) {
+    if (!this.carouselBtnOn && target.classList.contains("promotion__planning--left-btn")) {
+      this.carouselBtnOn = true;
+      this.carousel.prevBtnClick();
+      setTimeout(() => {
+        this.carouselBtnOn = false;
+      }, this.carouselSpeed / 2);
+    }
+  }
+  mounted() {
+    const { planningList } = this.$state;
+    this.carouselList = $(".promotion__planning--wrap", this.$target);
+    this.carouselBtnList = $All(".promotion__planning--num-page", this.$target);
+    this.getSlide();
+    if (planningList.length > 0) {
+      this.carousel =
+        this.carousel ??
+        new Carousel(planningList, this.carouselList, this.currentCarouselItem, this.carouselSpeed, this.carouselItemWidth, 1, this.carouselBtnList);
+    }
+  }
+  async getSlide() {
+    const { result } = await api.get("event/slide");
+    const transResult = this.transSlideResult(result);
+    this.settingCarouselCSS(transResult.length);
+    if (JSON.stringify(this.$state.planningList) !== JSON.stringify(transResult)) {
+      this.setState({ planningList: transResult });
+    }
+    // Object.entries().sort().toString()
+  }
+  settingCarouselCSS(length) {
+    this.carouselBtnList[0].style["background-color"] = "black";
+    this.carouselList.style.width = length * this.carouselItemWidth + "px";
+    this.carouselList.style.transform = "translate3d(-" + this.carouselItemWidth + "px, 0px, 0px)";
+  }
+  transSlideResult(result) {
+    const lastSlide = result[result.length - 1];
+    const firstSlide = result[0];
+    result.unshift(lastSlide);
+    result.push(firstSlide);
+    return result;
   }
 }
