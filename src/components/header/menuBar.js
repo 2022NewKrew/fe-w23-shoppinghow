@@ -2,6 +2,7 @@ export const menuBar = () => {
     const target = document.createElement('div');
 
     const addMouseEvent = (button) => {
+        const layerRemainTime = 1000;
         button.addEventListener('click', (e) => {
             e.preventDefault();
         });
@@ -9,7 +10,7 @@ export const menuBar = () => {
         const popUpLayer = button.querySelector('.pop-up-layer');
         button.addEventListener('mouseover', () => (popUpLayer.style.display = 'block'));
         button.addEventListener('mouseleave', () => {
-            setTimeout(() => (popUpLayer.style.display = 'none'), 1000);
+            setTimeout(() => (popUpLayer.style.display = 'none'), layerRemainTime);
         });
     };
 

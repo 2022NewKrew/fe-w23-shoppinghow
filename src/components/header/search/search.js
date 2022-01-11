@@ -11,11 +11,12 @@ const addFocusEvent = (formContainer) => {
     });
 
     formContainer.addEventListener('mouseleave', () => {
+        const layerRemainTime = 500;
         setTimeout(() => {
             formContainer.classList.remove('focus');
             if (inputField.value.length === 0) top10.classList.remove('hidden');
             inputField.blur();
-        }, 500);
+        }, layerRemainTime);
     });
 };
 
