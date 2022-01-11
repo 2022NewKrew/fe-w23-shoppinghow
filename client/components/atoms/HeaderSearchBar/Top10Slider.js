@@ -1,5 +1,5 @@
 import { Component } from '@core';
-import { $ } from '@utils';
+import { $, getURLParams } from '@utils';
 import { Top10Store } from '@stores';
 
 const AUTO_SLIDE_TIME = 2000;
@@ -35,7 +35,10 @@ export class Top10Slider extends Component {
     this.clearSlideTimer();
     this.$sliderTrack = $('.top10slider__track', this.$target);
     this.$sliderTrack.addEventListener('transitionend', this.onSlideEnd.bind(this));
-    this.startSlideTimer();
+
+    const { search } = getURLParams();
+    if (search) this.hideSliderTrack();
+    else this.startSlideTimer();
   }
 
   mounted() {

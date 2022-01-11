@@ -1,5 +1,6 @@
 import { Component } from '@core';
-import { $ } from '@utils';
+import { RecentlySearchStore } from '@stores';
+import { $, getURLParams } from '@utils';
 import { SearchBarModal } from './SearchBarModal';
 import { Top10Slider } from './Top10Slider';
 
@@ -16,7 +17,7 @@ export class HeaderSearchBar extends Component {
   template() {
     return /*html*/ `
       <div class="search">
-        <form >
+        <form>
             <input type="text" class="search__input" />
             <button type="submit" class="search__icon">🔍</button>
         </form>
@@ -27,17 +28,36 @@ export class HeaderSearchBar extends Component {
   }
 
   rendered() {
-    this.$input = $('.search__input', this.$target);
+    this.Top10Slider = new Top10Slider($('.top10slider', this.$target), { renderType: 'replaceHTML' });
+
+    this.SearchBarModal = new SearchBarModal($('.search__modal', this.$target), { renderType: 'replaceHTML' });
+    this.SearchBarModal.$target.ontransitionend = () => {
+      if (!this.isSearchFocused) this.SearchBarModal.disactiveModal();
+    };
 
     this.$target.addEventListener('focusin', this.focusinSearch.bind(this));
     this.$target.onmouseenter = this.mouseenterSearch.bind(this);
     this.$target.onmouseleave = this.mouseleaveSearch.bind(this);
 
-    this.Top10Slider = new Top10Slider($('.top10slider', this.$target), { renderType: 'replaceHTML' });
-    this.SearchBarModal = new SearchBarModal($('.search__modal', this.$target), { renderType: 'replaceHTML' });
+    $('form', this.$target).addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.onSearch();
+    });
+
+    this.$input = $('.search__input', this.$target);
+    const { search } = getURLParams();
+    if (search) this.$input.value = search;
   }
 
   /* util */
+
+  onSearch() {
+    const text = this.$input.value;
+    if (!text) return;
+
+    RecentlySearchStore.dispatch({ actionKey: 'search', item: text });
+    this.$input.value = '';
+  }
 
   // search focus animation
   mouseenterSearch() {
@@ -61,11 +81,12 @@ export class HeaderSearchBar extends Component {
     setTimeout(() => {
       if (this.isMouseover) return;
 
-      this.isSearchFocused = false;
       this.$input.blur();
+      this.isSearchFocused = false;
       this.$target.classList.remove(FOCUSE_SEARCH_CLASSNAME);
-      this.Top10Slider.showSliderTrack();
       this.SearchBarModal.hideModal();
+
+      if (!this.$input.value) this.Top10Slider.showSliderTrack();
     }, HOVER_DELAY_TIME);
   }
 }

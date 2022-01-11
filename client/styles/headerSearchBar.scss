@@ -54,7 +54,7 @@
   }
 }
 
-.top10modal {
+.search__modal {
   position: absolute;
   width: 100%;
   top: 64px;
@@ -67,30 +67,62 @@
   opacity: 0;
   transition: opacity 300ms ease-out; // js에서 opacity 제어
 }
-.top10modal--hide {
+.search__modal--hide {
   visibility: hidden;
 }
 
 .top10content {
-  .top10content__title {
-    display: block;
-    color: #939393;
-    font-weight: 700;
-  }
+  float: left;
+  width: 50%;
 
   .top10content__keywrodList {
-    margin-top: 0.75rem;
-    float: left;
     width: 50%;
+  }
 
-    & > li {
-      margin-top: 0.5rem;
-    }
+  .top10content__rank {
+    margin-right: 10px;
+    font-weight: 700;
+    font-style: italic;
+  }
+}
 
-    .top10content__rank {
-      margin-right: 10px;
-      font-weight: 700;
-      font-style: italic;
-    }
+.recentSearchContent {
+  float: left;
+  width: 50%;
+}
+
+.recentSearchContent__title,
+.top10content__title {
+  display: block;
+  color: #939393;
+  font-weight: 700;
+}
+
+.recentSearchContent__list,
+.top10content__keywrodList {
+  margin-top: 0.75rem;
+  float: left;
+  & > li {
+    margin-top: 0.5rem;
+  }
+}
+
+.recentSearchContent__list {
+  width: 100%;
+
+  .recentSearchContent__item {
+    display: flex;
+    align-items: center;
+  }
+  .closeBtn {
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 2rem;
+    display: block;
+    overflow: hidden;
+    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+    width: 14px;
+    height: 14px;
+    background-position: -150px -55px;
   }
 }
