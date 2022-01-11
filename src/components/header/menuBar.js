@@ -8,7 +8,7 @@ export const menuBar = () => {
 
         const popUpLayer = button.querySelector('.pop-up-layer');
         button.addEventListener('mouseover', () => (popUpLayer.style.display = 'block'));
-        button.addEventListener('mouseout', () => {
+        button.addEventListener('mouseleave', () => {
             setTimeout(() => (popUpLayer.style.display = 'none'), 1000);
         });
     };

@@ -16,6 +16,7 @@
     .search {
         display: flex;
         position: relative;
+        width: 670px;
         border-radius: 10px;
         @extend %border-distinct;
 
@@ -23,7 +24,7 @@
             display: flex;
 
             .search__input {
-                width: 400px;
+                width: 610px;
                 height: 60px;
                 padding: 10px 10px 10px 20px;
                 z-index: 1;
@@ -33,13 +34,31 @@
 
             .search__icon {
                 font-size: 1.4rem;
+                width: 60px;
+                height: 60px;
                 padding: 10px;
+                @extend %center-align;
             }
         }
     }
 
-    .search.highlight {
+    .search-blow {
+        width: 670px;
+        height: 300px;
+        border-radius: 10px;
         @extend %border-highlight;
+        position: absolute;
+        top: 60px;
+        background-color: #fff;
+        z-index: 2;
+        visibility: hidden;
+    }
+
+    .search.focus {
+        @extend %border-highlight;
+        .search-blow {
+            visibility: visible;
+        }
     }
 }
 
