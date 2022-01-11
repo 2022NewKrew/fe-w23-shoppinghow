@@ -8,41 +8,40 @@ const duplicateFirstLastCell = (container) => {
     container.appendChild(firstClone);
 };
 
-const makeButtonClickHandler = (cell_width, dataLength) => {
-    function ButtonClickHandler() {}
-    ButtonClickHandler.prototype.count = -1;
-    ButtonClickHandler.prototype.getClickHandler = (container, direction) => {
-        return () => {
-            ButtonClickHandler.prototype.count += direction;
-            container.style.transform = `translateX(${ButtonClickHandler.prototype.count * cell_width}px)`;
-            container.style.transitionDuration = '300ms';
-            container.ontransitionend = () => {
-                container.style.transitionDuration = '0ms';
-                if (direction === NEXT_DIRECTION && ButtonClickHandler.prototype.count < -1 * dataLength) {
-                    container.style.transform = `translateX(${-1 * cell_width}px)`;
-                    ButtonClickHandler.prototype.count = -1;
-                } else if (direction === PREV_DIRECTION && ButtonClickHandler.prototype.count === 0) {
-                    container.style.transform = `translateX(${-1 * dataLength * cell_width}px)`;
-                    ButtonClickHandler.prototype.count = -1 * dataLength;
-                }
-            };
+function ButtonClickHandler(cell_width, dataLength) {
+    this.count = -1;
+    this.cell_width = cell_width;
+    this.dataLength = dataLength;
+}
+ButtonClickHandler.prototype.getClickHandler = (container, direction) => {
+    return function () {
+        this.count += direction;
+        container.style.transform = `translateX(${this.count * this.cell_width}px)`;
+        container.style.transitionDuration = '300ms';
+        container.ontransitionend = () => {
+            container.style.transitionDuration = '0ms';
+            if (direction === NEXT_DIRECTION && this.count < -1 * this.dataLength) {
+                container.style.transform = `translateX(${-1 * this.cell_width}px)`;
+                this.count = -1;
+            } else if (direction === PREV_DIRECTION && this.count === 0) {
+                container.style.transform = `translateX(${-1 * this.dataLength * this.cell_width}px)`;
+                this.count = -1 * this.dataLength;
+            }
         };
     };
-
-    return ButtonClickHandler;
 };
 
 const handleButtonClick = ({ buttons, container, cell_width, dataLength }) => {
     if (dataLength <= 1) return;
     const [prevBtn, nextBtn] = buttons.querySelectorAll('.arrow-button');
-    const ButtonClickHandler = makeButtonClickHandler(cell_width, dataLength);
+    const BCHandler = new ButtonClickHandler(cell_width, dataLength);
     prevBtn.addEventListener(
         'click',
-        ButtonClickHandler.prototype.getClickHandler(container, PREV_DIRECTION, dataLength)
+        BCHandler.__proto__.getClickHandler(container, PREV_DIRECTION, dataLength).bind(BCHandler)
     );
     nextBtn.addEventListener(
         'click',
-        ButtonClickHandler.prototype.getClickHandler(container, NEXT_DIRECTION, dataLength)
+        BCHandler.__proto__.getClickHandler(container, NEXT_DIRECTION, dataLength).bind(BCHandler)
     );
 };
 
