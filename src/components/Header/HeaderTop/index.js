@@ -1,4 +1,5 @@
 import Component from '../../../core/Component';
+import RollingKeywords from './RollingKeywords';
 import './index.scss';
 
 export default class HeaderTop extends Component {
@@ -14,7 +15,13 @@ export default class HeaderTop extends Component {
             <span class="search__icon"></span>
           </button>
         </form>
+        <div class="rolling_keywords"></div>
       </div>
     `;
+  }
+
+  mounted() {
+    const $rollingKeywords = this.$('.rolling_keywords');
+    new RollingKeywords($rollingKeywords, {});
   }
 }

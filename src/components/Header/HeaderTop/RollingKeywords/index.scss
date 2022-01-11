@@ -1,0 +1,26 @@
+.roll_wrapper {
+  overflow: hidden;
+  position: absolute;
+  left: 31px;
+  top: 16px;
+  width: 578px;
+  height: 23px;
+  line-height: 22px;
+  background-color: #fff;
+  text-align: left;
+  .roll_box {
+    height: 100%;
+    margin: auto;
+    overflow-y: hidden;
+    li {
+      overflow: hidden;
+      height: 23px;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 23px;
+      color: #939393;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
