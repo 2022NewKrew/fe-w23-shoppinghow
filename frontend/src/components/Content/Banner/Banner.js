@@ -6,7 +6,6 @@ export default class Banner extends Component {
   template() {
     const bannerData = this.$props.bannerData;
     const bannerBestImg = bannerData.best[0];
-    console.log(bannerData, bannerBestImg);
     return `
     <div class="cont_event">
         <div class="#banner_event evt_item _GL">
@@ -23,10 +22,13 @@ export default class Banner extends Component {
   }
 
   mounted() {
+    this.setSlideBannerForm();
+    this.setHotDealForm();
+  }
+
+  setSlideBannerForm() {
     const $slideBanner = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.SLIDE_BANNER));
     new SlideBanner($slideBanner, {bannerData: this.$props.bannerData.special});
-
-    this.setHotDealForm();
   }
 
   // TODO 서버에서 데이터 받아올 얘정 지금은 임시 데이터

@@ -116,13 +116,17 @@ export default class Head extends Component {
     </div>`;
   }
 
-  setup() {
-    this.$state = {
+  initState() {
+    return {
       rollInterval: null,
     };
   }
 
-  async syncMounted() {
+  mounted() {
+    this.setRollKeywordForm();
+  }
+
+  async setRollKeywordForm() {
     try {
       const $rollKeyword = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.ROLL_KEYWORD));
       const searchKeywordGroup = await this.getSearhKeyword();
@@ -157,15 +161,17 @@ export default class Head extends Component {
 
   // 마우스가 올라가면 rollInterval(검색어 자동롤)을 멈춤 마우스가 벗어나면 다시 실행
   setSearchFormMouseEvent() {
-    const searchEl = this.$target.querySelector('[name="kakaoSearch"]');
-    searchEl.addEventListener('mouseenter', () => {
+    const selectorTarget = {
+      searchDiv: '[name="kakaoSearch"]',
+    };
+    this.addEvent('mouseenter', selectorTarget.searchDiv, () => {
       if (this.$state.rollInterval != null) {
         clearInterval(this.$state.rollInterval);
         console.log(this.$state.rollInterval);
       }
     });
 
-    searchEl.addEventListener('mouseleave', () => {
+    this.addEvent('mouseleave', selectorTarget.searchDiv, () => {
       this.setAutoRollAnimation();
     });
   }
