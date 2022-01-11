@@ -111,21 +111,59 @@
         .private-menu__btn {
             padding: $button-padding;
 
+            .private-menu__link:link,
+            .private-menu__link:visited,
+            .private-menu__link:hover,
+            .private-menu__link:active {
+                text-decoration: none;
+            }
+
             &.recently_viewed {
                 position: relative;
             }
 
             .rvpv_products_wrap {
+                display: none;
                 position: absolute;
-                top: 54px;
-                right: 2px;
+                top: 60px;
+                right: 0px;
                 z-index: 10;
                 padding: 0 28px;
                 border: 1px solid #979797;
-                background-color: red;
+                background-color: #fff;
                 text-align: left;
-                width: 50px;
-                height: 50px;
+
+                .rvpv_products_title {
+                    display: block;
+                    font-size: 14px;
+                    line-height: 26px;
+                    color: #444;
+                    padding: 26px 0 17px;
+
+                    .num_products {
+                        margin-left: 3px;
+                        font-size: 16px;
+                        line-height: 19px;
+                    }
+                }
+
+                .box_panel {
+                    .txt_noproducts {
+                        display: block;
+                        width: 363px;
+                        height: 255px;
+                        padding-top: 108px;
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 19px;
+                        color: #888;
+                        text-align: center;
+
+                        .txt_red {
+                            color: #f95139;
+                        }
+                    }
+                }
             }
         }
     }
@@ -153,24 +191,86 @@
 
             .best {
                 float: left;
-                width: 510px;
+                border-right: 1px solid #f1f1f1;
 
                 .best__link {
                     display: block;
-                    margin: 0 auto;
                 }
             }
 
             .planning {
-                width: 790px;
+                width: 600px;
+                margin: 0 auto;
+                height: 340px;
+                overflow: hidden;
+                position: relative;
+
+                .carousel_image_wrap {
+                    position: relative;
+                    top: 0;
+                    left: -600px; 
+                    overflow: hidden; 
+                    height: 340px; 
+                    width: 3000px;
+                    transition: left 0.3s ease-in-out;
+                }
+
+                .carousel_image_wrap::after {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
 
                 .planning__link {
-                    display: block;
+                    float: left;
                     margin: 0 auto;
                     width: 600px;
-
                 }
             }
+
+            .planning__left-btn {
+                position: absolute;
+                padding: 15px;
+                top: 140px;
+                left: -15px;
+                border: 0;
+                background-color: transparent;
+            }
+
+            .planning__left-btn::after {
+                content: "";
+                display: inline-block;
+                background: url(https://shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+                width: 23px;
+                height: 45px;
+                background-size: 260px 385px;
+                background-position: 0 0;
+            }
+
+            .planning__right-btn {
+                position: absolute;
+                padding: 15px;
+                top: 140px;
+                right: -15px;
+                border: 0;
+                background-color: transparent;
+            }
+
+            .planning__right-btn::after {
+                content: "";
+                display: inline-block;
+                background: url(https://shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+                width: 23px;
+                height: 45px;
+                background-size: 260px 385px;
+                background-position: -30px 0;
+            }
+        }
+
+        .banner::after {
+            content: "";
+            display: block;
+            clear: both;
         }
 
         img {
