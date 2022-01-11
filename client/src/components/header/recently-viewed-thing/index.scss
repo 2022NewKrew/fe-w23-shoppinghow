@@ -50,6 +50,11 @@
     }
   }
 
+  .modal-things-length {
+    color: var(--color-orange);
+    text-decoration: underline;
+  }
+
   .modal-description {
     display: flex;
     justify-content: space-between;
