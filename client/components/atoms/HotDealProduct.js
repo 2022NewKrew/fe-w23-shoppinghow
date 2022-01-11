@@ -1,6 +1,6 @@
 import { Component } from '@core';
 import { RecentlyViewedStore } from '@stores';
-import { $ } from '@utils';
+import { $, renderMoney } from '@utils';
 export class HotDealProduct extends Component {
   template() {
     const {
@@ -24,12 +24,22 @@ export class HotDealProduct extends Component {
             <strong class="product__title">${title}</strong>
 
             <span class="product__price">
-                <span class="txt__price">${price}<span class="txt__unit">원</span></span>
-                <span class="txt__originPrice">${originPrice}</span>
-                <span class="txt__discountPercent">
+                <span class="txt__price">${renderMoney(price)}<span class="txt__unit">원</span></span>
+                <span class="txt__originPrice">${renderMoney(originPrice)}</span>
+                ${
+                  type === 'percent'
+                    ? /* html */ `
+                  <span class="txt__discountPercent">
+                    ${text}<span class="txt__unit">%</span>
+                  </span>
+                `
+                    : /* html */ `
+                  <span class="txt__discountPercent txt__hotdeal">
                     ${text}
-                    ${type === 'percent' ? `<span class="txt__unit">%</span>` : ``}
-                </span>
+                  </span>
+                `
+                }
+
             </span>
         </a>
       </li>

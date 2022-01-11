@@ -37,6 +37,9 @@
   .product__title {
     display: block;
     margin-top: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .product__link:hover {
@@ -88,15 +91,19 @@
     .product__title {
       color: #333333;
       font-weight: bold;
+      font-size: 0.85rem;
     }
 
     .product__desc {
+      display: block;
+      margin-bottom: 0.5rem;
       color: #888;
       font-size: 0.75rem;
     }
 
     .product__themeIcon {
       $color: #ff000069;
+      align-self: flex-start;
       border: 0.5px solid $color;
       border-radius: 2px;
       color: $color;
@@ -116,6 +123,8 @@
   .product {
     .product__title {
       color: #555555;
+      font-size: 13px;
+      font-weight: 400;
     }
 
     .product__price {
@@ -145,6 +154,10 @@
         .txt__unit {
           font-size: 1rem;
         }
+      }
+
+      .txt__hotdeal {
+        font-size: 18px;
       }
     }
   }
