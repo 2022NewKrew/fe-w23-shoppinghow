@@ -5,16 +5,25 @@ export default class Item {
   constructor({ $parent, info, index }) {
     const item = document.createElement('li');
     item.className = 'item';
-    item.innerHTML = `
-        <a href="" class="item-link">
-           ${this.createHotItemName(info, index)}
-            <img src=${info.imageSrc} class="item-img" alt="상품 이미지">
-            <strong class="item-title">${this.createItemTitle(info)}</strong>
-            <span class="item-detail-price">
-                ${this.createPrice(info)}
-            </span>
-        </a>`;
+    this.info = info;
+    item.innerHTML = this.getFixedInitView(this.info, index);
+
+    item.addEventListener('click', this.addToRecentlyViewedThings.bind(this));
     $parent.appendChild(item);
+  }
+
+  addToRecentlyViewedThings() {
+    document.body.dispatchEvent(new CustomEvent('addToRecentlyViewedThing', { detail: this.info }));
+  }
+
+  getFixedInitView(info, index) {
+    return `
+        ${this.createHotItemName(info, index)}
+          <img src=${info.imageSrc} class="item-img" alt="상품 이미지">
+          <strong class="item-title">${this.createItemTitle(info)}</strong>
+          <span class="item-detail-price">
+              ${this.createPrice(info)}
+          </span>`;
   }
 
   createHotItemName(info, index) {
