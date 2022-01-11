@@ -2,8 +2,11 @@ import Component from "@core/Component";
 import PlanningItem from "@components/Contents/PlanningItem";
 import { throttling } from "@utils/eventUtils";
 import style from "@style/planning.module.scss";
+import { fetchData } from "@utils/apiUtils";
+import ProductContainer from "@components/Contents/ProductContainer";
 
 const CLICK_THROTTLING_DELAY = 300;
+const PLANNING_ITEM_LIST_DATA_URL = "http://localhost:3000/planningItems.json";
 
 class Planning extends Component {
   template() {
@@ -17,22 +20,20 @@ class Planning extends Component {
     `;
   }
 
-  mounted() {
+  async mounted() {
     const $planningItemList = this.$target.querySelector(
       `.${style["container"]}`
     );
     const $pageSlotList = this.$target.querySelector(
       `.${style["page-slot-list"]}`
     );
-    fetch("http://localhost:3000/planningItems.json")
-      .then((res) => res.json())
-      .then((planningItemList) => {
-        planningItemList.map((planningItem, idx) => {
-          new PlanningItem($planningItemList, { ...planningItem, idx });
-          $pageSlotList.innerHTML += `<span class=${style["page-slot"]} data-id="${idx}"></span>`;
-        });
-        this.initCarousel();
-      });
+
+    const planningItemList = await fetchData(PLANNING_ITEM_LIST_DATA_URL);
+    planningItemList.map((planningItem, idx) => {
+      new PlanningItem($planningItemList, { ...planningItem, idx });
+      $pageSlotList.innerHTML += `<span class=${style["page-slot"]} data-id="${idx}"></span>`;
+    });
+    this.initCarousel();
   }
 
   setEvent() {

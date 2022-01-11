@@ -1,18 +1,18 @@
 class Observerable {
-  #observerFuncs;
+  #observers;
   constructor() {
-    this.#observerFuncs = [];
+    this.#observers = [];
   }
-  subscribe(observerFunc) {
-    this.#observerFuncs.push(observerFunc);
+  subscribe(observer) {
+    this.#observers.push(observer);
   }
-  unsubscribe(observerFunc) {
-    this.#observerFuncs = this.#observerFuncs.filter(
-      (_observerFunc) => _observerFunc !== observerFunc
+  unsubscribe(observer) {
+    this.#observers = this.#observers.filter(
+      (_observer) => _observer !== observer
     );
   }
   notify(data) {
-    this.#observerFuncs.forEach((_observerFunc) => _observerFunc(data));
+    this.#observers.forEach((_observer) => _observer(data));
   }
 }
 

@@ -2,6 +2,9 @@ import Component from "@core/Component";
 import Promotion from "@components/Contents/Promotion";
 import ProductContainer from "@components/Contents/ProductContainer";
 import recentItemModel from "@models/RecentItemModel";
+import { fetchData } from "@utils/apiUtils";
+
+const PRODUCT_GROUP_LIST_DATA_URL = "http://localhost:3000/productGroups.json";
 
 class Contents extends Component {
   #productGroupList;
@@ -12,18 +15,14 @@ class Contents extends Component {
     `;
   }
 
-  mounted() {
+  async mounted() {
     const $container = this.$target.querySelector(".container");
     new Promotion($container);
-    fetch("http://localhost:3000/productGroups.json")
-      .then((res) => res.json())
-      .then((productGroupList) => {
-        this.#productGroupList = productGroupList;
-        productGroupList.map(
-          (productGroup, idx) =>
-            new ProductContainer($container, { idx, ...productGroup })
-        );
-      });
+    this.#productGroupList = await fetchData(PRODUCT_GROUP_LIST_DATA_URL);
+    this.#productGroupList.map(
+      (productGroup, idx) =>
+        new ProductContainer($container, { idx, ...productGroup })
+    );
   }
 
   setEvent() {

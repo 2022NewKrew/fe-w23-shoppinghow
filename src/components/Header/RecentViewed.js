@@ -18,9 +18,11 @@ class RecentViewed extends Component {
                   recentViewedItems.length
                 }</span>
             </div>
-            <div class="recent-items__products-wrapper">${recentViewedItems
-              .map((item) => "<img src=" + item.img + ">")
-              .join("")}
+            <div class="recent-items__products-wrapper">
+                <div class="recent-items__products-list">${recentViewedItems
+                  .map((item) => "<img src=" + item.img + ">")
+                  .join("")}
+                </div>
             </div>
             <button class="recent-items__clear-btn">비우기</button>
         </div>

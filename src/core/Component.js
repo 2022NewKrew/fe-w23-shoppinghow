@@ -1,22 +1,23 @@
-const getComponentId = (function () {
-  let componentId = 0;
-  return () => `component-${componentId++}`;
-})();
-
 class Component {
+  static componentId = 0;
+
   #componentId;
   $target;
   props;
   state;
 
   constructor($target, props = {}) {
-    this.#componentId = getComponentId();
+    this.#componentId = Component.generateComponentId();
     this.$target = $target;
     this.props = props; // props 할당
     this.setup();
     this.render();
     this.mounted(); // render 후에 mounted가 실행 된다.
     this.setEvent();
+  }
+
+  static generateComponentId() {
+    return `component-${this.componentId++}`;
   }
 
   setup() {}

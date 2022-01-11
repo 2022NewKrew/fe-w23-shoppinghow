@@ -149,16 +149,19 @@ $SearchHeight: 60px;
                     }
                 }
                 .recent-items__products-wrapper{
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    overflow-y: scroll;
-                    width: 100%;
                     height: 90%;
-                    img {
-                        margin: 2px;
-                        height: 115px;
-                        width: 115px;
+                    .recent-items__products-list{
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-start;
+                        flex-wrap: wrap;
+                        overflow-y: scroll;
+                        width: 100%;
+                        img {
+                            margin: 2px;
+                            height: 115px;
+                            width: 115px;
+                        }
                     }
                 }
                 .recent-items__clear-btn{

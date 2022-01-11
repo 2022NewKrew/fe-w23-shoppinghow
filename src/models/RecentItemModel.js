@@ -11,7 +11,7 @@ class RecentItemModel extends Observerable {
   }
 
   addRecentItem(item) {
-    if (this.recentItems.indexOf(item) !== -1) return;
+    if (this.recentItems.some((_item) => _item.title === item.title)) return;
     this.recentItems.push(item);
     this.updateLocalStorage();
     this.notify(this.recentItems);

@@ -1,5 +1,8 @@
 import Component from "@core/Component";
 import ThemeItem from "@components/Contents/ThemeItem";
+import { fetchData } from "@utils/apiUtils";
+
+const THEME_ITEM_LIST_DATA_URL = "http://localhost:3000/themeItems.json";
 
 class Theme extends Component {
   template() {
@@ -10,15 +13,10 @@ class Theme extends Component {
     `;
   }
 
-  mounted() {
+  async mounted() {
     const $themeItemList = this.$target.querySelector(".theme-container");
-    fetch("http://localhost:3000/themeItems.json")
-      .then((res) => res.json())
-      .then((themeItemList) => {
-        themeItemList.map(
-          (themeItem) => new ThemeItem($themeItemList, themeItem)
-        );
-      });
+    const themeItemList = await fetchData(THEME_ITEM_LIST_DATA_URL);
+    themeItemList.map((themeItem) => new ThemeItem($themeItemList, themeItem));
   }
 }
 
