@@ -6,22 +6,16 @@ export default class Component {
     this.$target = $target;
     this.props = props; // props 할당
     this.setup();
-    this.render();
     this.setEvent();
+    this.render();
+    this.afterRender();
     this.mounted(); // render 후에 mounted가 실행 된다.
   }
 
   setup() {}
 
-  // 자식 컴포넌트를 마운트
-  mounted() {}
-
   template() {
     return "";
-  }
-
-  render() {
-    this.$target.insertAdjacentHTML("beforeend", this.template());
   }
 
   // 이벤트 적용
@@ -43,4 +37,13 @@ export default class Component {
       options
     );
   }
+
+  render() {
+    this.$target.insertAdjacentHTML("beforeend", this.template());
+  }
+
+  afterRender() {}
+
+  // 자식 컴포넌트를 마운트
+  mounted() {}
 }

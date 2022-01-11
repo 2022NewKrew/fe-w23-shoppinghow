@@ -5,12 +5,17 @@ const data = require("../data/plannings.json");
 
 export default class Carousel extends Component {
   slideList;
+  element;
   setup() {
-    this.slideList = data.plannings;
+    this.createTemplate();
   }
 
-  template() {
-    return `
+  createTemplate() {
+    this.element = document.createElement("div");
+    this.slideList = data.plannings;
+    this.element.insertAdjacentHTML(
+      "beforeend",
+      `
       <div class="planning">
         <button class="planning__left-btn planning__btn"><</button>
         <div class="planning__lists__container">
@@ -55,12 +60,17 @@ export default class Carousel extends Component {
             .join("")}
         </div>
       </div>
-    `;
+      `
+    );
+  }
+
+  template() {
+    return this.element.innerHTML;
   }
 
   setEvent() {
-    const $page = this.$target.querySelector(".planning__pages").children;
-    const $list = this.$target.querySelector(".planning__lists").children;
+    const $page = this.element.querySelector(".planning__pages").children;
+    const $list = this.element.querySelector(".planning__lists").children;
 
     this.addEvent(
       "mouseover",
@@ -77,7 +87,7 @@ export default class Carousel extends Component {
 
     const slideList = require("../data/plannings.json").plannings;
 
-    let idx = Number(this.$target.querySelector(".cur-page").dataset.index);
+    let idx = Number(this.element.querySelector(".cur-page").dataset.index);
 
     this.addEvent(
       "click",

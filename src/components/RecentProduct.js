@@ -1,10 +1,16 @@
 import Component from "../core/Component.js";
 
 export default class RecentProduct extends Component {
-  setup() {}
+  element;
+  setup() {
+    this.createTemplate();
+  }
 
-  template() {
-    return `
+  createTemplate() {
+    this.element = document.createElement("div");
+    this.element.insertAdjacentHTML(
+      "beforeend",
+      `
             <div id="recent-product-container">
                 <div id="recent-product-menu">
                     <div id="recent-products">
@@ -16,21 +22,28 @@ export default class RecentProduct extends Component {
                 </div>
                 <div class="recent-product-items">
             </div>
-        `;
+    `
+    );
+  }
+  template() {
+    return this.element.innerHTML;
   }
 
   setEvent() {
-    const recentProductMenu = "#recent-product-menu";
+    const recentProductMenu = "#recent-product-btn";
     const recentProductContainer = "#recent-product-container";
 
-    const $recentProductContainer = document.getElementById(
-      "recent-product-container"
+    const $recentProductContainer = this.element.querySelector(
+      "#recent-product-container"
     );
 
     this.addEvent(
       "mouseenter",
       recentProductMenu,
       (e) => {
+        const $recentProductContainer = document.querySelector(
+          "#recent-product-container"
+        );
         $recentProductContainer.style.display = "block";
       },
       true
@@ -40,6 +53,9 @@ export default class RecentProduct extends Component {
       "mouseleave",
       recentProductContainer,
       (e) => {
+        const $recentProductContainer = document.querySelector(
+          "#recent-product-container"
+        );
         $recentProductContainer.style.display = "none";
       },
       true
