@@ -31,7 +31,7 @@ $button-padding: 20px;
 %card {
   min-width: 0;
   flex-grow: 1;
-  flex-basis: 0;
+  flex-basis: 20%;
   padding: 20px;
 }
 
@@ -87,5 +87,9 @@ textarea {
   -moz-user-modify: read-write;
   -webkit-user-modify: read-write;
   overflow-wrap: break-word;
-  -webkit-line-break: after-white-space;
+  line-break: after-white-space;
+}
+
+footer {
+  min-height: 50px;
 }

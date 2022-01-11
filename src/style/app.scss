@@ -237,6 +237,7 @@
         .theme-container {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
         }
         .theme-item {
             @extend %card;
@@ -322,7 +323,7 @@
     background-color: #f5f5f5;
     margin-top: 60px;
     padding-top: 25px;
-    
+
     &__header {
         display: flex;
         justify-content: space-between;
@@ -340,24 +341,64 @@
     &__body {
         @extend %section-layout;
         @extend %border-basic;
-        .picked-items {
+        .viewed-items {
             display: flex;
+            position: relative;
             justify-content: center;
+            border: 1px solid $weakGreyColor;
+            background-color: $bgColor;
             &__item {
+                padding: 10px;
                 flex-basis: 20%;
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
+                cursor: pointer;
+                &:hover {
+                    background-color: #eee;
+                }
+                &:not(:last-child) {
+                    border-right: 1px solid $weakGreyColor;
+                }
+            }
+            &__item-active {
+                background-color: #fff;
+                &:hover {
+                    background-color: #fff;
+                }
             }
             &__item-image {
                 flex: 2;
+                width: 30%;
             }
             &__item-title {
-                flex: 4;
-
+                padding: 5px;
+                flex: 3;
+                font-size: 0.9rem;
+            }
+            &__empty {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $weakGreyColor;
+                font-weight: bold;
+            }
+            & > button {
+                position: absolute;
+                cursor: pointer;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            &__left-btn {
+                left: 0;
+            }
+            &__right-btn {
+                right: 0;
             }
         }
         .recommendation-items {
-
+            display: flex;
+            justify-content: center;
+            border: none;
         }
     }
 }

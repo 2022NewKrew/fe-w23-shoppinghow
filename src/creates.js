@@ -1,11 +1,14 @@
-import axios from "axios";
-import fetchItemData from "./fetchItemData";
+import Carousel from "./component/Carousel";
+import dibsItemIdsModel from "./model/DibsItemIdsModel";
+import itemDataModel from "./model/ItemDataModel";
+import RecentItems from "./component/RecentItems";
+import Recommend from "./component/Recommend.js";
+import ThemeItem from "./component/ThemeItem";
+import Top10 from "./Top10";
 
-let itemData;
-
-function createsHotDealHtml(){
+function createHotDealHtml(){
   const container = document.querySelector(".hot-deal-list");
-  const hotdealItemTpl = `
+  const hotDealItemTpl = `
       <li class="hot-deal__item">
           <a href="" class="hot-deal__link">
               <span class="hot-deal__thumb">
@@ -21,67 +24,55 @@ function createsHotDealHtml(){
           </a>
       </li>`;
 
-  container.innerHTML = Array(10).fill(0).reduce( (html) => html+hotdealItemTpl, "");
+  container.innerHTML = Array(10).fill(0).reduce( (html) => html+hotDealItemTpl, "");
 }
 
-function createItemHtml({itemId, imageSrc, title, desc}){
-  return `
-  <li class="theme-item" data-itemId="${itemId}">
-    <a href="#" class="theme__link">
-      <span class="theme-item__info">
-        <img src="${imageSrc}" width="200" height="200" class="img_top" alt="${title}">
-      </span>
-      <strong class="theme-item__title">${title}</strong>
-      <span class="theme-item__desc">${desc}</span>
-    </a>
-    <div class="theme-item__icon">
-      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png">
-    </div>
-  </li>`;
-}
-// <img src="https://cdn-icons-png.flaticon.com/512/1076/1076984.png">
-
-function createItemsHtml(){
+async function createItemsHtml(){
   const container = document.querySelector(".theme-container");
-  const themeItemData=itemData.slice(0, 5);
+  const themeItemData=await itemDataModel.getData();
 
-  container.innerHTML=themeItemData.map(
-    (itemData)=>createItemHtml(itemData)
-  ).join("");
+  container.innerHTML=themeItemData.map((itemData)=>{
+    const dibsed=dibsItemIdsModel.isDibsedItem(itemData.itemId);
+    return new ThemeItem({...itemData, dibsed}).getHtml();
+  }).join("");
+}
 
-  container.addEventListener("click", (e)=>{
-    const itemId=e.target.closest("li").getAttribute("data-itemId");
-    if(itemId===null){
-      return;
-    }
-    if(e.target.closest(".theme-item__icon")!==null){
-      axios.post("/api/dibs/", {
-        itemId: itemId
-      });
-      return;
-    }
-    axios.post("/api/view/", {
-      itemId: itemId
-    });
+function createRecentItems(){
+  new RecentItems();
+}
+
+function createCarousel(){
+  const carouselContainer=document.querySelector(".planning");
+  const container=carouselContainer.querySelector(".planning__container");
+  const leftBtn=carouselContainer.querySelector(".planning__left-btn");
+  const rightBtn=carouselContainer.querySelector(".planning__right-btn");
+  const navigationUl=carouselContainer.querySelector(".planning__navigation-ul");
+  new Carousel(container, leftBtn, rightBtn, navigationUl, 3000);
+}
+
+function createTop10(){
+  const element=document.querySelector(".search-top10");
+  const input=document.querySelector(".search__input");
+  new Top10(element, input);
+}
+
+function createRecommend(){
+  const bodyElement=document.querySelector(".recommendation__body");
+  new Recommend(bodyElement);
+}
+
+function createAll(){
+  createHotDealHtml();
+  createRecentItems();
+  createCarousel();
+  createTop10();
+  createRecommend();
+
+  const themeContainer = document.querySelector(".theme-container");
+  ThemeItem.addClickEventListener(themeContainer);
+  dibsItemIdsModel.subscribe(()=>{
+    createItemsHtml();
   });
 }
 
-/**
- * @param {HTMLElement} container
- * @param {object} itemIds
- */
-function createRecentItems(container, itemIds){
-  container.innerHTML=Object.keys(itemIds).map((itemId)=>(
-    `<div class="recent-item"><img src="${itemData[Number(itemId)].imageSrc}">
-    </img></div>`
-  )).join("");
-}
-
-async function createAll(){
-  itemData=await fetchItemData();
-  createsHotDealHtml();
-  createItemsHtml();
-}
-createAll();
-
-export { createRecentItems };
+export { createAll };
