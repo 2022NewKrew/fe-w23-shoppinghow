@@ -133,7 +133,7 @@ $SearchHeight: 60px;
                 text-align: left;
                 display: flex;
                 flex-direction: column;
-                padding: 20px;
+                padding: 20px 10px 0 10px;
                 .recent-items__title-wrapper{
                     margin: 10px;
                     display: flex;
@@ -152,12 +152,21 @@ $SearchHeight: 60px;
                     display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
-                    overflow: hidden;
+                    overflow-y: scroll;
+                    width: 100%;
+                    height: 90%;
                     img {
                         margin: 2px;
                         height: 115px;
                         width: 115px;
                     }
+                }
+                .recent-items__clear-btn{
+                    text-align: center;
+                    margin: 10px 0 10px 0;
+                }
+                .recent-items__clear-btn:hover{
+                    color: grey;
                 }
             }
         }

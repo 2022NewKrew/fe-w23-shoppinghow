@@ -65,7 +65,7 @@ class Menu extends Component {
 
   handleMouseout(e) {
     const { toElement } = e;
-    if (!toElement.closest(".activate-recent-wrapper")) {
+    if (!toElement?.closest(".activate-recent-wrapper")) {
       this.inactivateRecentWrapper();
     }
   }

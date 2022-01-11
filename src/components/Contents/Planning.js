@@ -1,6 +1,6 @@
 import Component from "@core/Component";
 import PlanningItem from "@components/Contents/PlanningItem";
-import { throttling } from "@utils/eventutils";
+import { throttling } from "@utils/eventUtils";
 import style from "@style/planning.module.scss";
 
 const CLICK_THROTTLING_DELAY = 300;

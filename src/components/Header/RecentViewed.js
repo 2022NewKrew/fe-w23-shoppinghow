@@ -2,12 +2,9 @@ import Component from "@core/Component";
 import RecentItemModel from "@models/RecentItemModel";
 
 class RecentViewed extends Component {
-  recentItemModel;
-
   setup() {
-    this.recentItemModel = RecentItemModel;
     this.state = {
-      recentViewedItems: [],
+      recentViewedItems: RecentItemModel.getRecentItems(),
     };
   }
 
@@ -23,13 +20,30 @@ class RecentViewed extends Component {
             </div>
             <div class="recent-items__products-wrapper">${recentViewedItems
               .map((item) => "<img src=" + item.img + ">")
-              .join("")}</div>
+              .join("")}
+            </div>
+            <button class="recent-items__clear-btn">비우기</button>
         </div>
     `;
   }
 
   mounted() {
-    this.recentItemModel.subscribe(this.observeDataUpdate.bind(this));
+    RecentItemModel.subscribe(this.observeDataUpdate.bind(this));
+  }
+
+  setEvent() {
+    this.addEvent(
+      "click",
+      ".recent-items__wrapper",
+      this.handleMouseclick.bind(this)
+    );
+  }
+
+  handleMouseclick(e) {
+    const { target } = e;
+    if (target.classList.contains("recent-items__clear-btn")) {
+      RecentItemModel.clearRecentItems();
+    }
   }
 
   observeDataUpdate(recentViewedItems) {
