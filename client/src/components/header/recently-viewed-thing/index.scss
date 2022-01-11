@@ -23,11 +23,13 @@
   flex-direction: column;
   background-color: white;
   z-index: 1;
+
   .modal-title {
     font-size: 0.9rem;
   }
 
   .modal-main {
+    margin-top: 20px;
     height: 90%;
     width: 100%;
     display: flex;
@@ -35,6 +37,12 @@
 
     .modal-no-item {
       margin: auto;
+    }
+
+    img {
+      width: 32%;
+      height: 32%;
+      cursor: pointer;
     }
 
     .modal-highlight-span {
