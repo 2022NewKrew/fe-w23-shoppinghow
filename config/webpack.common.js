@@ -19,10 +19,6 @@ module.exports = {
   module: {
     rules: [
       {
-        include: path.resolve("node_modules"),
-        sideEffects: false,
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
