@@ -1,0 +1,10 @@
+.autocomplete__list {
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+  display: none;
+
+  .autocomplete__word {
+    cursor: pointer;
+  }
+}
