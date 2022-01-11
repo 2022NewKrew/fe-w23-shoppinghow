@@ -14,12 +14,16 @@ export class Header {
         fetch('../data/headerData.json')
             .then(response => response.json())
             .then(data => store.setState({
-                menu: data.menu
+                topMenuList: data.menu.topMenuList,
+                keywordList: data.menu.keywordList
             }));
     }
 
     template() {
-        const headerTpl = headerTemplate(store.state.menu);
+        const headerTpl = headerTemplate({
+            topMenuList: store.state.topMenuList,
+            keywordList: store.state.keywordList
+        });
         return headerTpl;
     }
 
