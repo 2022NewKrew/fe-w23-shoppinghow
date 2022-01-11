@@ -1,5 +1,6 @@
+import { createDom } from '@utils/createDom';
 import { searchTop10 } from '@components/header/search/searchTop10';
-import { renderBelowSearch } from '@components/header/search/renderBelowSearch';
+import { searchBelow } from '@components/header/search/searchBelow/searchBelow';
 
 const addFocusEvent = (formContainer) => {
     const top10 = formContainer.querySelector('.search-top10');
@@ -20,6 +21,11 @@ const addFocusEvent = (formContainer) => {
     });
 };
 
+const renderBelowSearch = ({ parent, inputValue, top10Data }) => {
+    parent.innerHTML = '';
+    parent.appendChild(searchBelow({ inputValue, top10Data }));
+};
+
 const renderSearchForm = (top10Data) => {
     const form = document.createElement('form');
     form.innerHTML = `
@@ -27,10 +33,12 @@ const renderSearchForm = (top10Data) => {
             <button class="search__icon">🔍</button>
         `;
     form.appendChild(searchTop10({ top10Data }));
-    renderBelowSearch({ parent: form, top10Data });
+    const searchBelow = createDom('div', { className: 'search-below' });
+    form.appendChild(searchBelow);
+    renderBelowSearch({ parent: searchBelow, top10Data });
 
     form.addEventListener('input', (e) => {
-        renderBelowSearch({ parent: form, inputValue: e.target.value, top10Data });
+        renderBelowSearch({ parent: searchBelow, inputValue: e.target.value, top10Data });
     });
 
     return form;

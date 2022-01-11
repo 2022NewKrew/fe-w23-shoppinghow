@@ -52,9 +52,8 @@
         }
     }
 
-    .search-blow {
+    .search-below {
         width: 670px;
-        height: 300px;
         border-radius: 10px;
         @extend %border-highlight;
         position: absolute;
@@ -62,11 +61,46 @@
         background-color: #fff;
         z-index: 2;
         visibility: hidden;
+
+        .search-below__container {
+            .search-below__section {
+                padding: 30px;
+                font-size: 15px;
+
+                .search-below__vertical-container {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+
+            .search-below__section--top10 {
+                @extend %grid-row-2;
+            }
+
+            .search-below__title {
+                color: $darkGray;
+                font-weight: bold;
+                font-size: 1rem;
+            }
+            .search-below__content {
+                padding-top: 10px;
+                .search-below__keyword {
+                    height: 40px;
+                    .rank-keyword__numbering {
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .search-below__recent-keyword {
+                padding: 5px;
+            }
+        }
     }
 
     .search.focus {
         @extend %border-highlight;
-        .search-blow {
+        .search-below {
             visibility: visible;
         }
     }

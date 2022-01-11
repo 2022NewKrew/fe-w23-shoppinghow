@@ -71,6 +71,15 @@ $button-padding: 20px;
     background-color: $bgColor;
 }
 
+%grid-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .hidden {
     visibility: hidden;
+}
+
+.grid-row-2 {
+    @extend %grid-row-2;
 }
