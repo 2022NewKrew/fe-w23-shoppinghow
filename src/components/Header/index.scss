@@ -116,7 +116,7 @@ $button-padding: 20px;
       display: flex;
 
       .private-menu__btn {
-          a {
+          .private-a {
             line-height: 59px;
             box-sizing: content-box;
             display: block;
@@ -180,4 +180,22 @@ $button-padding: 20px;
   height: 18px;
   background: #e3e3e3;
   margin: 18px 0 0;
+}
+
+.recent_items {
+  display: none;
+  position: absolute;
+  right: 2px;
+  top: 54px;
+  z-index: 10;
+  padding: 0 28px;
+  border: 1px solid #979797;
+  background-color: #fff;
+  text-align: left;
+}
+
+.show {
+  .recent_items {
+    display: block;
+  }
 }

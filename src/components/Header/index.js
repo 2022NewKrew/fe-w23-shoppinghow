@@ -1,5 +1,6 @@
 import Component from '../../core/Component.js';
 import './index.scss';
+import RecentItems from './RecentItems';
 
 export default class Header extends Component {
   template() {
@@ -60,17 +61,18 @@ export default class Header extends Component {
         </ul>
         <ul class="private-menu">
           <li class="private-menu__btn">
-            <a class="login" href="#">
+            <a class="private-a login" href="#">
               <span class="login_icon"></span>
               로그인
             </a>
           </li>
-          <li class="private-menu__btn">
-            <a class="recent_product" href="#">
+          <li class="private-menu__btn recently_viewed">
+            <a class="private-a recent_product" href="#">
               <span class="product_icon"></span>
               <span class="arrow"></span>
               최근본상품
             </a>
+            <div class="recent_items"></div>
           </li>
         </ul>
       </div>
@@ -78,5 +80,16 @@ export default class Header extends Component {
     `;
   }
 
-  setEvent() {}
+  mounted() {
+    const $recentItems = this.$('.recent_items');
+    new RecentItems($recentItems, {});
+  }
+
+  setEvent() {
+    const $recentlyViewed = this.$('.recently_viewed');
+    const showRecentItems = () => $recentlyViewed.classList.add('show');
+    const hideRecentItems = () => $recentlyViewed.classList.remove('show');
+    $recentlyViewed.addEventListener('mouseenter', showRecentItems);
+    $recentlyViewed.addEventListener('mouseleave', hideRecentItems);
+  }
 }

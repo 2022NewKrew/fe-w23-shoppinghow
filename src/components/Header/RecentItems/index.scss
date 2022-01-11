@@ -1,0 +1,121 @@
+.tab_list {
+  overflow: hidden;
+  padding: 26px 0 17px;
+  li {
+    float: left;
+    .tab_btn {
+      display: block;
+      height: 26px;
+      font-size: 14px;
+      color: #444;
+      box-sizing: border-box;
+      letter-spacing: -.05em;
+    }
+
+    .on {
+      border-bottom: 2px solid #4a4a4a;
+      font-weight: 700;
+    }
+  }
+  .my-selection {
+    margin-left: 38px;
+    .heart-icon {
+      display: inline-block;
+      width: 18px;
+      height: 15px;
+      margin: 1px 4px 0 0;
+      background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
+      background-size: 130px 90px;
+      background-position: -70px -60px;
+      vertical-align: top;
+    }
+  }
+}
+
+.no-product {
+  display: block;
+  width: 363px;
+  height: 255px;
+  padding-top: 108px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #888;
+  text-align: center;
+  letter-spacing: -.044em;
+  .emphasize {
+    color: #f95139;
+  }
+}
+
+.item-container {
+  overflow: hidden;
+  width: 363px;
+  height: 363px;
+
+  li {
+    float: left;
+    margin: 0 1px 1px 0;
+    a {
+      cursor: pointer;
+      img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  }
+}
+
+.login-info {
+  overflow: hidden;
+  height: 46px;
+  padding: 37px 0 23px;
+  box-sizing: content-box;
+
+  .my-info {
+    overflow: hidden;
+    float: left;
+    margin-top: 19px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 31px;
+    color: #444;
+    letter-spacing: -.044em;
+    max-width: 270px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+
+    .profile-image {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      margin-right: 6px;
+      img {
+        width: 28px;
+        height: 28px;
+        display: block;
+        border-radius: 28px;
+      }
+    }
+  }
+
+  .logout {
+    margin-top: 23px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #888;
+    float: right;
+    display: flex;
+
+    .power_icon {
+      display: inline-block;
+      margin-right: 6px;
+      width: 20px;
+      height: 18px;
+      background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
+      background-size: 130px 90px;
+      background-position: -90px -60px;
+    }
+  }
+}
