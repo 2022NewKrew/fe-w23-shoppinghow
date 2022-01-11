@@ -49,4 +49,8 @@ export default class SearchForm {
   getInputLength() {
     return this.searchInput.value.length;
   }
+
+  setInputValue(newData) {
+    this.searchInput.value = newData;
+  }
 }

@@ -35,6 +35,8 @@ export default class SearchContainer {
     if (e.target.className === 'recent-search-name__remove') {
       removeItemInLocalStroage('search-name', e.target.dataset.idx);
       this.refreshSearchNameState();
+    } else if (e.target.className === 'recent-search-name__item-name') {
+      this.searchForm.setInputValue(e.target.innerText);
     }
   }
 
