@@ -3,7 +3,7 @@ import { searchTemplate } from "./searchTemplate.js";
 import logoImage from '../../../../images/logo_shw_2021.png';
 
 
-export const headerTemplate = (searchListData, menuData) => {
+export const headerTemplate = (menuData) => {
     const logoTemplate = `
         <img class="title__img" src=${logoImage}>
     `;
@@ -11,7 +11,7 @@ export const headerTemplate = (searchListData, menuData) => {
     return `
         <div class="header-top">
             ${logoTemplate}
-            ${searchTemplate(searchListData)}
+            <div class="search"></div>
         </div>
         ${menuTemplate(menuData)}
     `;

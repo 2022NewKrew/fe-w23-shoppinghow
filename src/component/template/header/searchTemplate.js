@@ -18,14 +18,12 @@ export const searchTemplate = (searchList) => {
     `;
 
     return `
-        <div class="search">
-            <form>
-                <input type="text" class="search__input">
-                <button class="search__icon"></button>
-            </form>
-            <div class="search-top10-wrapper">
-                ${top10Template}
-            </div>
+        <form>
+            <input type="text" class="search__input">
+            <button class="search__icon"></button>
+        </form>
+        <div class="search-top10-wrapper">
+            ${top10Template}
         </div>
     `;
 } 
