@@ -131,14 +131,6 @@ a {
   background-position: 0 -30px;
 }
 
-.ico_user {
-  top: 13px;
-  left: 0;
-  width: 28px;
-  height: 28px;
-  background-position: -30px -30px;
-}
-
 .ico_products {
   top: 13px;
   left: 0px;
@@ -190,6 +182,26 @@ a {
   height: 15px;
   margin: 5px 4px 0 0;
   background-position: -70px -60px;
+}
+
+.ico_user {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  margin-right: 6px;
+  background-position: -30px -30px;
+  vertical-align: top;
+  text-indent: 0;
+}
+
+.ico_power {
+  width: 20px;
+  height: 18px;
+  background-position: -90px -60px;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: top;
+  position: static;
 }
 
 #kakaoHead {
@@ -357,6 +369,10 @@ a {
   text-align: left;
   position: relative;
 }
+.wrap_shwgnb .list_usergnb .loginWrap > a .ico_user {
+  top: 13px;
+  left: 0;
+}
 .wrap_shwgnb .list_usergnb .area_rcntproducts {
   position: relative;
 }
@@ -414,10 +430,50 @@ a {
   width: 363px;
   height: 363px;
 }
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .box_pannel .list_rcntproducts .txt_noproducts {
+  display: block;
+  width: 363px;
+  height: 255px;
+  padding-top: 108px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #888;
+  text-align: center;
+  letter-spacing: -0.044em;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .box_pannel .list_rcntproducts .txt_noproducts .emph_g {
+  color: #f95139;
+}
 .wrap_shwgnb .list_usergnb .wrap_rcntproducts .box_pannel .info_login {
   overflow: hidden;
-  height: 46px;
+  height: 106px;
   padding: 37px 0 23px;
+  display: flex;
+  justify-content: space-between;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .box_pannel .info_login .link_mypage {
+  margin-top: 19px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 31px;
+  color: #444;
+  letter-spacing: -0.044em;
+  max-width: 270px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .box_pannel .info_login .link_mypage .ico_user {
+  position: static;
+}
+.wrap_shwgnb .list_usergnb .wrap_rcntproducts .box_pannel .info_login .btn_login {
+  margin-top: 23px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #888;
+}
+.wrap_shwgnb .list_usergnb .on .wrap_rcntproducts {
+  display: block;
 }
 
 #kakaoMain {

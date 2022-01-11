@@ -164,6 +164,10 @@
       padding-left: 33px;
       text-align: left;
       position: relative;
+      .ico_user {
+        top: 13px;
+        left: 0;
+      }
     }
     .area_rcntproducts {
       position: relative;
@@ -176,7 +180,6 @@
       }
     }
     .wrap_rcntproducts {
-      // display: block;
       display: none;
       position: absolute;
       right: 2px;
@@ -223,13 +226,53 @@
           overflow: hidden;
           width: 363px;
           height: 363px;
+          .txt_noproducts {
+            display: block;
+            width: 363px;
+            height: 255px;
+            padding-top: 108px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #888;
+            text-align: center;
+            letter-spacing: -0.044em;
+            .emph_g {
+              color: #f95139;
+            }
+          }
         }
         .info_login {
           overflow: hidden;
-          height: 46px;
+          height: 106px;
           padding: 37px 0 23px;
+          display: flex;
+          justify-content: space-between;
+          .link_mypage {
+            margin-top: 19px;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 31px;
+            color: #444;
+            letter-spacing: -0.044em;
+            max-width: 270px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            .ico_user {
+              position: static;
+            }
+          }
+          .btn_login {
+            margin-top: 23px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            color: #888;
+          }
         }
       }
+    }
+    .on .wrap_rcntproducts {
+      display: block;
     }
   }
 }

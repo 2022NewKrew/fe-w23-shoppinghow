@@ -1,4 +1,5 @@
 import { $, createHTML } from "../../utils/dom";
+import RcntProducts from "./RcntProducts";
 
 const sample = {
   list_shwgnb: [
@@ -44,6 +45,7 @@ export default class Navigator {
       ${this.createShwusergnb()}
     </div>
     `;
+    new RcntProducts({ $app: $(".area_rcntproducts") });
     this.addEvent();
   }
 
@@ -100,42 +102,19 @@ export default class Navigator {
             최근본 상품
             <span class="ico_shwgnb ico_arrow"></span>
           </a>
-          <div class="wrap_rcntproducts">
-            <ul class="list_tab" role="tablist">
-              <li role="presentation" class="on">
-                <a href="#">
-                  <sapn class="txt_tab">
-                    최근 본 상품
-                    <span class="num_products">1</span>
-                  </sapn>
-                </a>
-              </li>
-              <li role="presentation">
-                <a href="#">
-                  <span class="ico_shwgnb ico_heart"></span>
-                  <sapn class="txt_tab">
-                    내가 찜한 상품
-                    <span class="num_products">0</span>
-                  </sapn>
-                </a>
-              </li>
-            </ul>
-            <div class="box_pannel">
-              <ul class="list_rcntproducts"></ul>
-              <div class="info_login"></div>
-            </div>
-          </div>
         </li>
       </ul>
     `;
   }
 
   addEvent() {
-    $(".area_rcntproducts").addEventListener("mouseover", (e) => {
-      $(".wrap_rcntproducts").style.display = "block";
+    const El = $(".area_rcntproducts");
+
+    El.addEventListener("mouseover", (e) => {
+      El.classList.add("on");
     });
-    $(".area_rcntproducts").addEventListener("mouseout", (e) => {
-      $(".wrap_rcntproducts").style.display = "none";
+    El.addEventListener("mouseout", (e) => {
+      El.classList.remove("on");
     });
   }
 }

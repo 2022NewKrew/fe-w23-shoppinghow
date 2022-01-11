@@ -20,14 +20,6 @@
   background-position: 0 -30px;
 }
 
-.ico_user {
-  top: 13px;
-  left: 0;
-  width: 28px;
-  height: 28px;
-  background-position: -30px -30px;
-}
-
 .ico_products {
   top: 13px;
   left: 0px;
@@ -73,4 +65,22 @@
   height: 15px;
   margin: 5px 4px 0 0;
   background-position: -70px -60px;
+}
+.ico_user {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  margin-right: 6px;
+  background-position: -30px -30px;
+  vertical-align: top;
+  text-indent: 0;
+}
+.ico_power {
+  width: 20px;
+  height: 18px;
+  background-position: -90px -60px;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: top;
+  position: static;
 }
