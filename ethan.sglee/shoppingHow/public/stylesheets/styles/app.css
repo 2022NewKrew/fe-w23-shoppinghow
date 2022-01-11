@@ -33,7 +33,7 @@ h1 {
 }
 
 .hidden {
-  display: hidden;
+  visibility: hidden;
 }
 
 .none {
@@ -117,9 +117,37 @@ h1 {
 .header-menu .private-menu {
   margin-left: auto;
   display: flex;
+  position: relative;
 }
 .header-menu .private-menu .private-menu__btn {
   padding: 20px;
+}
+.header-menu .private-menu .private-menu__recent-window {
+  position: absolute;
+  z-index: 100;
+  width: 360px;
+  height: 500px;
+  background-color: white;
+  top: 100%;
+  right: 0;
+  padding: 0 30px;
+}
+.header-menu .private-menu .private-menu__recent-window .private-menu__recent-bar .private-menu__recent-tab-container {
+  display: flex;
+}
+.header-menu .private-menu .private-menu__recent-window .private-menu__recent-bar .private-menu__recent-tab-container .private-menu__recent-tab {
+  text-align: center;
+  margin: 15px 5px 5px 5px;
+}
+.header-menu .private-menu .private-menu__recent-window .private-menu__recent-contents {
+  display: flex;
+  flex-wrap: wrap;
+}
+.header-menu .private-menu .private-menu__recent-window .private-menu__recent-contents .private-menu__recent-contents__item {
+  margin: 10px;
+  background-color: grey;
+  width: 80px;
+  height: 80px;
 }
 
 .gubun-bar {
@@ -149,10 +177,84 @@ h1 {
 .container .promotion .banner .planning {
   width: 790px;
 }
-.container .promotion .banner .planning .planning__link {
-  display: block;
+.container .promotion .banner .planning .planning__window {
+  width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+.container .promotion .banner .planning .planning__window .planning__link-container {
+  position: relative;
+  display: flex;
+  width: calc(3*600px);
+  flex-wrap: wrap;
+  left: -600px;
+}
+.container .promotion .banner .planning .planning__window .planning__link-container .planning__link {
+  display: none;
   margin: 0 auto;
   width: 600px;
+}
+.container .promotion .banner .planning .planning__window .planning__link-container .planning__link:nth-child(1) {
+  display: inline-block;
+}
+.container .promotion .banner .planning .planning__window .planning__link-container .planning__link:nth-child(2) {
+  display: inline-block;
+}
+.container .promotion .banner .planning .planning__window .planning__link-container .planning__link:nth-child(3) {
+  display: inline-block;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container {
+  position: absolute;
+  top: calc(100% - 50px);
+  width: 100%;
+  text-align: center;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__left-btn {
+  width: 35px;
+  height: 45px;
+  top: -14px;
+  position: absolute;
+  left: 150px;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__left-btn .planning__left-btn-icon {
+  display: inline-block;
+  background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+  background-position: -128px -335px;
+  width: 15px;
+  height: 25px;
+  pointer-events: none;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__right-btn {
+  width: 35px;
+  height: 45px;
+  top: -14px;
+  position: absolute;
+  right: 150px;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__right-btn .planning__right-btn-icon {
+  display: inline-block;
+  background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+  background-position: -145px -335px;
+  width: 15px;
+  height: 25px;
+  pointer-events: none;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__paging {
+  display: inline-block;
+  height: 15px;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__paging .planning__page {
+  display: inline-block;
+  padding: 5px 0px;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__paging .planning__page .planning__page-btn {
+  width: 15px;
+  height: 5px;
+  background-color: lightgray;
+}
+.container .promotion .banner .planning .planning__window .planning__btn-container .planning__paging .planning__page .planning__current {
+  background-color: gray;
 }
 .container .promotion img {
   margin: auto;
@@ -197,6 +299,9 @@ h1 {
   border-right: 1px solid #f1f1f1;
   border-bottom: 1px solid #f1f1f1;
 }
+.container .hot-deal .hot-deal-list .hot-deal__item a {
+  pointer-events: none;
+}
 .container .hot-deal .hot-deal__detail-price {
   margin-top: 20px;
   position: relative;
@@ -207,6 +312,53 @@ h1 {
   font-size: 1.1rem;
   line-height: 1.1rem;
   color: red;
+}
+
+/*https://elad2412.github.io/the-new-css-reset/*/
+/*** The new CSS Reset - version 1.4.2 (last updated 30.11.2021) ***/
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly. */
+:where([contenteditable]) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -15,10 +15,6 @@ module.exports = {
   module: {
     rules: [
       {
-        include: path.resolve("node_modules"),
-        sideEffects: false,
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
@@ -33,7 +29,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['js', 'json', 'ts'],
+    extensions: ['js', 'json'],
   },
   devtool: 'inline-source-map',
   plugins: [
@@ -42,6 +38,10 @@ module.exports = {
         template: 'views/index.html'
       }
     ),
-    new MiniCssExtractPlugin({ filename: 'css/style.css' }),
+    new MiniCssExtractPlugin(
+      { 
+        filename: 'css/style.css' 
+      }
+    ),
   ]
 };
