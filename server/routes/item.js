@@ -7,5 +7,6 @@ router.get('/', ItemController.getItems);
 router.get('/hot-items', ItemController.getHotItems);
 router.get('/hot-items-name', ItemController.getHotItemsName);
 router.get('/hot-deal', ItemController.getHotDealItems);
+router.get('/autocomplete', ItemController.getAutocompleteList);
 
 export default router;
