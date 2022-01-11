@@ -1,5 +1,6 @@
-import { $, createHTML } from "../../utils/dom";
+import { $, createHTML } from "../../../utils/dom";
 import RollKeyword from "./RollKeyword";
+import Suggestion from "./Suggestion";
 
 const sample = [
   "엔진코딩제",
@@ -35,6 +36,7 @@ export default class SearchBar {
         </form>
         `;
     this.createRollKeyword(keyword);
+    this.createSuggestion();
     this.addEvent();
   }
 
@@ -43,8 +45,13 @@ export default class SearchBar {
       $app: $(".wrap_shwsearch"),
       initialState: keyword,
     });
-    El.render();
-    El.carouselEvent(this.$target, keyword.length, 32, true);
+    El.init();
+  }
+  createSuggestion() {
+    const El = new Suggestion({
+      $app: $(".wrap_shwsearch"),
+      initalState: null,
+    });
   }
 
   addEvent() {
@@ -57,6 +64,7 @@ export default class SearchBar {
       () => {
         $(".frm_shwsearch").style.borderColor = "#f65b3d";
         $(".list_rollkeywords").style.display = "none";
+        $(".wrap_suggestion").style.display = "block";
       },
       true
     );
@@ -65,6 +73,7 @@ export default class SearchBar {
       () => {
         $(".frm_shwsearch").style.borderColor = "#cecfd1";
         $(".list_rollkeywords").style.display = "block";
+        $(".wrap_suggestion").style.display = "none";
       },
       true
     );

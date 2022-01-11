@@ -59,4 +59,9 @@ a {
   margin: 0 auto;
 }
 
+.num_rank {
+  margin-right: 15px;
+  font-weight: bold;
+}
+
 /*# sourceMappingURL=global.css.map */

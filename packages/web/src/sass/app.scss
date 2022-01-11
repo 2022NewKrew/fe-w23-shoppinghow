@@ -78,13 +78,51 @@
         color: #939393;
         text-overflow: ellipsis;
         white-space: nowrap;
-        span {
-          margin-right: 15px;
-          font-family: robotoitalic, Apple SD Gothic Neo;
-        }
       }
       :not(li:first-child) {
         margin-top: 10px;
+      }
+    }
+  }
+}
+
+.wrap_suggestion {
+  position: absolute;
+  left: 0;
+  top: 53px;
+  z-index: 10;
+  width: 100%;
+  border: 1px solid #f95139;
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: left;
+  .inner_suggestion {
+    overflow: hidden;
+    padding: 25px 29px 23px;
+    .tit_suggestion {
+      display: block;
+      padding-bottom: 5px;
+      font-size: 16px;
+      color: #a6a6a6;
+      letter-spacing: -0.04em;
+      font-weight: bold;
+    }
+    .list_keyword {
+      overflow: hidden;
+      float: left;
+      width: 50%;
+      padding-bottom: 6px;
+      li {
+        overflow: hidden;
+        height: 33px;
+        padding: 12px 15px 0 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        .link_keyword {
+          font-size: 14px;
+          letter-spacing: -0.05em;
+          color: #222;
+        }
       }
     }
   }

@@ -108,6 +108,11 @@ a {
   margin: 0 auto;
 }
 
+.num_rank {
+  margin-right: 15px;
+  font-weight: bold;
+}
+
 .ico_shwgnb {
   display: block;
   overflow: hidden;
@@ -283,12 +288,50 @@ a {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.wrap_shwsearch .wrap_rollkeywords ol li span {
-  margin-right: 15px;
-  font-family: robotoitalic, Apple SD Gothic Neo;
-}
 .wrap_shwsearch .wrap_rollkeywords ol :not(li:first-child) {
   margin-top: 10px;
+}
+
+.wrap_suggestion {
+  position: absolute;
+  left: 0;
+  top: 53px;
+  z-index: 10;
+  width: 100%;
+  border: 1px solid #f95139;
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: left;
+}
+.wrap_suggestion .inner_suggestion {
+  overflow: hidden;
+  padding: 25px 29px 23px;
+}
+.wrap_suggestion .inner_suggestion .tit_suggestion {
+  display: block;
+  padding-bottom: 5px;
+  font-size: 16px;
+  color: #a6a6a6;
+  letter-spacing: -0.04em;
+  font-weight: bold;
+}
+.wrap_suggestion .inner_suggestion .list_keyword {
+  overflow: hidden;
+  float: left;
+  width: 50%;
+  padding-bottom: 6px;
+}
+.wrap_suggestion .inner_suggestion .list_keyword li {
+  overflow: hidden;
+  height: 33px;
+  padding: 12px 15px 0 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wrap_suggestion .inner_suggestion .list_keyword li .link_keyword {
+  font-size: 14px;
+  letter-spacing: -0.05em;
+  color: #222;
 }
 
 #kakaoGnb {
