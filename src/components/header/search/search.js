@@ -1,5 +1,5 @@
 import { searchTop10 } from '@components/header/search/searchTop10';
-import { searchBelow } from '@components/header/search/searchBelow';
+import { renderBelowSearch } from '@components/header/search/renderBelowSearch';
 
 const addFocusEvent = (formContainer) => {
     const top10 = formContainer.querySelector('.search-top10');
@@ -26,8 +26,11 @@ const renderSearchForm = (top10Data) => {
             <button class="search__icon">🔍</button>
         `;
     form.appendChild(searchTop10({ top10Data }));
-    form.appendChild(searchBelow({ top10Data }));
-    form.addEventListener('input', () => {}); // TODO: observer pattern으로 통신하도록 구현
+    renderBelowSearch({ parent: form });
+
+    form.addEventListener('input', (e) => {
+        renderBelowSearch({ parent: form, inputValue: e.target.value });
+    });
 
     return form;
 };
