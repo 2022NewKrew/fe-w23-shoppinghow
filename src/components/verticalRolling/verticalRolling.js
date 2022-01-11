@@ -1,3 +1,5 @@
+import { rankKeyword } from '@components/rankKeyword';
+
 const ROLLING_INTERVAL_TIME = 3000;
 
 const appendFirstClone = (itemArray) => {
@@ -27,12 +29,8 @@ const addRollingAnimation = (container) => {
 };
 
 const renderItem = (title, index) => {
-    const item = document.createElement('div');
-    item.classList.add('vertical-rolling__item');
-    item.innerHTML = `
-        <span class="vertical-rolling__item--numbering">${index + 1}</span>
-        <div>${title}</div>
-    `;
+    const item = rankKeyword({ title, rank: index + 1 });
+    item.classList.add('top10__item');
     return item;
 };
 

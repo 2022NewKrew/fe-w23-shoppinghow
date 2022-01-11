@@ -42,6 +42,16 @@
         }
     }
 
+    .top10__item {
+        height: 30px;
+        color: $darkGray;
+        font-weight: 700;
+        .rank-keyword__numbering {
+            margin-right: 0px;
+            width: 30px;
+        }
+    }
+
     .search-blow {
         width: 670px;
         height: 300px;
@@ -277,5 +287,13 @@
                 }
             }
         }
+    }
+}
+
+.rank-keyword {
+    @extend %y-center-align;
+    .rank-keyword__numbering {
+        font-style: italic;
+        margin-right: 10px;
     }
 }

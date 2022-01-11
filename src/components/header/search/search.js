@@ -26,10 +26,10 @@ const renderSearchForm = (top10Data) => {
             <button class="search__icon">🔍</button>
         `;
     form.appendChild(searchTop10({ top10Data }));
-    renderBelowSearch({ parent: form });
+    renderBelowSearch({ parent: form, top10Data });
 
     form.addEventListener('input', (e) => {
-        renderBelowSearch({ parent: form, inputValue: e.target.value });
+        renderBelowSearch({ parent: form, inputValue: e.target.value, top10Data });
     });
 
     return form;
