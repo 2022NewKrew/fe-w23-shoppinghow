@@ -15,6 +15,7 @@ export default class PromotionPlanning extends Component {
     this.currentCarouselItem = 0;
     this.carouselList = null;
     this.carouselBtnList = null;
+    this.carouselBtnOn = false;
   }
   template() {
     const { planningList } = this.$state;
@@ -73,13 +74,21 @@ export default class PromotionPlanning extends Component {
     }
   }
   pagingNextClickHandler({ target }) {
-    if (target.classList.contains("promotion__planning--right-btn")) {
+    if (!this.carouselBtnOn && target.classList.contains("promotion__planning--right-btn")) {
+      this.carouselBtnOn = true;
       this.carousel.nextBtnClick();
+      setTimeout(() => {
+        this.carouselBtnOn = false;
+      }, this.carouselSpeed / 2);
     }
   }
   pagingPrevClickHandler({ target }) {
-    if (target.classList.contains("promotion__planning--left-btn")) {
+    if (!this.carouselBtnOn && target.classList.contains("promotion__planning--left-btn")) {
+      this.carouselBtnOn = true;
       this.carousel.prevBtnClick();
+      setTimeout(() => {
+        this.carouselBtnOn = false;
+      }, this.carouselSpeed / 2);
     }
   }
   mounted() {

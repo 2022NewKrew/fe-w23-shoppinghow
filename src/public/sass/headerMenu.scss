@@ -143,7 +143,12 @@
         }
         .private-menu__list {
           display: flex;
-          justify-content: space-around;
+          flex-wrap: wrap;
+          img {
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-top: 15px;
+          }
         }
       }
     }
