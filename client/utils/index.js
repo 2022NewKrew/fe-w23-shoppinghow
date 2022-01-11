@@ -1,1 +1,2 @@
-export * from './helper.js';
+export * from './domHelper';
+export * from './storageHelper';
