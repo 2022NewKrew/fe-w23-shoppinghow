@@ -175,26 +175,32 @@
       display: flex;
     }
   }
+
   .theme {
     .theme-container {
       display: flex;
     }
+
     .theme-item {
       @extend %card;
       border: 1px solid #f1f1f1;
     }
+
     .theme__link {
       display: block;
       strong,
       span {
         @extend %text-block;
       }
+
       .theme-item__title {
         font-weight: bold;
       }
+
       .theme-item__desc {
         padding-top: 0;
       }
+
       .theme-item__icon {
         border: 0.5px solid #ff000069;
         padding: 4px;
@@ -212,6 +218,7 @@
       padding-bottom: 20px;
       background-color: $bgColor;
     }
+
     .hot-deal__title,
     .hot-deal__detail-price {
       @extend %text-block;
@@ -220,6 +227,7 @@
     .hot-deal-list {
       display: flex;
       flex-wrap: wrap;
+
       .hot-deal__item {
         width: 20%;
         padding: 20px;
@@ -231,6 +239,7 @@
     .hot-deal__detail-price {
       margin-top: 20px;
       position: relative;
+
       .txt-price-percent {
         position: absolute;
         right: 10px;

@@ -16,6 +16,7 @@ const HOT_DEAL_ITEM_CNT = 10;
 
 // reference : https://velog.io/@wjddnjswjd12/javascript%EB%A1%9C-carousel-slide-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EA%B8%B0
 const makePlanningCarousel = () => {
+  const planningPaging = document.querySelector(".planning__paging");
   const planningList = document.querySelector(".planning-list");
   const planningItemArray = [
     document.querySelector(".planning-item__last-clone"),
@@ -24,16 +25,49 @@ const makePlanningCarousel = () => {
   ];
   const leftBtn = document.querySelector(".planning__left-btn");
   const rightBtn = document.querySelector(".planning__right-btn");
-  const planningPaging = document.querySelector(".planning__paging");
 
   let counter = 1;
   let size = planningItemArray[0].clientWidth;
 
+  /*
+  changePlanningPaging : carousel의 하단 '-' 모양 버튼을 클릭했을 때, 
+  클릭하기 이전 검은색으로 표시되어 있던 em 태그 노드를 회색 span 태그 노드로 변경하고, 
+  새롭게 검은색으로 표시해야 할 회색 span 태그 노드를 em 태그 노드로 변경하는 함수
+  */
+  const changePlanningPaging = (
+    spanNodeChildIdx,
+    spanNodeSearchValue,
+    spanNodeReplaceValue,
+    emNodeChildIdx,
+    emNodeSearchValue,
+    emNodeReplaceValue
+  ) => {
+    planningPaging.childNodes[spanNodeChildIdx].innerHTML =
+      PLANNING_PAGING_BTN_SPAN_NODE.replace(
+        spanNodeSearchValue,
+        spanNodeReplaceValue
+      );
+    planningPaging.childNodes[emNodeChildIdx].innerHTML =
+      PLANNING_PAGING_BTN_EM_NODE.replace(
+        emNodeSearchValue,
+        emNodeReplaceValue
+      );
+
+    return;
+  };
+
+  /*
+  changePlanningList : carousel 버튼의 onclick 이벤트 발생 시, 
+  transition 속성값을 변경하여 애니메이션을 적용하고
+  transform 속성값을 변경하여 화면을 전환하는 함수
+  */
   const changePlanningList = (transitionStr, newCounter) => {
     planningList.style.transition = transitionStr;
     counter = newCounter;
     planningList.style.transform =
       "translateX(" + -size * counter * PLANNING_LIST_TRANSFORM_RATE + "px)";
+
+    return;
   };
 
   planningList.style.transform =
@@ -44,12 +78,12 @@ const makePlanningCarousel = () => {
       return;
     }
 
-    planningPaging.childNodes[counter - 1].innerHTML =
-      PLANNING_PAGING_BTN_SPAN_NODE.replace(PAGING_NUM_MARK, counter);
-    planningPaging.childNodes[
+    changePlanningPaging(
+      counter - 1,
+      PAGING_NUM_MARK,
+      counter,
       (planningPaging.childElementCount + counter - 2) %
-        planningPaging.childElementCount
-    ].innerHTML = PLANNING_PAGING_BTN_EM_NODE.replace(
+        planningPaging.childElementCount,
       PAGING_NUM_MARK,
       counter - 1
     );
@@ -61,11 +95,11 @@ const makePlanningCarousel = () => {
       return;
     }
 
-    planningPaging.childNodes[counter - 1].innerHTML =
-      PLANNING_PAGING_BTN_SPAN_NODE.replace(PAGING_NUM_MARK, counter);
-    planningPaging.childNodes[
-      counter % planningPaging.childElementCount
-    ].innerHTML = PLANNING_PAGING_BTN_EM_NODE.replace(
+    changePlanningPaging(
+      counter - 1,
+      PAGING_NUM_MARK,
+      counter,
+      counter % planningPaging.childElementCount,
       PAGING_NUM_MARK,
       counter + 1
     );
@@ -84,10 +118,14 @@ const makePlanningCarousel = () => {
 
   planningPaging.childNodes.forEach((element, index) => {
     element.addEventListener("click", () => {
-      planningPaging.childNodes[counter - 1].innerHTML =
-        PLANNING_PAGING_BTN_SPAN_NODE.replace(PAGING_NUM_MARK, counter);
-      planningPaging.childNodes[index].innerHTML =
-        PLANNING_PAGING_BTN_EM_NODE.replace(PAGING_NUM_MARK, index + 1);
+      changePlanningPaging(
+        counter - 1,
+        PAGING_NUM_MARK,
+        counter,
+        index,
+        PAGING_NUM_MARK,
+        index + 1
+      );
       changePlanningList(PLANNING_LIST_TRANSITION_STR, index + 1);
     });
   });
