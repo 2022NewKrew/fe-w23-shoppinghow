@@ -1,0 +1,10 @@
+.floating-layer-benchmark {
+  position: relative;
+}
+
+.floating-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
