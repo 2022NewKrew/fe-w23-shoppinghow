@@ -55,18 +55,18 @@ export default class RecentAndTaggedGoodsTab extends Component {
     }
     
     update() {
-        this.#recentGoodsNumEl.innerText = recentlyViewedGoodsDataSetManager.dataList.length
-        this.#taggedGoodsNumEl.innerText = taggedGoodsDataSetManager.dataList.length
+        this.#recentGoodsNumEl.innerText = recentlyViewedGoodsDataSetManager.data.length
+        this.#taggedGoodsNumEl.innerText = taggedGoodsDataSetManager.data.length
         
         switch (this.#whatToShow) {
             case RecentAndTaggedGoodsTab.#RECENT_KEY:
-                this.#goodsListEl.innerHTML = this.#getGoodsListHTML(recentlyViewedGoodsDataSetManager.dataList)
+                this.#goodsListEl.innerHTML = this.#getGoodsListHTML(recentlyViewedGoodsDataSetManager.data)
                 this.#recentGoodsTabEl.classList.add(styles.selectedTabItem)
                 this.#taggedGoodsTabEl.classList.remove(styles.selectedTabItem)
                 break
             
             case RecentAndTaggedGoodsTab.#TAGGED_KEY:
-                this.#goodsListEl.innerHTML = this.#getGoodsListHTML(taggedGoodsDataSetManager.dataList)
+                this.#goodsListEl.innerHTML = this.#getGoodsListHTML(taggedGoodsDataSetManager.data)
                 this.#taggedGoodsTabEl.classList.add(styles.selectedTabItem)
                 this.#recentGoodsTabEl.classList.remove(styles.selectedTabItem)
                 break

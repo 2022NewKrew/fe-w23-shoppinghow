@@ -113,7 +113,7 @@ export default class RecentlyRelatedGoods extends Component {
         const selectedIdxInPage = this.#currentSelectedIdx % RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE
         const startIdxToShow = RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE * this.#currentPageIdx
         const endIdxToShow = RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE * (this.#currentPageIdx + 1)
-        const recentGoodsDataListToShow = recentlyViewedGoodsDataSetManager.dataList.slice(startIdxToShow, endIdxToShow)
+        const recentGoodsDataListToShow = recentlyViewedGoodsDataSetManager.data.slice(startIdxToShow, endIdxToShow)
         
         while (recentGoodsDataListToShow.length < RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE) {
             recentGoodsDataListToShow.push({})
