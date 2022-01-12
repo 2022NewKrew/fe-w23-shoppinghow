@@ -13,7 +13,7 @@ const addFocusEvent = (formContainer) => {
     });
 
     formContainer.addEventListener('mouseleave', () => {
-        const layerRemainTime = 500;
+        const layerRemainTime = 2000;
         setTimeout(() => {
             formContainer.classList.remove('focus');
             if (searchInput.value.length === 0) top10.classList.remove('hidden');

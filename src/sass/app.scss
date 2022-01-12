@@ -241,6 +241,10 @@
         @extend %section-layout;
         margin-top: 60px;
 
+        .goods-stall__link {
+            cursor: pointer;
+        }
+
         .section-title {
             @extend %h2-title;
         }

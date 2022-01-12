@@ -1,7 +1,7 @@
 import '@styles/libs/reset.css';
 import '@sass/app.scss';
 import PageRouter from '@utils/pageRouter';
-import { onLocationChangeHandler } from '@utils/changeLocation.js';
+import { onLocationChangeHandler, onProductClickHandler } from '@utils/customEventHandler';
 import { headerView } from '@components/headerView';
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -17,6 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const pageRouter = new PageRouter(mainContents);
     window.addEventListener('locationchange', (e) => onLocationChangeHandler(e, pageRouter));
     window.addEventListener('popstate', pageRouter.renderPage);
+    window.addEventListener('productClick', (e) => onProductClickHandler(e));
 
     pageRouter.renderPage();
 });

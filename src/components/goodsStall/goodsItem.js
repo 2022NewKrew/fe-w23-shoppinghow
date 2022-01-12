@@ -1,5 +1,6 @@
 import { createDom } from '@utils/createDom';
 import { priceTag } from '@components/priceTag.js';
+import { productClickEvent } from '@utils/customEvent';
 
 const renderSearchKeyword = (keyword) => {
     const target = createDom('div', { className: 'goods-stall__title' });
@@ -13,14 +14,14 @@ const renderItem = (type, hotDealTitle, { title, imgSrc, price }) => {
     const item = createDom('div');
     item.innerHTML = `
         <a href="" class="goods-stall__link">
-        <span class="goods-stall__thumb">
-            <img src=${imgSrc} class="goods-stall__img" alt="">
-        </span>
-        <strong class="goods-stall__title">${title}</strong>
+            <span class="goods-stall__thumb">
+                <img src=${imgSrc} class="goods-stall__img" alt="">
+            </span>
+            <strong class="goods-stall__title">${title}</strong>
 
-        <span class="goods-stall__detail-price">
-            <span class="txt-price-percent">${priceEvent}</span>
-        </span>
+            <span class="goods-stall__detail-price">
+                <span class="txt-price-percent">${priceEvent}</span>
+            </span>
         </a>
     `;
     const priceContainer = item.querySelector('.goods-stall__detail-price');
@@ -28,11 +29,21 @@ const renderItem = (type, hotDealTitle, { title, imgSrc, price }) => {
     return item;
 };
 
+const addClickEvent = (item, itemInfo) => {
+    const clickHandler = (e) => {
+        e.preventDefault();
+        window.dispatchEvent(productClickEvent(itemInfo));
+    };
+    item.addEventListener('click', (e) => clickHandler(e));
+};
+
 export const goodsItem = ({ type, goods }) => {
     const render = () => {
         const target = createDom('li', { className: 'goods-stall__item' });
         if (type === 'rising') target.appendChild(renderSearchKeyword(goods.searchKeyword));
-        target.appendChild(renderItem(type, goods.hotDealTitle, goods.product));
+        const item = renderItem(type, goods.hotDealTitle, goods.product);
+        addClickEvent(item, goods.product);
+        target.appendChild(item);
         return target;
     };
 

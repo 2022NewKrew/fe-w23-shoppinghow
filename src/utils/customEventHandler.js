@@ -1,8 +1,4 @@
-export const locationChangeEvent = (nextPath, title) =>
-    new CustomEvent('locationchange', {
-        composed: true, // 웹 컴포넌트
-        detail: { href: nextPath, title },
-    });
+import { locationChangeEvent } from '@utils/customEvent';
 
 // DOM element의 click 이벤트리스너로 사용될 콜백함수. locationChangeEvent를 디스패치한다.
 export const onLinkClickHandler = (nextPath, title = 'document') => {
@@ -17,4 +13,9 @@ export const onLocationChangeHandler = (e, router) => {
     const { href, title } = e.detail;
     window.history.pushState(undefined, title, href);
     router.renderPage();
+};
+
+export const onProductClickHandler = (e) => {
+    const { productInfo } = e.detail;
+    console.log(productInfo);
 };
