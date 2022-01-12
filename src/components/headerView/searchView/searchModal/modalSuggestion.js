@@ -1,7 +1,7 @@
 import { createDom } from '@utils/createDom';
 
 const recentKeyword = (title) => {
-    const keyword = createDom('div', { className: 'search-below__recent-keyword' });
+    const keyword = createDom('div', { className: 'search-modal__recent-keyword' });
     keyword.innerHTML = title;
 
     return keyword;
@@ -28,10 +28,10 @@ const renderContent = (dummyData) => {
 };
 
 export const modalSuggestion = () => {
-    const target = createDom('div', { className: 'search-below__container' });
+    const target = createDom('div', { className: 'search-modal__container' });
 
     const render = () => {
-        const suggestions = createDom('div', { className: 'search-below__section' });
+        const suggestions = createDom('div', { className: 'search-modal__section' });
         suggestions.appendChild(renderContent(dummyData));
 
         target.appendChild(suggestions);

@@ -4,7 +4,7 @@ import { modalRecent } from '@components/headerView/searchView/searchModal/modal
 import { modalSuggestion } from '@components/headerView/searchView/searchModal/modalSuggestion';
 
 const renderDefault = (top10Data) => {
-    const container = createDom('div', { className: 'search-below__container grid-row-2' });
+    const container = createDom('div', { className: 'search-modal__container grid-row-2' });
     container.append(modalRecent(), modalTop10(top10Data));
 
     return container;

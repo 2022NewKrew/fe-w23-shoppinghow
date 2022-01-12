@@ -33,7 +33,7 @@ const renderSearchForm = (top10Data) => {
             <button class="search__icon">🔍</button>
         `;
     form.appendChild(searchTop10({ top10Data }));
-    const searchModal = createDom('div', { className: 'search-below' });
+    const searchModal = createDom('div', { className: 'search-modal' });
     form.appendChild(searchModal);
     renderSearchModal({ parent: searchModal, top10Data });
 
