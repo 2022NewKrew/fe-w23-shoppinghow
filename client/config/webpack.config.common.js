@@ -9,6 +9,12 @@ module.exports = {
     path: path.resolve('./', 'dist'),
     filename: 'bundle.js',
   },
+  resolve: {
+    alias: {
+      extensions: ['.js'],
+      '@': path.resolve(__dirname, '../src/'),
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',

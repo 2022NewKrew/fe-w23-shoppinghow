@@ -1,8 +1,8 @@
 import { createHTML } from '../../utils/helper';
 import data from './data';
-import HeaderLogo from './components/headerTop/headerLogo';
-import SearchBar from './components/headerTop/searchBar';
-import NavBar from './components/headerBottom/navBar';
+import HeaderLogo from './headerTop/headerLogo';
+import SearchBar from './headerTop/searchBar';
+import NavBar from './headerBottom/navBar';
 import './header.scss';
 
 export default class Header {
@@ -17,6 +17,7 @@ export default class Header {
     this.topSearchWords = data.topSearchWords;
     this.$target = this.createTemplate();
     this.render();
+    NavBar;
   }
 
   render() {
