@@ -1,7 +1,7 @@
 import Component from "../core/Component";
+import data from "../data/searchTop10.json";
 
 const ROLLING_TIME = 2000;
-const data = require("../data/searchTop10.json");
 
 export default class Top10Input extends Component {
   slidePlaying;

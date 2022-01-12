@@ -1,6 +1,5 @@
 import Component from "../core/Component";
-
-const data = require("../data/themes.json");
+import data from "../data/themes.json";
 
 export default class Themes extends Component {
   template() {

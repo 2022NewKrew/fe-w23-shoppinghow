@@ -1,7 +1,6 @@
 import Component from "../core/Component";
 import { throttle } from "../utils/common";
-
-const data = require("../data/plannings.json");
+import data from "../data/plannings.json";
 
 export default class Carousel extends Component {
   slideList;

@@ -1,7 +1,6 @@
 import Component from "../core/Component";
 import Item from "./Item.js";
-
-const data = require("../data/hotdeals.json");
+import data from "../data/hotdeals.json";
 
 export default class Hotdeals extends Component {
   hotdealData;
