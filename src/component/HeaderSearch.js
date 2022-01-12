@@ -65,11 +65,13 @@ export class HeaderSearch {
         const inputHandler = () => {
             const query = $input.value;
             if(query == '') {
+                this.$searchWrapper.classList.remove('on_search');
                 store.setState({
                     searchResult: []
                 });
                 return;
             }
+            this.$searchWrapper.classList.add('on_search');
             fetch('../data/searchResult.json')
                 .then(response => response.json())
                 .then(data => data.filter(({text}) => text.search(query) !== -1)) // 서버쪽 연산 대신 하기

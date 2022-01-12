@@ -20,10 +20,13 @@ export class SearchResultView {
     }
 
     render() {
-        if(store.state.searchResult.length === 0) {
+        const list = [...store.state.searchResult];
+        if(list.length === 0) {
+            this.$itemContainer.innerHTML = `
+                <strong>검색 결과 없음</strong>
+            `;
             return;
         }
-        const list = [...store.state.searchResult];
         this.$itemContainer.innerHTML = resultListTemplate(list);
     }
 }

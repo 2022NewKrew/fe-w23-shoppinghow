@@ -94,14 +94,15 @@ strong {
 }
 
 .header-top .search .wrap_rolling {
+  display: none;
   position: absolute;
   width: 100%;
   height: 22px;
   overflow: hidden;
 }
 
-.header-top .search.focus .wrap_rolling {
-  display: none;
+.header-top .search.show_rolling .wrap_rolling {
+  display: block;
 }
 
 .header-top .search .search-top10 {
@@ -136,7 +137,15 @@ strong {
   text-align: left;
 }
 
-.header-top .search.focus .wrap_suggestion {
+.header-top .search.focus #suggestWrap {
+  display: block;
+}
+
+.header-top .search.on_search #suggestWrap {
+  display: none;
+}
+
+.header-top .search.focus.on_search #searchResultWrap {
   display: block;
 }
 
