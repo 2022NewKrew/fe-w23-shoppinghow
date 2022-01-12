@@ -3,19 +3,17 @@ import styles from '../../scss/ComponentStyles/Carousel.module.scss'
 
 export default class Carousel extends Component {
     
-    #bannerTemplate
-    #dataToShowList
+    #nBanner
     #drawBanner
     
     #currentIdx = 1
     
     #bannerListEl
     
-    #transitionDuration = 500
-    #bannerWidth = 500
+    #option
     
     
-    constructor(dataToShowList, option, bannerTemplate, drawBanner) {
+    constructor(nBanner, userOption, drawBanner) {
         super(`
             <div class="${ styles.carousel }">
                 <div class="${ styles.bannerContainer }">
@@ -26,11 +24,15 @@ export default class Carousel extends Component {
             </div>
         `)
         
-        this.#dataToShowList = dataToShowList
-        this.#bannerTemplate = bannerTemplate
-        this.#drawBanner = drawBanner
+        const defaultOption = {
+            bannerWidth: 500,
+            transitionDuration: 500
+        }
         
-        this.#applyOption(option)
+        this.#option = { ...defaultOption, ...userOption }
+        
+        this.#nBanner = nBanner
+        this.#drawBanner = drawBanner
         
         this.#bannerListEl = this.rootEl.querySelector(`.${ styles.bannerList }`)
         this.#bannerListEl.addEventListener('transitionend', this.#processAfterTransition.bind(this))
@@ -47,44 +49,30 @@ export default class Carousel extends Component {
     }
     
     
-    #applyOption(option) {
-        const bannerContainerEl = this.rootEl.querySelector(`.${ styles.bannerContainer }`)
-        
-        if (option.bannerWidth) {
-            bannerContainerEl.style.width = option.bannerWidth
-            this.#bannerWidth = option.bannerWidth
-        }
-        
-        if (option.transitionDuration) {
-            this.#transitionDuration = option.transitionDuration
-            this.#bannerListEl.style.transitionDuration = `${ this.#transitionDuration }ms`
-        }
-    }
-    
     #moveLeft() {
         if (this.#currentIdx > 0) {
             this.#currentIdx--
-            this.#bannerListEl.style.transitionDuration = `${ this.#transitionDuration }ms`
+            this.#bannerListEl.style.transitionDuration = `${ this.#option.transitionDuration }ms`
             this.#movePage()
         }
     }
     
     #moveRight() {
-        if (this.#currentIdx < this.#dataToShowList.length + 1) {
+        if (this.#currentIdx < this.#nBanner + 1) {
             this.#currentIdx++
-            this.#bannerListEl.style.transitionDuration = `${ this.#transitionDuration }ms`
+            this.#bannerListEl.style.transitionDuration = `${ this.#option.transitionDuration }ms`
             this.#movePage()
         }
     }
     
     #movePage() {
-        this.#bannerListEl.style.transform = `translateX(-${ this.#bannerWidth * this.#currentIdx }px)`
+        this.#bannerListEl.style.transform = `translateX(-${ this.#option.bannerWidth * this.#currentIdx }px)`
     }
     
     #processAfterTransition() {
         const leftExtraBannerIdx = 0
         const firstBannerIdx = 1
-        const lastBannerIdx = this.#dataToShowList.length
+        const lastBannerIdx = this.#nBanner
         const rightExtraBannerIdx = lastBannerIdx + 1
         
         if (this.#currentIdx === leftExtraBannerIdx || this.#currentIdx === rightExtraBannerIdx) {
@@ -100,40 +88,34 @@ export default class Carousel extends Component {
         }
     }
     
-    #createBannerItemEl(dataToShow) {
+    #createBannerItemEl(idx) {
         const bannerItemEl = document.createElement('li')
         bannerItemEl.classList.add(styles.bannerItem)
         
-        bannerItemEl.innerHTML = this.#bannerTemplate
-        this.#drawBanner(bannerItemEl, dataToShow)
+        this.#drawBanner(bannerItemEl, idx)
         
         return bannerItemEl
     }
     
     update() {
         const bannerContainerEl = this.rootEl.querySelector(`.${ styles.bannerContainer }`)
-        const nTotalBanner = this.#dataToShowList.length + 2
+        const nTotalBanner = this.#nBanner + 2
         const firstDataIdx = 0
-        const lastDataIdx = this.#dataToShowList.length - 1
+        const lastDataIdx = this.#nBanner - 1
         
-        bannerContainerEl.style.width = `${ this.#bannerWidth }px`
+        bannerContainerEl.style.width = `${ this.#option.bannerWidth }px`
         
-        this.#bannerListEl.style.transitionDuration = `${ this.#transitionDuration }ms`
-        this.#bannerListEl.style.width = `${ this.#bannerWidth * nTotalBanner }px`
+        this.#bannerListEl.style.transitionDuration = `${ this.#option.transitionDuration }ms`
+        this.#bannerListEl.style.width = `${ this.#option.bannerWidth * nTotalBanner }px`
         this.#bannerListEl.innerHTML = ''
         
-        this.#bannerListEl.appendChild(this.#createBannerItemEl(this.#dataToShowList[lastDataIdx]))
-        this.#dataToShowList.forEach((dataToShow) => {
-            this.#bannerListEl.appendChild(this.#createBannerItemEl(dataToShow))
+        this.#bannerListEl.appendChild(this.#createBannerItemEl(lastDataIdx))
+        Array.from(new Array(this.#nBanner)).forEach((_, idx) => {
+            this.#bannerListEl.appendChild(this.#createBannerItemEl(idx))
         })
-        this.#bannerListEl.appendChild(this.#createBannerItemEl(this.#dataToShowList[firstDataIdx]))
+        this.#bannerListEl.appendChild(this.#createBannerItemEl(firstDataIdx))
         
         this.#movePage()
-    }
-    
-    set dataToShowList(dataToShowList) {
-        this.#dataToShowList = dataToShowList
-        this.update()
     }
     
 }

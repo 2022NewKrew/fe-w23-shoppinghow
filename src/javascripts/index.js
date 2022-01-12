@@ -10,12 +10,7 @@ import Carousel from './Components/Carousel'
 
 
 window.addEventListener('DOMContentLoaded', () => {
-    const headerTopEl = document.querySelector('.header-top')
-    const privateMenuEl = document.querySelector('.private-menu')
-    const planningEl = document.querySelector('.planning')
-    const rollingText = new InputWithTopRankingGoods()
-    const recentGoodsButton = new RecentGoodsButton()
-    const carousel = new Carousel([
+    const carouselBannerDatas = [
         {
             imgSrc: 'https://shop1.daumcdn.net/shophow/sib/0_211220170341_jWeJLlFasaenGPphwNUmbgwjYAYnokrT'
         },
@@ -25,14 +20,25 @@ window.addEventListener('DOMContentLoaded', () => {
         {
             imgSrc: 'https://shop3.daumcdn.net/shophow/sib/0_211220170326_LOzjVdlUokksfcRxZkmDpxPuLdsooFoW'
         }
-    ], {
-        bannerWidth: 600
-    }, `
+    ]
+    
+    const bannerTemplate = `
         <img class="banner-img">
-    `, (bannerItemEl, dataToShow) => {
-        const bannerImg = bannerItemEl.querySelector('.banner-img')
+    `
+    
+    const headerTopEl = document.querySelector('.header-top')
+    const privateMenuEl = document.querySelector('.private-menu')
+    const planningEl = document.querySelector('.planning')
+    const rollingText = new InputWithTopRankingGoods()
+    const recentGoodsButton = new RecentGoodsButton()
+    const carousel = new Carousel(carouselBannerDatas.length, {
+        bannerWidth: 600
+    }, (bannerItemEl, bannerIdx) => {
+        bannerItemEl.innerHTML = bannerTemplate
         
-        bannerImg.src = dataToShow.imgSrc
+        const bannerImgEl = bannerItemEl.querySelector('.banner-img')
+        
+        bannerImgEl.src = carouselBannerDatas[bannerIdx].imgSrc
     })
     
     const target = document.querySelector('.container-wrapper')
