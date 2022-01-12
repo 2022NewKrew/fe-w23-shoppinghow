@@ -19,15 +19,12 @@ export default class Navigator {
   }
 
   async dataFetch() {
-    const {
-      isError,
-      data: { list_shwgnb, list_kwordgnb },
-    } = await Service.getNavigator();
-    this.setState({ list_shwgnb, list_kwordgnb });
+    const { isError, data } = await Service.getNavigator();
+    this.setState(data);
   }
 
   setState(newState) {
-    this.state = { ...newState };
+    this.state = newState;
     this.render();
   }
 

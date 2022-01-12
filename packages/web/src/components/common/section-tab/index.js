@@ -15,6 +15,7 @@ export default class SectionTab {
   }
   render() {
     const { title, data } = this.state;
+
     this.$target.innerHTML = `
         <div class="tit_info"><h3>${title}</h3></div>
         <div class="cont_item">

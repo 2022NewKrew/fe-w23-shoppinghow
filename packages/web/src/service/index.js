@@ -3,6 +3,9 @@ const API_ENDPOINT = "http://localhost:3000/api/v1";
 const ROLLKEYWORD = "rollkeyword";
 const SUGGESTION = "suggestion";
 const NAVIGATOR = "navigator";
+const MARTICLE = "marticle";
+const HOTDEAL = "hotdeal";
+const HOTKEYWORD = "hotkeyword";
 
 const request = async (url) => {
   const response = await fetch(url);
@@ -46,5 +49,14 @@ export default class Service {
   }
   static async getNavigator() {
     return Service.dataFetch(NAVIGATOR);
+  }
+  static async getMArticle() {
+    return Service.dataFetch(MARTICLE);
+  }
+  static async getHotDeal() {
+    return Service.dataFetch(HOTDEAL);
+  }
+  static async getHotKeyword() {
+    return Service.dataFetch(HOTKEYWORD);
   }
 }

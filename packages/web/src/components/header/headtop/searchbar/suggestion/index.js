@@ -25,7 +25,7 @@ export default class Suggestion {
   }
 
   setState(newState) {
-    this.state = { ...newState };
+    this.state = newState;
     this.render();
   }
 

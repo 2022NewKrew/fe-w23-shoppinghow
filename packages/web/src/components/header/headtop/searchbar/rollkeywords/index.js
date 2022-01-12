@@ -16,15 +16,12 @@ export default class RollKeyword {
   }
 
   async dataFetch() {
-    const {
-      isError,
-      data: { rollkeyword },
-    } = await Service.getRollKeyword();
-    this.setState({ rollkeyword });
+    const { isError, data } = await Service.getRollKeyword();
+    this.setState(data);
   }
 
   setState(newState) {
-    this.state = { ...newState };
+    this.state = newState;
     this.render();
   }
 

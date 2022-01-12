@@ -18,4 +18,19 @@ APIRouter.get("/navigator", (req, res) => {
   return res.send(data);
 });
 
+APIRouter.get("/marticle", (req, res) => {
+  const data = Service.getMArticle();
+  return res.send(data);
+});
+
+APIRouter.get("/hotdeal", (req, res) => {
+  const data = Service.getHotDeal();
+  return res.send(data);
+});
+
+APIRouter.get("/hotkeyword", (req, res) => {
+  const data = Service.getHotKeyword();
+  return res.send(data);
+});
+
 export default APIRouter;

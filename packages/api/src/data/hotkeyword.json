@@ -1,0 +1,95 @@
+{
+  "title": "쇼핑 급상승 키워드",
+  "data": [
+    {
+      "title": "만두",
+      "thumb": "assets/images/hotkeyword1.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": null,
+        "isHotDeal": true
+      }
+    },
+    {
+      "title": "잠바",
+      "thumb": "assets/images/hotkeyword2.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": null,
+        "isHotDeal": true
+      }
+    },
+    {
+      "title": "가발",
+      "thumb": "assets/images/hotkeyword3.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": null,
+        "isHotDeal": true
+      }
+    },
+    {
+      "title": "롱패딩",
+      "thumb": "assets/images/hotkeyword4.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "콩",
+      "thumb": "assets/images/hotkeyword5.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "덮밥",
+      "thumb": "assets/images/hotkeyword6.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "오징어",
+      "thumb": "assets/images/hotkeyword7.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "그릇",
+      "thumb": "assets/images/hotkeyword8.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "신발",
+      "thumb": "assets/images/hotkeyword9.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "마스크",
+      "thumb": "assets/images/hotkeyword10.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    }
+  ]
+}

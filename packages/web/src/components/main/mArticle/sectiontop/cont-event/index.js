@@ -1,5 +1,6 @@
-import { createHTML } from "src/utils/dom";
 import EvtSlide from "src/components/main/mArticle/sectiontop/cont-event/evtslide";
+
+import { createHTML } from "src/utils/dom";
 
 import "./index.scss";
 
@@ -12,6 +13,7 @@ export default class ContEvent {
 
     this.render();
   }
+
   render() {
     const { evtItemUrl, evtSlide } = this.state;
 

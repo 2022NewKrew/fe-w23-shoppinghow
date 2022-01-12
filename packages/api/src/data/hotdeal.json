@@ -1,0 +1,95 @@
+{
+  "title": "품절주의! 역대급 핫딜",
+  "data": [
+    {
+      "title": "후드",
+      "thumb": "assets/images/hotdeal1.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": null,
+        "isHotDeal": true
+      }
+    },
+    {
+      "title": "신발",
+      "thumb": "assets/images/hotdeal2.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": null,
+        "isHotDeal": true
+      }
+    },
+    {
+      "title": "신발",
+      "thumb": "assets/images/hotdeal3.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": null,
+        "isHotDeal": true
+      }
+    },
+    {
+      "title": "속옷",
+      "thumb": "assets/images/hotdeal4.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "물티슈",
+      "thumb": "assets/images/hotdeal5.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "잠옷",
+      "thumb": "assets/images/hotdeal6.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "수분크림",
+      "thumb": "assets/images/hotdeal7.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "만두",
+      "thumb": "assets/images/hotdeal8.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "가발",
+      "thumb": "assets/images/hotdeal9.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    },
+    {
+      "title": "오징어",
+      "thumb": "assets/images/hotdeal10.jpg",
+      "priceInfo": {
+        "price": 3000,
+        "percent": 20,
+        "isHotDeal": false
+      }
+    }
+  ]
+}
