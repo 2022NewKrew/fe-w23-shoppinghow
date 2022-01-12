@@ -1,5 +1,6 @@
 import Component from '../../../../../core/Component';
 import './index.scss';
+import { deleteItem } from '../../../../../utils/localStorage';
 
 export default class RecentKeywords extends Component {
   setup() {
@@ -38,30 +39,12 @@ export default class RecentKeywords extends Component {
     `;
   }
 
-  getPastKeywords() {
-    try {
-      return JSON.parse(localStorage.getItem('search'));
-    } catch {
-      return [];
-    }
-  }
-
-  deleteKeyword(keyword) {
-    let searchedBefore = this.getPastKeywords();
-    const index = searchedBefore.indexOf(keyword);
-    if (searchedBefore.indexOf(keyword) > -1) {
-      searchedBefore.splice(index, 1);
-    }
-    localStorage.setItem('search', JSON.stringify(searchedBefore));
-    return searchedBefore;
-  }
-
   setEvent() {
     const $deleteBtns = this.$target.getElementsByClassName('removal_button');
     [...$deleteBtns].forEach((button, index) => {
       const keywordToDelete = this.$state.keywords[index];
       button.addEventListener('click', () =>
-        this.setState({ keywords: this.deleteKeyword(keywordToDelete) })
+        this.setState({ keywords: deleteItem('search', keywordToDelete) })
       );
     });
   }

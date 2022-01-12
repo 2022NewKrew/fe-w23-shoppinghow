@@ -1,5 +1,9 @@
 import Component from '../../../../core/Component';
 import RecentKeywords from './recentKeywords';
+import {
+  getLocalStorageList,
+  addNewItem,
+} from '../../../../utils/localStorage';
 import './index.scss';
 
 export default class Suggestion extends Component {
@@ -46,28 +50,11 @@ export default class Suggestion extends Component {
     `;
   }
 
-  getPastKeywords() {
-    try {
-      return JSON.parse(localStorage.getItem('search'));
-    } catch {
-      return [];
-    }
-  }
-
-  addNewKeyword(keyword) {
-    let searchedBefore = this.getPastKeywords();
-    const index = searchedBefore.indexOf(keyword);
-    if (searchedBefore.indexOf(keyword) > -1) {
-      searchedBefore.splice(index, 1);
-    }
-    const newKeywords = [keyword, ...searchedBefore];
-    localStorage.setItem('search', JSON.stringify(newKeywords));
-    return newKeywords;
-  }
-
   mounted() {
     const $suggestionRecent = this.$('.suggestion_recent');
-    new RecentKeywords($suggestionRecent, { keywords: this.getPastKeywords() });
+    new RecentKeywords($suggestionRecent, {
+      keywords: getLocalStorageList('search'),
+    });
   }
 
   setEvent() {
@@ -75,10 +62,11 @@ export default class Suggestion extends Component {
       this.$target.getElementsByClassName('keyword_anchor');
     const $suggestionRecent = this.$('.suggestion_recent');
     [...keywordAnchors].forEach((keyword, index) => {
-      const keywordToStore = this.$props.keywords[index];
+      const keywordToSearch = this.$props.keywords[index];
       keyword.addEventListener('click', () => {
+        alert(`${keywordToSearch} 를 검색합니다`);
         new RecentKeywords($suggestionRecent, {
-          keywords: this.addNewKeyword(keywordToStore),
+          keywords: addNewItem('search', keywordToSearch),
         });
       });
     });

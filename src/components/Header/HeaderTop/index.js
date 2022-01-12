@@ -1,6 +1,7 @@
 import Component from '../../../core/Component';
 import RollingKeywords from './RollingKeywords';
 import Suggestion from './Suggestion';
+import { addNewItem } from '../../../utils/localStorage';
 import './index.scss';
 
 export default class HeaderTop extends Component {
@@ -51,6 +52,7 @@ export default class HeaderTop extends Component {
     const $rollingKeywords = this.$('.rolling_keywords');
     const $search = this.$('.search');
     const $suggestion = this.$('.suggestion_wrapper');
+    const $searchBtn = this.$('.search_btn');
     const showSuggestion = () => {
       $rollingKeywords.style.display = 'none';
       $search.style.border = '1px solid #f95139';
@@ -74,8 +76,23 @@ export default class HeaderTop extends Component {
         $search.style.border = '1px solid #f95139';
       }
     };
+
+    const search = (e) => {
+      e.preventDefault();
+      const keyword = $searchInput.value;
+      addNewItem('search', keyword);
+      const $suggestion = this.$('.suggestion_wrapper');
+      new Suggestion($suggestion, { keywords: this.$state.keywords });
+      alert(`${keyword} 를 검색합니다`);
+      $searchInput.value = '';
+    };
+
     $searchInput.addEventListener('focus', showSuggestion);
     $search.addEventListener('mouseleave', onMouseLeave);
     $searchInput.addEventListener('input', onInput);
+    $searchBtn.addEventListener('click', search);
+    $searchInput.addEventListener('keypress', (e) =>
+      e.key === 'Enter' ? search : null
+    );
   }
 }
