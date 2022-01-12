@@ -181,6 +181,10 @@ strong {
   font-style: italic;
 }
 
+.wrap_suggestion .inner_suggestion .list_result .highlight {
+  color: #f95139;
+}
+
 .header-menu {
   height: 55px;
   display: flex;

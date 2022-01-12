@@ -21,12 +21,13 @@ export class SearchResultView {
 
     render() {
         const list = [...store.state.searchResult];
-        if(list.length === 0) {
+        const query = store.state.searchQuery.text;
+        if(list.length === 0 || query === '') {
             this.$itemContainer.innerHTML = `
                 <strong>검색 결과 없음</strong>
             `;
             return;
         }
-        this.$itemContainer.innerHTML = resultListTemplate(list);
+        this.$itemContainer.innerHTML = resultListTemplate(list, query);
     }
 }

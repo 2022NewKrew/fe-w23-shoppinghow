@@ -21,6 +21,7 @@ export const store = new Store({
     top10: [],
     recentWord: [],
     searchResult:[],
+    searchQuery: { text: ''},
     topMenuList: [],
     keywordList: [],
 })

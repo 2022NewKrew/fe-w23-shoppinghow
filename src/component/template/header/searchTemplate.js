@@ -37,11 +37,13 @@ export const searchResultTemplate = () => `
     </div>
 `;
 
-export const resultItemTemplate = ({text}) => `
-    <li>${text}</li>
+export const resultItemTemplate = ({text}, query) => `
+    <li>
+        ${text.replaceAll(query, `<span class="highlight">${query}</span>`)}
+    </li>
 `;
 
-export const resultListTemplate = (list) => list.reduce(
-    (html, item) => html + resultItemTemplate(item),
+export const resultListTemplate = (list, query) => list.reduce(
+    (html, item) => html + resultItemTemplate(item, query),
     ''
 );

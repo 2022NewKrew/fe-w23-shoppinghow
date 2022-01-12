@@ -67,7 +67,8 @@ export class HeaderSearch {
             if(query == '') {
                 this.$searchWrapper.classList.remove('on_search');
                 store.setState({
-                    searchResult: []
+                    searchQuery: {text: ''},
+                    searchResult: [],
                 });
                 return;
             }
@@ -76,7 +77,8 @@ export class HeaderSearch {
                 .then(response => response.json())
                 .then(data => data.filter(({text}) => text.search(query) !== -1)) // 서버쪽 연산 대신 하기
                 .then(filteredData => store.setState({
-                    searchResult: filteredData
+                    searchQuery: {text: query},
+                    searchResult: filteredData,
                 }));
         }
         debounceEvent({
