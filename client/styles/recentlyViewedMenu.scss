@@ -1,10 +1,5 @@
 .recentlyViewedMenu {
   position: relative;
-
-  .on {
-    opacity: 1;
-    visibility: inherit;
-  }
 }
 
 .recentlyViewedMenu__modal {
@@ -25,6 +20,11 @@
     font-weight: 700;
     color: #444;
   }
+}
+
+.recentlyViewedMenu__modal--show {
+  opacity: 1;
+  visibility: inherit;
 }
 
 .recentlyViewedMenu__productList {
