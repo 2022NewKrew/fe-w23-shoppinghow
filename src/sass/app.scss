@@ -121,7 +121,7 @@ $SearchHeight: 60px;
         .activate-private-wrapper{
             position: relative;
             .private-float-layer{
-                //visibility: hidden;
+                visibility: hidden;
                 position:absolute;
                 width:400px;
                 height:500px;
@@ -139,9 +139,11 @@ $SearchHeight: 60px;
                     .private-items__title-wrapper{
                         padding: 10px;
                         margin: 0 3px 0 3px;
+                        border-bottom: 2px solid;
+                        border-color: transparent;
                     }
                     .private-items__title-wrapper:hover{
-                        border-bottom: 2px solid #888888;
+                        border-color: #888888;
                     }
                 }
 

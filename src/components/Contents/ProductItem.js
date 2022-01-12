@@ -1,4 +1,5 @@
 import Component from "@core/Component";
+import pickedItemModel from "@models/PickedItemModel";
 
 class ProductItem extends Component {
   template() {
@@ -32,7 +33,11 @@ class ProductItem extends Component {
                     }
                 </span>
             </a>
-            <div class="product__pick-btn"></div>
+            <div class="product__pick-btn ${
+              pickedItemModel.isItemPicked(this.props)
+                ? "pick-btn-activated"
+                : ""
+            }"></div>
         </li>
     `;
   }

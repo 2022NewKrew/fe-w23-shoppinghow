@@ -18,13 +18,6 @@ class ItemModel extends Observerable {
     this.notify(this.items);
   }
 
-  removeItem(item) {
-    const newItems = this.items.filter((_item) => _item.title !== item.title);
-    this.updateLocalStorage(newItems);
-    this.items = this.getLocalStorage();
-    this.notify(this.items);
-  }
-
   getItems() {
     return this.items;
   }
@@ -49,6 +42,4 @@ class ItemModel extends Observerable {
   }
 }
 
-const pickedItemModel = new ItemModel("pickedItems");
-const recentViewedItemModel = new ItemModel("recentViewedItems");
-export { pickedItemModel, recentViewedItemModel };
+export default ItemModel;

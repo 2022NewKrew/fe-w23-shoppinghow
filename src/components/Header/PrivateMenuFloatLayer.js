@@ -1,5 +1,6 @@
 import Component from "@core/Component";
-import { recentViewedItemModel, pickedItemModel } from "@models/ItemModel";
+import recentViewedItemModel from "@models/RecentViewedItemModel";
+import pickedItemModel from "@models/PickedItemModel";
 
 class PrivateMenuFloatLayer extends Component {
   setup() {
