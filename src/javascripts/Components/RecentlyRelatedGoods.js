@@ -1,13 +1,11 @@
-import Component from '../Component'
+import Component from '../Core/Component'
 import styles from '../../scss/ComponentStyles/RecentlyRelatedGoods.module.scss'
 import GoodsList from './GoodsList'
-import GoodsDataManager from '../GoodsDataManager'
+import { recentlyViewedGoodsDataSetManager } from '../Data/goodsDataSetManager'
 
 export default class RecentlyRelatedGoods extends Component {
     
     static #NUMBER_OF_ITEM_PER_PAGE = 5
-    
-    #recentGoodsDataList
     
     #currentSelectedIdx = 0
     #currentPageIdx = 0
@@ -23,13 +21,11 @@ export default class RecentlyRelatedGoods extends Component {
             <div class="${ styles.component }">
                 <div class="${ styles.headerTab }">
                     <ul class="${ styles.headerTabList }"></ul>
-                    <div class="${ styles.sideBtnBox }">
-                        <div class="${ styles.sideBtn } ${ styles.leftSideBtn }">
-                            <div class="${ styles.sideBtnIcon }"></div>
-                        </div>
-                        <div class="${ styles.sideBtn } ${ styles.rightSideBtn }">
-                            <div class="${ styles.sideBtnIcon }"></div>
-                        </div>
+                    <div class="${ styles.sideBtn } ${ styles.leftSideBtn }">
+                        <div class="${ styles.sideBtnIcon }"></div>
+                    </div>
+                    <div class="${ styles.sideBtn } ${ styles.rightSideBtn }">
+                        <div class="${ styles.sideBtnIcon }"></div>
                     </div>
                 </div>
                 <div data-component="GoodsList"></div>
@@ -41,15 +37,10 @@ export default class RecentlyRelatedGoods extends Component {
         this.#goodsListComponent = goodsList
         this.#headerTabListEl = this.rootEl.querySelector(`.${ styles.headerTabList }`)
         
-        this.#pullRecentGoodsDataList()
         this.#setRecentGoodsDataChangeEventListener()
         this.#setSideEventClickEventListener()
         this.#setHeaderTabItemClickEventListener()
         this.update()
-    }
-    
-    #pullRecentGoodsDataList() {
-        this.#recentGoodsDataList = GoodsDataManager.getRecentGoodsDataList()
     }
     
     #getHeaderTabItemHTML(goodsDataList) {
@@ -87,7 +78,7 @@ export default class RecentlyRelatedGoods extends Component {
         })
         
         rightSideBtnEl.addEventListener('click', () => {
-            if (this.#recentGoodsDataList.length >= (this.#currentPageIdx + 1) * RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE) {
+            if (recentlyViewedGoodsDataSetManager.dataList.length >= (this.#currentPageIdx + 1) * RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE) {
                 this.#currentPageIdx++
                 this.update()
             }
@@ -113,8 +104,7 @@ export default class RecentlyRelatedGoods extends Component {
     }
     
     #setRecentGoodsDataChangeEventListener() {
-        GoodsDataManager.addRecentGoodsDataChangedEventListener((recentGoodsDataList) => {
-            this.#recentGoodsDataList = recentGoodsDataList
+        recentlyViewedGoodsDataSetManager.subscribe(() => {
             this.update()
         })
     }
@@ -123,7 +113,7 @@ export default class RecentlyRelatedGoods extends Component {
         const selectedIdxInPage = this.#currentSelectedIdx % RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE
         const startIdxToShow = RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE * this.#currentPageIdx
         const endIdxToShow = RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE * (this.#currentPageIdx + 1)
-        const recentGoodsDataListToShow = this.#recentGoodsDataList.slice(startIdxToShow, endIdxToShow)
+        const recentGoodsDataListToShow = recentlyViewedGoodsDataSetManager.dataList.slice(startIdxToShow, endIdxToShow)
         
         while (recentGoodsDataListToShow.length < RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE) {
             recentGoodsDataListToShow.push({})

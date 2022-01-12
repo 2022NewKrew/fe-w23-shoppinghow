@@ -118,6 +118,8 @@
             
                 .planning {
                     width: 790px;
+                    height: 340px;
+                    padding: 0 40px;
                 
                     .planning__link {
                         display: block;
@@ -200,4 +202,8 @@
     }
 
     
+}
+
+.banner-img {
+    height: 100%;
 }

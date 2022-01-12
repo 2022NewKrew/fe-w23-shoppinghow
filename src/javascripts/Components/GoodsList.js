@@ -1,4 +1,4 @@
-import Component from '../Component'
+import Component from '../Core/Component'
 import styles from '../../scss/ComponentStyles/GoodsList.module.scss'
 import GoodsCard from './GoodsCard'
 

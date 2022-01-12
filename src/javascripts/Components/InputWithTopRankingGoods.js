@@ -1,6 +1,6 @@
 import styles from '../../scss/ComponentStyles/InputWithTopRankingGoods.module.scss'
 import RollingText from './RollingText'
-import Component from '../Component'
+import Component from '../Core/Component'
 
 export default class InputWithTopRankingGoods extends Component {
     

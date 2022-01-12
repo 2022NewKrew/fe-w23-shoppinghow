@@ -1,0 +1,56 @@
+.tab-container {
+  width: 400px;
+  height: 600px;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border: 1px solid #8C8C8C;
+  
+  .tab {
+    display: flex;
+    justify-content: left;
+    
+    .tab-item {
+      display: flex;
+      align-items: center;
+      margin-right: 30px;
+      cursor: pointer;
+      
+      &.selected-tab-item {
+        border-bottom: 2px solid #000000;
+        
+        .tab-item-text {
+          font-weight: 600;
+        }
+      }
+      
+      .tab-item-text {
+        padding: 5px 0;
+      }
+      
+      .tab-item-number {
+        font-size: 1.2rem;
+        font-weight: 800;
+        margin-left: 3px;
+      }
+    }
+  }
+}
+
+.goods-panel {
+  
+  .goods-list {
+    display: flex;
+    justify-content: left;
+    padding-top: 10px;
+    flex-wrap: wrap;
+  
+    .goods-item {
+      width: 33.3%;
+      padding: 2px;
+      display: inline-block;
+      cursor: pointer;
+    }
+    
+  }
+  
+}

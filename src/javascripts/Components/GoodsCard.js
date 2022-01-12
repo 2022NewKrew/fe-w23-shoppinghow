@@ -1,6 +1,6 @@
-import Component from '../Component'
+import Component from '../Core/Component'
 import styles from '../../scss/ComponentStyles/GoodsCard.module.scss'
-import GoodsDataManager from '../GoodsDataManager'
+import { recentlyViewedGoodsDataSetManager, taggedGoodsDataSetManager } from '../Data/goodsDataSetManager'
 
 export default class GoodsCard extends Component {
     
@@ -51,7 +51,7 @@ export default class GoodsCard extends Component {
     #addTaggedClassIfTaggedGoods() {
         const heartIconEl = this.rootEl.querySelector(`.${ styles.heartIcon }`)
         
-        if (GoodsDataManager.checkIfSameTaggedGoodsDataExists(this.#goodsData)) {
+        if (taggedGoodsDataSetManager.checkIfExists(this.#goodsData)) {
             heartIconEl.classList.add(styles.heartIconTagged)
         }
     }
@@ -64,13 +64,13 @@ export default class GoodsCard extends Component {
             if (event.target === heartIconEl) {
                 if (heartIconEl.classList.contains(styles.heartIconTagged)) {
                     heartIconEl.classList.remove(styles.heartIconTagged)
-                    GoodsDataManager.removeTaggedGoodsData(this.#goodsData)
+                    taggedGoodsDataSetManager.removeData(this.#goodsData)
                 } else {
                     heartIconEl.classList.add(styles.heartIconTagged)
-                    GoodsDataManager.addTaggedGoodsData(this.#goodsData)
+                    taggedGoodsDataSetManager.addData(this.#goodsData)
                 }
             } else {
-                GoodsDataManager.addRecentGoodsData(this.#goodsData)
+                recentlyViewedGoodsDataSetManager.addData(this.#goodsData)
             }
         })
     }

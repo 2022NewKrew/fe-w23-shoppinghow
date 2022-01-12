@@ -1,5 +1,5 @@
 import styles from '../../scss/ComponentStyles/RollingText.module.scss'
-import Component from '../Component'
+import Component from '../Core/Component'
 
 export default class RollingText extends Component {
     
