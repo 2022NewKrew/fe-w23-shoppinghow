@@ -363,17 +363,17 @@ $planningcontainersize: 3;
     .recommendation {
         width: 1270px;
         margin: auto;
-        padding: 10px 0px;
+        padding: 10px 35px;
 
         .picked-items {
             display: flex;
 
-            .exist {
+            .selected {
                 background-color: #fff;
             }
 
             .picked-items__item {
-                width: 254px;
+                width: 240px;
                 display: flex;
                 align-items: center;
                 height: 100px;
@@ -407,7 +407,9 @@ $planningcontainersize: 3;
         }
 
         .recommendation-items {
-            @extend %section-layout;
+            width: 1200px;
+            margin: auto;
+            background: #fff;
             display: flex;
             flex-wrap:wrap;
 
