@@ -14,7 +14,7 @@ export class HomePage extends MainLayout {
   }
 
   mounted() {
-    Top10Store.dispatch({ actionKey: 'FETCH' });
+    Top10Store.dispatch({ actionKey: 'FETCH_DATA' });
 
     this.fetchThemeProductList();
     this.fetchSliderImages();

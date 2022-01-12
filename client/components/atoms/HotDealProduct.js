@@ -53,7 +53,7 @@ export class HotDealProduct extends Component {
 
     $('.product__link', this.$target).addEventListener('click', (e) => {
       RecentlyViewedStore.dispatch({
-        actionKey: 'view',
+        actionKey: 'ADD_VIEW',
         item: { title, img, url },
       });
     });

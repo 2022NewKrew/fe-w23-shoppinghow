@@ -10,16 +10,16 @@ const getInitList = () => {
 };
 
 /**
- * @actionKey `search` | `delete`
+ * @actionKey `ADD_SEARCH` | `DELETE_SEARCH`
  * @item string
  */
 export const RecentlySearchStore = new Store({ list: getInitList() }, async (state, { actionKey, item }) => {
   const { list } = state;
 
   switch (actionKey) {
-    case 'search':
+    case 'ADD_SEARCH':
       return { ...state, list: saveSearchToList(item) };
-    case 'delete':
+    case 'DELETE_SEARCH':
       const deletedList = list.filter((text) => text !== item);
       setSessionStorageItem(storageKey, deletedList);
       return { ...state, list: deletedList };

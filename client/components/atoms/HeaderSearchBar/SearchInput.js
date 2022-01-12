@@ -25,7 +25,7 @@ export class SearchInput extends Component {
     const text = this.$input.value;
     if (!text) return;
 
-    RecentlySearchStore.dispatch({ actionKey: 'search', item: text });
+    RecentlySearchStore.dispatch({ actionKey: 'ADD_SEARCH', item: text });
     this.$input.value = '';
   }
 

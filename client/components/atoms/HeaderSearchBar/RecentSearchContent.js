@@ -20,7 +20,7 @@ export class RecentSearchContent extends Component {
     this.$target.addEventListener('click', ({ target }) => {
       if (target.className === 'closeBtn') {
         const text = target.closest('.recentSearchContent__item').innerText;
-        RecentlySearchStore.dispatch({ actionKey: 'delete', item: text });
+        RecentlySearchStore.dispatch({ actionKey: 'DELETE_SEARCH', item: text });
       }
     });
 
