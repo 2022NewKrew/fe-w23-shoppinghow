@@ -52,7 +52,7 @@ export default class SearchForm {
 
   handleSubmitSearchForm(e) {
     e.preventDefault();
-    const result = this.searchInput.value.replace(/\s/g, '');
+    const result = this.searchInput.value.replace(/^\s/, '');
     if (result) {
       setItemInLocalStroage('search-name', result, SEARCH_NAME_LENGTH_LIMIT);
       this.onSubmit();
