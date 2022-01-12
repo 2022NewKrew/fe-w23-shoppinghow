@@ -1,7 +1,7 @@
 @import "global";
 
 $bannerimagewidth: 600px;
-$planningcontainersize: 3;
+$planningcontainersize: 4;
 
 .header-top {
     display: flex;
@@ -179,20 +179,13 @@ $planningcontainersize: 3;
                     .planning__link-container {
                         position: relative;
                         display: flex;
-                        width: calc(#{$planningcontainersize}*#{$bannerimagewidth});
+                        width: calc(#{$planningcontainersize+2}*#{$bannerimagewidth});
                         flex-wrap: wrap;
                         left: -#{$bannerimagewidth};
 
                         .planning__link {
-                            display: none;
                             margin: 0 auto;
                             width: #{$bannerimagewidth};
-        
-                            @for $i from 1 through 3 {
-                                &:nth-child(#{$i}) {
-                                    display: inline-block;
-                                }
-                            }
                         }
                     }
 
