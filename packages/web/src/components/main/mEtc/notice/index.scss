@@ -1,0 +1,25 @@
+.wrap_notice {
+  width: 1276px;
+  overflow: hidden;
+  margin: 15px auto 0;
+  padding-bottom: 25px;
+  font-size: 12px;
+  .section_notice {
+    overflow: hidden;
+    float: left;
+    padding-top: 12px;
+    .tit_notice {
+      float: left;
+      margin-right: 15px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    a {
+      float: left;
+      padding-top: 2px;
+      line-height: 14px;
+      letter-spacing: -1px;
+      color: #606060;
+    }
+  }
+}

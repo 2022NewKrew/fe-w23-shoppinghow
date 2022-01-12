@@ -1,4 +1,5 @@
 import ShoppingPartner from "src/components/main/mEtc/shoppingpartner";
+import Notice from "src/components/main/mEtc/notice";
 
 import { createHTML } from "src/utils/dom";
 
@@ -104,6 +105,9 @@ export default class MEtc {
     new ShoppingPartner({
       $app: this.$target,
       initialState: partnerList,
+    });
+    new Notice({
+      $app: this.$target,
     });
   }
 }
