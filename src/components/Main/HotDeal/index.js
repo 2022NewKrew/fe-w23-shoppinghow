@@ -1,6 +1,6 @@
-import Component from '../../../core/Component.js';
+import Component from '@Core/Component.js';
 import './index.scss';
-import { addNewItem } from '../../../utils/localStorage.js';
+import { addNewItem } from '@Utils/localStorage.js';
 
 export default class HotDeal extends Component {
   setup() {
@@ -98,7 +98,7 @@ export default class HotDeal extends Component {
         <li class="hot-deal__item">
           <a class="hot-deal__link">
             <span class="hot-deal__thumb">
-              <img src="${item.src}" alt="">
+              <img src="${item.src}" alt="${item.title}">
             </span>
             <strong class="hot-deal__title">${item.title}</strong>
             <span class="hot-deal__detail-price">

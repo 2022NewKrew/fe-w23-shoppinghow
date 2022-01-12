@@ -1,4 +1,4 @@
-import Component from '../../../core/Component.js';
+import Component from '@Core/Component.js';
 import Theme from './Theme';
 import './index.scss';
 import Carousel from './Carousel/index.js';

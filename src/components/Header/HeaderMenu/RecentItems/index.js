@@ -1,6 +1,6 @@
-import Component from '../../../../core/Component';
+import Component from '@Core/Component.js';
 import './index.scss';
-import { getLocalStorageList } from '../../../../utils/localStorage';
+import { getLocalStorageList } from '@Utils/localStorage';
 
 export default class RecentItems extends Component {
   setup() {

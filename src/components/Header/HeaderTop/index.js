@@ -1,7 +1,7 @@
-import Component from '../../../core/Component';
+import Component from '@Core/Component.js';
 import RollingKeywords from './RollingKeywords';
 import Suggestion from './Suggestion';
-import { addNewItem } from '../../../utils/localStorage';
+import { addNewItem } from '@Utils/localStorage';
 import './index.scss';
 
 export default class HeaderTop extends Component {

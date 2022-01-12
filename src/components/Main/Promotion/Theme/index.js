@@ -1,5 +1,5 @@
-import Component from '../../../../core/Component';
-import { addNewItem } from '../../../../utils/localStorage';
+import Component from '@Core/Component.js';
+import { addNewItem } from '@Utils/localStorage';
 import './index.scss';
 
 export default class Theme extends Component {

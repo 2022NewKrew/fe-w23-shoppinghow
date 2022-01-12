@@ -1,6 +1,6 @@
-import Component from '../../../../../core/Component';
+import Component from '@Core/Component.js';
 import './index.scss';
-import { deleteItem } from '../../../../../utils/localStorage';
+import { deleteItem } from '@Utils/localStorage';
 
 export default class RecentKeywords extends Component {
   setup() {

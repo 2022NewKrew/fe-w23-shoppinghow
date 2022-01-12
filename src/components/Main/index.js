@@ -1,4 +1,4 @@
-import Component from '../../core/Component.js';
+import Component from '@Core/Component.js';
 import HotDeal from './HotDeal';
 import Promotion from './Promotion';
 import './index.scss';

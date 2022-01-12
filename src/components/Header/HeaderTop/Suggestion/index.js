@@ -1,9 +1,6 @@
-import Component from '../../../../core/Component';
+import Component from '@Core/Component.js';
 import RecentKeywords from './recentKeywords';
-import {
-  getLocalStorageList,
-  addNewItem,
-} from '../../../../utils/localStorage';
+import { getLocalStorageList, addNewItem } from '@Utils/localStorage';
 import './index.scss';
 
 export default class Suggestion extends Component {
