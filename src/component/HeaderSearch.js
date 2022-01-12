@@ -3,6 +3,7 @@ import { store } from '../store.js';
 import { top10Event } from './event/top10Event.js';
 import { searchTemplate } from './template/header/searchTemplate.js';
 import { $ } from '../utils/utils.js';
+import { SearchSuggestionView } from './SearchSuggestionView.js';
 
 
 export class HeaderSearch {
@@ -10,15 +11,19 @@ export class HeaderSearch {
     constructor($searchDiv) {
         this.$element = $searchDiv;
 
-        // store 구독
-        //observe(this.render.bind(this));
-        observe(() => this.render());
-        
+        this.initDom();
+
         fetch('../data/headerData.json')
-            .then(response => response.json())
-            .then(data => store.setState({
-                top10: data.top10
-            }));
+        .then(response => response.json())
+        .then(data => store.setState({
+            top10: data.top10
+        }));
+
+    }
+
+    initDom() {
+        observe(() => this.render());
+        this.mounted();
     }
 
     template() {
@@ -37,6 +42,10 @@ export class HeaderSearch {
     render() {
         this.$element.innerHTML = this.template();
         this.setEvent();
+    }
+
+    mounted() {
+        this.suggestionView = new SearchSuggestionView($('.wrap_suggestion', $element))
     }
 
     

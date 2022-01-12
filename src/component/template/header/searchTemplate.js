@@ -7,15 +7,12 @@ export const searchTemplate = (searchList) => {
         : [];
     
     const top10Template = `
-        <ul class="search-top10">
+        <ol class="search-top10">
             ${list
-            .map(({rank, text}) => `
-                <li class="search-top10__item">
-                    <span class="rank">${rank}</span>${text}
-                </li>
-            `).join('')}
-        </ul>
+            .map(topTenItemTemplate).join('')}
+        </ol>
     `;
+
 
     return `
         <form>
@@ -25,5 +22,20 @@ export const searchTemplate = (searchList) => {
         <div class="search-top10-wrapper">
             ${top10Template}
         </div>
+        <div class="wrap_suggestion" id="suggestWrap"></div>
     `;
-} 
+}
+
+export const topTenItemTemplate = ({rank, text}) => `
+    <li>
+        <span class="rank">${rank}</span>${text}
+    </li>
+`;
+
+export const suggestionTemplate = () => `
+    <div class="inner_suggestion">
+        <strong class="tit_suggestion">인기 쇼핑 키워드</strong>
+        <ol class="list_keyword"></ol>
+        <ol class="list_keyword"></ol>
+    </div>
+`;

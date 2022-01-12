@@ -5,3 +5,5 @@ export const string2DomNode = (htmlString) => {
 }
 
 export const $ = (query, target = document) => target.querySelector(query);
+
+export const $$ = (query, target = document) => target.querySelectorAll(query);

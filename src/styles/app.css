@@ -12,6 +12,10 @@ h1 {
   font-size: 2rem;
 }
 
+strong {
+  font-weight: bold;
+}
+
 .container .promotion {
   border: 1px solid #e4e2e2;
 }
@@ -114,6 +118,56 @@ h1 {
 }
 
 .header-top .search .search-top10 .search-top10__item .rank {
+  margin-right: 20px;
+  font-style: italic;
+}
+
+.header-top .search .wrap_suggestion {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 52px;
+  z-index: 10;
+  width: 100%;
+  border: 1px solid #f95139;
+  border-radius: 10px;
+  background-color: #fff;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.header-top .search.focus .wrap_suggestion {
+  display: block;
+}
+
+.wrap_suggestion .inner_suggestion {
+  overflow: hidden;
+  padding: 25px 29px 23px;
+}
+
+.wrap_suggestion .inner_suggestion .tit_suggestion {
+  display: block;
+  padding-bottom: 5px;
+  font-size: 16px;
+  color: #a6a6a6;
+}
+
+.wrap_suggestion .inner_suggestion .list_keyword {
+  overflow: hidden;
+  float: left;
+  width: 50%;
+  padding-bottom: 6px;
+}
+
+.wrap_suggestion .inner_suggestion .list_keyword li {
+  overflow: hidden;
+  padding: 12px 15px 0 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.wrap_suggestion .inner_suggestion .list_keyword li .rank {
   margin-right: 20px;
   font-style: italic;
 }
