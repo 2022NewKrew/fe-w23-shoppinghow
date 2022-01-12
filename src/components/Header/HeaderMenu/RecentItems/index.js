@@ -1,16 +1,11 @@
 import Component from '../../../../core/Component';
 import './index.scss';
+import { getLocalStorageList } from '../../../../utils/localStorage';
 
 export default class RecentItems extends Component {
   setup() {
     this.$state = {
-      recently_viewed: [
-        // {
-        //   id: 0,
-        //   src: '//shop4.daumcdn.net/thumb/C120x120.q90/?fname=http%3A%2F%2Fshop4.daumcdn.net%2Fshophow%2Fp%2FD5102534833.jpg%3Fut%3D20210415185733',
-        //   title: '락앤락 헬로키티 칼도마 살균기'
-        // },
-      ],
+      recently_viewed: getLocalStorageList('recent'),
       profile: {
         src: 'https://p.kakaocdn.net/th/talkp/wmKRLthouw/iTMJmufGTAfKTo3KUjxwJ1/o5xbs9_110x110_c.jpg',
         name: 'eve christmas',

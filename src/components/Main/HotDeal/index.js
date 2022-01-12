@@ -1,5 +1,6 @@
 import Component from '../../../core/Component.js';
 import './index.scss';
+import { addNewItem } from '../../../utils/localStorage.js';
 
 export default class HotDeal extends Component {
   setup() {
@@ -95,7 +96,7 @@ export default class HotDeal extends Component {
           : numberWithCommas(item.originalPrice);
         return `
         <li class="hot-deal__item">
-          <a href="" class="hot-deal__link">
+          <a class="hot-deal__link">
             <span class="hot-deal__thumb">
               <img src="${item.src}" alt="">
             </span>
@@ -131,5 +132,17 @@ export default class HotDeal extends Component {
       <ul class="hot-deal-list">
         ${hotdealItems}
       </ul>`;
+  }
+
+  setEvent() {
+    const $themeItems = this.$target.getElementsByClassName('hot-deal__link');
+    const { items } = this.$state;
+    [...$themeItems].forEach((item, index) => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert(`${items[index].title} 을 최근 본 상품에 추가합니다`);
+        addNewItem('recent', items[index]);
+      });
+    });
   }
 }

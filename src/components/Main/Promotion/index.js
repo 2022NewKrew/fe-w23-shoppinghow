@@ -16,7 +16,7 @@ export default class Promotion extends Component {
     return `
     <div class="banner">
       <div class="best">
-        <a href="#" class="best__link">
+        <a class="best__link">
           <img src="${this.$state.banner.src}" class="img_g" alt="${this.$state.banner.title}">
         </a>
       </div>

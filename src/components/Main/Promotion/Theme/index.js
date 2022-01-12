@@ -1,4 +1,5 @@
 import Component from '../../../../core/Component';
+import { addNewItem } from '../../../../utils/localStorage';
 import './index.scss';
 
 export default class Theme extends Component {
@@ -36,7 +37,7 @@ export default class Theme extends Component {
           .map(
             (item) => `
           <li class="theme-item">
-            <a href="#" class="theme__link">
+            <a class="theme__link">
               <span class="theme-item__info">
                 <img src="${item.src}" class="img_top" alt="${item.title}">
               </span>
@@ -49,5 +50,17 @@ export default class Theme extends Component {
           .join('')}
       </ul>
     `;
+  }
+
+  setEvent() {
+    const $themeItems = this.$target.getElementsByClassName('theme__link');
+    const { items } = this.$state;
+    [...$themeItems].forEach((item, index) => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert(`${items[index].title} 을 최근 본 상품에 추가합니다`);
+        addNewItem('recent', items[index]);
+      });
+    });
   }
 }

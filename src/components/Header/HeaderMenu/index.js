@@ -15,16 +15,16 @@ export default class HeaderMenu extends Component {
         <div class="gubun-bar"></div>
         <ul class="top-menu">
           <li class="top-menu__btn">
-            <a href="#">핫딜</a>
+            <a>핫딜</a>
           </li>
           <li class="top-menu__btn">
-            <a href="">베스트100</a>
+            <a>베스트100</a>
           </li>
           <li class="top-menu__btn">
-            <a href="">할인특가</a>
+            <a>할인특가</a>
           </li>
           <li class="top-menu__btn">
-            <a href="">기획전</a>
+            <a>기획전</a>
           </li>
         </ul>
         <ul class="private-menu">
@@ -47,14 +47,13 @@ export default class HeaderMenu extends Component {
       `;
   }
 
-  mounted() {
-    const $recentItems = this.$('.recent_items');
-    new RecentItems($recentItems, {});
-  }
-
   setEvent() {
     const $recentlyViewed = this.$('.recently_viewed');
-    const showRecentItems = () => $recentlyViewed.classList.add('show');
+    const showRecentItems = () => {
+      $recentlyViewed.classList.add('show');
+      const $recentItems = this.$('.recent_items');
+      new RecentItems($recentItems, {});
+    };
     const hideRecentItems = () => $recentlyViewed.classList.remove('show');
     $recentlyViewed.addEventListener('mouseenter', showRecentItems);
     $recentlyViewed.addEventListener('mouseleave', hideRecentItems);

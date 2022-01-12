@@ -1,6 +1,7 @@
 export const getLocalStorageList = (key) => {
   try {
-    return JSON.parse(localStorage.getItem(key));
+    const list = JSON.parse(localStorage.getItem(key));
+    return list == null ? [] : list;
   } catch {
     return [];
   }
