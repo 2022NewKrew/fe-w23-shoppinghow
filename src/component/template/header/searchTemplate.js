@@ -5,6 +5,7 @@ export const searchTemplate = () => `
         </form>
         <div class="wrap_rolling"></div>
         <div class="wrap_suggestion" id="suggestWrap"></div>
+        <div class="wrap_suggestion" id="searchResultWrap"></div>
 `;
 
 export const topTenItemTemplate = ({rank, text}) => `
@@ -29,3 +30,18 @@ export const suggestionTemplate = () => `
 export const rollingContainerTemplate = () => `
     <ol class="search-top10"></ol>
 `;
+
+export const searchResultTemplate = () => `
+    <div class="inner_suggestion">
+        <ul class="list_result"></ul>
+    </div>
+`;
+
+export const resultItemTemplate = ({text}) => `
+    <li>${text}</li>
+`;
+
+export const resultListTemplate = (list) => list.reduce(
+    (html, item) => html + resultItemTemplate(item),
+    ''
+);

@@ -20,6 +20,7 @@ class Store {
 export const store = new Store({
     top10: [],
     recentWord: [],
+    searchResult:[],
     topMenuList: [],
     keywordList: [],
 })

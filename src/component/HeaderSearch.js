@@ -21,7 +21,7 @@ export class HeaderSearch {
 
     initDom() {
         this.$searchWrapper.innerHTML = searchTemplate();
-        this.$suggestion = $('.wrap_suggestion', this.$searchWrapper);
+        this.$suggestion = $('#suggestWrap', this.$searchWrapper);
         this.$rolling = $('.wrap_rolling', this.$searchWrapper);
         this.setEvent();
         this.render();
