@@ -10,6 +10,7 @@ const compiler = webpack(config)
 const port = 3000
 
 const jsonRouter = require('./server/router/jsonRouter')
+const searchRouter = require('./server/router/searchRouter')
 const path = require('path')
 
 nunjucks.configure('dist', {
@@ -34,6 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use('/json', jsonRouter)
+app.use('/search', searchRouter)
 
 app.listen(port, () => {
     console.log(`server is listening at localhost:${ port }`)
