@@ -59,16 +59,28 @@ const dummyData = [
     '콩나물',
 ];
 
-export const searchView = () => {
+const fetchTop10Data = async (setState) => {
+    const top10Data = await getTop10Keywords();
+    setState({ top10Data });
+};
+
+export function searchView() {
+    let state = { top10Data: [] };
+    const setState = (newState) => {
+        state = { ...state, ...newState };
+        render();
+    };
+
+    fetchTop10Data(setState);
     const target = document.createElement('div');
-    const top10Data = getTop10Keywords();
+
     const render = () => {
         target.className = 'search';
         target.innerHTML = '';
-        target.appendChild(renderSearchForm(dummyData));
+        target.appendChild(renderSearchForm(state.top10Data));
         addFocusEvent(target);
         return target;
     };
 
     return render();
-};
+}

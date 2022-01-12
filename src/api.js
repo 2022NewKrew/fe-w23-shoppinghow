@@ -7,7 +7,24 @@ const fetchData = async (reqURL) => {
 export const getTop10Keywords = async () => {
     try {
         const data = await fetchData(`${SERVER_BASE_URL}/top10keywords`);
-        console.log(data);
+        return data;
+    } catch (e) {
+        console.error(e.message);
+    }
+};
+
+export const getRisingKeywordProducts = async () => {
+    try {
+        const data = await fetchData(`${SERVER_BASE_URL}/rising_keyword_products`);
+        return data;
+    } catch (e) {
+        console.error(e.message);
+    }
+};
+
+export const getHotDealProducts = async () => {
+    try {
+        const data = await fetchData(`${SERVER_BASE_URL}/hotdeal_products`);
         return data;
     } catch (e) {
         console.error(e.message);

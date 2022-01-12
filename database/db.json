@@ -2,33 +2,87 @@
     "products": [
         {
             "id": 0,
-            "title": "이름",
-            "imgSrc": "사진 경로",
-            "price": "가격"
+            "title": "모노시크 맨투맨",
+            "imgSrc": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220112153305637_285854",
+            "price": "42600"
         },
         {
             "id": 1,
-            "title": "2이름",
-            "imgSrc": "사진 경로",
-            "price": "가격"
+            "title": "맥스트라 플러스 필터",
+            "imgSrc": "https://shop1.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FA5101102182.jpg%3Fut%3D20210112185643",
+            "price": "15900"
         },
         {
             "id": 2,
-            "title": "일음",
-            "imgSrc": "사진 경로",
-            "price": "가격"
+            "title": "떡갈비 명작 160g",
+            "imgSrc": "https://shop2.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop2.daumcdn.net%2Fshophow%2Fp%2FD5099236803.jpg%3Fut%3D20210830143911",
+            "price": "20730"
         },
         {
             "id": 3,
-            "title": "이름 정규표현식",
-            "imgSrc": "사진 경로",
-            "price": "가격"
+            "title": "2020년형 로맨스 반신욕기",
+            "imgSrc": "https://shop2.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop2.daumcdn.net%2Fshophow%2Fp%2FD5094498041.jpg%3Fut%3D20200601232538",
+            "price": "607260"
         },
         {
             "id": 4,
-            "title": "어름",
-            "imgSrc": "사진 경로",
-            "price": "가격"
+            "title": "스팸 6호 선물세트",
+            "imgSrc": "https://shop2.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop2.daumcdn.net%2Fshophow%2Fp%2FE29862913.jpg%3Fut%3D20181026174023",
+            "price": "31500"
+        },
+        {
+            "id": 5,
+            "title": "에어맥스 런닝화",
+            "imgSrc": "https://shop2.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop2.daumcdn.net%2Fshophow%2Fp%2FC5104170905.jpg%3Fut%3D20210830170114",
+            "price": "65250"
+        },
+        {
+            "id": 6,
+            "title": "XiaoxiniPad Wi-Fi 128GB",
+            "imgSrc": "https://shop2.daumcdn.net/thumb/R250x250/?fname=https%3A%2F%2Fshop2.daumcdn.net%2Fshophow%2Fp%2FE5101573051.jpg%3Fut%3D20210121151640",
+            "price": "129980"
+        },
+        {
+            "id": 7,
+            "title": "헤지스 ACC 카키 레터링프린트 가죽 토트백",
+            "imgSrc": "https://shop1.daumcdn.net/thumb/R200x200/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FA5101879120.jpg%3Fut%3D20210215163304",
+            "price": "148610"
+        },
+        {
+            "id": 8,
+            "title": "닥스ACC 칼라일 가죽 토트백 블랙",
+            "imgSrc": "https://shop3.daumcdn.net/thumb/R200x200/?fname=http%3A%2F%2Fshop3.daumcdn.net%2Fshophow%2Fp%2FA5102074186.jpg%3Fut%3D20210308130832",
+            "price": "344310"
+        },
+        {
+            "id": 9,
+            "title": "메트로시티 토트백",
+            "imgSrc": "https://shop3.daumcdn.net/thumb/R200x200/?fname=http%3A%2F%2Fshop3.daumcdn.net%2Fshophow%2Fp%2FA5090740826.jpg%3Fut%3D20191104164448",
+            "price": "301790"
+        },
+        {
+            "id": 10,
+            "title": "헤지스ACC 가죽 로고 클래식 미니 토트백 브라운",
+            "imgSrc": "https://shop1.daumcdn.net/thumb/R200x200/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FA5100069138.jpg%3Fut%3D20201124180707",
+            "price": "120280"
+        },
+        {
+            "id": 11,
+            "title": "지누스 침대 프레임 슈퍼싱글",
+            "imgSrc": "https://shop1.daumcdn.net/thumb/R200x200/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FA5097011130.jpg%3Fut%3D20200727172714",
+            "price": "124950"
+        },
+        {
+            "id": 12,
+            "title": "새콤달콤 제주귤",
+            "imgSrc": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211217172150999_469472",
+            "price": "17340"
+        },
+        {
+            "id": 13,
+            "title": "스타벅스 아이코닉 머그컵",
+            "imgSrc": "https://shop1.daumcdn.net/shophow/c/image/content/set/ad8255/20220112160033729_22722",
+            "price": "11780"
         }
     ],
     "promotions": [
@@ -40,11 +94,118 @@
             "planning": "boolean, 기획전 여부"
         }
     ],
+    "risingKeywords": [
+        {
+            "id": 0,
+            "productId": 13,
+            "searchKeyword": "머그컵"
+        },
+        {
+            "id": 1,
+            "productId": 12,
+            "searchKeyword": "리뷰극찬! 새콤달콤 제주귤"
+        },
+        {
+            "id": 2,
+            "productId": 8,
+            "searchKeyword": "가죽 토트백"
+        },
+        {
+            "id": 3,
+            "productId": 7,
+            "searchKeyword": "헤지스"
+        },
+        {
+            "id": 4,
+            "productId": 3,
+            "searchKeyword": "반신욕"
+        },
+        {
+            "id": 5,
+            "productId": 5,
+            "searchKeyword": "운동화"
+        },
+        {
+            "id": 6,
+            "productId": 6,
+            "searchKeyword": "태블릿PC"
+        },
+        {
+            "id": 7,
+            "productId": 4,
+            "searchKeyword": "명절 선물"
+        },
+        {
+            "id": 8,
+            "productId": 2,
+            "searchKeyword": "고기"
+        },
+        {
+            "id": 9,
+            "productId": 9,
+            "searchKeyword": "토트백"
+        }
+    ],
     "hotDeals": [
         {
-            "id": "핫딜 Id",
-            "productId": "할인 상품 id",
-            "discountedPrice": "할인가"
+            "id": 0,
+            "productId": 2,
+            "hotDealTitle": "명절 밥상에 빠져서는 안되는 것?",
+            "discountedPrice": "18000"
+        },
+        {
+            "id": 1,
+            "productId": 4,
+            "hotDealTitle": "명절 선물에는 이만한게 없죠",
+            "discountedPrice": "23000"
+        },
+        {
+            "id": 2,
+            "productId": 5,
+            "hotDealTitle": "요즘 가장 핫한 운동화",
+            "discountedPrice": "30000"
+        },
+        {
+            "id": 3,
+            "productId": 0,
+            "hotDealTitle": "상하의 다 주는데 이 가격?",
+            "discountedPrice": "14300"
+        },
+        {
+            "id": 4,
+            "productId": 8,
+            "hotDealTitle": "이번 기회에 어머니 선물",
+            "discountedPrice": "100000"
+        },
+        {
+            "id": 5,
+            "productId": 1,
+            "hotDealTitle": "필터 갈 때 되지 않았나요?",
+            "discountedPrice": "10000"
+        },
+        {
+            "id": 6,
+            "productId": 3,
+            "hotDealTitle": "힐링에 투자",
+            "discountedPrice": "502500"
+        },
+        {
+            "id": 7,
+            "productId": 9,
+            "hotDealTitle": "데일리백으로 제격!",
+            "discountedPrice": "250000"
+        },
+        {
+            "id": 8,
+            "productId": 11,
+            "hotDealTitle": "1인가구를 위한 합리적인 가격",
+            "discountedPrice": "80300"
+        },
+        {
+            "id": 9,
+            "productId": 6,
+            "hotDealTitle": "요즘 인강은 이걸로?",
+            "discountedPrice": "90000"
         }
     ],
     "top10Keywords": [

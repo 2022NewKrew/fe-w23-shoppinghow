@@ -1,3 +1,4 @@
+import { createDom } from '@utils/createDom';
 import { rankKeyword } from '@components/rankKeyword';
 
 const ROLLING_INTERVAL_TIME = 3000;
@@ -34,10 +35,11 @@ const renderItem = (title, index) => {
     return item;
 };
 
-const renderVerticalList = (dummyData) => {
-    const itemDOMArray = dummyData.map((title, i) => renderItem(title, i));
-    const listContainer = document.createElement('ol');
-    listContainer.className = 'vertical-rolling__container';
+const renderVerticalList = (contentsData) => {
+    const itemDOMArray = contentsData.map((title, i) => renderItem(title, i));
+    const listContainer = createDom('ol', { className: 'vertical-rolling__container' });
+    if (!contentsData || contentsData.length === 0) return listContainer;
+
     listContainer.append(...appendFirstClone(itemDOMArray));
     addRollingAnimation(listContainer);
     return listContainer;

@@ -33,6 +33,20 @@ app.get('/top10keywords', async (req, res) => {
     res.status('200').json({ data }).end();
 });
 
+app.get('/rising_keyword_products', async (req, res) => {
+    console.log('GET /rising_keyword_products');
+    const response = await fetch(`${DB_URL}/risingKeywords?_expand=product`);
+    const data = await response.json();
+    res.status('200').json({ data }).end();
+});
+
+app.get('/hotdeal_products', async (req, res) => {
+    console.log('GET /hotdeal_products');
+    const response = await fetch(`${DB_URL}/hotDeals?_expand=product`);
+    const data = await response.json();
+    res.status('200').json({ data }).end();
+});
+
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__rootDir, 'dist', 'index.html'));
 });
