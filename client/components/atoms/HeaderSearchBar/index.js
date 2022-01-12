@@ -3,7 +3,7 @@ import { SearchFocusStore } from '@stores';
 import { $ } from '@utils';
 import { SearchBarModal } from './SearchBarModal';
 import { SearchInput } from './SearchInput';
-import { Top10Slider } from './Top10Slider';
+import { TopPopularSlider } from './TopPopularSlider';
 
 const HOVER_DELAY_TIME = 400;
 const FOCUSE_SEARCH_CLASSNAME = 'search--focus';
@@ -17,14 +17,14 @@ export class HeaderSearchBar extends Component {
     return /*html*/ `
       <div class="search">
         <form class="search__form"></form>
-        <div class="top10slider"></div>
+        <div class="topPopularSlider"></div>
         <div class="search__modal"></div>
       </div>
     `;
   }
 
   rendered() {
-    this.Top10Slider = new Top10Slider($('.top10slider', this.$target), { renderType: 'replaceHTML' });
+    this.topPopularSlider = new TopPopularSlider($('.topPopularSlider', this.$target), { renderType: 'replaceHTML' });
     this.SearchBarModal = new SearchBarModal($('.search__modal', this.$target), { renderType: 'replaceHTML' });
     this.SearchInput = new SearchInput($('.search__form', this.$target), { renderType: 'replaceHTML' });
 
@@ -48,7 +48,7 @@ export class HeaderSearchBar extends Component {
   focusinSearch() {
     SearchFocusStore.dispatch({ actionKey: 'FOCUS_INPUT', isSearchFocused: true });
     this.$target.classList.add(FOCUSE_SEARCH_CLASSNAME);
-    this.Top10Slider.hideSliderTrack();
+    this.topPopularSlider.hideSliderTrack();
     this.SearchBarModal.showModal();
   }
 
@@ -63,7 +63,7 @@ export class HeaderSearchBar extends Component {
       this.SearchInput.$input.blur();
       this.SearchBarModal.hideModal();
 
-      if (!this.SearchInput.$input.value) this.Top10Slider.showSliderTrack();
+      if (!this.SearchInput.$input.value) this.topPopularSlider.showSliderTrack();
     }, HOVER_DELAY_TIME);
   }
 }

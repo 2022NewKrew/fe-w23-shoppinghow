@@ -1,6 +1,6 @@
 import { HotDealSection, PromotionSection, MainLayout } from '@components';
 import { APIService } from '@services';
-import { Top10Store } from '@stores';
+import { TopPopularStore } from '@stores';
 
 export class HomePage extends MainLayout {
   rendered() {
@@ -14,7 +14,7 @@ export class HomePage extends MainLayout {
   }
 
   mounted() {
-    Top10Store.dispatch({ actionKey: 'FETCH_DATA' });
+    TopPopularStore.dispatch({ actionKey: 'FETCH_DATA' });
 
     this.fetchThemeProductList();
     this.fetchSliderImages();

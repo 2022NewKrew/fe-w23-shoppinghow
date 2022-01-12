@@ -16,9 +16,9 @@ export const getThemeProductList = async () => {
   return data;
 };
 
-export const getTop10List = async () => {
+export const getTopPopularList = async () => {
   const data = await onFetch({
-    url: '/top-10',
+    url: '/top-popular',
     method: 'GET',
   });
   return data;

@@ -1,31 +1,33 @@
 import { Component } from '@core';
 import { $, getURLParams } from '@utils';
-import { Top10Store } from '@stores';
+import { TopPopularStore } from '@stores';
 
 const AUTO_SLIDE_TIME = 2000;
 const SLIDE_FRAME_HEIGHT = 30;
 
-export class Top10Slider extends Component {
+export class TopPopularSlider extends Component {
   setup() {
     this.currentIndex = 0;
   }
 
   template() {
-    const { list: top10List = [] } = Top10Store.getState();
-    this.maxIndex = top10List.length - 1;
+    const { list: topPopularList = [] } = TopPopularStore.getState();
+    this.maxIndex = topPopularList.length - 1;
 
-    const top10TrackList = !top10List.length ? [] : [top10List[this.maxIndex], ...top10List, top10List[0]];
+    const topPopularTrackList = !topPopularList.length
+      ? []
+      : [topPopularList[this.maxIndex], ...topPopularList, topPopularList[0]];
 
-    const top10Template = ({ rank, text }) => /* html */ `
-        <li class="top10slider__item">
+    const topPopularTemplate = ({ rank, text }) => /* html */ `
+        <li class="topPopularSlider__item">
             <span>${rank}. ${text}</span>
         </li>
     `;
 
     return /*html*/ `
-        <div class="top10slider">
-            <ul class="top10slider__track">
-                ${top10TrackList.map(top10Template).join('')}
+        <div class="topPopularSlider">
+            <ul class="topPopularSlider__track">
+                ${topPopularTrackList.map(topPopularTemplate).join('')}
             </ul>
         </div>
     `;
@@ -33,7 +35,7 @@ export class Top10Slider extends Component {
 
   rendered() {
     this.clearSlideTimer();
-    this.$sliderTrack = $('.top10slider__track', this.$target);
+    this.$sliderTrack = $('.topPopularSlider__track', this.$target);
     this.$sliderTrack.addEventListener('transitionend', this.onSlideEnd.bind(this));
 
     const { search } = getURLParams();
@@ -42,7 +44,7 @@ export class Top10Slider extends Component {
   }
 
   mounted() {
-    Top10Store.subscribe(this.render.bind(this));
+    TopPopularStore.subscribe(this.render.bind(this));
   }
 
   /* util */

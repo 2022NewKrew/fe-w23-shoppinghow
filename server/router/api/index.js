@@ -8,8 +8,8 @@ router.get('/slider-images', (req, res) => {
   res.send(data);
 });
 
-router.get('/top-10', (req, res) => {
-  const data = readJsonData('Top10List');
+router.get('/top-popular', (req, res) => {
+  const data = readJsonData('topPopularList');
   res.send(data);
 });
 

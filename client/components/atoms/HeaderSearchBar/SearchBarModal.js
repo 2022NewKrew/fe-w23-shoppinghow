@@ -2,7 +2,7 @@ import { Component } from '@core';
 import { SearchFocusStore, SearchInputStore } from '@stores';
 import { AutoCompleteContent } from './AutoCompleteContent';
 import { RecentSearchContent } from './RecentSearchContent';
-import { Top10Content } from './Top10Content';
+import { TopPopularContent } from './topPopularContent';
 
 const HIDE_MODAL_CLASSNAME = 'search__modal--hide';
 
@@ -35,7 +35,7 @@ export class SearchBarModal extends Component {
       new AutoCompleteContent(this.$target, { renderType: 'appendHTML' });
     } else {
       new RecentSearchContent(this.$target, { renderType: 'appendHTML' });
-      new Top10Content(this.$target, { renderType: 'appendHTML' });
+      new TopPopularContent(this.$target, { renderType: 'appendHTML' });
     }
   }
 
