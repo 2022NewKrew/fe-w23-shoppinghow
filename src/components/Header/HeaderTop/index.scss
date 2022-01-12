@@ -28,6 +28,7 @@
         height: 100%;
         font-weight: 700;
         font-size: 20px;
+        z-index: 2;
       }
       
       .search_btn{
@@ -36,6 +37,8 @@
         top: 0;
         width: 52px;
         height: 52px;
+        cursor: pointer;
+        
         .search__icon {
           background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
           background-size: 130px 90px;
@@ -56,5 +59,21 @@
       height: 50%;
       display: flex;
       align-items: center;
+  }
+
+  .suggestion_wrapper {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 53px;
+    z-index: 10;
+    width: 100%;
+    border: 1px solid #f95139;
+    border-radius: 10px;
+    background-color: #fff;
+    box-sizing: border-box;
+    text-align: left;
+    overflow: hidden;
+    padding: 25px 29px 23px;
   }
 }

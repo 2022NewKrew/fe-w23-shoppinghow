@@ -97,6 +97,11 @@ $button-padding: 20px;
         }
       }
     }
+    .show {
+      .recent_product .arrow {
+        background-position: -60px -70px;
+      }
+    }
   }
 }
 

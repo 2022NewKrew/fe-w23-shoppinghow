@@ -2,25 +2,8 @@ import Component from '../../../../core/Component';
 import './index.scss';
 
 export default class RollingKeywords extends Component {
-  setup() {
-    this.$state = {
-      keywords: [
-        '차량용공기청정기',
-        '칼도마살균기',
-        '무선청소기',
-        '관절영양제',
-        '견과류선물세트',
-        '인테리어의자',
-        '편백나무찜기',
-        '카드지갑',
-        '롤러스케이트',
-        '와인스토퍼',
-      ],
-    };
-  }
-
   template() {
-    const rolling_items = this.$state.keywords
+    const rolling_items = this.$props.keywords
       .map(
         (keyword, index) => `<li class="roll_item">${index + 1} ${keyword}</li>`
       )
@@ -52,7 +35,7 @@ export default class RollingKeywords extends Component {
   setEvent() {
     const $rollList = this.$('.roll_list');
     const rollHeight = 23;
-    const keywordsLen = this.$state.keywords.length;
+    const keywordsLen = this.$props.keywords.length;
     const slideSpeed = 300;
 
     let currentIndex = 0;
