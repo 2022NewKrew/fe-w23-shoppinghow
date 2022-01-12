@@ -1,10 +1,11 @@
 @charset "UTF-8";
 * {
-  font-family: 돋움, dotum, sans-serif;
+  font-family: Apple SD Gothic Neo,Malgun Gothic,맑은 고딕, Dotum,돋움,sans-serif;
+  color: #333;
 }
 
 body {
-  margin: 0px auto;
+  background-color: #f5f5f5;
 }
 
 h1 {
@@ -16,8 +17,8 @@ h1 {
 }
 
 .container .hot-deal, .container .promotion {
-  width: 1270px;
-  margin: auto;
+  width: 1280px;
+  margin: 0 auto;
   background: #fff;
 }
 
@@ -32,62 +33,113 @@ h1 {
   font-size: 0.875rem;
 }
 
+#header {
+  background-color: #fff;
+  min-width: 1280px;
+  border-bottom: 1px solid #00000029;
+}
+
 .header-top {
+  min-width: 1280px;
+  margin: 0 auto;
   display: flex;
-  padding: 60px;
+  padding: 43px 0 40px;
   justify-content: center;
+  border-bottom: 1px solid #efefef;
 }
-.header-top .title {
-  display: flex;
-  align-items: center;
-  margin-right: 50px;
+.header-top .title__img {
+  width: 119px;
+  height: 51px;
 }
+
 .header-top .search {
   display: flex;
   position: relative;
-  border: 1px solid gray;
+  margin-left: 50px;
+  padding: 16px 60px 14px 30px;
+  width: 670px;
+  height: 54px;
+  box-sizing: border-box;
+  border: 1px solid #cecfd1;
+  border-radius: 10px;
 }
+
+.header-top .search.focus {
+  border: 1px solid #f95139;
+}
+
 .header-top .search form {
-  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
 }
 .header-top .search form .search__input {
-  width: 400px;
-  height: 60px;
-  padding: 10px;
+  width: 100%;
+  height: 100%;
+  font-size: 17px;
+  font-weight: 700;
 }
 .header-top .search form .search__icon {
-  font-size: 1.4rem;
-  padding: 10px;
-}
-.header-top .search .search-top10 {
   position: absolute;
-  transform: translateY(50%);
-  left: 10px;
-  font-size: 1.2rem;
-  height: 50%;
-  display: flex;
+  right: -45px;
+  width: 23px;
+  height: 23px;
   overflow: hidden;
+  background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat
+}
+
+.header-top .search .search-top10-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 22px;
+  overflow: hidden;
+}
+
+.header-top .search.focus .search-top10-wrapper {
+  display: none;
+}
+
+.header-top .search .search-top10 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #939393;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
 .header-top .search .search-top10 .search-top10__item {
   width: 100%;
-  height: 100%;
+  height: 22px;
+}
+
+.header-top .search .search-top10 .search-top10__item .rank {
+  margin-right: 20px;
+  font-style: italic;
 }
 
 .header-menu {
-  height: 60px;
+  height: 55px;
   display: flex;
-  border: 1px solid #cbcbcb;
-  max-width: 1270px;
+  max-width: 1280px;
   margin: 0px auto;
+  align-items: center;
 }
 .header-menu .category__title {
-  height: 60px;
-  padding: 10px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
 }
 .header-menu .category__title .fas {
   margin-right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  color: #fff;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .header-menu .top-menu {
   display: flex;
@@ -96,27 +148,77 @@ h1 {
 }
 .header-menu .top-menu .top-menu__btn {
   padding: 0 20px;
-  line-height: 60px;
+  font-weight: 700;
 }
+
+.header-menu .top-menu .top-menu__btn:hover {
+  color: #f65b3d;
+}
+
+.header-menu .keyword-menu {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.header-menu .keyword-menu .keyword-menu__btn {
+  padding: 0 20px;
+  font-weight: 700;
+  color: #888;
+}
+
 .header-menu .private-menu {
   margin-left: auto;
   display: flex;
 }
 .header-menu .private-menu .private-menu__btn {
   padding: 20px;
+  position: relative;
 }
+
+.private-menu__btn .hover-tap {
+  display: none;
+  position: absolute;
+  top: 54px;
+  right: 2px;
+  z-index: 10;
+  padding: 0 28px;
+  border: 1px solid #979797;
+  background-color: #fff;
+  text-align: left;
+}
+
+.private-menu__btn.on .hover-tap {
+  display: block;
+}
+
+.hover-tap .hover-tap-menu {
+  padding: 26px 0 17px;
+  display: flex;
+}
+
+.hover-tap .hover-tap-menu__btn {
+  height: 26px;
+  font-size: 14px;
+  color: #444;
+}
+
+.hover-tap .hover-tap-item-container {
+  height: 363px;
+  width: 363px;
+}
+
 
 .gubun-bar {
   width: 1px;
-  height: 60px;
-  background: #cbcbcb;
-  margin: 0px 20px;
+  height: 18px;
+  background: #e3e3e3;
 }
 
 .container {
-  margin: auto;
   background-color: #f5f5f5;
   padding-top: 25px;
+  min-width: 1280px;
 }
 .container .promotion .banner {
   display: flex;
@@ -124,25 +226,75 @@ h1 {
 }
 .container .promotion .banner .best {
   float: left;
-  width: 510px;
+  border-right: 1px solid #f1f1f1;
 }
 .container .promotion .banner .best .best__link {
   display: block;
   margin: 0 auto;
 }
-.container .promotion .banner .planning {
-  width: 790px;
+.container .promotion .banner .carousel {
+  flex-grow: 1;
+  position: relative;
 }
-.container .promotion .banner .planning .planning__link {
-  display: block;
+
+.container .promotion .banner .carousel .carousel-window {
   margin: 0 auto;
-  width: 600px;
+  max-width: 485px;
+  height: 340px;
+  position: relative;
+  overflow: hidden;
 }
-.container .promotion img {
-  margin: auto;
-  text-align: center;
+
+.carousel-window .carousel-container {
   display: flex;
+  position: absolute;
+  height: 100%;
 }
+
+.carousel-window .carousel-item {
+  width: 485px;
+}
+
+.carousel .carousel-controller {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.carousel .carousel-controller .carousel__left-btn {
+  position: absolute;
+  height: 80px;
+  width: 60px;
+  top: calc(50% - 40px);
+  left: 40px;
+  text-align: center;
+  font-size: 80px;
+  font-weight: 100;
+  color: #999;
+}
+
+.carousel .carousel-controller .carousel__right-btn {
+  position: absolute;
+  height: 80px;
+  width: 60px;
+  top: calc(50% - 40px);
+  right: 40px;
+  text-align: center;
+  font-size: 80px;
+  font-weight: 100;
+  color: #999;
+}
+
+.carousel .carousel-controller .carousel__left-btn:hover {
+  color: #333;
+}
+
+.carousel .carousel-controller .carousel__right-btn:hover {
+  color: #333;
+}
+
 .container .theme .theme-container {
   display: flex;
 }
