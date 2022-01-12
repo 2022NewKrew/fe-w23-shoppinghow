@@ -1,0 +1,62 @@
+{
+    "products": [
+        {
+            "id": 0,
+            "title": "이름",
+            "imgSrc": "사진 경로",
+            "price": "가격"
+        },
+        {
+            "id": 1,
+            "title": "2이름",
+            "imgSrc": "사진 경로",
+            "price": "가격"
+        },
+        {
+            "id": 2,
+            "title": "일음",
+            "imgSrc": "사진 경로",
+            "price": "가격"
+        },
+        {
+            "id": 3,
+            "title": "이름 정규표현식",
+            "imgSrc": "사진 경로",
+            "price": "가격"
+        },
+        {
+            "id": 4,
+            "title": "어름",
+            "imgSrc": "사진 경로",
+            "price": "가격"
+        }
+    ],
+    "promotions": [
+        {
+            "id": "프로모션 id",
+            "title": "프로모션 제목",
+            "desc": "프로모션 한 줄 설명",
+            "theme": "boolean, 테마여부",
+            "planning": "boolean, 기획전 여부"
+        }
+    ],
+    "hotDeals": [
+        {
+            "id": "핫딜 Id",
+            "productId": "할인 상품 id",
+            "discountedPrice": "할인가"
+        }
+    ],
+    "top10Keywords": [
+        "엔진 코팅제",
+        "벽선반",
+        "키즈가방",
+        "마스크가드",
+        "대한민국 지도",
+        "염색약",
+        "부츠",
+        "로봇청소기",
+        "화분",
+        "콩나물"
+    ]
+}
