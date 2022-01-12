@@ -1,4 +1,4 @@
-import shoppingPartner from "src/components/main/mEtc/shoppingpartner";
+import ShoppingPartner from "src/components/main/mEtc/shoppingpartner";
 
 import { createHTML } from "src/utils/dom";
 
@@ -101,8 +101,9 @@ export default class MEtc {
   }
 
   render() {
-    this.$target.innerHTML = `
-      ${shoppingPartner(partnerList)}
-      `;
+    new ShoppingPartner({
+      $app: this.$target,
+      initialState: partnerList,
+    });
   }
 }

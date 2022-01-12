@@ -1,7 +1,18 @@
+import { $, createHTML } from "src/utils/dom";
+
 import "./index.scss";
 
-export default function shoppingPartner(partnerList) {
-  const createContPartner = ({ title, malls }) => {
+export default class ShoppingPartner {
+  constructor({ $app, initialState }) {
+    this.state = initialState;
+    this.$target = createHTML("div", { className: "wrap_shopping_partner" });
+    $app.appendChild(this.$target);
+
+    this.render();
+    this.addEvent();
+  }
+
+  createContPartner({ title, malls }) {
     return `
         <div class="cate_partner">
             <strong class="tit_mall">${title}</strong>
@@ -16,20 +27,28 @@ export default function shoppingPartner(partnerList) {
             </ul>
         </div>
         `;
-  };
+  }
+  render() {
+    const partnerList = this.state;
 
-  return `
-    <div class="wrap_shopping_partner">
+    this.$target.innerHTML = `
+
         <h3 class="tit_home">쇼핑하우 파트너</h3>
-        <div class="section_etc">
-            <div class="cont_partner">
+        <div class="section_etc ">
+            <div class="cont_partner ">
                 ${partnerList
-                  .map((partner) => createContPartner(partner))
+                  .map((partner) => this.createContPartner(partner))
                   .join("")}
             </div>
             <button type="button" class="btn_home"></button>
         </div>
         <a href="#" class="link_all">전체보기</a>
-    </div>
     `;
+  }
+  addEvent() {
+    const El = $(".section_etc");
+    $(".btn_home").addEventListener("click", () => {
+      El.classList.toggle("section_open");
+    });
+  }
 }
