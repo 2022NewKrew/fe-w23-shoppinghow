@@ -1,9 +1,9 @@
 export default function initCarousel () {
-  const window = document.querySelector('.planning__window')
+  const planningWindow = document.querySelector('.planning__window')
 
-  const linkContainer = window.querySelector('.planning__link-container')
-  const btnContainer = window.querySelector('.planning__btn-container')
-  const paging = window.querySelector('.planning__paging')
+  const linkContainer = planningWindow.querySelector('.planning__link-container')
+  const btnContainer = planningWindow.querySelector('.planning__btn-container')
+  const paging = planningWindow.querySelector('.planning__paging')
 
   const leftBtn = btnContainer.querySelector('.planning__left-btn')
   const rightBtn = btnContainer.querySelector('.planning__right-btn')
@@ -11,15 +11,12 @@ export default function initCarousel () {
   let direction = ''
   let ongoing = false
 
-  btnContainer.addEventListener('click', (event) => {
-    console.log('clicked')
-    console.log(event.target)
-
+  btnContainer.addEventListener('click', ({target}) => {
     if (ongoing) {
       return
     }
     
-    if (event.target === leftBtn) {
+    if (target === leftBtn) {
       ongoing = true
 
       const current = paging.querySelector('.planning__current')
@@ -34,8 +31,8 @@ export default function initCarousel () {
 
       direction = 'left'
       linkContainer.style.transition = 'transform 0.3s ease-in-out'
-      linkContainer.style.transform = 'translate3d(' + window.clientWidth + 'px,0px,0px)'
-    } else if (event.target === rightBtn) {
+      linkContainer.style.transform = 'translate3d(' + planningWindow.clientWidth + 'px,0px,0px)'
+    } else if (target === rightBtn) {
       ongoing = true
 
       const current = paging.querySelector('.planning__current')
@@ -50,7 +47,7 @@ export default function initCarousel () {
 
       direction = 'right'
       linkContainer.style.transition = 'transform 0.3s ease-in-out'
-      linkContainer.style.transform = 'translate3d(' + -window.clientWidth + 'px,0px,0px)'
+      linkContainer.style.transform = 'translate3d(' + -planningWindow.clientWidth + 'px,0px,0px)'
     }
 
   })

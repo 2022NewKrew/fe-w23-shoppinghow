@@ -16,7 +16,7 @@ function addHotDealHTML(imgSrc, idx) {
   <li class="hot-deal__item">
       <a href="#" class="hot-deal__link">
           <span class="hot-deal__thumb">
-              <img src="${imgSrc}" class="hot-deal__img" alt="">
+              <img src="${imgSrc}" class="hot-deal__img" alt="${idx}번째 상품 사진">
           </span>
           <div class="hot-deal__title-bar">
             <strong class="hot-deal__title">${idx}번째 상품</strong>
@@ -50,9 +50,7 @@ const imgSrcArr = [
 ]
 
 export default function initHotdeal() {
-  imgSrcArr.forEach((imgSrc, index) => {
-    addHotDealHTML(imgSrc, index)
-  })
+  imgSrcArr.forEach(addHotDealHTML)
 
   const hotdealList = document.querySelector(".hot-deal-list")
   

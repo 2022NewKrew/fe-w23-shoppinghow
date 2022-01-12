@@ -1,4 +1,4 @@
-export function initSearchInput () {
+export default function initSearchInput () {
   const searchInput = document.querySelector('.header-top .search form .search__input')
 
   searchInput.addEventListener('focus', () => {
