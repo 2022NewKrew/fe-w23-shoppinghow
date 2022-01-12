@@ -17,6 +17,7 @@ export default class SearchContainer {
     searchName: getItemInLocalStroage('search-name'),
     autoCompleteWords: [],
     searchInput: '',
+    currChoiceIdx: -1,
   };
 
   constructor({ $parent }) {
@@ -37,6 +38,7 @@ export default class SearchContainer {
 
     this.search.addEventListener('mouseleave', this.deactivateInput.bind(this));
     this.search.addEventListener('click', this.handleClickHelpSearch.bind(this));
+    this.search.addEventListener('keyup', this.handleKeyUpInput.bind(this));
   }
 
   refreshAutoCompleteWord(newWords) {
@@ -45,12 +47,11 @@ export default class SearchContainer {
   }
 
   refreshInputValue(newValue) {
-    this.setState({ searchInput: newValue });
+    this.setState({ searchInput: newValue, currChoiceIdx: 0 });
   }
 
   refreshSearchNameState() {
-    this.state = { ...this.state, searchName: getItemInLocalStroage('search-name') };
-    this.setState(this.state);
+    this.setState({ searchName: getItemInLocalStroage('search-name'), currChoiceIdx: 0 });
     this.searchForm.setInputValue('');
     this.searchForm.blurInput();
     this.deactivateInput();
@@ -107,5 +108,25 @@ export default class SearchContainer {
     this.state = { ...this.state, ...props };
     this.textRoller.setState(this.state);
     this.helpSearchContainer.setState(this.state);
+  }
+
+  handleKeyUpInput(e) {
+    if (!this.state.searchInput || this.state.autoCompleteWords.length === 0) return;
+    if (e.code === 'Enter') return;
+    if (e.code !== 'ArrowUp' && e.code !== 'ArrowDown') return;
+    const autoCompleteLastIdx = this.state.autoCompleteWords.length - 1;
+    let newCurrChoiceIdx = 0;
+    let newInputValue = '';
+
+    if (e.code === 'ArrowUp') {
+      newCurrChoiceIdx = this.state.currChoiceIdx - 1 < 0 ? autoCompleteLastIdx : this.state.currChoiceIdx - 1;
+    }
+    if (e.code === 'ArrowDown') {
+      newCurrChoiceIdx = this.state.currChoiceIdx + 1 > autoCompleteLastIdx ? 0 : this.state.currChoiceIdx + 1;
+    }
+
+    newInputValue = this.state.autoCompleteWords[newCurrChoiceIdx];
+    this.searchForm.setInputValue(newInputValue);
+    this.setState({ ...this.state, currChoiceIdx: newCurrChoiceIdx });
   }
 }
