@@ -5,6 +5,10 @@ import { $, debounce, prevent } from '@utils';
 const WAIT_INPUT_TIME = 500;
 
 export class SearchInput extends Component {
+  setup() {
+    this.suggestIndex = -1;
+  }
+
   template() {
     return /*html*/ `
         <form>
@@ -18,6 +22,7 @@ export class SearchInput extends Component {
     this.$input.value = SearchInputStore.getState().inputValue;
 
     this.$target.onsubmit = this.onsearch.bind(this)();
+    this.$input.onkeydown = this.onkeydown.bind(this);
     this.$input.onkeyup = this.onkeyup.bind(this)();
   }
 
@@ -33,8 +38,35 @@ export class SearchInput extends Component {
     });
   }
 
+  onkeydown(e) {
+    const { suggestList } = SearchInputStore.getState();
+    if (!suggestList.length) return;
+
+    const maxIndex = suggestList.length - 1;
+
+    switch (e.keyCode) {
+      case 38: // Arrow Up
+        e.preventDefault();
+        this.suggestIndex = this.suggestIndex <= 0 ? maxIndex : this.suggestIndex - 1;
+        this.$input.value = suggestList[this.suggestIndex];
+        break;
+      case 40: // Arrow Down
+        e.preventDefault();
+        this.suggestIndex = this.suggestIndex >= maxIndex ? 0 : this.suggestIndex + 1;
+        this.$input.value = suggestList[this.suggestIndex];
+        break;
+      default:
+        this.suggestIndex = -1;
+        break;
+    }
+  }
+
   onkeyup() {
     return debounce(() => {
+      const { inputValue } = SearchInputStore.getState();
+      if (this.$input.value === inputValue) return;
+
+      this.suggestIndex = -1;
       SearchInputStore.dispatch('SET_INPUT_VALUE', { inputValue: this.$input.value });
     }, WAIT_INPUT_TIME);
   }

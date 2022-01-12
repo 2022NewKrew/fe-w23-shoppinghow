@@ -1,26 +1,32 @@
 import { Component } from '@core';
-import { RelatedSearchService } from '@services';
 import { SearchInputStore } from '@stores';
 
 export class AutoCompleteContent extends Component {
   template() {
     return /*html*/ `
-        <div class="autoCompleteContent">
-          연관검색어 로딩중
-        </div>
+        <div class="autoCompleteContent"></div>
     `;
   }
   rendered() {
-    this.renderSuggestion();
+    this.renderContent();
   }
 
-  mounted() {}
+  mounted() {
+    SearchInputStore.subscribe(this.renderContent.bind(this));
+
+    const { inputValue } = SearchInputStore.getState();
+    SearchInputStore.dispatch('FETCH_SUGGEST', { inputValue });
+  }
 
   // util
 
-  async renderSuggestion() {
-    const { inputValue } = SearchInputStore.getState();
-    const suggestList = await RelatedSearchService.suggest(inputValue);
+  renderContent() {
+    const { inputValue, suggestList, loading } = SearchInputStore.getState();
+
+    if (loading) {
+      this.$target.innerText = '연관검색어 로딩중...';
+      return;
+    }
 
     if (!suggestList.length) {
       this.$target.innerText = '연관검색어가 없습니다.';

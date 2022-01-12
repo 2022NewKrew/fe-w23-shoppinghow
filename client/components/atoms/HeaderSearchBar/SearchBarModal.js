@@ -7,6 +7,10 @@ import { TopPopularContent } from './TopPopularContent';
 const HIDE_MODAL_CLASSNAME = 'search__modal--hide';
 
 export class SearchBarModal extends Component {
+  setup() {
+    this.hasInput = undefined;
+  }
+
   template() {
     return /*html*/ `
         <div class="search__modal ${HIDE_MODAL_CLASSNAME}" tabindex="-1">
@@ -29,9 +33,13 @@ export class SearchBarModal extends Component {
 
   renderContent() {
     const { inputValue } = SearchInputStore.getState();
-    this.$target.innerHTML = '';
+    const hasInput = !!inputValue;
 
-    if (!!inputValue) {
+    if (this.hasInput === hasInput) return;
+
+    this.hasInput = hasInput;
+    this.$target.innerHTML = '';
+    if (hasInput) {
       new AutoCompleteContent(this.$target, { renderType: 'appendHTML' });
     } else {
       new RecentSearchContent(this.$target, { renderType: 'appendHTML' });
