@@ -1,12 +1,12 @@
 import { createDom } from '@utils/createDom';
-import { searchTop10 } from '@components/headerView/search/searchTop10';
-import { searchBelow } from '@components/headerView/search/searchBelow';
+import { searchTop10 } from '@components/headerView/searchView/searchTop10';
+import { searchModal } from '@components/headerView/searchView/searchModal';
 
 const addFocusEvent = (formContainer) => {
     const top10 = formContainer.querySelector('.search-top10');
-    const inputField = formContainer.querySelector('input');
+    const searchInput = formContainer.querySelector('input');
 
-    inputField.addEventListener('focus', () => {
+    searchInput.addEventListener('focus', () => {
         formContainer.classList.add('focus');
         top10.classList.add('hidden');
     });
@@ -15,15 +15,15 @@ const addFocusEvent = (formContainer) => {
         const layerRemainTime = 500;
         setTimeout(() => {
             formContainer.classList.remove('focus');
-            if (inputField.value.length === 0) top10.classList.remove('hidden');
-            inputField.blur();
+            if (searchInput.value.length === 0) top10.classList.remove('hidden');
+            searchInput.blur();
         }, layerRemainTime);
     });
 };
 
-const renderBelowSearch = ({ parent, inputValue, top10Data }) => {
+const renderSearchModal = ({ parent, inputValue, top10Data }) => {
     parent.innerHTML = '';
-    parent.appendChild(searchBelow({ inputValue, top10Data }));
+    parent.appendChild(searchModal({ inputValue, top10Data }));
 };
 
 const renderSearchForm = (top10Data) => {
@@ -33,12 +33,12 @@ const renderSearchForm = (top10Data) => {
             <button class="search__icon">🔍</button>
         `;
     form.appendChild(searchTop10({ top10Data }));
-    const searchBelow = createDom('div', { className: 'search-below' });
-    form.appendChild(searchBelow);
-    renderBelowSearch({ parent: searchBelow, top10Data });
+    const searchModal = createDom('div', { className: 'search-below' });
+    form.appendChild(searchModal);
+    renderSearchModal({ parent: searchModal, top10Data });
 
     form.addEventListener('input', (e) => {
-        renderBelowSearch({ parent: searchBelow, inputValue: e.target.value, top10Data });
+        renderSearchModal({ parent: searchModal, inputValue: e.target.value, top10Data });
     });
 
     return form;
@@ -58,7 +58,7 @@ const dummyData = [
     '콩나물',
 ];
 
-export const search = () => {
+export const searchView = () => {
     const target = document.createElement('div');
 
     const render = () => {

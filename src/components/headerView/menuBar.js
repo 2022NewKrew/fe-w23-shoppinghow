@@ -1,18 +1,25 @@
-export const menuBar = () => {
-    const target = document.createElement('div');
+const displayHandler = (element, displayProperty) => {
+    const onRemoveDelayMs = 500;
+    const setDisplayProperty = () => (element.style.display = displayProperty);
+    if (displayProperty === 'block') return setDisplayProperty;
+    const handleAfterTime = () => setTimeout(setDisplayProperty, onRemoveDelayMs);
+    return handleAfterTime;
+};
 
-    const addMouseEvent = (button) => {
-        const layerRemainTime = 1000;
+const addMouseEvent = (buttons) => {
+    buttons.forEach((button) => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
         });
 
         const popUpLayer = button.querySelector('.pop-up-layer');
-        button.addEventListener('mouseover', () => (popUpLayer.style.display = 'block'));
-        button.addEventListener('mouseleave', () => {
-            setTimeout(() => (popUpLayer.style.display = 'none'), layerRemainTime);
-        });
-    };
+        button.addEventListener('mouseover', displayHandler(popUpLayer, 'block'));
+        button.addEventListener('mouseleave', displayHandler(popUpLayer, 'none'));
+    });
+};
+
+export const menuBar = () => {
+    const target = document.createElement('div');
 
     const render = () => {
         target.className = 'header-menu';
@@ -39,8 +46,7 @@ export const menuBar = () => {
 
         const categoryBtn = target.querySelector('.category');
         const currentBtn = target.querySelector('.private-menu__current-button');
-        addMouseEvent(categoryBtn);
-        addMouseEvent(currentBtn);
+        addMouseEvent([categoryBtn, currentBtn]);
         return target;
     };
 

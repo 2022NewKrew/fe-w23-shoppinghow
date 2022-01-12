@@ -22,7 +22,7 @@ const renderTop10Content = (top10Data) => {
     return content;
 };
 
-export const belowTop10 = (top10Data) => {
+export const modalTop10 = (top10Data) => {
     const target = createDom('div', { className: 'search-below__section' });
 
     const title = createDom('div', { className: 'search-below__title', textContent: '인기 쇼핑 키워드' });

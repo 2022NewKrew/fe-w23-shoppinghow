@@ -11,7 +11,7 @@ const renderContent = () => {
     return content;
 };
 
-export const belowRecent = () => {
+export const modalRecent = () => {
     const target = createDom('div', { className: 'search-below__section recent-keyword' });
 
     const render = () => {

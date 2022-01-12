@@ -27,7 +27,7 @@ const renderContent = (dummyData) => {
     return container;
 };
 
-export const belowSuggestion = () => {
+export const modalSuggestion = () => {
     const target = createDom('div', { className: 'search-below__container' });
 
     const render = () => {
