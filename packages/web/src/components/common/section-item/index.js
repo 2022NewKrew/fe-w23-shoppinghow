@@ -2,7 +2,7 @@ import { createHTML } from "src/utils/dom";
 
 import "./index.scss";
 
-export default class HotDealItem {
+export default class SectionItem {
   constructor({ $app, initialState }) {
     this.state = initialState;
     this.$target = createHTML("li", { className: "hotdeal_item" });

@@ -1,5 +1,5 @@
-import { createHTML } from "src/utils/dom";
 import carousel from "src/utils/carousel";
+import { createHTML } from "src/utils/dom";
 
 export default class EvtSlide {
   constructor({ $app, initialState }) {

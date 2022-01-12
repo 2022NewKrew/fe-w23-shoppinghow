@@ -1,6 +1,5 @@
 import ContEvent from "src/components/main/mArticle/sectiontop/cont-event";
 import ListItem from "src/components/main/mArticle/sectiontop/list-item";
-import Service from "src/service";
 
 import { createHTML } from "src/utils/dom";
 

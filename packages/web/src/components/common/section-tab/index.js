@@ -1,4 +1,4 @@
-import HotDealItem from "src/components/common/hotdeal-item";
+import SectionItem from "src/components/common/section-item";
 
 import { createHTML } from "src/utils/dom";
 
@@ -25,7 +25,7 @@ export default class SectionTab {
 
     const ul = this.$target.querySelector(".list_item");
     data.forEach(
-      (product) => new HotDealItem({ $app: ul, initialState: product })
+      (product) => new SectionItem({ $app: ul, initialState: product })
     );
   }
 }
