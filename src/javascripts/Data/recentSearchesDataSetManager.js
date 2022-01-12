@@ -12,7 +12,7 @@ class RecentSearchesDataSetManager extends DataSetManager {
     static #MAX_NUMBER_OF_DATA = 10
     
     /**
-     * @param {string} localStorageKey : local storage에 저장할 때 사용될 key
+     * @param {string} localStorageKey - local storage에 저장할 때 사용될 key
      */
     constructor(localStorageKey) {
         super(localStorageKey)
@@ -29,7 +29,7 @@ class RecentSearchesDataSetManager extends DataSetManager {
     
     /**
      * 최근 검색어를 추가, Stack 방식으로 추가됨. (가장 나중에 추가한 것이 가장 앞에 있음)
-     * @param {string} searchesToAdd : 추가할 검색어
+     * @param {string} searchesToAdd - 추가할 검색어
      */
     addData(searchesToAdd) {
         let isExists = this.checkIfExists(searchesToAdd)
