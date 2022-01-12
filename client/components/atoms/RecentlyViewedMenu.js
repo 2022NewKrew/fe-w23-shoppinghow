@@ -47,7 +47,7 @@ export class RecentlyViewedMenu extends Component {
   // util
 
   renderModalContent() {
-    const { list: recentlyViewedList } = RecentlyViewedStore.getState();
+    const { recentlyViewedList } = RecentlyViewedStore.getState();
 
     this.$title.innerText = `최근본 상품 ${recentlyViewedList.length}`;
 

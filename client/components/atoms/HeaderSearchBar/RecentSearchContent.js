@@ -22,7 +22,7 @@ export class RecentSearchContent extends Component {
     this.$target.addEventListener('click', ({ target }) => {
       if (target.classList.contains('closeBtn')) {
         const text = target.closest('.recentSearchContent__item').innerText;
-        RecentlySearchStore.dispatch({ actionKey: 'DELETE_SEARCH', item: text });
+        RecentlySearchStore.dispatch('DELETE_SEARCH', { item: text });
       }
     });
 
@@ -32,8 +32,11 @@ export class RecentSearchContent extends Component {
   // util
 
   renderSearchContentList() {
-    const { list } = RecentlySearchStore.getState();
-    this.$searchContentList.innerHTML = list.slice(0, SHOW_ITEM_CNT).map(this.searchItemTemplate).join('');
+    const { recentlySearchList } = RecentlySearchStore.getState();
+    this.$searchContentList.innerHTML = recentlySearchList
+      .slice(0, SHOW_ITEM_CNT)
+      .map(this.searchItemTemplate)
+      .join('');
   }
 
   searchItemTemplate(text) {

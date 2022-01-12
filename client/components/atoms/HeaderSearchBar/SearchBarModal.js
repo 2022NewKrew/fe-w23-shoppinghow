@@ -2,7 +2,7 @@ import { Component } from '@core';
 import { SearchFocusStore, SearchInputStore } from '@stores';
 import { AutoCompleteContent } from './AutoCompleteContent';
 import { RecentSearchContent } from './RecentSearchContent';
-import { TopPopularContent } from './topPopularContent';
+import { TopPopularContent } from './TopPopularContent';
 
 const HIDE_MODAL_CLASSNAME = 'search__modal--hide';
 

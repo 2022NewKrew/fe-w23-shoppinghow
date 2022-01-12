@@ -46,7 +46,7 @@ export class HeaderSearchBar extends Component {
   }
 
   focusinSearch() {
-    SearchFocusStore.dispatch({ actionKey: 'FOCUS_INPUT', isSearchFocused: true });
+    SearchFocusStore.dispatch('FOCUS_INPUT', { isSearchFocused: true });
     this.$target.classList.add(FOCUSE_SEARCH_CLASSNAME);
     this.topPopularSlider.hideSliderTrack();
     this.SearchBarModal.showModal();
@@ -58,7 +58,7 @@ export class HeaderSearchBar extends Component {
     setTimeout(() => {
       if (this.isMouseover) return;
 
-      SearchFocusStore.dispatch({ actionKey: 'FOCUS_INPUT', isSearchFocused: false });
+      SearchFocusStore.dispatch('FOCUS_INPUT', { isSearchFocused: false });
       this.$target.classList.remove(FOCUSE_SEARCH_CLASSNAME);
       this.SearchInput.$input.blur();
       this.SearchBarModal.hideModal();

@@ -8,9 +8,10 @@ const getInitInputValue = () => {
 
 /**
  * @actionKey `SET_INPUT_VALUE`
+ * @state { inputValue: string }
  * @inputValue string
  */
-export const SearchInputStore = new Store({ inputValue: getInitInputValue() }, (state, { actionKey, inputValue }) => {
+export const SearchInputStore = new Store({ inputValue: getInitInputValue() }, (state, actionKey, { inputValue }) => {
   switch (actionKey) {
     case 'SET_INPUT_VALUE':
       return { ...state, inputValue };
@@ -21,9 +22,10 @@ export const SearchInputStore = new Store({ inputValue: getInitInputValue() }, (
 
 /**
  * @actionKey `FOCUS_INPUT`
+ * @state { isSearchFocused: boolean }
  * @isSearchFocused boolean
  */
-export const SearchFocusStore = new Store({ isSearchFocused: false }, (state, { actionKey, isSearchFocused }) => {
+export const SearchFocusStore = new Store({ isSearchFocused: false }, (state, actionKey, { isSearchFocused }) => {
   switch (actionKey) {
     case 'FOCUS_INPUT':
       return { ...state, isSearchFocused };

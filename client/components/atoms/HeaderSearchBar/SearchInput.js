@@ -25,13 +25,13 @@ export class SearchInput extends Component {
     const text = this.$input.value;
     if (!text) return;
 
-    RecentlySearchStore.dispatch({ actionKey: 'ADD_SEARCH', item: text });
+    RecentlySearchStore.dispatch('ADD_SEARCH', { item: text });
     this.$input.value = '';
   }
 
   onkeyup() {
     return debounce(() => {
-      SearchInputStore.dispatch({ actionKey: 'SET_INPUT_VALUE', inputValue: this.$input.value });
+      SearchInputStore.dispatch('SET_INPUT_VALUE', { inputValue: this.$input.value });
     }, 500);
   }
 }

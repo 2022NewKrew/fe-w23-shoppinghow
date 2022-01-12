@@ -3,7 +3,7 @@ import { TopPopularStore } from '@stores';
 
 export class TopPopularContent extends Component {
   template() {
-    const { list: topPopularList = [] } = TopPopularStore.getState();
+    const { topPopularList } = TopPopularStore.getState();
 
     return /*html*/ `
         <div class="topPopularContent">

@@ -3,26 +3,29 @@ import { getSessionStorageItem, getURLParams, setSessionStorageItem } from '@uti
 
 const storageKey = 'RecentlySearchStore';
 
-const getInitList = () => {
+const getInitrecentlySearchList = () => {
   const { search } = getURLParams();
   if (!search) return getSessionStorageItem(storageKey) || [];
   return saveSearchToList(search);
 };
 
+const recentlySearchInitState = { recentlySearchList: getInitrecentlySearchList() };
+
 /**
  * @actionKey `ADD_SEARCH` | `DELETE_SEARCH`
+ * @state { recentlySearchList: string[] }
  * @item string
  */
-export const RecentlySearchStore = new Store({ list: getInitList() }, async (state, { actionKey, item }) => {
-  const { list } = state;
+export const RecentlySearchStore = new Store(recentlySearchInitState, async (state, actionKey, { item }) => {
+  const { recentlySearchList } = state;
 
   switch (actionKey) {
     case 'ADD_SEARCH':
-      return { ...state, list: saveSearchToList(item) };
+      return { ...state, recentlySearchList: saveSearchToList(item) };
     case 'DELETE_SEARCH':
-      const deletedList = list.filter((text) => text !== item);
+      const deletedList = recentlySearchList.filter((text) => text !== item);
       setSessionStorageItem(storageKey, deletedList);
-      return { ...state, list: deletedList };
+      return { ...state, recentlySearchList: deletedList };
     default:
       return { ...state };
   }

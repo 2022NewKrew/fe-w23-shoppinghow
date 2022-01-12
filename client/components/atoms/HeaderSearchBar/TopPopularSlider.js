@@ -12,7 +12,7 @@ export class TopPopularSlider extends Component {
   }
 
   template() {
-    const { list: topPopularList = [] } = TopPopularStore.getState();
+    const { topPopularList } = TopPopularStore.getState();
     this.maxIndex = topPopularList.length - 1;
 
     const topPopularTrackList = !topPopularList.length
