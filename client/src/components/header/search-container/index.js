@@ -29,7 +29,9 @@ export default class SearchContainer {
       refreshAutoCompleteWord: this.refreshAutoCompleteWord.bind(this),
       refreshInputValue: this.refreshInputValue.bind(this),
     });
-    this.helpSearchContainer = new HelpSearchContainer({ $parent: this.search });
+    this.helpSearchContainer = new HelpSearchContainer({
+      $parent: this.search,
+    });
 
     $parent.appendChild(this.search);
 
@@ -38,6 +40,7 @@ export default class SearchContainer {
   }
 
   refreshAutoCompleteWord(newWords) {
+    this.controlActivationOfHelpSearchContainer(newWords);
     this.setState({ autoCompleteWords: newWords });
   }
 
@@ -49,23 +52,37 @@ export default class SearchContainer {
     this.state = { ...this.state, searchName: getItemInLocalStroage('search-name') };
     this.setState(this.state);
     this.searchForm.setInputValue('');
+    this.searchForm.blurInput();
+    this.deactivateInput();
   }
 
   handleClickHelpSearch(e) {
     if (e.target.className === 'recent-search-name__remove') {
       removeItemInLocalStroage('search-name', e.target.dataset.idx);
       this.refreshSearchNameState();
-    } else if (classNameForSetInputValue.includes(e.target.className)) {
+    }
+    if (classNameForSetInputValue.includes(e.target.className)) {
       const input = e.target.innerText;
       this.searchForm.setInputValue(input);
       this.setState({ searchInput: input });
+      if (e.target.className !== 'autocomplete__item') {
+        api
+          .get(`/item/autocomplete?search=${input}`)
+          .then((res) => res.result)
+          .then((result) => result.map((ele) => ele.title))
+          .then((newWords) => {
+            this.controlActivationOfHelpSearchContainer(newWords);
+            this.setState({ autoCompleteWords: newWords });
+          });
+      }
 
-      api
-        .get(`/item/autocomplete?search=${input}`)
-        .then((res) => res.result)
-        .then((result) => result.map((ele) => ele.title))
-        .then((newWords) => this.setState({ autoCompleteWords: newWords }));
+      this.searchForm.focusInput();
     }
+  }
+
+  controlActivationOfHelpSearchContainer(newWords) {
+    if (newWords.length === 0) this.helpSearchContainer.deActivate();
+    if (newWords.length !== 0) this.helpSearchContainer.activate();
   }
 
   activateInput() {
