@@ -3,7 +3,10 @@ import styles from '../../scss/ComponentStyles/FloatingLayer.module.scss'
 
 export default class FloatingLayer extends Component {
     
-    constructor(componentOnLayer, option) {
+    #option
+    
+    
+    constructor(componentOnLayer, userOption) {
         super(`
             <div class="${ styles.floatingLayerBenchmark }">
                 <div class="${ styles.floatingLayer }">
@@ -13,21 +16,17 @@ export default class FloatingLayer extends Component {
         `, {
             'componentOnLayer': componentOnLayer
         })
-    
-        if (option) {
-            this.#setOption(option)
+        
+        const defaultOption = {
+            zIndex: 100
         }
+        
+        this.#option = { ...defaultOption, ...userOption }
     }
     
-    
-    #setOption(option) {
-        if (option.zIndex) {
-            this.rootEl.style.zIndex = option.zIndex
-        }
-    }
     
     update() {
-    
+        this.rootEl.style.zIndex = this.#option.zIndex
     }
     
 }
