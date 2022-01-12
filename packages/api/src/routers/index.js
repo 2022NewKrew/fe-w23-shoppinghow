@@ -13,4 +13,9 @@ APIRouter.get("/suggestion", (req, res) => {
   return res.send(data);
 });
 
+APIRouter.get("/navigator", (req, res) => {
+  const data = Service.getNavigator();
+  return res.send(data);
+});
+
 export default APIRouter;

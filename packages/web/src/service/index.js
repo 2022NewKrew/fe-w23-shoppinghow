@@ -2,6 +2,7 @@ const API_ENDPOINT = "http://localhost:3000/api/v1";
 
 const ROLLKEYWORD = "rollkeyword";
 const SUGGESTION = "suggestion";
+const NAVIGATOR = "navigator";
 
 const request = async (url) => {
   const response = await fetch(url);
@@ -42,5 +43,8 @@ export default class Service {
   }
   static async getSuggestion() {
     return Service.dataFetch(SUGGESTION);
+  }
+  static async getNavigator() {
+    return Service.dataFetch(NAVIGATOR);
   }
 }

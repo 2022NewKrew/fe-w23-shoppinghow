@@ -5,7 +5,7 @@ export default function shwgnb(list_shwgnb) {
     <h2 class="screen_out">쇼핑하우 메뉴</h2>
     <ul class="list_shwgnb">
         ${list_shwgnb
-          .map(
+          ?.map(
             ({ name, noti }) =>
               `<li><a href="#">${
                 noti ? '<span class="txt_new"></span>' + name : name

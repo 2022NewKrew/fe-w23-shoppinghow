@@ -1,16 +1,37 @@
+import Service from "src/service";
+
 import { createHTML } from "src/utils/dom";
+import { getRcntKeywords } from "src/utils/localStorage";
 
 import "./index.scss";
 
 export default class Suggestion {
   constructor({ $app }) {
+    this.state = {};
     this.$target = createHTML("div", { className: "wrap_suggestion" });
     this.$target.style.display = "none";
     $app.appendChild(this.$target);
 
     this.render();
+    this.dataFetch();
   }
+  async dataFetch() {
+    const {
+      isError,
+      data: { suggestion: kwordList },
+    } = await Service.getSuggestion();
+    const rcntList = await getRcntKeywords();
+    this.setState({ rcntList, kwordList });
+  }
+
+  setState(newState) {
+    this.state = { ...newState };
+    this.render();
+  }
+
   render() {
+    const { rcntList, kwordList } = this.state;
+
     this.$target.innerHTML = `
         <div class="inner_suggestion">
             <div class="rcnt">
@@ -33,7 +54,7 @@ export default class Suggestion {
   }
   createListRcnt(data) {
     return data
-      .map(
+      ?.map(
         (word) =>
           `<li><a href="#" class="keyword">${word}<span class="ico_remove"></span></a></li>`
       )
@@ -42,7 +63,7 @@ export default class Suggestion {
 
   createListKeyword(data, start, end) {
     return data
-      .slice(start, end)
+      ?.slice(start, end)
       .map(
         (word, idx) =>
           `
