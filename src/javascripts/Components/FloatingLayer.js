@@ -5,6 +5,7 @@ export default class FloatingLayer extends Component {
     
     #option
     
+    #floatingLayerEl
     
     constructor(componentOnLayer, userOption) {
         super(`
@@ -18,15 +19,27 @@ export default class FloatingLayer extends Component {
         })
         
         const defaultOption = {
-            zIndex: 100
+            zIndex: 100,
+            leftAlign: true,
+            rightAlign: false
         }
         
         this.#option = { ...defaultOption, ...userOption }
+        
+        this.#floatingLayerEl = this.rootEl.querySelector(`.${ styles.floatingLayer }`)
     }
     
     
     update() {
-        this.rootEl.style.zIndex = this.#option.zIndex
+        this.#floatingLayerEl.style.zIndex = this.#option.zIndex
+        
+        if (this.#option.leftAlign) {
+            this.#floatingLayerEl.style.left = '0'
+        }
+    
+        if (this.#option.rightAlign) {
+            this.#floatingLayerEl.style.right = '0'
+        }
     }
     
 }
