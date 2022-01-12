@@ -1,32 +1,22 @@
 import Component from "../core/Component.js";
 
 export default class RecentProduct extends Component {
-  element;
-  setup() {
-    this.createTemplate();
-  }
+  setup() {}
 
-  createTemplate() {
-    this.element = document.createElement("div");
-    this.element.insertAdjacentHTML(
-      "beforeend",
-      `
-            <div id="recent-product-container">
-                <div id="recent-product-menu">
-                    <div id="recent-products">
-                        최근 본 상품 2
-                    </div>
-                    <div id="liked-products">
-                        내가 찜한 상품 0 
-                    </div>
-                </div>
-                <div class="recent-product-items">
-            </div>
-    `
-    );
-  }
   template() {
-    return this.element.innerHTML;
+    return `
+      <div id="recent-product-container">
+        <div id="recent-product-menu">
+            <div id="recent-products">
+                최근 본 상품 2
+            </div>
+            <div id="liked-products">
+                내가 찜한 상품 0 
+            </div>
+        </div>
+        <div class="recent-product-items"></div>
+      </div>
+    `;
   }
 
   setEvent() {

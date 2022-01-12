@@ -1,15 +1,21 @@
 export default class Component {
   $target;
   $props;
+  $element;
 
-  constructor($target, $props = {}) {
+  constructor($target, $props = {}, $element) {
     this.$target = $target;
     this.$props = $props; // props 할당
-    this.setup();
+    this.init();
     this.setEvent();
     this.render();
-    this.afterRender();
     this.mounted(); // render 후에 mounted가 실행 된다.
+  }
+
+  init() {
+    this.$element = document.createElement("div");
+    this.$element.insertAdjacentHTML("beforeend", this.template());
+    this.setup();
   }
 
   setup() {}
@@ -38,11 +44,10 @@ export default class Component {
     );
   }
   render() {
-    this.$target.insertAdjacentHTML("beforeend", this.template());
+    this.$target.insertAdjacentHTML("beforeend", this.$element.innerHTML);
+    // this.$target.insertAdjacentHTML("beforeend", this.template());
   }
 
-  afterRender() {}
-
-  // 자식 컴포넌트를 마운트
+  // 자식 컴포넌트를 마운트 및 렌더링 이후의 처리
   mounted() {}
 }
