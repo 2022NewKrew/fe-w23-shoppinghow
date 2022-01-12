@@ -15,7 +15,7 @@ export class SearchSuggestionView {
 
     initDom() {
         this.$suggestionWrapper.innerHTML = suggestionTemplate();
-        this.$itemContainers = $$('.list_keyword', this.suggestionWrapper);
+        this.$itemContainers = $$('.list_keyword', this.$suggestionWrapper);
         observe(() => this.render());
     }
 
