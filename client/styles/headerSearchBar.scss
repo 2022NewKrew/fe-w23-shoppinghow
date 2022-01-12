@@ -126,3 +126,17 @@
     background-position: -150px -55px;
   }
 }
+
+.autoCompleteContent {
+  & > * {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    display: block;
+  }
+
+  .txt__hightlight {
+    color: $red-300;
+  }
+}

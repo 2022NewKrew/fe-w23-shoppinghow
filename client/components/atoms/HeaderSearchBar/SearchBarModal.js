@@ -1,4 +1,6 @@
 import { Component } from '@core';
+import { SearchFocusStore, SearchInputStore } from '@stores';
+import { AutoCompleteContent } from './AutoCompleteContent';
 import { RecentSearchContent } from './RecentSearchContent';
 import { Top10Content } from './Top10Content';
 
@@ -12,8 +14,29 @@ export class SearchBarModal extends Component {
     `;
   }
   rendered() {
-    new RecentSearchContent(this.$target, { renderType: 'appendHTML' });
-    new Top10Content(this.$target, { renderType: 'appendHTML' });
+    this.renderContent();
+  }
+
+  mounted() {
+    this.$target.ontransitionend = () => {
+      const { isSearchFocused } = SearchFocusStore.getState();
+      if (!isSearchFocused) this.disactiveModal();
+    };
+    SearchInputStore.subscribe(this.renderContent.bind(this));
+  }
+
+  // util
+
+  renderContent() {
+    const { inputValue } = SearchInputStore.getState();
+    this.$target.innerHTML = '';
+
+    if (!!inputValue) {
+      new AutoCompleteContent(this.$target, { renderType: 'appendHTML' });
+    } else {
+      new RecentSearchContent(this.$target, { renderType: 'appendHTML' });
+      new Top10Content(this.$target, { renderType: 'appendHTML' });
+    }
   }
 
   showModal() {

@@ -1,6 +1,6 @@
 import { Component } from '@core';
-import { RecentlySearchStore } from '@stores';
-import { $, getURLParams } from '@utils';
+import { RecentlySearchStore, SearchInputStore } from '@stores';
+import { $, debounce, prevent } from '@utils';
 
 export class SearchInput extends Component {
   template() {
@@ -13,17 +13,13 @@ export class SearchInput extends Component {
   }
   rendered() {
     this.$input = $('.search__input', this.$target);
+    this.$input.value = SearchInputStore.getState().inputValue;
 
-    this.$target.addEventListener('submit', (e) => {
-      e.preventDefault();
-      this.onSearch();
-    });
+    this.$target.addEventListener('submit', prevent(this.onSearch.bind(this)));
+    this.$input.onkeyup = this.onkeyup().bind(this);
   }
 
-  mounted() {
-    const { search } = getURLParams();
-    if (search) this.$input.value = search;
-  }
+  // util
 
   onSearch() {
     const text = this.$input.value;
@@ -31,5 +27,11 @@ export class SearchInput extends Component {
 
     RecentlySearchStore.dispatch({ actionKey: 'search', item: text });
     this.$input.value = '';
+  }
+
+  onkeyup() {
+    return debounce(() => {
+      SearchInputStore.dispatch({ actionKey: 'SET_INPUT_VALUE', inputValue: this.$input.value });
+    }, 500);
   }
 }
