@@ -48,7 +48,8 @@ export const verticalRolling = (contentsData) => {
     verticalRollingWindow.classList.add('vertical-rolling__window');
 
     const render = () => {
-        verticalRollingWindow.appendChild(renderVerticalList(contentsData));
+        const rollingContentsContainer = renderVerticalList(contentsData);
+        verticalRollingWindow.appendChild(rollingContentsContainer);
         return verticalRollingWindow;
     };
 

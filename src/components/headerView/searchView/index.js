@@ -22,7 +22,7 @@ const addFocusEvent = (formContainer) => {
 };
 
 const renderSearchModal = ({ parent, inputValue, top10Data }) => {
-    parent.innerHTML = '';
+    parent.innerText = '';
     parent.appendChild(searchModal({ inputValue, top10Data }));
 };
 
