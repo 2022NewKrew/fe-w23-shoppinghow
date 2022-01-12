@@ -3,7 +3,6 @@ import PlanningItem from "@components/Contents/PlanningItem";
 import { throttling } from "@utils/eventUtils";
 import style from "@style/planning.module.scss";
 import { fetchData } from "@utils/apiUtils";
-import ProductContainer from "@components/Contents/ProductContainer";
 
 const CLICK_THROTTLING_DELAY = 300;
 const PLANNING_ITEM_LIST_DATA_URL = "http://localhost:3000/planningItems.json";

@@ -118,58 +118,69 @@ $SearchHeight: 60px;
             padding: $button-padding;
         }
 
-        .activate-recent-wrapper{
+        .activate-private-wrapper{
             position: relative;
-            .recent-items__wrapper{
-                visibility: hidden;
-                position: absolute;
-                height: 500px;
-                width: 400px;
-                z-index: 10;
-                right: 0;
-                top: 58px;
+            .private-float-layer{
+                //visibility: hidden;
+                position:absolute;
+                width:400px;
+                height:500px;
+                right:0;
                 border: 1px solid #979797;
                 background-color: #fff;
-                text-align: left;
+                z-index: 10;
                 display: flex;
                 flex-direction: column;
-                padding: 20px 10px 0 10px;
-                .recent-items__title-wrapper{
-                    margin: 10px;
+
+                .private-float-layer__title-btns-wrapper{
                     display: flex;
                     flex-direction: row;
-                    height: 26px;
-                    font-size: 16px;
-                    color: #444;
-                    letter-spacing: -.05em;
-                    align-items: center;
-
-                    .recent-items__title{
-                        margin-right: 10px;
+                    margin: 15px 10px 10px 10px;
+                    .private-items__title-wrapper{
+                        padding: 10px;
+                        margin: 0 3px 0 3px;
+                    }
+                    .private-items__title-wrapper:hover{
+                        border-bottom: 2px solid #888888;
                     }
                 }
-                .recent-items__products-wrapper{
-                    height: 90%;
-                    .recent-items__products-list{
-                        display: flex;
-                        flex-direction: row;
-                        align-items: flex-start;
-                        flex-wrap: wrap;
-                        overflow-y: scroll;
+
+                .private-float-layer__contents-wrapper{
+                    position:relative;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    height:100%;
+                    overflow:hidden;
+                    .private-items__wrapper{
+                        position:absolute;
+                        height: 100%;
                         width: 100%;
-                        img {
-                            margin: 2px;
-                            height: 115px;
-                            width: 115px;
+                        .private-items__products-list{
+                            padding: 0 10px 10px 10px;
+                            display: flex;
+                            max-height: 95%;
+                            flex-direction: row;
+                            align-items: flex-start;
+                            flex-wrap: wrap;
+                            overflow-y: scroll;
+                            width: 100%;
+                            img {
+                                margin: 2px;
+                                height: 115px;
+                                width: 115px;
+                            }
+                        }
+                        .private-items__clear-btn{
+                            position: absolute;
+                            bottom: 0;
+                            text-align: center;
+                            width:100%;
+                        }
+                        .private-items__clear-btn:hover{
+                            color: grey;
                         }
                     }
-                }
-                .recent-items__clear-btn{
-                    text-align: center;
-                    margin: 10px 0 10px 0;
-                }
-                .recent-items__clear-btn:hover{
-                    color: grey;
                 }
             }
         }
@@ -259,12 +270,30 @@ $SearchHeight: 60px;
             display: flex;
             flex-wrap:wrap;
             .product__item {
+                position: relative;
                 width:20%;
                 padding:20px;
                 border-right: 1px solid #f1f1f1;
                 border-bottom: 1px solid #f1f1f1;
+                .product__pick-btn{
+                    position: absolute;
+                    top:245px;
+                    right: 20px;
+                    z-index: 2;
+                    cursor:pointer;
+                    height: 20px;
+                    width: 20px;
+                    background-image: url(//search1.daumcdn.net/search/cdn/simage/shopping/v2/common/catalog/ico_catalog_rtn_210917.png);
+                    background-size: 280px 420px;
+                    background-position: -75px -100px;
+                }
+
+                .pick-btn-activated{
+                    background-position: -160px -230px
+                }
             }
         }
+
 
         .product__detail-price {
             margin-top: 20px;
