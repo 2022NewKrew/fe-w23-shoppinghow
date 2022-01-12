@@ -1,5 +1,6 @@
 import SectionItem from "src/components/common/section-item";
 
+import LStorage from "src/utils/localStorage";
 import { createHTML } from "src/utils/dom";
 
 import "./index.scss";
@@ -12,6 +13,7 @@ export default class SectionTab {
     $app.appendChild(this.$target);
 
     this.render();
+    this.addEvent();
   }
   render() {
     const { title, data } = this.state;
@@ -27,5 +29,13 @@ export default class SectionTab {
     data.forEach(
       (product) => new SectionItem({ $app: ul, initialState: product })
     );
+  }
+  addEvent() {
+    this.$target.addEventListener("click", (e) => {
+      const El = e.target.closest(".section_item");
+      const itemThumb = El.dataset.thumb;
+      if (!itemThumb) return;
+      LStorage.add("rcntprod", itemThumb, 4);
+    });
   }
 }

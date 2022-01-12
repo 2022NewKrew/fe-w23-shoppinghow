@@ -2,8 +2,8 @@ import FrmShwSearch from "src/components/header/headtop/searchbar/frm-shwsearch"
 import RollKeyword from "src/components/header/headtop/searchbar/rollkeywords";
 import Suggestion from "src/components/header/headtop/searchbar/Suggestion";
 
+import LStorage from "src/utils/localStorage";
 import { $, createHTML } from "src/utils/dom";
-import { addRcntKeywords } from "src/utils/localStorage";
 
 import "./index.scss";
 
@@ -53,7 +53,7 @@ export default class SearchBar {
       e.preventDefault();
       const input = $(".tf_keyword").value;
       if (input !== "") {
-        addRcntKeywords(input);
+        LStorage.add("rcntkeywords", input, 5);
       }
     });
   }

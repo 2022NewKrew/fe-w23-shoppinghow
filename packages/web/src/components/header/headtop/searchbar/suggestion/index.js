@@ -1,7 +1,7 @@
 import Service from "src/service";
 
+import LStorage from "src/utils/localStorage";
 import { createHTML } from "src/utils/dom";
-import { getRcntKeywords } from "src/utils/localStorage";
 
 import "./index.scss";
 
@@ -20,7 +20,7 @@ export default class Suggestion {
       isError,
       data: { suggestion: kwordList },
     } = await Service.getSuggestion();
-    const rcntList = await getRcntKeywords();
+    const rcntList = await LStorage.get("rcntkeywords");
     this.setState({ rcntList, kwordList });
   }
 

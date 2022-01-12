@@ -5,7 +5,7 @@ import "./index.scss";
 export default class SectionItem {
   constructor({ $app, initialState }) {
     this.state = initialState;
-    this.$target = createHTML("li", { className: "hotdeal_item" });
+    this.$target = createHTML("li", { className: "section_item" });
 
     $app.appendChild(this.$target);
 
@@ -13,6 +13,7 @@ export default class SectionItem {
   }
   render() {
     const { title, thumb, priceInfo } = this.state;
+    this.$target.dataset.thumb = thumb;
     this.$target.innerHTML = `
         <a href="#">
             <span class="thumb_hotdeal"><img src="${thumb}"/></span>
