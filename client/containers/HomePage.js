@@ -1,5 +1,5 @@
 import { HotDealSection, PromotionSection, MainLayout } from '@components';
-import { API } from '@services';
+import { APIService } from '@services';
 import { Top10Store } from '@stores';
 
 export class HomePage extends MainLayout {
@@ -22,17 +22,17 @@ export class HomePage extends MainLayout {
   }
 
   async fetchThemeProductList() {
-    const { data: themeProductList } = await API.getThemeProductList();
+    const { data: themeProductList } = await APIService.getThemeProductList();
     this.PromotionSection.setThemeProductionList(themeProductList);
   }
 
   async fetchSliderImages() {
-    const { data: sliderImgList } = await API.getSliderImages();
+    const { data: sliderImgList } = await APIService.getSliderImages();
     this.PromotionSection.Slider.setImageList(sliderImgList);
   }
 
   async fetchHotDealProductList() {
-    const { data: hotDealProductList } = await API.getHotDealProductList();
+    const { data: hotDealProductList } = await APIService.getHotDealProductList();
     this.HotDealSection.setHotDealProductList(hotDealProductList);
   }
 }

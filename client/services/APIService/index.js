@@ -1,4 +1,4 @@
-import { onFetch } from '../onFetch';
+import { onFetch } from './onFetch';
 
 export const getHotDealProductList = async () => {
   const data = await onFetch({

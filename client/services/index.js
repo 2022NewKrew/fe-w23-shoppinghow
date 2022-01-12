@@ -1,1 +1,2 @@
-export * as API from './routes';
+export * as APIService from './APIService';
+export * as RelatedSearchService from './RelatedSearchService';
