@@ -31,14 +31,14 @@
       }
     }
 
-    .search-top10 {
+    .search-top10-list {
       position: absolute;
       transform: translateY(50%);
       left: 10px;
       font-size: 1.2rem;
       height: 50%;
       display: flex;
-      align-items: center;
+      flex-direction: column;
     }
   }
 }
@@ -131,6 +131,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          margin-bottom: 10px;
 
           .planning__left-ico {
             @extend %planning-ico;
