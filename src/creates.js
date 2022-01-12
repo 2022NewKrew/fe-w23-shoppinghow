@@ -32,8 +32,8 @@ async function createItemsHtml(){
   const themeItemData=await itemDataModel.getData();
 
   container.innerHTML=themeItemData.map((itemData)=>{
-    const dibsed=dibsItemIdsModel.isDibsedItem(itemData.itemId);
-    return new ThemeItem({...itemData, dibsed}).getHtml();
+    const isDibsItem=dibsItemIdsModel.isDibsedItem(itemData.itemId);
+    return new ThemeItem({...itemData, isDibsItem}).getHtml();
   }).join("");
 }
 
