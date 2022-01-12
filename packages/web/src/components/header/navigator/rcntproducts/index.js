@@ -1,4 +1,4 @@
-import { $, createHTML } from "../../utils/dom";
+import { $, createHTML } from "src/utils/dom";
 
 const RECENT = "recent";
 const ZZIM = "zzim";

@@ -1,9 +1,13 @@
-import { $, createHTML } from "../../../utils/dom";
-import { addRcntKeywords } from "../../../utils/localStorage";
-import RollKeyword from "./RollKeyword";
-import Suggestion from "./Suggestion";
+import FrmShwSearch from "src/components/header/headtop/searchbar/frm-shwsearch";
+import RollKeyword from "src/components/header/headtop/searchbar/rollkeywords";
+import Suggestion from "src/components/header/headtop/searchbar/Suggestion";
 
-const sample = [
+import { $, createHTML } from "src/utils/dom";
+import { addRcntKeywords, getRcntKeywords } from "src/utils/localStorage";
+
+import "./index.scss";
+
+const rollkeywordsdata = [
   "엔진코딩제",
   "벽선반",
   "키즈가방",
@@ -16,6 +20,19 @@ const sample = [
   "콩나물",
 ];
 
+const suggestiondata = [
+  "호빵찜기",
+  "키보드",
+  "참기름",
+  "캠핑용품",
+  "김치",
+  "곤약젤리",
+  "화장품선물세트",
+  "대추",
+  "빨대컵",
+  "핸드크림",
+];
+
 export default class SearchBar {
   constructor({ $app, initialState }) {
     this.state = initialState;
@@ -26,33 +43,16 @@ export default class SearchBar {
   }
 
   render() {
-    const keyword = sample;
-    this.$target.innerHTML = `
-        <h2 class="screen_out">검색</h2>
-        <form class="frm_shwsearch" role="search">
-            <input type="text" class="tf_keyword" size="55" />
-            <button type="submit">
-                <span class="ico_shwgnb ico_shwsearch"></span>
-            </button>
-        </form>
-        `;
-    this.createRollKeyword(keyword);
-    this.createSuggestion();
+    new FrmShwSearch({ $app: this.$target });
+    new RollKeyword({ $app: this.$target, initialState: rollkeywordsdata });
+    new Suggestion({
+      $app: this.$target,
+      initialState: {
+        rcntList: getRcntKeywords(),
+        kwordList: suggestiondata,
+      },
+    });
     this.addEvent();
-  }
-
-  createRollKeyword(keyword) {
-    const El = new RollKeyword({
-      $app: $(".wrap_shwsearch"),
-      initialState: keyword,
-    });
-    El.init();
-  }
-  createSuggestion() {
-    const El = new Suggestion({
-      $app: $(".wrap_shwsearch"),
-      initalState: null,
-    });
   }
 
   addEvent() {
@@ -70,11 +70,12 @@ export default class SearchBar {
       true
     );
     this.$target.addEventListener(
-      "blur",
+      "blur", //mouseleave
       () => {
         $(".frm_shwsearch").style.borderColor = "#cecfd1";
         $(".list_rollkeywords").style.display = "block";
         $(".wrap_suggestion").style.display = "none";
+        // input.blur()
       },
       true
     );

@@ -1,25 +1,10 @@
-import { $, createHTML } from "../../../utils/dom";
-import { getRcntKeywords } from "../../../utils/localStorage";
+import { createHTML } from "src/utils/dom";
 
-const sample = [
-  "호빵찜기",
-  "키보드",
-  "참기름",
-  "캠핑용품",
-  "김치",
-  "곤약젤리",
-  "화장품선물세트",
-  "대추",
-  "빨대컵",
-  "핸드크림",
-];
+import "./index.scss";
 
 export default class Suggestion {
-  constructor({ $app }) {
-    this.state = {
-      rcntList: getRcntKeywords(),
-      kwordList: sample,
-    };
+  constructor({ $app, initialState }) {
+    this.state = initialState;
     this.$target = createHTML("div", { className: "wrap_suggestion" });
     this.$target.style.display = "none";
     $app.appendChild(this.$target);
@@ -27,7 +12,7 @@ export default class Suggestion {
     this.render();
   }
   render() {
-    const { rcntList } = this.state;
+    const { rcntList, kwordList } = this.state;
 
     this.$target.innerHTML = `
         <div class="inner_suggestion">
@@ -40,10 +25,10 @@ export default class Suggestion {
             <div class="pop">
                 <strong class="tit_suggestion">인기 쇼핑 키워드</strong>
                 <ol class="list_keyword">
-                    ${this.createListKeyword(sample, 0, 5)}
+                    ${this.createListKeyword(kwordList, 0, 5)}
                 </ol>
                 <ol class="list_keyword">
-                    ${this.createListKeyword(sample, 5, 10)}
+                    ${this.createListKeyword(kwordList, 5, 10)}
                 </ol>
             </div>
             

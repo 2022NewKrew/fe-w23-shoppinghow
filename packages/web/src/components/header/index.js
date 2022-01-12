@@ -1,6 +1,8 @@
-import { $, createHTML } from "../../utils/dom";
-import Navigator from "./Navigator";
-import SearchBar from "./SearchBar";
+import HeadTop from "src/components/header/headtop";
+import Navigator from "src/components/header/navigator";
+
+import { createHTML } from "src/utils/dom";
+import "./index.scss";
 
 export default class Header {
   constructor({ $app, initialState }) {
@@ -12,16 +14,7 @@ export default class Header {
   }
 
   render() {
-    this.$target.innerHTML = `
-      <div class="area_headtop">
-        <h1 class="tit_shw">
-          <a href="#">
-            <img src="../assets/images/logo_shw_2021.png" alt="쇼핑하우" />
-          </a>
-        </h1>
-      </div>
-    `;
-    new SearchBar({ $app: $(".area_headtop") });
+    new HeadTop({ $app: this.$target });
     new Navigator({ $app: this.$target });
   }
 }

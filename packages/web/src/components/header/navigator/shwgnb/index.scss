@@ -1,0 +1,20 @@
+.list_shwgnb {
+  float: left;
+  display: flex;
+  padding: 0 12px 0 8px;
+  li > a {
+    display: block;
+    height: 54px;
+    line-height: 58px;
+    letter-spacing: -0.038em;
+    padding: 0 19px;
+    font-weight: 700;
+    position: relative;
+    .txt_new {
+      right: 10px;
+    }
+    &:hover {
+      color: #f65b3d;
+    }
+  }
+}

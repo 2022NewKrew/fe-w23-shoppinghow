@@ -1,0 +1,23 @@
+.frm_shwsearch {
+  z-index: 3;
+  position: relative;
+  width: 670px;
+  height: 54px;
+  padding: 16px 60px 14px 30px;
+  border: 1px solid #cecfd1;
+  border-radius: 10px;
+  background-color: transparent;
+  input {
+    float: left;
+    height: 22px;
+    width: 100%;
+    text-align: left;
+  }
+  button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 52px;
+    height: 52px;
+  }
+}
