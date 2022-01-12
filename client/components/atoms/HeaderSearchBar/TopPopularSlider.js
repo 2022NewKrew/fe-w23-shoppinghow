@@ -4,6 +4,7 @@ import { TopPopularStore } from '@stores';
 
 const AUTO_SLIDE_TIME = 2000;
 const SLIDE_FRAME_HEIGHT = 30;
+const TRANSITION_STYLE = 'transform 400ms ease-in-out';
 
 export class TopPopularSlider extends Component {
   setup() {
@@ -62,7 +63,7 @@ export class TopPopularSlider extends Component {
   // slide animation
 
   onSlide(index) {
-    this.$sliderTrack.style.transition = 'transform 400ms ease-in-out';
+    this.$sliderTrack.style.transition = TRANSITION_STYLE;
     this.currentIndex = index;
     this.moveTrack();
   }

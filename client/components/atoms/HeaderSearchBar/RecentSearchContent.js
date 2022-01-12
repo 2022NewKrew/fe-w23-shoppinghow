@@ -2,6 +2,8 @@ import { Component } from '@core';
 import { RecentlySearchStore } from '@stores';
 import { $ } from '@utils';
 
+const SHOW_ITEM_CNT = 5;
+
 export class RecentSearchContent extends Component {
   template() {
     return /*html*/ `
@@ -31,7 +33,7 @@ export class RecentSearchContent extends Component {
 
   renderSearchContentList() {
     const { list } = RecentlySearchStore.getState();
-    this.$searchContentList.innerHTML = list.slice(0, 5).map(this.searchItemTemplate).join('');
+    this.$searchContentList.innerHTML = list.slice(0, SHOW_ITEM_CNT).map(this.searchItemTemplate).join('');
   }
 
   searchItemTemplate(text) {
