@@ -35,19 +35,12 @@ class Menu extends Component {
                 <li class="top-menu__btn"><a href="">할인특가</a></li>
                 <li class="top-menu__btn"><a href="">기획전</a></li>
             </ul>
-<!--            <ul class="private-menu">-->
-<!--                <li class="private-menu__btn"><a href="#">로그인</a></li>-->
-<!--                <div class="activate-recent-wrapper">-->
-<!--                    <li class="private-menu__btn"><a href="#">최근본상품</a></li>-->
-<!--                </div>-->
-<!--            </ul>-->
         </div>`;
   }
 
   mounted() {
     const $headerMenu = this.$target.querySelector(".header-menu");
     new PrivateMenu($headerMenu);
-    // new RecentViewedItemsContainer($activateRecentWrapper);
   }
 }
 

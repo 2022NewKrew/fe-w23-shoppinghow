@@ -1,6 +1,8 @@
 import Component from "@core/Component";
 import recentViewedItemModel from "@models/RecentViewedItemModel";
 import pickedItemModel from "@models/PickedItemModel";
+import PrivateItemsContainer from "@components/Header/PrivateItemsContainer";
+import PrivateItemsTitleWrapper from "@components/Header/PrivateItemsTitleWrapper";
 
 class PrivateMenuFloatLayer extends Component {
   setup() {
@@ -8,51 +10,49 @@ class PrivateMenuFloatLayer extends Component {
       recentViewedItems: recentViewedItemModel.getItems(),
       pickedItems: pickedItemModel.getItems(),
     };
+
+    recentViewedItemModel.subscribe(
+      this.observeRecentViewedItemUpdate.bind(this)
+    );
+    pickedItemModel.subscribe(this.observePickedItemUpdate.bind(this));
   }
 
   template() {
-    const { recentViewedItems, pickedItems } = this.state;
     return `
         <div class="private-float-layer">
-            <div class="private-float-layer__title-btns-wrapper">
-                <div class="private-items__title-wrapper recent-items__title-wrapper">
-                    <span class="recent-items__title">최근 본 상품</span>
-                    <span class="recent-items__count">${
-                      recentViewedItems.length
-                    }</span>
-                </div>
-                <div class="private-items__title-wrapper picked-items__title-wrapper">
-                    <span class="picked-items__title">찜한 상품</span>
-                    <span class="picked-items__count">${
-                      pickedItems.length
-                    }</span>
-                </div>
-            </div>
-            <div class="private-float-layer__contents-wrapper">
-                <div class="recent-items__wrapper private-items__wrapper">
-                    <div class="private-items__products-list">${recentViewedItems
-                      .map((item) => "<img src=" + item.img + ">")
-                      .join("")}
-                    </div>
-                    <button class="recent-items__clear-btn private-items__clear-btn">비우기</button>
-                </div>
-                <div class="picked-items__wrapper private-items__wrapper" style='visibility: hidden;'>
-                    <div class="private-items__products-list">${pickedItems
-                      .map((item) => "<img src=" + item.img + ">")
-                      .join("")}
-                    </div>
-                    <button class="picked-items__clear-btn private-items__clear-btn">비우기</button>
-                </div>
-            </div>
+            <div class="private-float-layer__title-btns-wrapper"></div>
+            <div class="private-float-layer__contents-wrapper"></div>
         </div>
     `;
   }
 
   mounted() {
-    recentViewedItemModel.subscribe(
-      this.observeRecentViewedItemUpdate.bind(this)
+    const { recentViewedItems, pickedItems } = this.state;
+    const $privateTitleBtnsWrapper = this.$target.querySelector(
+      ".private-float-layer__title-btns-wrapper"
     );
-    pickedItemModel.subscribe(this.observePickedItemUpdate.bind(this));
+    const $privateContentsWrapper = this.$target.querySelector(
+      ".private-float-layer__contents-wrapper"
+    );
+
+    new PrivateItemsTitleWrapper($privateTitleBtnsWrapper, {
+      type: "recent",
+      items: recentViewedItems,
+    });
+    new PrivateItemsContainer($privateContentsWrapper, {
+      type: "recent",
+      items: recentViewedItems,
+      visibility: "",
+    });
+    new PrivateItemsTitleWrapper($privateTitleBtnsWrapper, {
+      type: "picked",
+      items: pickedItems,
+    });
+    new PrivateItemsContainer($privateContentsWrapper, {
+      type: "picked",
+      items: pickedItems,
+      visibility: "hidden",
+    });
   }
 
   observeRecentViewedItemUpdate(items) {
@@ -65,11 +65,6 @@ class PrivateMenuFloatLayer extends Component {
 
   setEvent() {
     this.addEvent(
-      "click",
-      ".private-float-layer",
-      this.handleMouseclick.bind(this)
-    );
-    this.addEvent(
       "mouseover",
       ".private-float-layer",
       this.handleMouseover.bind(this)
@@ -81,15 +76,6 @@ class PrivateMenuFloatLayer extends Component {
     const $titleWrapper = target.closest(".private-items__title-wrapper");
     if ($titleWrapper) {
       this.togglePrivateItemsWrapper($titleWrapper);
-    }
-  }
-
-  handleMouseclick(e) {
-    const { target } = e;
-    if (target.classList.contains("picked-items__clear-btn")) {
-      pickedItemModel.clearItems();
-    } else if (target.classList.contains("recent-items__clear-btn")) {
-      recentViewedItemModel.clearItems();
     }
   }
 
