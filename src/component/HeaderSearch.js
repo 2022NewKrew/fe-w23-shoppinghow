@@ -1,16 +1,19 @@
 import { store } from '../store.js';
 import { searchTemplate } from './template/header/searchTemplate.js';
-import { $ } from '../utils/utils.js';
+import { $, debounceEvent } from '../utils/utils.js';
 import { SearchSuggestionView } from './SearchSuggestionView.js';
 import { SearchRollingView } from './SearchRollingView.js';
+import { SearchResultView } from './SearchResultView.js';
 
 
 export class HeaderSearch {
     $searchWrapper;
     $suggestion;
     $rolling;
+    $searchResult;
     suggestionView;
     rollingView;
+    searchResultView;
     
     constructor($element) {
         this.$searchWrapper = $element;
@@ -23,6 +26,7 @@ export class HeaderSearch {
         this.$searchWrapper.innerHTML = searchTemplate();
         this.$suggestion = $('#suggestWrap', this.$searchWrapper);
         this.$rolling = $('.wrap_rolling', this.$searchWrapper);
+        this.$searchResult = $('#searchResultWrap', this.$searchWrapper);
         this.setEvent();
         this.render();
     }
@@ -32,6 +36,7 @@ export class HeaderSearch {
         const $input = $('.search__input', this.$searchWrapper);
         let mouseleave = undefined; // closure
 
+        // 검색창 활성화
         $input.addEventListener('focus', () => {
             this.$searchWrapper.classList.add('focus');
             this.$searchWrapper.classList.remove('show_rolling');
@@ -42,6 +47,7 @@ export class HeaderSearch {
             }
         });
 
+        // 검색창 비활성화
         this.$searchWrapper.addEventListener('mouseenter', ()=> {
             if(mouseleave !== undefined) {
                 clearTimeout(mouseleave);
@@ -63,6 +69,7 @@ export class HeaderSearch {
     mounted() {
         this.suggestionView = new SearchSuggestionView(this.$suggestion);
         this.rollingView = new SearchRollingView(this.$rolling);
+        this.searchResultView = new SearchResultView(this.$searchResult);
     }
 
     updateData() {
