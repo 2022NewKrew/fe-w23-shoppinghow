@@ -21,6 +21,12 @@ export class AutoCompleteContent extends Component {
   async renderSuggestion() {
     const { inputValue } = SearchInputStore.getState();
     const suggestList = await RelatedSearchService.suggest(inputValue);
+
+    if (!suggestList.length) {
+      this.$target.innerText = '연관검색어가 없습니다.';
+      return;
+    }
+
     // prettier-ignore
     this.$target.innerHTML = suggestList.map((text) => /* html */`
       <a href="?search=${text}">
