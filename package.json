@@ -40,6 +40,7 @@
     "dependencies": {
         "core-js": "^3.20.2",
         "dotenv": "^11.0.0",
+        "dotenv-webpack": "^7.0.3",
         "node-fetch": "^2.6.6"
     }
 }

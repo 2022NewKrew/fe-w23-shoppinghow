@@ -1,6 +1,7 @@
 import { createDom } from '@utils/createDom';
 import { searchTop10 } from '@components/headerView/searchView/searchTop10';
 import { searchModal } from '@components/headerView/searchView/searchModal';
+import { getTop10Keywords } from '@api';
 
 const addFocusEvent = (formContainer) => {
     const top10 = formContainer.querySelector('.search-top10');
@@ -60,7 +61,7 @@ const dummyData = [
 
 export const searchView = () => {
     const target = document.createElement('div');
-
+    const top10Data = getTop10Keywords();
     const render = () => {
         target.className = 'search';
         target.innerHTML = '';
