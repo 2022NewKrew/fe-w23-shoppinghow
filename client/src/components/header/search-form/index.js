@@ -42,7 +42,7 @@ export default class SearchForm {
   render() {
     this.searchForm.innerHTML = `
         <input type="text" class="search__input" maxlength=${INPUT_MAX_LENGTH} />
-        <button class="search__icon"><img src=${SEARCH_ICON}></button>
+        <button class="search__icon" type='submit'><img src=${SEARCH_ICON}></button>
     `;
   }
 
