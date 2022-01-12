@@ -2,6 +2,7 @@ import './index.scss';
 
 export default class AutoComplete {
   words = [];
+  searchInput = '';
 
   constructor({ $parent }) {
     this.autoComplete = document.createElement('ul');
@@ -13,6 +14,7 @@ export default class AutoComplete {
 
   setState(props) {
     this.words = props.autoCompleteWords;
+    this.searchInput = props.searchInput;
     this.render();
   }
 
@@ -20,7 +22,7 @@ export default class AutoComplete {
     this.autoComplete.innerHTML = this.words
       .map((name, index) => {
         return `<li class='autocomplete__item'>
-                    <span class='autocomplete__word'>${name}</span>
+                    ${this.createItemName(name)}
                 </li>`;
       })
       .join('');
@@ -32,5 +34,11 @@ export default class AutoComplete {
 
   deActivate() {
     this.autoComplete.style.display = 'none';
+  }
+
+  createItemName(name) {
+    const regex = new RegExp(this.searchInput, 'gi');
+    const result = name.replace(regex, `<span class='autocomplete__word'>${this.searchInput}</span>`);
+    return result;
   }
 }
