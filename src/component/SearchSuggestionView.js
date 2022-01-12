@@ -1,31 +1,22 @@
 import { observe } from "../core/observer.js";
 import { store } from "../store.js";
 import { $$ } from "../utils/utils.js";
-import { topTenItemTemplate } from "./template/header/searchTemplate.js";
-
-
-const suggestionTemplate = () => `
-    <div class="inner_suggestion">
-        <strong class="tit_suggestion">인기 쇼핑 키워드</strong>
-        <ol class="list_keyword"></ol>
-        <ol class="list_keyword"></ol>
-    </div>
-`;
+import { suggestionTemplate, topTenListTemplate } from "./template/header/searchTemplate.js";
 
 export class SearchSuggestionView {
-    $element;
-    $item_containers;
+    $suggestionWrapper;
+    $itemContainers;
 
     constructor($element) {
-        this.$element = $element;
+        this.$suggestionWrapper = $element;
 
         this.initDom();
-        observe(() => this.render());
     }
 
     initDom() {
-        this.$element.innerHTML = suggestionTemplate();
-        this.$item_containers = $$('.list_keyword', $element);
+        this.$suggestionWrapper.innerHTML = suggestionTemplate();
+        this.$itemContainers = $$('.list_keyword', this.suggestionWrapper);
+        observe(() => this.render());
     }
 
     render() {
@@ -37,8 +28,7 @@ export class SearchSuggestionView {
             store.state.top10.slice(5,10)
         ]
 
-        const reduceHandler = (html, item) => html + topTenItemTemplate(item);
-        this.item_containers[0].innerHTML = lists[0].reduce(reduceHandler, '');
-        this.item_containers[1].innerHTML = lists[1].reduce(reduceHandler, '');
+        this.$itemContainers[0].innerHTML = topTenListTemplate(lists[0]);
+        this.$itemContainers[1].innerHTML = topTenListTemplate(lists[1]);
     }
 }

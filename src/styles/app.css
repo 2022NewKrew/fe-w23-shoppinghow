@@ -93,14 +93,14 @@ strong {
   background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat
 }
 
-.header-top .search .search-top10-wrapper {
+.header-top .search .wrap_rolling {
   position: absolute;
   width: 100%;
   height: 22px;
   overflow: hidden;
 }
 
-.header-top .search.focus .search-top10-wrapper {
+.header-top .search.focus .wrap_rolling {
   display: none;
 }
 
@@ -112,12 +112,12 @@ strong {
   flex-direction: column;
   align-items: center;
 }
-.header-top .search .search-top10 .search-top10__item {
+.header-top .search .search-top10 li {
   width: 100%;
   height: 22px;
 }
 
-.header-top .search .search-top10 .search-top10__item .rank {
+.header-top .search .search-top10 li .rank {
   margin-right: 20px;
   font-style: italic;
 }
