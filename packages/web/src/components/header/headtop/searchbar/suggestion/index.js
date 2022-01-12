@@ -3,8 +3,7 @@ import { createHTML } from "src/utils/dom";
 import "./index.scss";
 
 export default class Suggestion {
-  constructor({ $app, initialState }) {
-    this.state = initialState;
+  constructor({ $app }) {
     this.$target = createHTML("div", { className: "wrap_suggestion" });
     this.$target.style.display = "none";
     $app.appendChild(this.$target);
@@ -12,8 +11,6 @@ export default class Suggestion {
     this.render();
   }
   render() {
-    const { rcntList, kwordList } = this.state;
-
     this.$target.innerHTML = `
         <div class="inner_suggestion">
             <div class="rcnt">
@@ -31,7 +28,6 @@ export default class Suggestion {
                     ${this.createListKeyword(kwordList, 5, 10)}
                 </ol>
             </div>
-            
         </div>
         `;
   }

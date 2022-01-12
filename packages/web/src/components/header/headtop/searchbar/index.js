@@ -3,39 +3,12 @@ import RollKeyword from "src/components/header/headtop/searchbar/rollkeywords";
 import Suggestion from "src/components/header/headtop/searchbar/Suggestion";
 
 import { $, createHTML } from "src/utils/dom";
-import { addRcntKeywords, getRcntKeywords } from "src/utils/localStorage";
+import { addRcntKeywords } from "src/utils/localStorage";
 
 import "./index.scss";
 
-const rollkeywordsdata = [
-  "엔진코딩제",
-  "벽선반",
-  "키즈가방",
-  "마스크가드",
-  "대한민국지도",
-  "염색약",
-  "부츠",
-  "로봇청소기",
-  "화분",
-  "콩나물",
-];
-
-const suggestiondata = [
-  "호빵찜기",
-  "키보드",
-  "참기름",
-  "캠핑용품",
-  "김치",
-  "곤약젤리",
-  "화장품선물세트",
-  "대추",
-  "빨대컵",
-  "핸드크림",
-];
-
 export default class SearchBar {
-  constructor({ $app, initialState }) {
-    this.state = initialState;
+  constructor({ $app }) {
     this.$target = createHTML("div", { className: "wrap_shwsearch" });
     $app.appendChild(this.$target);
 
@@ -44,14 +17,8 @@ export default class SearchBar {
 
   render() {
     new FrmShwSearch({ $app: this.$target });
-    new RollKeyword({ $app: this.$target, initialState: rollkeywordsdata });
-    new Suggestion({
-      $app: this.$target,
-      initialState: {
-        rcntList: getRcntKeywords(),
-        kwordList: suggestiondata,
-      },
-    });
+    new RollKeyword({ $app: this.$target });
+    new Suggestion({ $app: this.$target });
     this.addEvent();
   }
 
@@ -59,7 +26,6 @@ export default class SearchBar {
     this.$target.addEventListener("click", () => {
       this.$target.focus();
     });
-
     this.$target.addEventListener(
       "focus",
       () => {

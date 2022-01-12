@@ -10,7 +10,6 @@ export default class RollKeyword {
     $app.appendChild(this.$target);
 
     this.render();
-    carousel(this.$target, this.state.length, 32, true);
   }
   render() {
     this.keyword = this.state;
@@ -19,12 +18,15 @@ export default class RollKeyword {
             <h2 class="screen_out"></h2>
             <ol class="list_rollkeywords slide">
             ${this.keyword
-              .map(
+              ?.map(
                 (word, idx) =>
                   `<li><span class="num_rank">${idx + 1}</span>${word}</li>`
               )
               .join("")}
             </ol>
         `;
+  }
+  addEvent() {
+    carousel(this.$target, this.state.length, 32, true);
   }
 }
