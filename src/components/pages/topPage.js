@@ -1,6 +1,6 @@
-import { promotion } from '../promotion/promotion.js';
-import { goodsStall } from '../goodsStall/goodsStall.js';
-import { suggestion } from '../suggestion/suggestion.js';
+import { promotion } from '@components/promotion';
+import { goodsStall } from '@components/goodsStall';
+import { suggestion } from '@components/suggestion';
 
 const goodsData = [
     {

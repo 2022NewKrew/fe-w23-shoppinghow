@@ -1,7 +1,7 @@
 import { createDom } from '@utils/createDom';
-import { belowTop10 } from '@components/header/search/searchBelow/belowTop10';
-import { belowRecent } from '@components/header/search/searchBelow/belowRecent';
-import { belowSuggestion } from '@components/header/search/searchBelow/belowSuggestion';
+import { belowTop10 } from '@components/headerView/search/searchBelow/belowTop10';
+import { belowRecent } from '@components/headerView/search/searchBelow/belowRecent';
+import { belowSuggestion } from '@components/headerView/search/searchBelow/belowSuggestion';
 
 const renderDefault = (top10Data) => {
     const container = document.createElement('div');

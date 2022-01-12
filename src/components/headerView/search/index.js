@@ -1,6 +1,6 @@
 import { createDom } from '@utils/createDom';
-import { searchTop10 } from '@components/header/search/searchTop10';
-import { searchBelow } from '@components/header/search/searchBelow/searchBelow';
+import { searchTop10 } from '@components/headerView/search/searchTop10';
+import { searchBelow } from '@components/headerView/search/searchBelow';
 
 const addFocusEvent = (formContainer) => {
     const top10 = formContainer.querySelector('.search-top10');

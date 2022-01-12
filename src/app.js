@@ -2,11 +2,11 @@ import '@styles/libs/reset.css';
 import '@sass/app.scss';
 import PageRouter from '@utils/pageRouter';
 import { onLocationChangeHandler } from '@utils/changeLocation.js';
-import { header } from '@components/header/header.js';
+import { headerView } from '@components/headerView';
 
 window.addEventListener('DOMContentLoaded', () => {
     const app = document.querySelector('body');
-    const mainHeader = header();
+    const mainHeader = headerView();
     const mainContents = document.createElement('div');
     const footer = document.createElement('footer');
 

@@ -1,5 +1,5 @@
 import { best } from '@components/promotion/banner/best.js';
-import { planning } from '@components/promotion/banner/planning/planning.js';
+import { planning } from '@components/promotion/banner/planning';
 
 export const banner = () => {
     const target = document.createElement('div');

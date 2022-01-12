@@ -1,4 +1,4 @@
-import { verticalRolling } from '@components/verticalRolling/verticalRolling';
+import { verticalRolling } from '@components/verticalRolling';
 
 export const searchTop10 = ({ top10Data }) => {
     const top10 = verticalRolling(top10Data);
