@@ -3,9 +3,9 @@
   flex-direction: column;
   gap: 10px;
   display: none;
+  cursor: pointer;
 
   .autocomplete__word {
-    cursor: pointer;
     color: var(--color-orange);
   }
 }
