@@ -7,3 +7,11 @@ export const string2DomNode = (htmlString) => {
 export const $ = (query, target = document) => target.querySelector(query);
 
 export const $$ = (query, target = document) => target.querySelectorAll(query);
+
+export const debounceEvent = ({$target, eventType, fn, DELAY_TIME = 300}) => {
+    let debounce = undefined;
+    $target.addEventListener(eventType, () => {
+        clearTimeout(debounce);
+        debounce = setTimeout(fn, DELAY_TIME);
+    })
+}
