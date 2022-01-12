@@ -5,13 +5,10 @@ import './index.scss';
 import evt from '@/utils/custom-event';
 import store from '@/store';
 
+const stateList = ['promotionList', 'hotDealList', 'hotItemList', 'bannerItemList'];
+
 export default class MainPage {
-  state = {
-    promotionList: [],
-    hotDealList: [],
-    hotItemList: [],
-    bannerItemList: [],
-  };
+  state = {};
 
   constructor({ $parent }) {
     const mainContainer = document.createElement('div');
@@ -22,15 +19,14 @@ export default class MainPage {
     this.hotItem = new HotItem({ $parent: mainContainer });
     $parent.appendChild(mainContainer);
 
-    evt.subscribe('promotionList', this.handleSubscription.bind(this));
-    evt.subscribe('hotDealList', this.handleSubscription.bind(this));
-    evt.subscribe('hotItemList', this.handleSubscription.bind(this));
-    evt.subscribe('bannerItemList', this.handleSubscription.bind(this));
+    this.initializeState();
+  }
 
-    store.load('promotionList');
-    store.load('hotDealList');
-    store.load('hotItemList');
-    store.load('bannerItemList');
+  initializeState() {
+    stateList.forEach((state) => {
+      evt.subscribe(state, this.handleSubscription.bind(this));
+      store.load(state);
+    });
   }
 
   handleSubscription(e) {
