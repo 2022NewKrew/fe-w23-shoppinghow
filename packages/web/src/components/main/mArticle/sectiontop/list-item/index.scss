@@ -1,7 +1,7 @@
 .list_item {
   display: flex;
   border-bottom: 1px solid #e4e4e4;
-  li {
+  .evtlist {
     padding: 21px 27px;
     width: 256px;
     height: 318px;
@@ -28,6 +28,14 @@
         font-size: 12px;
         line-height: 14px;
         letter-spacing: -1px;
+      }
+      &:hover {
+        .info_thumb {
+          opacity: 0.7;
+        }
+        .tit_g {
+          text-decoration: underline;
+        }
       }
     }
   }

@@ -15,7 +15,7 @@ export default class ListItem {
     this.$target.innerHTML = this.listItem
       .map(
         ({ thumb, title, info }) => `
-          <li>
+          <li class="evtlist">
               <a href="#" class="link_prod">
                   <span class="info_thumb">
                       <img src="${thumb}" />
