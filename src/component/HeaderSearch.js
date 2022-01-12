@@ -60,6 +60,28 @@ export class HeaderSearch {
                 this.$searchWrapper.classList.remove('focus');
             }, HOVER_DELAY_TIME);
         });
+
+        // 검색 이벤트
+        const inputHandler = () => {
+            const query = $input.value;
+            if(query == '') {
+                store.setState({
+                    searchResult: []
+                });
+                return;
+            }
+            fetch('../data/searchResult.json')
+                .then(response => response.json())
+                .then(data => data.filter(({text}) => text.search(query) !== -1)) // 서버쪽 연산 대신 하기
+                .then(filteredData => store.setState({
+                    searchResult: filteredData
+                }));
+        }
+        debounceEvent({
+            $target: $input,
+            eventType: 'keyup',
+            fn: inputHandler
+        });
     }
 
     render() {
