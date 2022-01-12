@@ -16,6 +16,7 @@ export default class Component {
 
   // 생성자 설정
   setup() {
+    this.created();
     this.$state = observable(this.initState());
     observe(()=>{
       this.render();
@@ -28,6 +29,9 @@ export default class Component {
   initState() {
     return {};
   }
+
+  // 최초실행 기능
+  created() {};
 
   // 렌더링 후 추가기능
   mounted() {};
@@ -57,7 +61,6 @@ export default class Component {
   }
 
   // 이벤트 설정 메소드
-  // TODO: 아직 이해 못한 부분 존재, 추후 테스트해보면서 수정 및 적용할 예정
   addEvent(eventType, selector, callback) {
     const children = [...this.$target.querySelectorAll(selector)];
     // selector에 명시한 것 보다 더 하위 요소가 선택되는 경우가 있을 땐

@@ -29,7 +29,11 @@ export class Store {
 
 
   dispatch(action, payload) {
-    // 결과값을 커밋으로 넘길 수 있도록 만듬(state변경은 commit으로만 가능하도록!)
-    return this.#actions[action](this.commit.bind(this), payload);
+    // 다른 dispatch, commit, state에 접근 가능하게 변경
+    return this.#actions[action]({
+      state: this.#state,
+      commit: this.commit.bind(this),
+      dispatch: this.dispatch.bind(this),
+    }, payload);
   }
 }

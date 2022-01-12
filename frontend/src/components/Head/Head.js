@@ -1,8 +1,6 @@
 import Component from '../../core/Component';
 import {TARGET_SELECTOR, getTargetSelector} from '../../util/ComponentGroup';
-import {getApi} from '../../core/ApiService';
-import {ERROR_MESSAGE, API_URL} from '../../util/TemplateGroup';
-import RollKeyword from './RollKeyword';
+import SearchKeywordContainer from './SearchKeyword';
 // TODO 인기검색어리스트 추가기능 작업예정
 export default class Head extends Component {
   template() {
@@ -13,35 +11,7 @@ export default class Head extends Component {
                 <img src="/asset/common/logo_shw_2021.png" class="img_g" alt="쇼핑하우">
             </a>
         </h1>
-        <div class="wrap_shwsearch">
-            <h2 class="screen_out">검색2</h2>
-            <form id="kakaoSearch" name="kakaoSearch" class="frm_shwsearch" action="return false;"
-                role="search">
-                <!-- 2019-08-01 기존 id:daumSearch, name:daumSearch -->
-                <fieldset class="fld_shwsearch">
-                    <legend class="screen_out">쇼핑하우검색</legend>
-                    <div class="box_search">
-                        <label for="qTop" class="screen_out">검색어 입력</label>
-                        <input type="text" id="qTop" class="tf_keyword" size="55" autocomplete="off"
-                            spellcheck="false" autocapitalize="off" value="">
-                        <!-- 2019-08-01 기존 id:qTop, name:q -->
-                        <button type="submit" class="btn_shwsearch _GC_">
-                            <!-- 2019-08-01 기존 id:searchSubmit -->
-                            <span class="ico_shwgnb ico_shwsearch"></span>
-                            <span class="ir_wa">검색</span>
-                        </button>
-                    </div>
-                </fieldset>
-            </form>
-            <div class="wrap_rollkeywords" id="upwardKeywordWrap">
-                <strong class="screen_out">인기 쇼핑 키워드</strong>
-                <ol data-component="${TARGET_SELECTOR.ROLL_KEYWORD}" class="list_rollkeywords" style="top: 0px;">
-                </ol>
-                
-            </div>
-            <div class="wrap_suggestion" id="suggestWrap" style="display:none">
-
-            </div>
+        <div data-component="${TARGET_SELECTOR.SEARCH_KEYWORD}" class="wrap_shwsearch">
         </div>
 
     </div>
@@ -116,93 +86,12 @@ export default class Head extends Component {
     </div>`;
   }
 
-  initState() {
-    return {
-      rollInterval: null,
-    };
-  }
-
   mounted() {
-    this.setRollKeywordForm();
+    this.setSearchKeywordForm();
   }
 
-  async setRollKeywordForm() {
-    try {
-      const $rollKeyword = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.ROLL_KEYWORD));
-      const searchKeywordGroup = await this.getSearhKeyword();
-      new RollKeyword($rollKeyword, {searchKeywordGroup: searchKeywordGroup});
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  setEvent() {
-    this.setAutoRollAnimation();
-    this.setSearchFormMouseEvent();
-  }
-
-  setAutoRollAnimation() {
-    const minTop = -300;
-    const totalPx = 32;
-    const movePx = 2;
-    const rollCycleTime = 3000;
-    const $rollKeyword = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.ROLL_KEYWORD));
-    this.$state.rollInterval = setInterval(() => {
-      let top = parseInt($rollKeyword.style.top.split('px')[0]);
-
-      if (top < minTop) {
-        $rollKeyword.style.top = '0px';
-        top = 0;
-      }
-
-      this.moveRollAnimation($rollKeyword, top, totalPx, movePx);
-    }, rollCycleTime);
-  }
-
-  // 마우스가 올라가면 rollInterval(검색어 자동롤)을 멈춤 마우스가 벗어나면 다시 실행
-  setSearchFormMouseEvent() {
-    const selectorTarget = {
-      searchDiv: '[name="kakaoSearch"]',
-    };
-    this.addEvent('mouseenter', selectorTarget.searchDiv, () => {
-      if (this.$state.rollInterval != null) {
-        clearInterval(this.$state.rollInterval);
-        console.log(this.$state.rollInterval);
-      }
-    });
-
-    this.addEvent('mouseleave', selectorTarget.searchDiv, () => {
-      this.setAutoRollAnimation();
-    });
-  }
-
-  // 총픽셀을 원하는 픽셀만큼 이동시킴
-  moveRollAnimation($el, top, totalMovePx, movePx) {
-    let count = 0;
-    const moveAnimationCycleTime = 40;
-    const moveAnimation = setInterval(() => {
-      if (count >= totalMovePx / movePx) {
-        $el.style.top = `${top - totalMovePx}px`;
-        clearInterval(moveAnimation);
-        return;
-      }
-      count++;
-      $el.style.top = `${top - movePx * count}px`;
-    }, moveAnimationCycleTime);
-  }
-
-  async getSearhKeyword() {
-    try {
-      const res = await getApi(API_URL.GET_SEARCH_KEYWORD_GROUP);
-
-      // TODO 데이터 체크와 에러메시지는 추가 예정
-      if (res == null) {
-        console.log('getSearhKeyword err');
-        return new Error(ERROR_MESSAGE.NODATA);
-      }
-      return res.data;
-    } catch (error) {
-      console.log(error);
-    }
+  setSearchKeywordForm() {
+    const $searchKeywordContainer = this.$target.querySelector(getTargetSelector(TARGET_SELECTOR.SEARCH_KEYWORD));
+    new SearchKeywordContainer($searchKeywordContainer, {});
   }
 }

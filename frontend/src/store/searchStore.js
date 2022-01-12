@@ -1,24 +1,29 @@
 import {Store} from '../core/Store.js';
-import {API_URL} from '../util/TemplateGroup';
-export const store = new Store({
+import {getApi} from '../core/ApiService.js';
+export const searchKeywordStore = new Store({
   state: {
     searchKeywordGroup: [],
   },
 
   // state의 값은 오직 mutations를 통해서 변경할 수 있다.
   mutations: {
-    setsearchKeywordGroup(state, payload) {
+
+    setSearchKeywordGroup(state, payload) {
       state.searchKeywordGroup = payload;
     },
   },
 
   actions: {
-    sestA(commit, payload) {
-      fetch(API_URL.GET_SEARCH_KEYWORD_GROUP)
-          .then((res) => res.json())
-          .then((res) => {
-            commit('setsearchKeywordGroup', res.data);
-          });
+    async setSearchKeywordData(store, payload) {
+      try {
+        const res = await getApi(payload.url);
+        if (res == null) {
+          return new Error(ERROR_MESSAGE.NODATA);
+        }
+        store.commit('setSearchKeywordGroup', res.data);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 });
