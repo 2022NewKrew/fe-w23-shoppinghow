@@ -41,9 +41,7 @@ export default class ThemeItem{
    */
   static addClickEventListener(container){
     container.removeEventListener("click", eventListener);
-    console.log("add!");
     function eventListener(e){
-      console.log("click!");
       const itemId=e.target.closest("li").getAttribute("data-itemId");
       if(itemId===null){
         return;

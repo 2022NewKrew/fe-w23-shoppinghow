@@ -1,13 +1,13 @@
 /**
  * Call Top10.init after initializing.
- * @param {HTMLElement} element
- * @param {HTMLElement} input
+ * @param {HTMLElement} ulElement
+ * @param {string[]} top10Keywords
  */
-function Top10(element, input){
+function Top10(ulElement, top10Keywords){
   /** @type {HTMLElement} */
-  this.element=element;
-  /** @type {HTMLElement} */
-  this.input=input;
+  this.element=ulElement;
+  /** @type {string[]} */
+  this.top10Keywords=top10Keywords;
   /** @type {number} */
   this.currentIndex;
   /** @type {number} */
@@ -18,22 +18,27 @@ function Top10(element, input){
   this.timeoutHandler;
   /** @type {number} */
   this.intervalMilliSec=3000;
+
   this.init();
 }
 
 Top10.prototype.init=function(){
+  this.element.innerHTML=this.top10Keywords.map((keyword, index)=>(
+    `<li class="search-top10__item">${index+1}. ${keyword}</li>`
+  )).join("");
+
   this.currentIndex=0;
   this.childHeight=this.element.children[0].getBoundingClientRect().height;
   this.length=this.element.children.length;
-  
-  this.input.addEventListener("focusin", ()=>{
-    this.element.style="display:none;";
-    clearTimeout(this.timeoutHandler);
-  });
-  this.input.addEventListener("focusout", ()=>{
-    this.element.style=`transform: translateY(${-(this.currentIndex)*this.childHeight}px)`;
-    this._roll(this.intervalMilliSec);
-  });
+};
+
+Top10.prototype.hide=function(){
+  this.element.style="display:none;";
+  clearTimeout(this.timeoutHandler);
+};
+
+Top10.prototype.show=function(){
+  this.element.style=`transform: translateY(${-(this.currentIndex)*this.childHeight}px)`;
   this._roll(this.intervalMilliSec);
 };
 
