@@ -38,6 +38,8 @@ export default class FloatingLayer extends Component {
         this.#option = { ...defaultOption, ...userOption }
         
         this.#floatingLayerEl = this.rootEl.querySelector(`.${ styles.floatingLayer }`)
+        
+        this.update()
     }
     
     
