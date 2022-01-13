@@ -2,8 +2,10 @@ import Carousel from '../carousel';
 import Item from '../item';
 import PromotionItem from '../promotion-item';
 import './index.scss';
+import store from '@/store';
 
 const CAROUSEL_MAX_LENGTH = 3;
+const RECENTLY_VIEWED_THING_IMG_LIMIT = 6;
 
 export default class ItemFrame {
   itemList = [];
@@ -21,7 +23,7 @@ export default class ItemFrame {
     if (e.target.closest('.item')) {
       const idx = e.target.closest('.item').dataset.idx;
       const itemInfo = this.itemList[idx];
-      document.body.dispatchEvent(new CustomEvent('addToRecentlyViewedThing', { detail: itemInfo }));
+      store.addToLocalStorage(itemInfo.imageSrc, 'recentlyViewedThings', RECENTLY_VIEWED_THING_IMG_LIMIT);
     }
   }
 

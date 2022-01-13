@@ -22,13 +22,9 @@ export default class MainPage {
 
   initializeState() {
     stateList.forEach((state) => {
-      evt.subscribe(state, this.handleSubscription.bind(this));
+      evt.subscribe(state, this.setState.bind(this));
       store.load(state);
     });
-  }
-
-  handleSubscription() {
-    this.setState();
   }
 
   setState() {
