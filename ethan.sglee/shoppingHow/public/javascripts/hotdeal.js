@@ -9,31 +9,31 @@ const FILL_HEART_TEMPLATE = `
 </svg>
 `
 
-function addHotDealHTML(imgSrc, idx) {
-  const target = document.querySelector(".hot-deal-list")
-  const hotdealItemTpl = 
+function addHotDealHTML(target, imgSrc, idx) {
+  const hotdealItem = document.createElement('li')
+  hotdealItem.classList.add('hot-deal__item')
+  const hotdealItemInnerTpl = 
   `
-  <li class="hot-deal__item">
-      <a href="#" class="hot-deal__link">
-          <span class="hot-deal__thumb">
-              <img src="${imgSrc}" class="hot-deal__img" alt="">
-          </span>
-          <div class="hot-deal__title-bar">
-            <strong class="hot-deal__title">${idx}번째 상품</strong>
-            <div class="hot-deal__favorite-icon">
-              ${EMPTY_HEART_TEMPLATE}
-            </div>
-          </div>
+  <a href="#" class="hot-deal__link">
+      <span class="hot-deal__thumb">
+          <img src="${imgSrc}" class="hot-deal__img" alt="${idx}번째 상품 사진">
+      </span>
+      <div class="hot-deal__title-bar">
+        <strong class="hot-deal__title">${idx}번째 상품</strong>
+        <div class="hot-deal__favorite-icon">
+          ${EMPTY_HEART_TEMPLATE}
+        </div>
+      </div>
 
-          <span class="hot-deal__detail-price">
-              <span class="txt-price">${idx + 1},500 </span>
-              <span class="txt-price-percent">핫딜가</span>
-          </span>
-      </a>
-  </li>
+      <span class="hot-deal__detail-price">
+          <span class="txt-price">${idx + 1},500 </span>
+          <span class="txt-price-percent">핫딜가</span>
+      </span>
+  </a>
   `
+  hotdealItem.innerHTML = hotdealItemInnerTpl
 
-  target.innerHTML += hotdealItemTpl
+  target.appendChild(hotdealItem)
 }
 
 const imgSrcArr = [
@@ -50,11 +50,13 @@ const imgSrcArr = [
 ]
 
 export default function initHotdeal() {
-  imgSrcArr.forEach((imgSrc, index) => {
-    addHotDealHTML(imgSrc, index)
-  })
-
   const hotdealList = document.querySelector(".hot-deal-list")
+
+  const fragment = document.createDocumentFragment()
+  imgSrcArr.forEach((imgSrc, index) => {
+    addHotDealHTML(fragment, imgSrc, index)
+  })
+  hotdealList.appendChild(fragment)
   
   hotdealList.querySelectorAll('.hot-deal__item').forEach(item => {
     const title = item.querySelector('.hot-deal__title').innerText
