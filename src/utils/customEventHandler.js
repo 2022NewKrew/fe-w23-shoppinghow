@@ -14,8 +14,3 @@ export const onLocationChangeHandler = (e, router) => {
     window.history.pushState(undefined, title, href);
     router.renderPage();
 };
-
-export const onProductClickHandler = (e) => {
-    const { productInfo } = e.detail;
-    console.log(productInfo);
-};

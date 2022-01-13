@@ -4,69 +4,6 @@ import { goodsStall } from '@components/goodsStall';
 import { suggestion } from '@components/suggestion';
 import { getRisingKeywordProducts, getHotDealProducts } from '@api';
 
-const goodsData = [
-    {
-        title: '구매1만↑우유앙빵10+10',
-        imgSrc: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',
-        price: '18500',
-        priceEvent: '핫딜가',
-    },
-    {
-        title: '구매1만↑우유앙빵10+10',
-        imgSrc: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',
-        price: '18500',
-        priceEvent: '핫딜가',
-    },
-    {
-        title: '구매1만↑우유앙빵10+10',
-        imgSrc: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',
-        price: '18500',
-        priceEvent: '핫딜가',
-    },
-    {
-        title: '구매1만↑우유앙빵10+10',
-        imgSrc: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',
-        price: '18500',
-        priceEvent: '핫딜가',
-    },
-    {
-        title: '구매1만↑우유앙빵10+10',
-        imgSrc: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',
-        price: '18500',
-        priceEvent: '핫딜가',
-    },
-    {
-        title: '구매1만↑우유앙빵10+10',
-        imgSrc: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',
-        price: '18500',
-        priceEvent: '핫딜가',
-    },
-    {
-        title: '구매1만↑우유앙빵10+10',
-        imgSrc: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',
-        price: '18500',
-        priceEvent: '핫딜가',
-    },
-    {
-        title: '구매1만↑우유앙빵10+10',
-        imgSrc: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',
-        price: '18500',
-        priceEvent: '핫딜가',
-    },
-    {
-        title: '구매1만↑우유앙빵10+10',
-        imgSrc: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',
-        price: '18500',
-        priceEvent: '핫딜가',
-    },
-    {
-        title: '구매1만↑우유앙빵10+10',
-        imgSrc: '//shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211221145844446_191895',
-        price: '18500',
-        priceEvent: '핫딜가',
-    },
-];
-
 const fetchData = async (setState) => {
     const stateFetchFunction = {
         risingKeywordProducts: getRisingKeywordProducts,

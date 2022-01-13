@@ -3,9 +3,3 @@ export const locationChangeEvent = (nextPath, title) =>
         composed: true, // 웹 컴포넌트
         detail: { href: nextPath, title },
     });
-
-export const productClickEvent = (productInfo) =>
-    new CustomEvent('productClick', {
-        composed: true,
-        detail: { productInfo },
-    });
