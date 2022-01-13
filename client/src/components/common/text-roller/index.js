@@ -56,7 +56,10 @@ export default class TextRoller {
       this.currHeight = nextHeight;
       this.currViewedItemIndex += 1;
 
-      if (this.textArray.length && this.currViewedItemIndex === this.textArray.length)
+      if (
+        (this.textArray.length && this.currViewedItemIndex === this.textArray.length) ||
+        this.currHeight < this.textArray.length * rollingHeight
+      )
         this.timeOutTimer = setTimeout(this.setPosToFirstItem.bind(this), timeForSetPosToFirstItem);
     }, rollingTime);
   }

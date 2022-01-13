@@ -49,4 +49,12 @@ export default class HotShoppingKeyword {
             </div>
            `;
   }
+
+  activate() {
+    this.hotShoppingKeyword.style.display = 'block';
+  }
+
+  deActivate() {
+    this.hotShoppingKeyword.style.display = 'none';
+  }
 }

@@ -1,0 +1,11 @@
+.autocomplete__list {
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+  display: none;
+  cursor: pointer;
+
+  .autocomplete__word {
+    color: var(--color-orange);
+  }
+}

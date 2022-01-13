@@ -2,8 +2,10 @@ import Carousel from '../carousel';
 import Item from '../item';
 import PromotionItem from '../promotion-item';
 import './index.scss';
+import store from '@/store';
 
 const CAROUSEL_MAX_LENGTH = 3;
+const RECENTLY_VIEWED_THING_IMG_LIMIT = 6;
 
 export default class ItemFrame {
   itemList = [];
@@ -13,6 +15,16 @@ export default class ItemFrame {
     this.itemFrame = document.createElement('ul');
     this.itemFrame.className = 'item-frame';
     $parent.appendChild(this.itemFrame);
+
+    this.itemFrame.addEventListener('click', this.addToRecentlyViewedThings.bind(this));
+  }
+
+  addToRecentlyViewedThings(e) {
+    if (e.target.closest('.item')) {
+      const idx = e.target.closest('.item').dataset.idx;
+      const itemInfo = this.itemList[idx];
+      store.addToLocalStorage(itemInfo.imageSrc, 'recentlyViewedThings', RECENTLY_VIEWED_THING_IMG_LIMIT);
+    }
   }
 
   setState(props) {
