@@ -28,8 +28,9 @@ export class HotDealSection extends SectionLayout {
   // util
 
   getMoreHotDealProducts() {
-    const { loading } = HotDealProductsStore.getState();
+    const { loading, page, per_page, total } = HotDealProductsStore.getState();
     if (loading) return;
+    if (page * per_page > total) return;
 
     HotDealProductsStore.dispatch('REQUEST_DATA');
   }
@@ -41,13 +42,16 @@ export class HotDealSection extends SectionLayout {
       this.$showmoreBtn.innerText = `로딩중...`;
       return;
     }
+    if (page * per_page > total) {
+      this.$showmoreBtn.innerText = `더 이상 상품이 없습니다.`;
+      return;
+    }
 
     this.$showmoreBtn.innerHTML = `
       <span>더보기</span>
       <span class="hotDeal__pagging">
         (<span class="txt__current">${page * per_page}</span>/<span class="txt__total">${total}</span>건)
       </span>
-      <span></span>
     `;
   }
 
