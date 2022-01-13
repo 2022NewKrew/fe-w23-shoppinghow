@@ -55,7 +55,7 @@ export default class SearchInfo{
       const autocompleteKeywords=await autocompleteModel.fetchData(keyword);
       this.searchInfoElement.innerHTML=`
         <div class="search-info__container">
-          ${this.#getAutoCompleteKeywordsHtml(autocompleteKeywords)}
+          ${this.#getAutoCompleteKeywordsHtml(autocompleteKeywords, keyword)}
         </div>
       `;
     }catch(_){
@@ -87,7 +87,13 @@ export default class SearchInfo{
     `)).join("");
   }
 
-  #getAutoCompleteKeywordsHtml(autocompleteKeywords){
+  /**
+   * Return autocomplete keywords HTML.
+   * Highlight current keyword if given.
+   * @param {string[]} autocompleteKeywords
+   * @param {string?} currentKeyword
+   */
+  #getAutoCompleteKeywordsHtml(autocompleteKeywords, currentKeyword){
     if(autocompleteKeywords.length===0){
       return `
         <div class="search-info__autocomplete-item">
@@ -97,7 +103,9 @@ export default class SearchInfo{
     }
     return autocompleteKeywords.map((keyword)=>(`
       <div class="search-info__autocomplete-item">
-        ${keyword}
+        ${keyword.replaceAll(
+        currentKeyword,
+        `<span class="search-info__autocomplete-highlight">${currentKeyword}</span>`)}
       </div>
     `)).join("");
   }
