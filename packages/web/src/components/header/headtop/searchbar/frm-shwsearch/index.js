@@ -15,7 +15,7 @@ export default class FrmShwSearch {
   render() {
     this.$target.innerHTML = `
     <input type="text" class="tf_keyword" size="55" />
-    <button type="submit">
+    <button class="search_btn">
         <span class="ico_shwgnb ico_shwsearch"></span>
     </button>
     `;

@@ -25,7 +25,7 @@ const LStorage = {
   },
   delete: (key, value) => {
     const dataList = LStorage.get(key);
-    const newDataList = dataList.filter((ele) => ele === value);
+    const newDataList = dataList.filter((ele) => ele !== value);
     LStorage.set(key, newDataList);
   },
 };

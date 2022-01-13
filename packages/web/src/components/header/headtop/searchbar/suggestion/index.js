@@ -1,7 +1,7 @@
 import Service from "src/service";
 
 import LStorage from "src/utils/localStorage";
-import { createHTML } from "src/utils/dom";
+import { $, createHTML } from "src/utils/dom";
 
 import "./index.scss";
 
@@ -14,14 +14,14 @@ export default class Suggestion {
 
     this.render();
     this.dataFetch();
+    this.addEvent();
   }
   async dataFetch() {
     const {
       isError,
       data: { suggestion: kwordList },
     } = await Service.getSuggestion();
-    const rcntList = await LStorage.get("rcntkeywords");
-    this.setState({ rcntList, kwordList });
+    this.setState({ kwordList });
   }
 
   setState(newState) {
@@ -30,14 +30,13 @@ export default class Suggestion {
   }
 
   render() {
-    const { rcntList, kwordList } = this.state;
+    const { kwordList } = this.state;
 
     this.$target.innerHTML = `
         <div class="inner_suggestion">
             <div class="rcnt">
                 <strong class="tit_suggestion">최근 검색어</strong>
                 <ol class="list_keyword" id="rcnt">
-                    ${this.createListRcnt(rcntList)}
                 </ol>
             </div>
             <div class="pop">
@@ -51,9 +50,12 @@ export default class Suggestion {
             </div>
         </div>
         `;
+    this.createListRcnt();
   }
-  createListRcnt(data) {
-    return data
+  createListRcnt() {
+    const rcntList = LStorage.get("rcntkeywords");
+    const El = $(".rcnt .list_keyword");
+    El.innerHTML = rcntList
       ?.map(
         (word) =>
           `<li><a href="javascript:;" class="keyword">${word}<span class="ico_remove"></span></a></li>`
@@ -73,5 +75,17 @@ export default class Suggestion {
         `
       )
       .join("");
+  }
+  addEvent() {
+    this.$target.addEventListener("click", (e) => {
+      if (e.target.className !== "ico_remove") return;
+      const El = e.target.closest(".keyword");
+      LStorage.delete("rcntkeywords", El.innerText);
+      this.createListRcnt();
+    });
+
+    this.$target.addEventListener("addRcntKeyword", () => {
+      this.createListRcnt();
+    });
   }
 }

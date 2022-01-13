@@ -6,7 +6,7 @@ import { createHTML } from "src/utils/dom";
 import "./index.scss";
 
 export default class RollKeyword {
-  constructor({ $app, initialState }) {
+  constructor({ $app }) {
     this.state = {};
     this.$target = createHTML("div", { className: "wrap_rollkeywords" });
     $app.appendChild(this.$target);

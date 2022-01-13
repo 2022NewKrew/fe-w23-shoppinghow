@@ -23,38 +23,48 @@ export default class SearchBar {
   }
 
   addEvent() {
-    this.$target.addEventListener("click", () => {
-      this.$target.focus();
+    const inputEl = $(".tf_keyword");
+    const frmEl = $(".frm_shwsearch");
+    const searchBtn = $(".search_btn");
+    const rollkwordEl = $(".wrap_rollkeywords");
+    const suggestionEl = $(".wrap_suggestion");
+
+    this.$target.addEventListener("mouseleave", () => {
+      setTimeout(() => {
+        if (inputEl.value === "") {
+          inputEl.blur();
+          rollkwordEl.style.display = "block";
+        }
+        frmEl.style.borderColor = "#cecfd1";
+        suggestionEl.style.display = "none";
+      }, 500);
     });
-    this.$target.addEventListener(
-      "focus",
-      () => {
-        $(".frm_shwsearch").style.borderColor = "#f65b3d";
-        $(".list_rollkeywords").style.display = "none";
-        $(".wrap_suggestion").style.display = "block";
-      },
-      true
-    );
-    this.$target.addEventListener(
-      "blur", //mouseleave
-      () => {
-        $(".frm_shwsearch").style.borderColor = "#cecfd1";
-        $(".list_rollkeywords").style.display = "block";
-        $(".wrap_suggestion").style.display = "none";
-        // input.blur()
-      },
-      true
-    );
-    $(".tf_keyword").addEventListener("input", (e) => {
-      $(".wrap_suggestion").style.display =
-        e.target.value !== "" ? "none" : "block";
+
+    inputEl.addEventListener("focus", () => {
+      frmEl.style.borderColor = "#f65b3d";
+      rollkwordEl.style.display = "none";
+      suggestionEl.style.display = "block";
     });
-    $(".frm_shwsearch button").addEventListener("click", (e) => {
+
+    inputEl.addEventListener("input", () => {
+      suggestionEl.style.display = inputEl.value !== "" ? "none" : "block";
+    });
+
+    const search = () => {
+      console.log("a");
+      if (inputEl.value === "") return;
+      LStorage.add("rcntkeywords", inputEl.value, 5);
+      alert(`${inputEl.value} 검색`);
+      inputEl.value = "";
+      suggestionEl.dispatchEvent(new CustomEvent("addRcntKeyword"));
+    };
+
+    searchBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      const input = $(".tf_keyword").value;
-      if (input !== "") {
-        LStorage.add("rcntkeywords", input, 5);
-      }
+      search();
     });
+    inputEl.addEventListener("keypress", (e) =>
+      e.key === "Enter" ? search : null
+    );
   }
 }
