@@ -1,7 +1,7 @@
 import { Controller } from "@core";
+import { show, hide } from "@utils";
 
 export class RecentlyViewedProductsController extends Controller {
-
     init() {
         const recentlyViewedProductsListDOM = this.view.createRecentlyViewedProducts();
         this.view.mount({ 

@@ -1,7 +1,6 @@
 import { View } from "@core";
 
 export class RecentlyViewedProductsView extends View {
-
     createRecentlyViewedProducts() {
         return `
             <div class="rvpv_products_wrap">

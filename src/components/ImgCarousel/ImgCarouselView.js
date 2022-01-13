@@ -1,7 +1,6 @@
 import { View } from "@core";
 
 export class ImgCarouselView extends View {
-
     createImgCarousel(imgs) {
         return imgs
             .map((img) => `
