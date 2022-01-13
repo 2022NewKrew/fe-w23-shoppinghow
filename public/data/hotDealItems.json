@@ -1,0 +1,71 @@
+{
+    "hotDealItems": [
+        {
+            "imageURL": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220112144404206_146861",
+            "title": "옷이날개래딱그말이맞아!",
+            "beforePrice": 27800,
+            "discountedPrice": 14900,
+            "discountPercentage": 46
+        },
+        {
+            "imageURL": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220112133055920_436854",
+            "title": "바다품은 영양전복1kg특가",
+            "beforePrice": 49900,
+            "discountedPrice": 35900,
+            "discountPercentage": 28
+        },
+        {
+            "imageURL": "https://shop1.daumcdn.net/shophow/c/image/content/set/ad8255/20220112131835963_23704",
+            "title": "유가네닭갈비5팩+사리까지",
+            "discountedPrice": 37850,
+            "discountPercentage": "핫딜가"
+        },
+        {
+            "imageURL": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20211104145520387_454097",
+            "title": "옥션누적판매1위귤이야!",
+            "beforePrice": 17800,
+            "discountedPrice": 8900,
+            "discountPercentage": 50
+        },
+        {
+            "imageURL": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220110104203456_885495",
+            "title": "버거킹 반값! 3천원대~",
+            "beforePrice": 6400,
+            "discountedPrice": 3200,
+            "discountPercentage": 50
+        },
+        {
+            "imageURL": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220112135310476_159911",
+            "title": "흡수력甲호텔수건5+5특가",
+            "discountedPrice": 23900,
+            "discountPercentage": "핫딜가"
+        },
+        {
+            "imageURL": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220112131618726_305877",
+            "title": "영양간식 몽실이빵10+10~",
+            "beforePrice": 35400,
+            "discountedPrice": 15900,
+            "discountPercentage": 55
+        },
+        {
+            "imageURL": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220112133945266_550174",
+            "title": "르까프의류전 한파끝판왕!",
+            "beforePrice": 149000,
+            "discountedPrice": 22900,
+            "discountPercentage": 85
+        },
+        {
+            "imageURL": "https://shop1.daumcdn.net/shophow/c/image/content/set/ad8255/20220112140525083_60088",
+            "title": "닉스 할인전, 놓치면 손해!",
+            "beforePrice": 59000,
+            "discountedPrice": 9900,
+            "discountPercentage": 83
+        },
+        {
+            "imageURL": "https://shop2.daumcdn.net/shophow/c/image/content/set/ad8255/20220112131855675_700340",
+            "title": "속이꽉~찬 옹심이만두1+1",
+            "discountedPrice": 17050,
+            "discountPercentage": "핫딜가"
+        }
+    ]
+}

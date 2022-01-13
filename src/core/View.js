@@ -1,4 +1,4 @@
-import { $ } from "@utils";
+import { $, $$ } from "@utils";
 
 export class View {
     constructor(model) {
@@ -7,6 +7,10 @@ export class View {
 
     getDOMByClassName(className) {
         return $(`.${className}`);
+    }
+
+    getAllDOMByClassName(className) {
+        return $$(`.${className}`);
     }
 
     mount({ parentClassName, childNode }) {

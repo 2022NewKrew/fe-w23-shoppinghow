@@ -72,6 +72,78 @@
                 }
             }
         }
+
+        .popular_keywords_wrap {
+            position: absolute;
+            box-sizing: border-box;
+            top: 54px;
+            width: 100%;
+            z-index: 10;
+            border: 1px solid #f95139;
+            border-radius: 10px;
+            background-color: #fff;
+            padding: 25px 29px 23px;
+
+            .recently_search_keywords {
+                float: left;
+                width: 50%;
+
+                .recently_search_keywords_list {
+                    font-size: 14px;
+                    line-height: 21px;
+                    font-weight: 700;
+                    color: #222;
+                }
+            }
+
+            .popular_shopping_keywords {
+                float: left;
+                width: 50%;
+
+                .popular_shopping_keywords_list {
+                    font-size: 14px;
+                    line-height: 21px;
+                    font-weight: 700;
+                    color: #222;
+                    width: 50%;
+                    float: left;
+                }
+            }
+
+            .popular_shopping_keywords::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+
+            .keywords_title {
+                display: block;
+                margin-bottom: 15px;
+                font-size: 16px;
+                color: #a6a6a6;
+            }
+
+            .num_rank {
+                font-weight: 700;
+                margin-right: 10px;
+                font-size: 14px;
+                line-height: 21px;
+                color: #222;
+            }
+
+            .keyword_list {
+                padding: 12px 15px 0 0;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .popular_keywords_wrap::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
     }
 }
 
@@ -212,6 +284,9 @@
                     overflow: hidden; 
                     height: 340px; 
                     width: 3000px;
+                }
+                
+                .carousel_image_wrap.animate {
                     transition: left 0.3s ease-in-out;
                 }
 
@@ -225,6 +300,39 @@
                     float: left;
                     margin: 0 auto;
                     width: 600px;
+                }
+
+                .planning_small_buttons_wrap {
+                    position: absolute;
+                    bottom: 25px;
+                    left: 275px;
+
+                    .planning_small_button {
+                        float: left;
+                        padding: 5px 2px;
+                        background-color: transparent;
+                        border: 0;
+                    }
+
+                    .planning_small_button::after {
+                        content: "";
+                        display: inline-block;
+                        background-color: #ccc;
+                        vertical-align: top;
+                        margin-top: 4px;
+                        width: 15px;
+                        height: 5px;
+                    }
+
+                    .planning_small_button.active::after {
+                        background-color: #000;
+                    }
+                }
+
+                .planning_small_buttons_wrap::after {
+                    content: "";
+                    display: block;
+                    clear: both;
                 }
             }
 
@@ -327,6 +435,10 @@
 
         .hot-deal__title, .hot-deal__detail-price {
             @extend %text-block;
+        }
+
+        .hot-deal__title {
+            padding-top: 10px;
         }
 
         .hot-deal-list {
