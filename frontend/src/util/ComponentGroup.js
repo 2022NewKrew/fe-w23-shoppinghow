@@ -12,7 +12,9 @@ export const TARGET_SELECTOR = {
   SLIDE_BANNER: 'slide-banner',
   ROLL_KEYWORD: 'roll-keyword',
   ITEM_GROUP_WRAP: 'item-group-wrap',
-  ITEM_GROUP: 'item-group'
+  ITEM_GROUP: 'item-group',
+  SEARCH_KEYWORD: 'search-keyword',
+  SEARCH_KEYWORD_FORM: 'search-keyword-form',
 };
 
 export const getTargetSelector = (componentName) => `[data-component="${componentName}"]`;

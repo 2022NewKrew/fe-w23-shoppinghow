@@ -1,3 +1,5 @@
+import {observable, observe} from './Observer.js';
+
 export default class Component {
   $target;// 컴포넌트 타겟이 되는 element
   $props;// 컴포넌트에 넘어온 값들
@@ -14,16 +16,22 @@ export default class Component {
 
   // 생성자 설정
   setup() {
-    this.$state = this.initState();
-    this.render();
-    this.setEvent();
-    this.mounted();
+    this.created();
+    this.$state = observable(this.initState());
+    observe(()=>{
+      this.render();
+      this.setEvent();
+      this.mounted();
+    });
   };
 
   // 초기 상태 설정
   initState() {
     return {};
   }
+
+  // 최초실행 기능
+  created() {};
 
   // 렌더링 후 추가기능
   mounted() {};
@@ -46,22 +54,12 @@ export default class Component {
   // 기존에 등록되어있는 이벤트 삭제
   removeEvent() {
     this.$eventGroup.forEach((eventInfo)=>{
-      console.log(eventInfo);
       this.$target.removeEventListener(eventInfo.type, eventInfo.listener);
     });
     this.$eventGroup=[];
   }
 
-  // 상태 설정(상태 설정 후에 렌더링)
-  setState(newState) {
-    this.$state = {...this.$state, ...newState};
-    this.render();
-    this.setEvent();
-    this.mounted();
-  }
-
   // 이벤트 설정 메소드
-  // TODO: 아직 이해 못한 부분 존재, 추후 테스트해보면서 수정 및 적용할 예정
   addEvent(eventType, selector, callback) {
     const children = [...this.$target.querySelectorAll(selector)];
     // selector에 명시한 것 보다 더 하위 요소가 선택되는 경우가 있을 땐

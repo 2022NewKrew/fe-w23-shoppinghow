@@ -1,12 +1,13 @@
-import Component from '../../core/Component';
-
+import Component from '../../../core/Component';
+import {searchKeywordStore} from '../../../store/SearchStore';
 // TODO 인기검색어리스트 추가기능 작업예정
 export default class RollKeyword extends Component {
   template() {
-    const searchKeywordGroup = this.$props.searchKeywordGroup;
+    const searchKeywordGroup = searchKeywordStore.state.searchKeywordGroup;
     const keywordGroupLength = searchKeywordGroup.length;
-    searchKeywordGroup.push(searchKeywordGroup[0]);
-    console.log(searchKeywordGroup);
+    if (keywordGroupLength>0) {
+      searchKeywordGroup.push(searchKeywordGroup[0]);
+    }
     const getKeywordTemplate = (keyword, index) => {
       return `<li><span class="num_rank">${(index)%keywordGroupLength+1}</span>${keyword.name}</li>`;
     };
