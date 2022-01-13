@@ -81,7 +81,7 @@ $SearchHeight: 60px;
     height: 60px;
     display: flex;
     border: 1px solid #cbcbcb;
-    max-width: 1270px;
+    max-width: 1276px;
     margin: 0px auto;
 
     .category__title {
@@ -314,6 +314,147 @@ $SearchHeight: 60px;
                 color: red;
             }
         }
+    }
+
+    .suggestion{
+        position: relative;
+        overflow: hidden;
+        .section-title {
+            font-size: 1.25rem;
+            padding-bottom: 20px;
+            background-color: $bgColor;
+        }
+        .suggestion__recent-item-list{
+            width: 2550px;
+            top: 0;
+            height: 117px;
+            padding: 1px 0 0 1px;
+            border-bottom: 1px solid #e4e4e4;
+            background-color: #e4e4e4;
+            display: flex;
+            flex-direction: row;
+            transition: transform 0.5s;
+            li{
+                width: 254px;
+                height: 116px;
+                text-decoration: none;
+                margin-right: 1px;
+                background-color: #f0f0f1;
+
+                .suggestion__no-item-span{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    font-size: 0;
+                    line-height: 0;
+                    text-indent: -9999px;
+                    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/txt_nothing.gif) no-repeat 0 -116px;
+                }
+            }
+            .suggestion__recent-item{
+                padding: 18px 27px 0;
+                display: flex;
+                background-color: #f0f0f1;
+                cursor: pointer;
+                .suggestion__recent-item-link{
+                    display: flex;
+                    flex-direction: row;
+                    width: 200px;
+                    height: 98px;
+                    .suggestion__recent-item-img{
+                        margin-right: 11px;
+                        width: 80px;
+                        height: 80px;
+                        border: 1px solid #e4e4e4;
+                    }
+                }
+                .suggestion__recent-item-description{
+                    display: flex;
+                    flex-direction: column;
+                    .suggestion__recent-item-title{
+                        overflow: hidden;
+                        font-size: 12px;
+                        width: 105px;
+                        margin: 0;
+                        padding-top: 10px;
+                        font-weight: 400;
+                        line-height: 18px;
+                        letter-spacing: -1px;
+                        color: #444;
+                    }
+                    .suggestion__recent-item-view-more{
+                        overflow: hidden;
+                        top: 64px;
+                        left: 118px;
+                        width: 46px;
+                        margin-top: 9px;
+                        font-size: 11px;
+                        background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/ico_comm2_141125.gif) 100% -295px no-repeat;
+                        letter-spacing: -1px;
+                        color: #88888a;
+                    }
+                }
+            }
+            .suggestion__activated{
+                position:relative;
+                background-color: #fff;
+                border: 1px solid #8c8c8c;
+
+                .suggestion__recent-item-description .suggestion__recent-item-title{
+                    font-weight: 700;
+                }
+                .ico_tail{
+                    position: absolute;
+                    display: block;
+                    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/ico_comm2_141125.gif) no-repeat 0 -250px;
+                    top: 114px;
+                    left: 115px;
+                    width: 17px;
+                    height: 7px;
+                    z-index: 3;
+                }
+            }
+        }
+        .suggestion__move-recent-item-btn{
+            overflow: hidden;
+            position: absolute;
+            cursor: pointer;
+            top: 80px;
+            z-index: 1;
+            width: 41px;
+            height: 41px;
+            background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/specials/ico_eventlist_141110_v3.png) 0 -340px no-repeat;
+        }
+        .suggestion__move-recent-item-btn:hover{
+            background-position: -50px -340px;
+        }
+
+        .suggestion__move-recent-item-list-left-wrapper{
+            left: 1px;
+            .suggestion__move-recent-item-list-left{
+                width: 41px;
+                height: 41px;
+                background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/specials/ico_eventlist_141110_v3.png) no-repeat -130px -460px;
+                background-size: 300px 600px;
+            }
+            .suggestion__move-recent-item-list-left:hover{
+                background-position: -201px -465px;
+            }
+        }
+
+        .suggestion__move-recent-item-list-right-wrapper{
+            right: 1px;
+            .suggestion__move-recent-item-list-right{
+                width: 41px;
+                height: 41px;
+                background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/specials/ico_eventlist_141110_v3.png) no-repeat -163px -460px;
+                background-size: 300px 600px;
+            }
+            .suggestion__move-recent-item-list-right:hover{
+                background-position: -234px -465px;
+            }
+        }
+
     }
 }
 

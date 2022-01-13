@@ -4,6 +4,7 @@ import ProductContainer from "@components/Contents/ProductContainer";
 import recentViewedItemModel from "@models/RecentViewedItemModel";
 import pickedItemModel from "@models/PickedItemModel";
 import { fetchData } from "@utils/apiUtils";
+import Suggestion from "@components/Contents/Suggestion";
 
 const PRODUCT_GROUP_LIST_DATA_URL = "http://localhost:3000/productGroups.json";
 
@@ -29,6 +30,7 @@ class Contents extends Component {
       (productGroup, idx) =>
         new ProductContainer($container, { idx, ...productGroup })
     );
+    new Suggestion($container);
   }
 
   setEvent() {

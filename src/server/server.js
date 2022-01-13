@@ -35,6 +35,10 @@ app.get("/productGroups.json", (req, res) => {
   res.sendFile(path.join(__dirname, "/data", "productGroups.json"));
 });
 
+app.get("/suggestionItems.json", (req, res) => {
+  res.sendFile(path.join(__dirname, "/data", "suggestionItems.json"));
+});
+
 app.listen(port, function () {
   console.log("Example app listening on port 3000!\n");
 });

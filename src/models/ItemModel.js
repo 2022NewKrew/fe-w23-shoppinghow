@@ -13,13 +13,13 @@ class ItemModel extends Observerable {
 
   addItem(item) {
     if (this.items.some((_item) => _item.title === item.title)) return;
-    this.updateLocalStorage([...this.items, item]);
+    this.updateLocalStorage([item, ...this.items]);
     this.items = this.getLocalStorage();
     this.notify(this.items);
   }
 
   getItems() {
-    return this.items;
+    return [...this.items];
   }
 
   clearItems() {
