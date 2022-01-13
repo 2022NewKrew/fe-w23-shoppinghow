@@ -1,6 +1,6 @@
 const SLIDE_DELAY_MS = 2000
 
-export function initTop10() {
+export default function initTop10() {
   document.addEventListener("DOMContentLoaded", () => {
     let top10Counter = 0
 
