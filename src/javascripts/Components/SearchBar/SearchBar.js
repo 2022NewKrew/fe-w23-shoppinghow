@@ -1,4 +1,4 @@
-import styles from './styles/InputWithTopRankingGoods.module.scss'
+import styles from './styles/SearchBar.module.scss'
 import RollingText from './RollingText'
 import Component from '../../Core/Component'
 import FloatingLayer from '../Common/FloatingLayer'
