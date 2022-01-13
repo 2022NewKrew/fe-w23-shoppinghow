@@ -42,6 +42,12 @@ export class SuggestProductSection extends SectionLayout {
   }
 
   mounted() {
+    RecentlyViewedStore.subscribe(() => {
+      const { recentlyViewedList } = RecentlyViewedStore.getState();
+      if (recentlyViewedList.length > 1) return;
+
+      this.render();
+    });
     RecentlyViewedStore.subscribe(this.renderTrack.bind(this));
   }
 
