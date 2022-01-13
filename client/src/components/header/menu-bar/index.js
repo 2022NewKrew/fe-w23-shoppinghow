@@ -1,9 +1,5 @@
 import './index.scss';
 
-/**
- * TODO:
- * 추후 다중 페이지 요구되면 href도 back에서 받아올 것
- */
 export default class MenuBar {
   menu = [];
 
