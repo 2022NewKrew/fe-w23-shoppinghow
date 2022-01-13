@@ -56,7 +56,6 @@ export default function initRecent() {
   })
 
   recentWindow.addEventListener('click', (event) => {
-    console.log(event.target.innerText)
     if (event.target.innerText === RECENT_PRODUCT_TITLE) {
       refreshContents(RECENT_PRODUCT_TITLE)
     } else if (event.target.innerText === FAVORITE_PRODUCT_TITLE) {
