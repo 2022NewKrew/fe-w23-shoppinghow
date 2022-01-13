@@ -10,7 +10,10 @@ export default class RecentGoodsButton extends Component {
     #floatingLayer
     
     constructor() {
-        const floatingLayer = new FloatingLayer(new RecentAndTaggedGoodsTab())
+        const floatingLayer = new FloatingLayer(new RecentAndTaggedGoodsTab(), {
+            leftAlign: false,
+            rightAlign: true
+        })
         
         super(`
             <div class="${ styles.buttonBox }">
