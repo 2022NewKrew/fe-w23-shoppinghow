@@ -35,18 +35,19 @@ export default class carousel {
 
   async autoPlay() {
     if (this.stop) return;
-
-    if (this.step >= this.maxStep) {
+    if (this.step >= this.maxStep - 1) {
+      this.rolling(this.transitionTime);
+      await delay(this.transitionTime * 600);
       this.step = -1;
-      this.rolling(0);
+      this.rolling();
     } else {
-      this.rolling(1);
+      this.rolling(this.transitionTime);
     }
     await delay(this.delayTime);
-    this.autoPlay();
+    this.autoPlay(); // 스택에 계속 적체되는 문제가 발생할 수도 있을듯.
   }
 
-  rolling(transitionTime) {
+  rolling(transitionTime = 0) {
     this.step++;
     this.$target.style.transition = `all ${transitionTime}s`;
     if (this.isVertical) {

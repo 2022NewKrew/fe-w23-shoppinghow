@@ -47,16 +47,17 @@ export default class SearchBar {
       topSearchList.style.display = 'none';
     });
 
-    topSearchContainer.addEventListener('click', () => {
-      searchInput.focus();
-    });
-
     searchInput.addEventListener('focusout', () => {
       if (searchInput.value.trim() === '') {
         container.style.borderColor = '#cecfd1';
         topSearchList.style.display = 'block';
       }
     });
+
+    topSearchContainer.addEventListener('click', () => {
+      searchInput.focus();
+    });
+
 
     topSearchContainer.appendChild(topSearchList);
     container.appendChild(topSearchContainer);

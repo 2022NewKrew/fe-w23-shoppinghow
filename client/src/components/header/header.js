@@ -10,14 +10,18 @@ export default class Header {
   $target;
   $logo;
   logoImgSrc;
+  topSearchWords;
+  navMenus;
+  navHashTags;
 
   constructor($app) {
     this.$parentNode = $app;
     this.logoImgSrc = data.logoImgSrc;
     this.topSearchWords = data.topSearchWords;
+    this.navMenus = data.navMenus;
+    this.navHashTags = data.hashTags;
     this.$target = this.createTemplate();
     this.render();
-    NavBar;
   }
 
   render() {
@@ -31,6 +35,7 @@ export default class Header {
 
     new HeaderLogo(headerTopContainer, this.logoImgSrc);
     new SearchBar(headerTopContainer, this.topSearchWords);
+    new NavBar(headerBottomContainer, this.navMenus, this.navHashTags);
 
     headerContainer.appendChild(headerTopContainer);
     headerContainer.appendChild(headerBottomContainer);
