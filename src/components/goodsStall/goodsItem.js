@@ -1,6 +1,5 @@
 import { createDom } from '@utils/createDom';
 import { priceTag } from '@components/priceTag.js';
-import { productClickEvent } from '@utils/customEvent';
 
 const renderSearchKeyword = (keyword) => {
     const target = createDom('div', { className: 'goods-stall__title' });

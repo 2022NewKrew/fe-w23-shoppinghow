@@ -45,20 +45,6 @@ const renderSearchForm = (top10Data) => {
     return form;
 };
 
-// fetch되어온 데이터라 가정
-const dummyData = [
-    '엔진 코팅제',
-    '벽선반',
-    '키즈가방',
-    '마스크가드',
-    '대한민국 지도',
-    '염색약',
-    '부츠',
-    '로봇청소기',
-    '화분',
-    '콩나물',
-];
-
 const fetchTop10Data = async (setState) => {
     const top10Data = await getTop10Keywords();
     setState({ top10Data });

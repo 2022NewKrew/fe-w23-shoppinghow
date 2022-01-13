@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const babelConfing = require('./babel.config.json');
 const dotenv = require('dotenv-webpack');
-const env = new dotenv();
 
 module.exports = {
     mode: 'development',
