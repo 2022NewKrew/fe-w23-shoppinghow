@@ -20,7 +20,7 @@ export default class ShoppingPartner {
                 ${malls
                   .map(
                     (mall) => `
-                    <li><a href="#">${mall}</a></li>
+                    <li><a href="javascript:;">${mall}</a></li>
                 `
                   )
                   .join("")}
@@ -42,7 +42,7 @@ export default class ShoppingPartner {
             </div>
             <button type="button" class="btn_home"></button>
         </div>
-        <a href="#" class="link_all">전체보기</a>
+        <a href="javascript:;" class="link_all">전체보기</a>
     `;
   }
   addEvent() {

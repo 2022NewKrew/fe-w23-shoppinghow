@@ -7,7 +7,7 @@ export default function shwkwordgnb(list_kwordgnb) {
   ${list_kwordgnb
     ?.map(
       ({ name, noti }) =>
-        `<li><a href="#">${
+        `<li><a href="javascript:;">${
           noti ? '<span class="txt_new"></span>' + name : name
         }</a></li>`
     )

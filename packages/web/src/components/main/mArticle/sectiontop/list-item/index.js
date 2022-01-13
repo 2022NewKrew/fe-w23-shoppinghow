@@ -1,4 +1,5 @@
-import { createHTML } from "src/utils/dom";
+import LStorage from "src/utils/localStorage";
+import { $, createHTML } from "src/utils/dom";
 
 import "./index.scss";
 
@@ -10,13 +11,14 @@ export default class ListItem {
     $app.appendChild(this.$target);
 
     this.render();
+    this.addEvent();
   }
   render() {
     this.$target.innerHTML = this.listItem
       .map(
         ({ thumb, title, info }) => `
-          <li class="evtlist">
-              <a href="#" class="link_prod">
+          <li class="evtlist" data-thumb="${thumb}">
+              <a href="javascript:;" class="link_prod">
                   <span class="info_thumb">
                       <img src="${thumb}" />
                   </span>
@@ -28,5 +30,13 @@ export default class ListItem {
           `
       )
       .join("");
+  }
+  addEvent() {
+    this.$target.addEventListener("click", (e) => {
+      const itemThumb = e.target.closest(".evtlist").dataset.thumb;
+      LStorage.add("rcntproduct", itemThumb, 6);
+      $(".wrap_rcntproducts").dispatchEvent(new CustomEvent("addRcntProduct"));
+      alert("최근 본 상품에 추가되었습니다.");
+    });
   }
 }

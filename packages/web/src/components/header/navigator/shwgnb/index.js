@@ -7,7 +7,7 @@ export default function shwgnb(list_shwgnb) {
         ${list_shwgnb
           ?.map(
             ({ name, noti }) =>
-              `<li><a href="#">${
+              `<li><a href="javascript:;">${
                 noti ? '<span class="txt_new"></span>' + name : name
               }</a></li>`
           )

@@ -19,7 +19,7 @@ export default class ContEvent {
 
     this.$target.innerHTML = `
           <div class="evt_item">
-            <a href="#"><img src="${evtItemUrl}" /></a>
+            <a href="javascript:;"><img src="${evtItemUrl}" /></a>
           </div>
       `;
 

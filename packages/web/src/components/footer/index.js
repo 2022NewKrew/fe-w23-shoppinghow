@@ -16,21 +16,21 @@ export default class Footer {
         <h2 class="screen_out">서비스 이용정보</h2>
         <div class="wrap_link">
             <div class="inner_link">
-                <a href="#" class="link_info">서비스 약관/정책</a>
+                <a href="javascript:;" class="link_info">서비스 약관/정책</a>
                 <span class="txt_bar">|</span>
-                <a href="#" class="link_info "><strong>개인정보처리방침</strong></a>
+                <a href="javascript:;" class="link_info "><strong>개인정보처리방침</strong></a>
                 <span class="txt_bar">|</span>
-                <a href="#" class="link_info">법적고지</a>
+                <a href="javascript:;" class="link_info">법적고지</a>
                 <span class="txt_bar">|</span>
-                <a href="#" class="link_info">청소년보호정책</a>
+                <a href="javascript:;" class="link_info">청소년보호정책</a>
                 <span class="txt_bar">|</span>
-                <a href="#" class="link_info">쇼핑하우고객센터</a>
+                <a href="javascript:;" class="link_info">쇼핑하우고객센터</a>
                 <span class="txt_bar">|</span>
-                <a href="#" class="link_info">입점/광고안내</a>
+                <a href="javascript:;" class="link_info">입점/광고안내</a>
                 <span class="txt_bar">|</span>
-                <a href="#" class="link_info">쇼핑하우비즈센터</a>
+                <a href="javascript:;" class="link_info">쇼핑하우비즈센터</a>
                 <span class="txt_bar">|</span>
-                <a href="#" class="link_info">지식재산권보호센터</a>
+                <a href="javascript:;" class="link_info">지식재산권보호센터</a>
             </div>
         </div>
         <div class="wrap_info"> 
@@ -40,12 +40,12 @@ export default class Footer {
                 주소 : 제주특별자치도 제주시 첨단로 242
                 <span class="txt_bar">|</span>
                 사업자등록번호 : 120-81-47521 
-                <a href="#" class="link_info">등록정보확인</a>
+                <a href="javascript:;" class="link_info">등록정보확인</a>
                 <br>
                 통신판매업신고번호 : 제 2015–제주아라-0032호
                 <span class="txt_bar">|</span>
                 이메일문의: 
-                <a href="#" class="link_info">cs.shopping@kakaocorp.com</a>
+                <a href="javascript:;" class="link_info">cs.shopping@kakaocorp.com</a>
                 <span class="txt_bar">|</span>
                 고객센터 : <strong>1544-5664</strong> (평일 09:00 - 19:00)
             </p>
@@ -55,7 +55,7 @@ export default class Footer {
                 각 판매처의 매매보호 서비스를 통해 구매안전 절차 확인 후(에스크로/소비자피해보험/채무지금보증계약) 상품을 구매해 주시기 바랍니다.
             </p>
             <small class="txt_copyright">
-                Copyright © <a href="#" class="link_kakaocommerce">kakao</a> Corp. All
+                Copyright © <a href="javascript:;" class="link_kakaocommerce">kakao</a> Corp. All
                 rights reserved.
             </small>
         </div>

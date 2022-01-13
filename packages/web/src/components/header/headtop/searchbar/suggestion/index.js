@@ -56,7 +56,7 @@ export default class Suggestion {
     return data
       ?.map(
         (word) =>
-          `<li><a href="#" class="keyword">${word}<span class="ico_remove"></span></a></li>`
+          `<li><a href="javascript:;" class="keyword">${word}<span class="ico_remove"></span></a></li>`
       )
       .join("");
   }
@@ -67,7 +67,7 @@ export default class Suggestion {
       .map(
         (word, idx) =>
           `
-        <li><a href="#" class="keyword"><span class="num_rank">${
+        <li><a href="javascript:;" class="keyword"><span class="num_rank">${
           idx + start + 1
         }</span>${word}</a></li>
         `

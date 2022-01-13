@@ -1,4 +1,5 @@
 const RCNTKEYWORDS = "rcntkeywords";
+const RCNTPRODUCT = "rcntproduct";
 
 const LStorage = {
   get: (key) => {
@@ -29,12 +30,19 @@ const LStorage = {
   },
 };
 
-const rcntSample = [
+const rcntkwordSample = [
   "만년필",
   "대리석식탁",
   "석류즙",
   "캡슐커피",
   "황사마스크kf94",
 ];
-LStorage.set(RCNTKEYWORDS, rcntSample);
+const rcntproductSample = [
+  "assets/images/hotdeal8.jpg",
+  "assets/images/hotdeal9.jpg",
+  "assets/images/hotdeal5.jpg",
+];
+LStorage.set(RCNTKEYWORDS, rcntkwordSample);
+LStorage.set(RCNTPRODUCT, rcntproductSample);
+
 export default LStorage;

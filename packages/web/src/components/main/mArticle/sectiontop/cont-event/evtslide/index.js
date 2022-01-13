@@ -39,7 +39,7 @@ export default class EvtSlide {
       .map(
         (url) => `
         <div class="panel">
-            <a href="#"><img src="${url}" /></a>
+            <a href="javascript:;"><img src="${url}" /></a>
         </div>
     `
       )

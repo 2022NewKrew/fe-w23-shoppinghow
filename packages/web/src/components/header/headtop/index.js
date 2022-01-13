@@ -14,7 +14,7 @@ export default class HeadTop {
   render() {
     this.$target.innerHTML = `
       <h1 class="tit_shw">
-        <a href="#">
+        <a href="javascript:;">
           <img src="../assets/images/logo_shw_2021.png" alt="쇼핑하우" />
         </a>
       </h1>

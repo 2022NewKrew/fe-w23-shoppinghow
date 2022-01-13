@@ -15,7 +15,7 @@ export default class SectionItem {
     const { title, thumb, priceInfo } = this.state;
     this.$target.dataset.thumb = thumb;
     this.$target.innerHTML = `
-        <a href="#">
+        <a href="javascript:;">
             <span class="thumb_hotdeal"><img src="${thumb}"/></span>
             <strong class="tit_g">${title}</strong>
             ${this.cretateDetailPrice(priceInfo)}
