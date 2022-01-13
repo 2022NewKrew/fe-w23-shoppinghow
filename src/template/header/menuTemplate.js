@@ -37,13 +37,11 @@ export const menuTemplate = ({topMenuList, keywordList}) => {
     const privateMenuTpl = privateMenuTemplate();
 
     return `
-        <div class="header-menu">
-            ${categoryTpl}
-            <div class="gubun-bar"></div>
-            ${menuTpl}
-            <div class="gubun-bar"></div>
-            ${keywordTpl}
-            ${privateMenuTpl}
-        </div>
+        ${categoryTpl}
+        <div class="gubun-bar"></div>
+        ${menuTpl}
+        <div class="gubun-bar"></div>
+        ${keywordTpl}
+        ${privateMenuTpl}
     `;
 }
