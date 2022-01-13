@@ -1,10 +1,10 @@
 import {getRequestToUrl} from "../utils";
 import Observable from "./Observable";
 
-class ItemDataModel extends Observable{
+class Top10Model extends Observable{
   constructor(){
     super();
-    this.url="/json/items.json";
+    this.url="/json/top10.json";
   }
 
   async fetchData(){
@@ -29,5 +29,5 @@ class ItemDataModel extends Observable{
   }
 }
 
-const itemDataModel=new ItemDataModel();
-export default itemDataModel;
+const top10Model=new Top10Model();
+export default top10Model;

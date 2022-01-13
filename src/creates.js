@@ -3,8 +3,8 @@ import dibsItemIdsModel from "./model/DibsItemIdsModel";
 import itemDataModel from "./model/ItemDataModel";
 import RecentItems from "./component/RecentItems";
 import Recommend from "./component/Recommend.js";
+import SearchBar from "./component/SearchBar";
 import ThemeItem from "./component/ThemeItem";
-import Top10 from "./Top10";
 
 function createHotDealHtml(){
   const container = document.querySelector(".hot-deal-list");
@@ -32,8 +32,8 @@ async function createItemsHtml(){
   const themeItemData=await itemDataModel.getData();
 
   container.innerHTML=themeItemData.map((itemData)=>{
-    const dibsed=dibsItemIdsModel.isDibsedItem(itemData.itemId);
-    return new ThemeItem({...itemData, dibsed}).getHtml();
+    const isDibsItem=dibsItemIdsModel.isDibsedItem(itemData.itemId);
+    return new ThemeItem({...itemData, isDibsItem}).getHtml();
   }).join("");
 }
 
@@ -50,10 +50,10 @@ function createCarousel(){
   new Carousel(container, leftBtn, rightBtn, navigationUl, 3000);
 }
 
-function createTop10(){
-  const element=document.querySelector(".search-top10");
-  const input=document.querySelector(".search__input");
-  new Top10(element, input);
+function createSearchBar(){
+  const searchElement=document.querySelector(".search");
+  const input=searchElement.querySelector(".search__input");
+  new SearchBar(searchElement, input);
 }
 
 function createRecommend(){
@@ -65,7 +65,7 @@ function createAll(){
   createHotDealHtml();
   createRecentItems();
   createCarousel();
-  createTop10();
+  createSearchBar();
   createRecommend();
 
   const themeContainer = document.querySelector(".theme-container");

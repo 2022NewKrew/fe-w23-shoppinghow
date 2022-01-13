@@ -3,6 +3,7 @@
  * Run this code on node.
  * The server handles both back and front.
  */
+const axios = require("axios").default;
 const express=require("express");
 const app=express();
 const port=8000;
@@ -10,6 +11,8 @@ const jsonPath="/json/";
 const apiPath="/api/";
 const dibsReqPath=`${apiPath}dibs/`;
 const viewReqPath=`${apiPath}view/`;
+const searchReqPath=`${apiPath}search/`;
+const googleSearchUrl="http://suggestqueries.google.com/complete/search";
 const dibsItemIds={};
 const viewItemIds={};
 const webpack=require("webpack");
@@ -52,4 +55,22 @@ app.post(dibsReqPath, (req, res)=>{
 
 app.get(dibsReqPath, (req, res)=>{
   return res.send(JSON.stringify(dibsItemIds)).status(200);
+});
+
+app.get(searchReqPath, async(req, res)=>{
+  const keyword=req.query.keyword;
+  let googleRes;
+  try{
+    googleRes=await axios.get(googleSearchUrl, {
+      params: {
+        output: "firefox",
+        q: keyword
+      }
+    });
+    const relatedKeywords=googleRes.data[1];
+    return res.send(JSON.stringify(relatedKeywords)).status(200);
+  }catch(e){
+    console.error(e.message);
+    return res.sendStatus(400);
+  }
 });

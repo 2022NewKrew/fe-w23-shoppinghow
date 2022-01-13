@@ -17,7 +17,7 @@ export default class Observable{
    */
   subscribe(subscriber){
     this.subscribers.push(subscriber);
-    this.notify();
+    subscriber(this.data);
   }
 
   /**

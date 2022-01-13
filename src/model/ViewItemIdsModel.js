@@ -14,7 +14,7 @@ class ViewItemIdsModel extends Observable{
       console.error(e);
       return;
     }
-    super.notify();
+    this.notify();
   }
 
   /**
@@ -27,5 +27,4 @@ class ViewItemIdsModel extends Observable{
 }
 
 const viewItemIdsModel=new ViewItemIdsModel();
-
 export default viewItemIdsModel;

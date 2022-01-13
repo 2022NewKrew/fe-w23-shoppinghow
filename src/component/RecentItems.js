@@ -26,43 +26,43 @@ export default class RecentItems{
     this.#init();
   }
 
-  #init(){
-    this.#fetchItemData().then(()=>{
-      viewItemIdsModel.subscribe((viewItemIds)=>{
-        this.#createViewItemTabHtml(viewItemIds);
-      });
-      dibsItemIdsModel.subscribe((dibsItemIds)=>{
-        this.#createDibsItemTabHtml(dibsItemIds);
-      });
-      this.recentItemsLi.addEventListener("mouseenter", ()=>{
-        this.recentItemsContainer.classList.remove(hiddenClassName);
-      });
+  async #init(){
+    await this.#fetchItemData();
     
-      this.recentItemsLi.addEventListener("mouseleave", ()=>{
-        this.recentItemsContainer.classList.add(hiddenClassName);
-      });
-    
-      this.recentItemsTabContainer.addEventListener("click", (e)=>{
-        if(!e.target.classList.contains(tabClassName)){
-          return;
-        }
-        if(e.target===this.viewItemTab){
-          // Show view items.
-          this.dibsItemTab.classList.remove(activeTabClassName);
-          this.dibsItemsInnerContainer.classList.remove(activeInnerContainerClassName);
-          this.viewItemsInnerContainer.classList.add(activeInnerContainerClassName);
-        }
-        else{
-          // Show dibs items.
-          this.viewItemTab.classList.remove(activeTabClassName);
-          this.viewItemsInnerContainer.classList.remove(activeInnerContainerClassName);
-          this.dibsItemsInnerContainer.classList.add(activeInnerContainerClassName);
-        }
-        e.target.classList.add(activeTabClassName);
-      });
-  
-      this.viewItemTab.click();
+    viewItemIdsModel.subscribe((viewItemIds)=>{
+      this.#createViewItemTabHtml(viewItemIds);
     });
+    dibsItemIdsModel.subscribe((dibsItemIds)=>{
+      this.#createDibsItemTabHtml(dibsItemIds);
+    });
+    this.recentItemsLi.addEventListener("mouseenter", ()=>{
+      this.recentItemsContainer.classList.remove(hiddenClassName);
+    });
+    
+    this.recentItemsLi.addEventListener("mouseleave", ()=>{
+      this.recentItemsContainer.classList.add(hiddenClassName);
+    });
+    
+    this.recentItemsTabContainer.addEventListener("click", (e)=>{
+      if(!e.target.classList.contains(tabClassName)){
+        return;
+      }
+      if(e.target===this.viewItemTab){
+        // Show view items.
+        this.dibsItemTab.classList.remove(activeTabClassName);
+        this.dibsItemsInnerContainer.classList.remove(activeInnerContainerClassName);
+        this.viewItemsInnerContainer.classList.add(activeInnerContainerClassName);
+      }
+      else{
+        // Show dibs items.
+        this.viewItemTab.classList.remove(activeTabClassName);
+        this.viewItemsInnerContainer.classList.remove(activeInnerContainerClassName);
+        this.dibsItemsInnerContainer.classList.add(activeInnerContainerClassName);
+      }
+      e.target.classList.add(activeTabClassName);
+    });
+  
+    this.viewItemTab.click();
   }
 
   async #fetchItemData(){
@@ -70,21 +70,21 @@ export default class RecentItems{
   }
   
   #createViewItemTabHtml(viewItemIds){
-    this.#createHtml(this.viewItemsInnerContainer, viewItemIds);
+    this.#createItemTabHtml(this.viewItemsInnerContainer, viewItemIds);
     this.viewItemTab.innerHTML=viewTabName+Object.keys(viewItemIds).length;
   }
   
   #createDibsItemTabHtml(dibsItemIds){
-    this.#createHtml(this.dibsItemsInnerContainer, dibsItemIds);
+    this.#createItemTabHtml(this.dibsItemsInnerContainer, dibsItemIds);
     this.dibsItemTab.innerHTML=dibsTabName+Object.keys(dibsItemIds).length;
   }
   
   /**
-   * @param {HTMLElement}
-   * @param {Object.<string, number>}
+   * @param {HTMLElement} tabElement
+   * @param {Object.<string, number>} itemIds
    */
-  async #createHtml(container, itemIds){
-    container.innerHTML=Object.keys(itemIds).map((itemId)=>(
+  async #createItemTabHtml(tabElement, itemIds){
+    tabElement.innerHTML=Object.keys(itemIds).map((itemId)=>(
       `<div class="recent-item"><img src="${this.itemData[Number(itemId)].imageSrc}">
       </img></div>`
     )).join("");
