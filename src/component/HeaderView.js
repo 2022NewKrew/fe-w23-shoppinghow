@@ -33,8 +33,8 @@ export class HeaderView {
     }
 
     setEvent() {
-        addHoverEvent({element: $('.recent-product', this.$menuWrapper)});
-        addHoverEvent({element: $('.category', this.$menuWrapper)});
+        addHoverEvent({$element: $('.recent-product', this.$menuWrapper)});
+        addHoverEvent({$element: $('.category', this.$menuWrapper)});
     }
 
     render() {
