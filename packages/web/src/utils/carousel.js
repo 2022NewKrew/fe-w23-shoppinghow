@@ -113,6 +113,7 @@ export default (htmlEl, totalItems, itemWidth, isVertical) => {
       next();
     }, 2000);
   }
+
   function stopTimer() {
     clearInterval(timer);
   }

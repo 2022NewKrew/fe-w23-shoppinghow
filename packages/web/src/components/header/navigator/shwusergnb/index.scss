@@ -1,0 +1,28 @@
+.list_usergnb {
+  float: right;
+  display: flex;
+  letter-spacing: -0.04em;
+  line-height: 59px;
+  .loginWrap > a {
+    display: block;
+    width: 103px;
+    height: 54px;
+    padding-left: 33px;
+    text-align: left;
+    position: relative;
+    .ico_user {
+      top: 13px;
+      left: 0;
+    }
+  }
+  .area_rcntproducts {
+    position: relative;
+    & > a {
+      display: block;
+      width: 122px;
+      height: 54px;
+      padding: 0 16px 0 34px;
+      position: relative;
+    }
+  }
+}

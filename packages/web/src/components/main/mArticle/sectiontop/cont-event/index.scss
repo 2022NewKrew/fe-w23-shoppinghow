@@ -1,0 +1,74 @@
+.cont_event {
+  width: 100%;
+  border-bottom: 1px solid #f1f1f1;
+
+  display: flex;
+  .evt_item {
+    width: 510px;
+    height: 340px;
+    a {
+      display: block;
+      width: 484px;
+      margin: 0 auto;
+    }
+  }
+  .evt_slide {
+    width: 763px;
+    height: 340px;
+    border-left: 1px solid #f1f1f1;
+    position: relative;
+    .slide_evt {
+      width: 514px;
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto;
+    }
+    .paging_comm {
+      position: absolute;
+      top: 283px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      clear: both;
+      .inner_paging {
+        display: inline-block;
+        margin: 0 auto;
+        .btn_paging {
+          display: inline;
+          float: left;
+          width: 15px;
+          height: 15px;
+          margin-left: 3px;
+          padding: 5px 0;
+          .num_page {
+            display: block;
+            width: 15px;
+            height: 5px;
+            background-color: #ccc;
+          }
+          .select {
+            background-color: #000;
+          }
+        }
+      }
+      .btn_slide {
+        position: absolute;
+        top: -160px;
+        width: 63px;
+        height: 85px;
+      }
+      .btn_prev {
+        left: 44px;
+        &:hover .ico_prev {
+          background-position: -60px 0;
+        }
+      }
+      .btn_next {
+        right: 44px;
+        &:hover .ico_next {
+          background-position: -90px 0;
+        }
+      }
+    }
+  }
+}

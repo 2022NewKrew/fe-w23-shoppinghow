@@ -1,5 +1,9 @@
-import { createHTML } from "../../utils/dom";
-import MArticle from "./MArticle";
+import MArticle from "src/components/main/mArticle";
+import MEtc from "src/components/main/mEtc";
+
+import { createHTML } from "src/utils/dom";
+
+import "./index.scss";
 
 export default class Main {
   constructor({ $app }) {
@@ -11,5 +15,6 @@ export default class Main {
 
   render() {
     new MArticle({ $app: this.$target });
+    new MEtc({ $app: this.$target });
   }
 }

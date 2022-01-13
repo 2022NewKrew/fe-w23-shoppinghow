@@ -1,0 +1,95 @@
+.wrap_shopping_partner {
+  width: 1276px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  .tit_home {
+    display: block;
+    margin: 7px 0 15px;
+    font-size: 21px;
+    line-height: 24px;
+    font-family: NanumGothic, 나눔고딕, Nanum Gothic, Malgun Gothic, 맑은 고딕,
+      Dotum, 돋움, Helvetica, AppleSDGothicNeo, Arial, sans-serif;
+    letter-spacing: -1px;
+    color: #222;
+  }
+  .section_etc {
+    font-size: 12px;
+    width: 1276px;
+    padding: 30px 29px 23px 44px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #e4e4e4;
+    border-bottom: 0;
+    background-color: #fff;
+    .cont_partner {
+      overflow: hidden;
+      height: 110px;
+      .cate_partner {
+        width: 133px;
+        float: left;
+        .tit_mall {
+          display: block;
+          margin-bottom: 11px;
+          line-height: 14px;
+          font-weight: bold;
+        }
+        .list_mall {
+          width: 133px;
+          overflow: hidden;
+          float: left;
+          li {
+            height: 21px;
+            a {
+              overflow: hidden;
+              float: left;
+              line-height: 20px;
+              color: #606060;
+            }
+            &:hover a {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+    .btn_home {
+      overflow: hidden;
+      position: absolute;
+      bottom: -1px;
+      left: 1246px;
+      width: 29px;
+      height: 29px;
+      display: block;
+      line-height: 0;
+      background: url("../../../../../assets/images/img_home_190702.png")
+        no-repeat;
+      background-position: -105px -220px;
+      text-indent: -9999px;
+      &:hover {
+        background-position: -140px -220px;
+      }
+    }
+  }
+  .section_open {
+    .cont_partner {
+      height: auto;
+    }
+    .btn_home {
+      background-position: -175px -220px;
+      &:hover {
+        background-position: -175px -220px;
+      }
+    }
+  }
+  .link_all {
+    position: absolute;
+    top: 18px;
+    right: 1px;
+    padding-right: 9px;
+    font-size: 12px;
+    line-height: 13px;
+    letter-spacing: -1px;
+    color: #666;
+  }
+}

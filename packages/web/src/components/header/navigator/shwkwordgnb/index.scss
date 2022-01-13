@@ -1,0 +1,18 @@
+.list_kwordgnb {
+  float: left;
+  display: flex;
+  padding: 0 14px;
+  li > a {
+    display: block;
+    height: 54px;
+    line-height: 58px;
+    letter-spacing: -0.038em;
+    padding: 0 14px;
+    font-weight: 700;
+    color: #888;
+    position: relative;
+    .txt_new {
+      right: 5px;
+    }
+  }
+}

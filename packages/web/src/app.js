@@ -1,10 +1,12 @@
 import Header from "./components/header";
 import Main from "./components/main";
-import "./styles/app.css";
+import "src/sass/global.scss";
+import Footer from "./components/footer";
 
 function App($app) {
-  const header = new Header({ $app });
-  const main = new Main({ $app });
+  new Header({ $app });
+  new Main({ $app });
+  new Footer({ $app });
 }
 
 export default App;

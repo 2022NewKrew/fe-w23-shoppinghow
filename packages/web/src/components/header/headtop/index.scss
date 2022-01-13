@@ -1,0 +1,16 @@
+.area_headtop {
+  display: inline-block;
+  vertical-align: top;
+  display: flex;
+  justify-content: center;
+  .tit_shw {
+    margin-top: 4px;
+    a {
+      display: block;
+      img {
+        width: 119px;
+        vertical-align: top;
+      }
+    }
+  }
+}
