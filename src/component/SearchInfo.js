@@ -1,3 +1,4 @@
+import autocompleteModel from "../model/AutocompleteModel";
 import recentKeywordsModel from "../model/RecentKeywordsModel";
 export default class SearchInfo{
   /**
@@ -24,6 +25,7 @@ export default class SearchInfo{
   hide(){
     this.searchInfoElement.style="display:none;";
   }
+
   show(){
     this.searchInfoElement.removeAttribute("style");
   }
@@ -47,15 +49,26 @@ export default class SearchInfo{
         </div>
       </div>`;
   }
-  showAutocomplete(){
-    this.searchInfoElement.innerHTML=`
-      <div class="search-info__container">
-        <div class="">
+
+  async showsAutocomplete(keyword){
+    try{
+      const autocompleteKeywords=await autocompleteModel.fetchData(keyword);
+      this.searchInfoElement.innerHTML=`
+        <div class="search-info__container">
+          ${this.#getAutoCompleteKeywordsHtml(autocompleteKeywords)}
         </div>
-      </div>
-    `;
+      `;
+    }catch(_){
+      this.searchInfoElement.innerHTML=`
+        <div class="search-info__container">
+          <div class="search-info__autocomplete-item">
+            에러가 발생하였습니다. 다시 시도해주십시오.
+          </div>
+        </div>
+      `;
+    }
   }
-  
+
   /**
    * @returns {string}
    */
@@ -64,19 +77,6 @@ export default class SearchInfo{
       `<div class="search-info__recent-keyword">${keyword}</div>`
     )).join("");
   }
-
-  /**
-   * @param {number?} limit
-   * @returns {string[]}
-   */
-  // #getRecentKeywords(limit=5){
-  //   let concatKeywords=localStorage.getItem(globals.recentKeywordsLSKey);
-  //   if(concatKeywords===undefined){
-  //     concatKeywords="";
-  //   }
-  //   const recentKeywords=concatKeywords.split(globals.recentKeywordsSep, limit);
-  //   return recentKeywords;
-  // }
 
   #getHotKeywordHtml(){
     return this.top10Keywords.map((keyword, index)=>(`
@@ -87,4 +87,18 @@ export default class SearchInfo{
     `)).join("");
   }
 
+  #getAutoCompleteKeywordsHtml(autocompleteKeywords){
+    if(autocompleteKeywords.length===0){
+      return `
+        <div class="search-info__autocomplete-item">
+          연관 검색어가 없습니다.
+        </div>
+      `;
+    }
+    return autocompleteKeywords.map((keyword)=>(`
+      <div class="search-info__autocomplete-item">
+        ${keyword}
+      </div>
+    `)).join("");
+  }
 }

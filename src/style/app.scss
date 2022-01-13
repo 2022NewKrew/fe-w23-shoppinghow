@@ -87,11 +87,17 @@
             }
             &__hot-keyword {
                 padding: 10px 0;
-                font-weight: 500;
-                color: black;
             }
             &__hot-keyword-rank {
                 font-weight: bold;
+            }
+            &__autocomplete-item {
+                padding: 10px 0;
+                font-weight: bold;
+            }
+            &__autocomplete-highligh {
+                font-weight: bold;
+                color: red;
             }
         }
     }

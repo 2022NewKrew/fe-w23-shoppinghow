@@ -17,6 +17,7 @@ export default class SearchBar{
     this.top10;
     /** @type {SearchInfo} */
     this.searchInfo;
+    this.autocompleteTimeoutHandle;
 
     this.#init();
   }
@@ -73,19 +74,25 @@ export default class SearchBar{
       if(currentKeyword!=="" && e.key==="Enter"){
         recentKeywordsModel.addKeyword(currentKeyword);
       }
-      this.#showSearchInfo();
+      this.#showSearchInfo(currentKeyword);
     });
   }
 
-  #showSearchInfo(){
+  /**
+   * @param {string} currentKeyword
+   */
+  #showSearchInfo(currentKeyword){
     this.searchInfo.show();
-    if(this.inputElement.value===""){
+    if(currentKeyword===""){
       // Show info.
       this.searchInfo.showInfo();
     }
     else{
       // Show autocomplete.
-      this.searchInfo.showAutocomplete();
+      clearTimeout(this.autocompleteTimeoutHandle);
+      this.autocompleteTimeoutHandle=setTimeout(()=>{
+        this.searchInfo.showsAutocomplete(currentKeyword);
+      }, 500);
     }
   }
 }
