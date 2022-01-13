@@ -26,6 +26,7 @@
       text-align: left;
 
       .hot-deal__link {
+        display: block;
         .hot-deal__thumb {
           .hot-deal__img {
             width: 200px;
@@ -80,6 +81,15 @@
             text-decoration: line-through;
           }
         }
+      }
+    }
+
+    .hot-deal__link:hover {
+      img {
+        opacity: .75;
+      }
+      .hot-deal__title {
+        text-decoration: underline;
       }
     }
   }

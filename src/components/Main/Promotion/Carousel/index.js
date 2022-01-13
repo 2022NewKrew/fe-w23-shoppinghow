@@ -1,4 +1,4 @@
-import Component from '../../../../core/Component.js';
+import Component from '@Core/Component.js';
 import './index.scss';
 
 export default class Carousel extends Component {
@@ -30,7 +30,7 @@ export default class Carousel extends Component {
             ${items
               .map(
                 (item) => `
-                  <a href="#" target="_blank" class="carousel__link">
+                  <a target="_blank" class="carousel__link">
                     <img src="${item.src}" alt="${item.title}">
                   </a>
                   `

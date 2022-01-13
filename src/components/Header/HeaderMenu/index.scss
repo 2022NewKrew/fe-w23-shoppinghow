@@ -1,0 +1,135 @@
+
+$button-padding: 20px;
+.header-menu {
+  height: 54px;
+  display: flex;
+  max-width: 1270px;
+  margin: 0px auto;
+
+  .category__title {
+    width: 118px;
+    height: 54px;
+    padding-left: 40px;
+    position: relative;
+
+    .category_icon {
+      position: absolute;
+      top: 13px;
+      left: 4px;
+      width: 28px;
+      height: 28px;
+      background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
+      background-size: 130px 90px;
+      background-position: 0 -30px;
+    }
+  }
+
+  .top-menu {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+
+    .top-menu__btn {
+      padding: 0 $button-padding;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .top-menu__btn:hover {
+      color: #f65b3d;
+    }
+  }
+
+  .private-menu {
+    margin-left: auto;
+    display: flex;
+
+    .private-menu__btn {
+      .private-a {
+        line-height: 59px;
+        box-sizing: content-box;
+        display: block;
+        position: relative;
+        height: 54px;
+        font-size: 16px;
+        letter-spacing: -.04em;
+        color: #000;
+        text-align: left;
+      }
+      .login {
+        width: 70px;
+        padding-left: 33px;
+        .login_icon {
+          background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
+          background-size: 130px 90px;
+          background-position: -30px -30px;
+          position: absolute;
+          top: 13px;
+          left: 0;
+          width: 28px;
+          height: 28px;
+        }
+      }
+      .recent_product {
+        width: 72px;
+        padding: 0 16px 0 34px;
+
+        .product_icon {
+          position: absolute;
+          top: 13px;
+          left: 0;
+          width: 28px;
+          height: 28px;
+          background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
+          background-size: 130px 90px;
+          background-position: -60px -30px;
+        }
+
+        .arrow {
+          background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
+          background-size: 130px 90px;
+          position: absolute;
+          right: 6px;
+          top: 26px;
+          width: 8px;
+          height: 5px;
+          background-position: -60px -60px;
+        }
+      }
+    }
+    .recently_viewed {
+      position: relative;
+    }
+    .show {
+      .recent_product .arrow {
+        background-position: -60px -70px;
+      }
+    }
+  }
+}
+
+
+.gubun-bar {
+  width: 1px;
+  height: 18px;
+  background: #e3e3e3;
+  margin: 18px 0 0;
+}
+
+.recent_items {
+  display: none;
+  position: absolute;
+  right: 2px;
+  top: 54px;
+  z-index: 10;
+  padding: 0 28px;
+  border: 1px solid #979797;
+  background-color: #fff;
+  text-align: left;
+}
+
+.show {
+  .recent_items {
+    display: block;
+  }
+}

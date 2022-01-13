@@ -1,0 +1,44 @@
+.recent_list {
+  padding-bottom: 6px;
+  li {
+    position: relative;
+    overflow: hidden;
+    height: 21px;
+    padding: 12px 15px 0 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: content-box;
+    .recent_keyword_anchor {
+      font-size: 14px;
+      letter-spacing: -.05em;
+      color: #222;
+    }
+
+    .removal_button {
+      position: absolute;
+      right: 11px;
+      top: 10px;
+      width: 40px;
+      height: 23px;
+      span {
+        display: block;
+        background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/nav/ico_gnb_shw.png) no-repeat;
+        background-size: 130px 90px;
+        width: 11px;
+        height: 11px;
+        margin: 0 auto;
+        background-position: -110px -30px;
+      }
+    }
+  }
+}
+
+
+.suggestion_recent {
+  .no_recent_result {
+    padding-top: 12px;
+  font-size: 14px;
+  color: #888;
+  letter-spacing: -.05em;
+  }
+}

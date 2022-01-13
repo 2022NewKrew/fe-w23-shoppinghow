@@ -1,0 +1,47 @@
+
+.suggestion_content {
+  float: left;
+  width: 50%;
+  .suggestion_title {
+    display: block;
+    padding-bottom: 5px;
+    font-size: 16px;
+    color: #a6a6a6;
+    letter-spacing: -.04em;
+  }
+}
+
+.suggestion_keyword {
+  .suggestion_title {
+    padding-left: 23px;
+  }
+  .keyword_list {
+    overflow: hidden;
+    float: left;
+    width: 50%;
+    padding-left: 23px;
+    box-sizing: border-box;
+
+    li {
+      overflow: hidden;
+      height: 21px;
+      padding: 12px 15px 0 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      box-sizing: content-box;
+      width: 100%;
+      .keyword_anchor {
+        color: #222;
+        font-size: 14px;
+        .rank {
+          margin-right: 10px;
+          font-weight: 700;
+          font-family: robotoitalic,Apple SD Gothic Neo,Malgun Gothic,맑은 고딕,Dotum,돋움,sans-serif;
+        }
+      }
+    }
+  }
+  .right_list {
+    padding-left: 33px;
+  }
+}

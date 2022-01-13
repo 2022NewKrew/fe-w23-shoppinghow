@@ -1,5 +1,6 @@
-import Component from '../../../core/Component.js';
+import Component from '@Core/Component.js';
 import './index.scss';
+import { addNewItem } from '@Utils/localStorage.js';
 
 export default class HotDeal extends Component {
   setup() {
@@ -83,20 +84,27 @@ export default class HotDeal extends Component {
       number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     const hotdealItems = this.$state.items
-      .map(
-        (item) => `
+      .map((item) => {
+        const salePrice = item.discountPercentage
+          ? numberWithCommas(
+              Math.floor(
+                (item.originalPrice * (100 - item.discountPercentage)) /
+                  100 /
+                  100
+              ) * 100
+            )
+          : numberWithCommas(item.originalPrice);
+        return `
         <li class="hot-deal__item">
-          <a href="" class="hot-deal__link">
+          <a class="hot-deal__link">
             <span class="hot-deal__thumb">
-              <img src="${item.src}" alt="">
+              <img src="${item.src}" alt="${item.title}">
             </span>
             <strong class="hot-deal__title">${item.title}</strong>
             <span class="hot-deal__detail-price">
               <span class="discount-info">
                 <span class="txt-price">
-                ${numberWithCommas(
-                  (item.originalPrice * (100 - item.discountPercentage)) / 100
-                )}원
+                ${salePrice}원
                 </span>
                 <span class="txt-price-percent">
                   ${
@@ -116,13 +124,25 @@ export default class HotDeal extends Component {
             </span>
           </a>
         </li>
-    `
-      )
+    `;
+      })
       .join('');
     return `
       <h2 class="section-title">품절주의, 역대급 핫딜</h2>
       <ul class="hot-deal-list">
         ${hotdealItems}
       </ul>`;
+  }
+
+  setEvent() {
+    const $themeItems = this.$target.getElementsByClassName('hot-deal__link');
+    const { items } = this.$state;
+    [...$themeItems].forEach((item, index) => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert(`${items[index].title} 을 최근 본 상품에 추가합니다`);
+        addNewItem('recent', items[index]);
+      });
+    });
   }
 }

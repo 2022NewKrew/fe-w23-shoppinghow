@@ -13,6 +13,7 @@ h1 {
 
 a {
   user-select: none;
+  cursor: pointer;
 }
 
 *:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {

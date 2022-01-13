@@ -1,4 +1,4 @@
-import Component from '../../core/Component.js';
+import Component from '@Core/Component.js';
 import './index.scss';
 
 export default class Footer extends Component {
