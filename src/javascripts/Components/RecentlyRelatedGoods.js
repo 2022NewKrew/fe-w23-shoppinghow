@@ -38,7 +38,7 @@ export default class RecentlyRelatedGoods extends Component {
         this.#headerTabListEl = this.rootEl.querySelector(`.${ styles.headerTabList }`)
         
         this.#setRecentGoodsDataChangeEventListener()
-        this.#setSideEventClickEventListener()
+        this.#setSideBtnClickEventListener()
         this.#setHeaderTabItemClickEventListener()
         this.update()
     }
@@ -66,7 +66,7 @@ export default class RecentlyRelatedGoods extends Component {
         }).join('')
     }
     
-    #setSideEventClickEventListener() {
+    #setSideBtnClickEventListener() {
         const leftSideBtnEl = this.rootEl.querySelector(`.${ styles.leftSideBtn }`)
         const rightSideBtnEl = this.rootEl.querySelector(`.${ styles.rightSideBtn }`)
         
