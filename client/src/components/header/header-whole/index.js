@@ -1,13 +1,12 @@
 import HeaderTop from '../header-top';
 import HeaderDown from '../header-down';
 import './index.scss';
-import { api } from '@/api';
+import evt from '@/utils/custom-event';
+import store from '@/store';
+
+const stateList = ['hotItemsName', 'menu'];
 
 export default class Header {
-  state = {
-    hotItemsName: [],
-    menu: [],
-  };
   constructor({ $parent }) {
     const headerContainer = document.createElement('div');
     headerContainer.className = 'header-container';
@@ -16,38 +15,22 @@ export default class Header {
     this.headerDown = new HeaderDown({ $parent: headerContainer });
 
     $parent.appendChild(headerContainer);
-
-    this.initializeData();
+    this.initializeState();
   }
 
-  initializeData() {
-    this.initializeHotItemsName();
-    this.initializeMenuBarList();
+  initializeState() {
+    stateList.forEach((state) => {
+      evt.subscribe(state, this.handleSubscription.bind(this));
+      store.load(state);
+    });
   }
 
-  setState(newState) {
-    this.state = { ...this.state, ...newState };
-    this.headerTop.setState(this.state);
-    this.headerDown.setState(this.state);
+  handleSubscription() {
+    this.setState();
   }
 
-  async initializeHotItemsName() {
-    try {
-      const res = await api.get('/item/hot-items-name');
-      if (!res.success) throw new Error(res.message);
-      this.setState({ hotItemsName: res.result });
-    } catch (e) {
-      alert(e);
-    }
-  }
-
-  async initializeMenuBarList() {
-    try {
-      const res = await api.get('/menu');
-      if (!res.success) throw new Error(res.message);
-      this.setState({ menu: res.result });
-    } catch (e) {
-      alert(e);
-    }
+  setState() {
+    this.headerTop.setState(store.state);
+    this.headerDown.setState(store.state);
   }
 }
