@@ -1,7 +1,7 @@
 import { observe } from "../core/observer.js";
 import { store } from "../store.js";
 import { $$ } from "../utils/utils.js";
-import { suggestionTemplate, topTenListTemplate } from "./template/header/searchTemplate.js";
+import { suggestionTemplate, topTenListTemplate } from "../template/header/searchTemplate.js";
 
 export class SearchSuggestionView {
     $suggestionWrapper;

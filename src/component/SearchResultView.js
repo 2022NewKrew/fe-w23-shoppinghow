@@ -1,7 +1,7 @@
 import { observe } from "../core/observer.js";
 import { store } from "../store.js";
 import { $ } from "../utils/utils.js";
-import { resultListTemplate, searchResultTemplate } from "./template/header/searchTemplate.js";
+import { resultListTemplate, searchResultTemplate } from "../template/header/searchTemplate.js";
 
 export class SearchResultView {
     $resultWrapper;

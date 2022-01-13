@@ -1,5 +1,5 @@
 import { store } from '../store.js';
-import { searchTemplate } from './template/header/searchTemplate.js';
+import { searchTemplate } from '../template/header/searchTemplate.js';
 import { $, debounceEvent } from '../utils/utils.js';
 import { SearchSuggestionView } from './SearchSuggestionView.js';
 import { SearchRollingView } from './SearchRollingView.js';

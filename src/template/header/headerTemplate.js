@@ -1,4 +1,4 @@
-import logoImage from '../../../../images/logo_shw_2021.png';
+import logoImage from '../../../images/logo_shw_2021.png';
 
 export const logoTemplate = () => `
     <img class="title__img" src=${logoImage}>

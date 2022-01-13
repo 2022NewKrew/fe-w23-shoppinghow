@@ -1,6 +1,6 @@
-import { addCarouselEvent } from './event/carouselEvent.js';
-import { hotDealTemplate } from './template/container/hotDealTemplate.js';
-import { promotionTemplate } from './template/container/promotionTemplate.js';
+import { addCarouselEvent } from '../event/carouselEvent.js';
+import { hotDealTemplate } from '../template/container/hotDealTemplate.js';
+import { promotionTemplate } from '../template/container/promotionTemplate.js';
 import { $ } from '../utils/utils.js';
 
 // example dummy

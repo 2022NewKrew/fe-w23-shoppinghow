@@ -3,10 +3,10 @@ import { $ } from "../utils/utils.js";
 import { store } from "../store.js";
 import { observe } from "../core/observer.js";
 
-import { menuTemplate } from "./template/header/menuTemplate.js";
-import { headerTemplate } from "./template/header/headerTemplate.js";
+import { menuTemplate } from "../template/header/menuTemplate.js";
+import { headerTemplate } from "../template/header/headerTemplate.js";
 
-import { addHoverEvent } from "./event/hoverEvent.js";
+import { addHoverEvent } from "../event/hoverEvent.js";
 
 import { HeaderSearchView } from "./HeaderSearchView.js";
 
