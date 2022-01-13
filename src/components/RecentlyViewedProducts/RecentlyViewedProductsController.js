@@ -15,11 +15,11 @@ export class RecentlyViewedProductsController extends Controller {
         const recentlyViewedList = this.view.getDOMByClassName("rvpv_products_wrap");
         
         recentlyViewed.addEventListener("mouseover", () => {
-            recentlyViewedList.style.display = "block"
+            show(recentlyViewedList);
         });
 
         recentlyViewed.addEventListener("mouseout", () => {
-            recentlyViewedList.style.display = "none"
+            hide(recentlyViewedList);
         });
     }
 }

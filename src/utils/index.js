@@ -15,6 +15,9 @@ export const mount = (target, templateID) => {
     target.appendChild(template.cloneNode(true));
 };
 
+export const show = (target) => target.style.display = "block";
+
+export const hide = (target) => target.style.display = "none";
 export const setLocalStorage = (name, value) => localStorage.setItem(name, JSON.stringify(value));
 
 export const getLocalStorage = (name) => JSON.parse(localStorage.getItem(name));
