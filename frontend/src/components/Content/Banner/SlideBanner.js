@@ -1,5 +1,5 @@
 import Component from '../../../core/Component';
-
+import {searchKeywordStore} from '../../../store/SearchStore';
 export default class SlideBanner extends Component {
   template() {
     const bannerData = this.$props.bannerData;
@@ -90,6 +90,8 @@ export default class SlideBanner extends Component {
     });
 
     this.addEvent('click', selectorTarget.prevBtn, (evnet) => {
+      // TODO: 로컬저장소 변화 체크용으로 생성 삭제 예정
+      searchKeywordStore.dispatch('updatesetRecentSearchKeywordData', {keyword: 'test'});
       moveDirection=directionType.left;
       topMileageSlide.style.transitionDuration = `${transitionDuration}ms`;
       topMileageSlide.style.transform = `translate3d(${translateXlength}px, 0px, 0px)`;

@@ -2,8 +2,13 @@ import Component from '../../../core/Component';
 import {TARGET_SELECTOR, getTargetSelector} from '../../../util/ComponentGroup';
 import RollKeyword from './RollKeyword';
 import SearchKeywordForm from './SearchKeyword';
-
+import {searchKeywordStore} from '../../../store/SearchStore';
+import {API_URL} from '../../../util/TemplateGroup';
 let rollInterval = '';
+
+searchKeywordStore.dispatch('initTestRecentSearchKeywordData', {});
+searchKeywordStore.dispatch('setSearchKeywordData', {url: API_URL.GET_SEARCH_KEYWORD_GROUP});
+searchKeywordStore.dispatch('setRecentSearchKeywordData', {});
 
 export default class SearchKeywordContainer extends Component {
   template() {

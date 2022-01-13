@@ -54,7 +54,6 @@ export default class Component {
   // 기존에 등록되어있는 이벤트 삭제
   removeEvent() {
     this.$eventGroup.forEach((eventInfo)=>{
-      console.log(eventInfo);
       this.$target.removeEventListener(eventInfo.type, eventInfo.listener);
     });
     this.$eventGroup=[];
