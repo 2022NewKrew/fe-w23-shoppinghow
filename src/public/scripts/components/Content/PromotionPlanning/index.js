@@ -16,6 +16,9 @@ export default class PromotionPlanning extends Component {
     this.carouselList = null;
     this.carouselBtnList = null;
     this.carouselBtnOn = false;
+    this.$pagingBtnMouseoverHandler = this.pagingBtnMouseoverHandler.bind(this);
+    this.$pagingPrevClickHandler = this.pagingPrevClickHandler.bind(this);
+    this.$pagingNextClickHandler = this.pagingNextClickHandler.bind(this);
   }
   template() {
     const { planningList } = this.$state;
@@ -26,15 +29,15 @@ export default class PromotionPlanning extends Component {
           planningList
             .map(
               item => `
-                          <a href="#" target="_blank" class="promotion__planning--link"
-                            ><img
-                              src="${item.src}"
-                              width="${item.width}"
-                              height="${item.height}"
-                              class="img_g"
-                              alt="${item.alt}"
-                          /></a>
-                        `,
+                    <a href="#" target="_blank" class="promotion__planning--link"
+                      ><img
+                        src="${item.src}"
+                        width="${item.width}"
+                        height="${item.height}"
+                        class="img_g"
+                        alt="${item.alt}"
+                    /></a>
+                  `,
             )
             .join("")
         }
@@ -58,14 +61,14 @@ export default class PromotionPlanning extends Component {
     `;
   }
   setEvent() {
-    $(".promotion__planning--paging", this.$target).addEventListener("mouseover", this.pagingBtnMouseoverHandler.bind(this));
-    $(".promotion__planning--left-btn", this.$target).addEventListener("click", this.pagingPrevClickHandler.bind(this));
-    $(".promotion__planning--right-btn", this.$target).addEventListener("click", this.pagingNextClickHandler.bind(this));
+    $(".promotion__planning--paging", this.$target).addEventListener("mouseover", this.$pagingBtnMouseoverHandler);
+    $(".promotion__planning--left-btn", this.$target).addEventListener("click", this.$pagingPrevClickHandler);
+    $(".promotion__planning--right-btn", this.$target).addEventListener("click", this.$pagingNextClickHandler);
   }
   removeEvent() {
-    $(".promotion__planning--paging", this.$target).removeEventListener("mouseover", this.pagingBtnMouseoverHandler.bind(this));
-    $(".promotion__planning--left-btn", this.$target).removeEventListener("click", this.pagingPrevClickHandler.bind(this));
-    $(".promotion__planning--right-btn", this.$target).removeEventListener("click", this.pagingNextClickHandler.bind(this));
+    $(".promotion__planning--paging", this.$target).removeEventListener("mouseover", this.$pagingBtnMouseoverHandler);
+    $(".promotion__planning--left-btn", this.$target).removeEventListener("click", this.$pagingPrevClickHandler);
+    $(".promotion__planning--right-btn", this.$target).removeEventListener("click", this.$pagingNextClickHandler);
   }
   pagingBtnMouseoverHandler({ target }) {
     if (target.classList.contains("promotion__planning--num-page")) {
@@ -99,7 +102,15 @@ export default class PromotionPlanning extends Component {
     if (planningList.length > 0) {
       this.carousel =
         this.carousel ??
-        new Carousel(planningList, this.carouselList, this.currentCarouselItem, this.carouselSpeed, this.carouselItemWidth, 1, this.carouselBtnList);
+        new Carousel({
+          carouselList: planningList,
+          carousel: this.carouselList,
+          curCarouselIdx: this.currentCarouselItem,
+          carouselSpeed: this.carouselSpeed,
+          carouselItemWidth: this.carouselItemWidth,
+          carouselMode: 1,
+          carouselBtnList: this.carouselBtnList,
+        });
     }
   }
   async getSlide() {
@@ -109,7 +120,6 @@ export default class PromotionPlanning extends Component {
     if (JSON.stringify(this.$state.planningList) !== JSON.stringify(transResult)) {
       this.setState({ planningList: transResult });
     }
-    // Object.entries().sort().toString()
   }
   settingCarouselCSS(length) {
     this.carouselBtnList[0].style["background-color"] = "black";

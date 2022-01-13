@@ -66,7 +66,8 @@ router.get("/event/items", async (req, res) => {
 router.get("/view/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const [result] = await pool.query(`update hotdeal set view = view + 1, view_date = NOW() where id = ${id}`);
+    await pool.query(`update hotdeal set view = view + 1, view_date = NOW() where id = ${id}`);
+    const [result] = await pool.query(`select src from hotdeal where not view_date is null order by view_date desc limit 4`);
     res.status(200).json({
       result,
     });
@@ -77,10 +78,21 @@ router.get("/view/:id", async (req, res) => {
 });
 router.get("/recent", async (req, res) => {
   try {
-    const [result] = await pool.query(`select * from hotdeal where not view_date is null order by view_date`);
+    const [result] = await pool.query(`select src from hotdeal where not view_date is null order by view_date desc limit 4`);
     res.status(200).json({
       result,
     });
+  } catch (e) {
+    console.error(e);
+    res.status(404);
+  }
+});
+router.get("/search", async (req, res) => {
+  try {
+    const { query } = req.query;
+    const [result] = await pool.query(`select name from items where name like '%${query}%'`);
+    const resData = result.map(item => item.name);
+    res.status(200).json({ result: resData });
   } catch (e) {
     console.error(e);
     res.status(404);

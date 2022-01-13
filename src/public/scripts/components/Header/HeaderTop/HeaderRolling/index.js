@@ -17,8 +17,8 @@ export default class HeaderRolling extends Component {
     return `
         ${top10
           .map(
-            item => `
-            <li class="search-top10__item">${item}</li>
+            (item, idx) => `
+            <li class="search-top10__item">${idx + 1}. ${item}</li>
         `,
           )
           .join("")}
