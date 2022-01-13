@@ -15,6 +15,19 @@ export const mount = (target, templateID) => {
     target.appendChild(template.cloneNode(true));
 };
 
+export const rotateComponent = (target, moveDegree, initialPosition, moveDirection, lastListPosition, transitionDelay) => {
+    const startPoint = parseInt(getComputedStyle(target)[moveDirection].split("px")[0]);
+    if (!target.classList.contains("animate")) {
+        target.classList.add("animate"); 
+    }
+    target.style[moveDirection] = `${startPoint - moveDegree}px`;
+    if (startPoint === lastListPosition) {
+        setTimeout(() => {
+            target.classList.remove("animate"); 
+            target.style[moveDirection] = `${initialPosition}px`;
+        }, transitionDelay)
+    }
+};
 export const show = (target) => target.style.display = "block";
 
 export const hide = (target) => target.style.display = "none";

@@ -1,4 +1,5 @@
 import { Controller } from "@core";
+import { rotateComponent } from "@utils";
 
 export class SearchInputController extends Controller {
     constructor(model, view) {
@@ -14,25 +15,10 @@ export class SearchInputController extends Controller {
             childNode: realTimeSearchRankingsDOM
         });
     }
-    
-    autoRotating(target, lineHeight, lastListPosition, trasitionDelay) {
-        const startTop = parseInt(getComputedStyle(target).top.split("px")[0]);
-        if (!target.classList.contains("animate")) {
-            target.classList.add("animate"); 
-        }
-        target.style.top = `${startTop - lineHeight}px`;
-        if (startTop === lastListPosition) {
-            setTimeout(() => {
-                target.classList.remove("animate"); 
-                target.style.top = "0px";
-            }, trasitionDelay)
-        }
-    }
 
-    rollingRealTimeSearchRanking({ target, lineHeight, lastListPosition, trasitionDelay, intervalDelay }) {
-        this.interval = setInterval(this.autoRotating, intervalDelay, target, lineHeight, lastListPosition, trasitionDelay);
+    rollingRealTimeSearchRanking({ target, moveDegree, initialPosition, moveDirection, lastListPosition, trasitionDelay, intervalDelay }) {
+        this.interval = setInterval(rotateComponent, intervalDelay, target, moveDegree, initialPosition, moveDirection, lastListPosition, trasitionDelay);
     }
-
 
     setEvent() {
         const inputForm = this.view.getDOMByClassName("input_form");
@@ -41,7 +27,9 @@ export class SearchInputController extends Controller {
         const searchInput = this.view.getDOMByClassName("search__input");
         const rollingInputDatas = {
             target: searchTop10,
-            lineHeight: 26,
+            moveDegree: 26,
+            initialPosition: 0,
+            moveDirection: "top",
             lastListPosition: -234,
             trasitionDelay: 499,
             intervalDelay: 2500

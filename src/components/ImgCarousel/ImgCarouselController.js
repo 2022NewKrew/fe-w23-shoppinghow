@@ -16,6 +16,7 @@ export class ImgCarouselController extends Controller {
         target.style.left = `${beforeX + horizontalMove}px`;
     }
 
+        rotateComponent(target, moveDegree, initialPosition, moveDirection, lastListPosition, transitionDelay);
 
     setEvent() {
         const carouselImages = this.view.getDOMByClassName("carousel_image_wrap");
