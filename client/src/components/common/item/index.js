@@ -5,15 +5,11 @@ export default class Item {
   constructor({ $parent, info, index }) {
     const item = document.createElement('li');
     item.className = 'item';
+    item.dataset.idx = index;
     this.info = info;
     item.innerHTML = this.getFixedInitView(this.info, index);
 
-    item.addEventListener('click', this.addToRecentlyViewedThings.bind(this));
     $parent.appendChild(item);
-  }
-
-  addToRecentlyViewedThings() {
-    document.body.dispatchEvent(new CustomEvent('addToRecentlyViewedThing', { detail: this.info }));
   }
 
   getFixedInitView(info, index) {

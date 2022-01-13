@@ -13,6 +13,16 @@ export default class ItemFrame {
     this.itemFrame = document.createElement('ul');
     this.itemFrame.className = 'item-frame';
     $parent.appendChild(this.itemFrame);
+
+    this.itemFrame.addEventListener('click', this.addToRecentlyViewedThings.bind(this));
+  }
+
+  addToRecentlyViewedThings(e) {
+    if (e.target.closest('.item')) {
+      const idx = e.target.closest('.item').dataset.idx;
+      const itemInfo = this.itemList[idx];
+      document.body.dispatchEvent(new CustomEvent('addToRecentlyViewedThing', { detail: itemInfo }));
+    }
   }
 
   setState(props) {
