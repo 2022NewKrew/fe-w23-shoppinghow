@@ -14,6 +14,7 @@ module.exports = {
       "@core": path.resolve(__dirname, "../src/public/scripts/core"),
       "@components": path.resolve(__dirname, "../src/public/scripts/components"),
       "@utils": path.resolve(__dirname, "../src/public/scripts/utils"),
+      "@store": path.resolve(__dirname, "../src/public/scripts/store"),
     },
   },
   module: {
