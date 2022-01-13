@@ -50,7 +50,7 @@ export default class SearchBar{
     this.inputElement.addEventListener("focusin", ()=>{
       this.searchBarElement.style="overflow:visible;";
       this.top10.hide();
-      this.#showSearchInfo(this.inputElement);
+      this.#showSearchInfo(this.inputElement.value);
     });
 
     this.inputElement.addEventListener("focusout", ()=>{
@@ -85,6 +85,7 @@ export default class SearchBar{
     this.searchInfo.show();
     if(currentKeyword===""){
       // Show info.
+      clearTimeout(this.autocompleteTimeoutHandle);
       this.searchInfo.showInfo();
     }
     else{
