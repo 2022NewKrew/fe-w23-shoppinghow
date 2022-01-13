@@ -1,8 +1,8 @@
 import { createHTML } from '../../utils/helper';
 import data from './data';
-import HeaderLogo from './components/headerTop/headerLogo';
-import SearchBar from './components/headerTop/searchBar';
-import NavBar from './components/headerBottom/navBar';
+import HeaderLogo from './headerTop/headerLogo';
+import SearchBar from './headerTop/searchBar';
+import NavBar from './headerBottom/navBar';
 import './header.scss';
 
 export default class Header {
@@ -10,11 +10,16 @@ export default class Header {
   $target;
   $logo;
   logoImgSrc;
+  topSearchWords;
+  navMenus;
+  navHashTags;
 
   constructor($app) {
     this.$parentNode = $app;
     this.logoImgSrc = data.logoImgSrc;
     this.topSearchWords = data.topSearchWords;
+    this.navMenus = data.navMenus;
+    this.navHashTags = data.hashTags;
     this.$target = this.createTemplate();
     this.render();
   }
@@ -30,6 +35,7 @@ export default class Header {
 
     new HeaderLogo(headerTopContainer, this.logoImgSrc);
     new SearchBar(headerTopContainer, this.topSearchWords);
+    new NavBar(headerBottomContainer, this.navMenus, this.navHashTags);
 
     headerContainer.appendChild(headerTopContainer);
     headerContainer.appendChild(headerBottomContainer);

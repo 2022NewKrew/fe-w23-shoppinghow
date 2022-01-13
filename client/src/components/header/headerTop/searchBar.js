@@ -1,9 +1,11 @@
 import './searchBar.scss';
-import { createHTML } from '../../../../utils/helper';
+import { createHTML } from '@/utils/helper';
+import carousel from '@/components/common/carousel';
 
 export default class SearchBar {
   $parentNode;
   $target;
+  $carouselList;
   topSearchWords;
 
   constructor($app, topSearchWords) {
@@ -15,6 +17,12 @@ export default class SearchBar {
 
   render() {
     this.$parentNode.appendChild(this.$target);
+    new carousel({
+      template: this.$target.querySelector('#search-carousel-items'),
+      delayTime: 2000,
+      isVertical: true,
+      transitionTime: 1,
+    });
   }
 
   createTemplate() {
@@ -30,7 +38,7 @@ export default class SearchBar {
       className: 'top-container',
     });
 
-    const topSearchList = createHTML('ul', { innerHTML: searchLists });
+    const topSearchList = createHTML('ul', { id: 'search-carousel-items', innerHTML: searchLists });
     const searchInput = createHTML('input', {});
     const searchIcon = createHTML('div', { className: 'search-icon' });
 
@@ -39,16 +47,17 @@ export default class SearchBar {
       topSearchList.style.display = 'none';
     });
 
-    topSearchContainer.addEventListener('click', () => {
-      searchInput.focus();
-    });
-
     searchInput.addEventListener('focusout', () => {
       if (searchInput.value.trim() === '') {
         container.style.borderColor = '#cecfd1';
         topSearchList.style.display = 'block';
       }
     });
+
+    topSearchContainer.addEventListener('click', () => {
+      searchInput.focus();
+    });
+
 
     topSearchContainer.appendChild(topSearchList);
     container.appendChild(topSearchContainer);

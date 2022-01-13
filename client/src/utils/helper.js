@@ -9,3 +9,11 @@ export function createHTML(tagName, options) {
   }
   return tag;
 }
+
+export function delay(ms) {
+  return new Promise((resovle) => {
+    setTimeout(() => {
+      resovle();
+    }, ms);
+  });
+}

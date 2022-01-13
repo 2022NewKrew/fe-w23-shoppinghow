@@ -1,5 +1,5 @@
 import './headerLogo.scss';
-import { createHTML } from '../../../../utils/helper';
+import { createHTML } from '@/utils/helper';
 
 export default class HeaderLogo {
   $parentNode;

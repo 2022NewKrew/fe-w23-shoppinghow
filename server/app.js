@@ -1,15 +1,15 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const clientApp = path.join('../client', 'dist/index.html');
 const port = 3000;
 
-clientApp;
+app.use(express.json());
+app.use(express.static('../client/dist'));
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('../client', 'dist', 'index.html'));
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Server Listen on ${port}`);
 });
