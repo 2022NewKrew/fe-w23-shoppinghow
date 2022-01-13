@@ -1,8 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const babelConfing = require('./babel.config.json');
+const dotenv = require('dotenv-webpack');
 
 module.exports = {
     mode: 'development',
@@ -47,7 +48,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({ template: 'src/index.html' }),
         new MiniCssExtractPlugin({ filename: 'app.css' }),
-        // new CleanWebpackPlugin()
+        new webpack.DefinePlugin({
+            SERVER_BASE_URL: JSON.stringify(process.env.SERVER_BASE_URL),
+        }),
     ],
     resolve: {
         alias: {
@@ -56,6 +59,7 @@ module.exports = {
             '@sass': path.resolve(__dirname, 'src/sass/'),
             '@styles': path.resolve(__dirname, 'src/styles/'),
             '@utils': path.resolve(__dirname, 'src/utils/'),
+            '@api': path.resolve(__dirname, 'src/api.js'),
         },
     },
 };

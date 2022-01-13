@@ -1,11 +1,17 @@
+import { createDom } from '@utils/createDom';
 import { goodsItem } from '@components/goodsStall/goodsItem';
 
-export const goodsList = (goodsData) => {
-    const target = document.createElement('ul');
-
+export const goodsList = (type, goodsData) => {
     const render = () => {
-        target.className = 'goods-stall-list';
-        goodsData.forEach((goods) => target.appendChild(goodsItem(goods)));
+        const target = createDom('div', { className: 'goods-stall-list' });
+        goodsData.forEach((goods) =>
+            target.appendChild(
+                goodsItem({
+                    type,
+                    goods,
+                })
+            )
+        );
 
         return target;
     };

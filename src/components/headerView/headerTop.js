@@ -1,16 +1,15 @@
-import { search } from '@components/header/search/search';
+import { createDom } from '@utils/createDom';
+import { searchView } from '@components/headerView/searchView';
 
 export const headerTop = () => {
-    const target = document.createElement('div');
-
     const render = () => {
-        target.className = 'header-top';
+        const target = createDom('div', { className: 'header-top' });
         target.innerHTML = `
             <div class="title">
                 <h1>쇼핑하우</h1>
             </div>
         `;
-        target.appendChild(search());
+        target.appendChild(searchView());
         return target;
     };
 

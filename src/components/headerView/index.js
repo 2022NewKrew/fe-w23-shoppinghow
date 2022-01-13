@@ -1,7 +1,7 @@
-import { headerTop } from '@components/header/headerTop';
-import { menuBar } from '@components/header/menuBar';
+import { headerTop } from '@components/headerView/headerTop';
+import { menuBar } from '@components/headerView/menuBar';
 
-export const header = () => {
+export const headerView = () => {
     const target = document.createElement('header');
 
     const render = () => {

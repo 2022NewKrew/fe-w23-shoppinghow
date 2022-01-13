@@ -52,7 +52,7 @@
         }
     }
 
-    .search-below {
+    .search-modal {
         width: 670px;
         border-radius: 10px;
         @extend %border-highlight;
@@ -62,29 +62,29 @@
         z-index: 2;
         visibility: hidden;
 
-        .search-below__container {
-            .search-below__section {
+        .search-modal__container {
+            .search-modal__section {
                 padding: 30px;
                 font-size: 15px;
 
-                .search-below__vertical-container {
+                .search-modal__vertical-container {
                     display: flex;
                     flex-direction: column;
                 }
             }
 
-            .search-below__section--top10 {
+            .search-modal__section--top10 {
                 @extend %grid-row-2;
             }
 
-            .search-below__title {
+            .search-modal__title {
                 color: $darkGray;
                 font-weight: bold;
                 font-size: 1rem;
             }
-            .search-below__content {
+            .search-modal__content {
                 padding-top: 10px;
-                .search-below__keyword {
+                .search-modal__keyword {
                     height: 40px;
                     .rank-keyword__numbering {
                         font-weight: bold;
@@ -92,7 +92,7 @@
                 }
             }
 
-            .search-below__recent-keyword {
+            .search-modal__recent-keyword {
                 padding: 5px;
             }
         }
@@ -100,7 +100,7 @@
 
     .search.focus {
         @extend %border-highlight;
-        .search-below {
+        .search-modal {
             visibility: visible;
         }
     }
@@ -158,11 +158,16 @@
             padding: $button-padding;
         }
 
-        .current-goods {
+        .recent-goods {
             width: 363px;
             height: 263px;
             top: 58px;
             right: -1px;
+
+            .recent-product__img {
+                width: 100px;
+                height: 100px;
+            }
         }
     }
 }
@@ -241,10 +246,20 @@
         @extend %section-layout;
         margin-top: 60px;
 
+        .goods-stall__link {
+            cursor: pointer;
+        }
+
         .section-title {
             @extend %h2-title;
         }
-        .goods-stall__title,
+        .goods-stall__title {
+            @extend %text-block;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
         .goods-stall__detail-price {
             @extend %text-block;
         }
@@ -262,6 +277,11 @@
                     @extend %text-bold;
                 }
             }
+        }
+
+        .goods-stall__img {
+            width: 200px;
+            height: 200px;
         }
 
         .goods-stall__detail-price {
