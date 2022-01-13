@@ -1,0 +1,36 @@
+.container {
+  flex: 1;
+  padding: 20px;
+  
+  .title {
+    color: #8C8C8C;
+  }
+  
+  .searches-list {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    
+    .searches-item {
+      display: flex;
+      justify-content: space-between;
+      flex: 1;
+      align-items: center;
+      cursor: pointer;
+  
+      .searches-text {
+        flex: 1;
+        padding: 5px 0;
+        font-size: 0.8rem;
+      }
+      
+      .delete-btn {
+        width: 20px;
+        height: 20px;
+        background: url("http://shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_190702.png") no-repeat;
+        background-position: -145px -52px;
+      }
+    }
+  }
+}
