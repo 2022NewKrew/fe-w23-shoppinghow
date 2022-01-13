@@ -1,4 +1,3 @@
-import globals from "../globals";
 import recentKeywordsModel from "../model/RecentKeywordsModel";
 import SearchInfo from "./SearchInfo";
 import Top10 from "./Top10";
@@ -50,15 +49,7 @@ export default class SearchBar{
     this.inputElement.addEventListener("focusin", ()=>{
       this.searchBarElement.style="overflow:visible;";
       this.top10.hide();
-      this.searchInfo.show();
-      if(this.inputElement.value===""){
-        // Show info.
-        this.searchInfo.showInfo();
-      }
-      else{
-        // Show autocomplete.
-        this.searchInfo.showAutocomplete();
-      }
+      this.#showSearchInfo(this.inputElement);
     });
 
     this.inputElement.addEventListener("focusout", ()=>{
@@ -69,55 +60,32 @@ export default class SearchBar{
       this.searchInfo.hide();
     });
 
-    this.inputElement.addEventListener("keypress", (e)=>{
+    /**
+     * keydown -> keypress -> keyup
+     * 'input' event does not detect 'Enter' key.
+     * 'keydown' does not fetch the latest input value.
+     * 'keypress' does not detect 'Backspace' key.
+     * 'keyup' does not fire until user releases key.
+     * Which event should I use...? Or should I combine them?
+     */
+    this.inputElement.addEventListener("keyup", (e)=>{
       const currentKeyword=e.target.value;
-      if(currentKeyword===""){
-        return;
-      }
-      if(e.key==="Enter"){
-        // this.#saveRecentKeywords(currentKeyword);
+      if(currentKeyword!=="" && e.key==="Enter"){
         recentKeywordsModel.addKeyword(currentKeyword);
       }
-      this.searchInfo.showAutocomplete();
+      this.#showSearchInfo();
     });
   }
 
-  /**
-   * @param {string[]} newKeyword
-   * @param {number?} limit
-   */
-  // #saveRecentKeywords(newKeyword, limit=5){
-  //   let savedKeywords=localStorage[globals.recentKeywordsLSKey];
-  //   let toBeSavedKeywords=undefined;
-  //   if(savedKeywords===undefined){
-  //     // Nothing has been saved. Thus the new keyword is the only one.
-  //     toBeSavedKeywords=newKeyword;
-  //   }
-  //   else{
-  //     let separatedKeywords=savedKeywords.split(globals.recentKeywordsSep);
-  //     if(separatedKeywords.includes(newKeyword)){
-  //       // Do not save keyword if it had been already saved.
-  //       return;
-  //     }
-  //     if(separatedKeywords.length>=limit){
-  //       separatedKeywords.length=limit-1;
-  //     }
-  //     savedKeywords=separatedKeywords.join(globals.recentKeywordsSep);
-  //     toBeSavedKeywords=newKeyword+globals.recentKeywordsSep+savedKeywords;
-  //   }
-  //   localStorage[globals.recentKeywordsLSKey]=toBeSavedKeywords;
-  // }
-
-  /**
-   * @param {number?} limit
-   * @returns {string[]}
-   */
-  #getRecentKeywords(limit=5){
-    let concatKeywords=localStorage.getItem(globals.recentKeywordsLSKey);
-    if(concatKeywords===null){
-      concatKeywords="";
+  #showSearchInfo(){
+    this.searchInfo.show();
+    if(this.inputElement.value===""){
+      // Show info.
+      this.searchInfo.showInfo();
     }
-    const recentKeywords=concatKeywords.split(globals.recentKeywordsSep, concatKeywords, limit);
-    return recentKeywords;
+    else{
+      // Show autocomplete.
+      this.searchInfo.showAutocomplete();
+    }
   }
 }
