@@ -6,7 +6,7 @@ import { SearchRollingView } from './SearchRollingView.js';
 import { SearchResultView } from './SearchResultView.js';
 
 
-export class HeaderSearch {
+export class HeaderSearchView {
     $searchWrapper;
     $suggestion;
     $rolling;
