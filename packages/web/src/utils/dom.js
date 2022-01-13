@@ -7,3 +7,11 @@ export const createHTML = (tagName, options) => {
 };
 
 export const $ = (selector) => document.querySelector(selector);
+
+export const debounce = (func, wait) => {
+  let inDebounce;
+  return function () {
+    clearTimeout(inDebounce);
+    inDebounce = setTimeout(() => func(), wait);
+  };
+};

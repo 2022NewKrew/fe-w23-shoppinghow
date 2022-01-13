@@ -5,7 +5,7 @@ import shwusergnb from "src/components/header/navigator/shwusergnb";
 import RcntProducts from "src/components/header/navigator/rcntproducts";
 import Service from "src/service";
 
-import { $, createHTML } from "src/utils/dom";
+import { $, createHTML, debounce } from "src/utils/dom";
 import "./index.scss";
 
 export default class Navigator {
@@ -49,8 +49,11 @@ export default class Navigator {
     El.addEventListener("mouseover", (e) => {
       El.classList.add("on");
     });
-    El.addEventListener("mouseout", (e) => {
-      El.classList.remove("on");
-    });
+    El.addEventListener(
+      "mouseout",
+      debounce(() => {
+        El.classList.remove("on");
+      }, 2000)
+    );
   }
 }
