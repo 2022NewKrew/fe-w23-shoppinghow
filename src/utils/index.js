@@ -14,3 +14,7 @@ export const mount = (target, templateID) => {
     const template = $(templateID).content.children[0];
     target.appendChild(template.cloneNode(true));
 };
+
+export const setLocalStorage = (name, value) => localStorage.setItem(name, JSON.stringify(value));
+
+export const getLocalStorage = (name) => JSON.parse(localStorage.getItem(name));
