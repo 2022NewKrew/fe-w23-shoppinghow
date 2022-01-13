@@ -8,8 +8,10 @@ export default class Category extends Component {
     this.$state = {
       categoryDisplay: false,
     };
-    this.$contentMouseEnterHandler = this.contentMouseEnterHandler.bind(this);
+    this.$titleMouseEnterHandler = this.titleMouseEnterHandler.bind(this);
     this.$contentMouseLeaveHandler = this.contentMouseLeaveHandler.bind(this);
+    this.$contentMouseEnterHandler = this.contentMouseEnterHandler.bind(this);
+    this.$categoryContentTimeout = null;
   }
   template() {
     return `
@@ -23,23 +25,34 @@ export default class Category extends Component {
     new CategoryContent($categoryContent, { categoryDisplay: this.$state.categoryDisplay });
   }
   setEvent() {
-    $(".category__title", this.$target).addEventListener("mouseenter", this.$contentMouseEnterHandler);
+    $(".category__title", this.$target).addEventListener("mouseenter", this.$titleMouseEnterHandler);
     $(".category__content", this.$target).addEventListener("mouseleave", this.$contentMouseLeaveHandler);
+    $(".category__content", this.$target).addEventListener("mouseenter", this.$contentMouseEnterHandler);
   }
   removeEvent() {
-    $(".category__title", this.$target).removeEventListener("mouseenter", this.$contentMouseEnterHandler);
+    $(".category__title", this.$target).removeEventListener("mouseenter", this.$titleMouseEnterHandler);
     $(".category__content", this.$target).removeEventListener("mouseleave", this.$contentMouseLeaveHandler);
+    $(".category__content", this.$target).addEventListener("mouseenter", this.$contentMouseEnterHandler);
   }
-  contentMouseEnterHandler({ target }) {
+  titleMouseEnterHandler({ target }) {
+    console.log("title enter", target);
+
     if (checkButtonTag(target)) {
       target.nextElementSibling.style.display = "flex";
     }
   }
   contentMouseLeaveHandler({ target }) {
+    console.log(target);
     if (checkDivTag(target)) {
-      setTimeout(() => {
+      this.$categoryContentTimeout = setTimeout(() => {
         target.style.display = "none";
       }, 1000);
+    }
+  }
+  contentMouseEnterHandler({ target }) {
+    console.log("content enter", target);
+    if (typeof this.$categoryContentTimeout === "number") {
+      clearTimeout(this.$categoryContentTimeout);
     }
   }
 }
