@@ -28,9 +28,23 @@ export const rotateComponent = (target, moveDegree, initialPosition, moveDirecti
         }, transitionDelay)
     }
 };
+
 export const show = (target) => target.style.display = "block";
 
 export const hide = (target) => target.style.display = "none";
+
+// 출처) 모던 자바스크립트 Deep Dive
+export const throttle = (cb, delay) => {
+    let timerId;
+    return event => {
+        if (timerId) return;
+        timerId = setTimeout(() => {
+            cb(event);
+            timerId = null;
+        }, delay, event);
+    };
+}
+
 export const setLocalStorage = (name, value) => localStorage.setItem(name, JSON.stringify(value));
 
 export const getLocalStorage = (name) => JSON.parse(localStorage.getItem(name));

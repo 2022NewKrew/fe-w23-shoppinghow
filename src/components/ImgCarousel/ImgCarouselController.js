@@ -23,9 +23,9 @@ export class ImgCarouselController extends Controller {
         const showLeftImgButton = this.view.getDOMByClassName("planning__left-btn");
         const showRightImgButton = this.view.getDOMByClassName("planning__right-btn");
 
-        showLeftImgButton.addEventListener("click", () => {
-            this.slidingCarousel(carouselImages, 600);
+        slideCarouselImgButtons.addEventListener("click", throttle(({ target }) => {
         });
+        }, 300));
 
         showRightImgButton.addEventListener("click", () => {
             this.slidingCarousel(carouselImages, -600);
