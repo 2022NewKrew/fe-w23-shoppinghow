@@ -9,7 +9,7 @@ router.get('/slider-images', (req, res) => {
 });
 
 router.get('/top-popular', (req, res) => {
-  const data = readJsonData('topPopularList');
+  const data = readJsonData('TopPopularList');
   res.json({ data });
 });
 

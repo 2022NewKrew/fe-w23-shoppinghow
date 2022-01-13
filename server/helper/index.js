@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * @param { "HotDealProducts" | "SliderImages" | "ThemeProducts" | "topPopularList" } filename
+ * @param { "HotDealProducts" | "SliderImages" | "ThemeProducts" | "TopPopularList" } filename
  */
 const readJsonData = (filename) => {
   const jsonFile = fs.readFileSync(path.resolve(__dirname, `../data/${filename}.json`), 'utf8');
