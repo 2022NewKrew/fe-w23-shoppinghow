@@ -1,14 +1,12 @@
 import Component from "../core/Component";
 import { throttle } from "../utils/common";
+import data from "../data/plannings.json";
 
 export default class Carousel extends Component {
   slideList;
-  setup() {
-    this.slideList = require("../data/plannings.json").plannings;
-  }
-
+  setup() {}
   template() {
-    // const slideList = require("../data/plannings.json").plannings;
+    this.slideList = data.plannings;
     return `
       <div class="planning">
         <button class="planning__left-btn planning__btn"><</button>
@@ -58,8 +56,8 @@ export default class Carousel extends Component {
   }
 
   setEvent() {
-    const $page = this.$target.querySelector(".planning__pages").children;
-    const $list = this.$target.querySelector(".planning__lists").children;
+    const $page = this.$element.querySelector(".planning__pages").children;
+    const $list = this.$element.querySelector(".planning__lists").children;
 
     this.addEvent(
       "mouseover",
@@ -76,7 +74,7 @@ export default class Carousel extends Component {
 
     const slideList = require("../data/plannings.json").plannings;
 
-    let idx = Number(this.$target.querySelector(".cur-page").dataset.index);
+    let idx = Number(this.$element.querySelector(".cur-page").dataset.index);
 
     this.addEvent(
       "click",
@@ -143,7 +141,7 @@ export default class Carousel extends Component {
       curItem.style.zIndex = "1";
       nextItem.style.zIndex = "1";
     } else {
-      const $items = document.getElementsByClassName("planning__link");
+      const $items = this.$target.getElementsByClassName("planning__link");
       Array.from($items).forEach((e) => {
         e.style.transition = "none";
       });
@@ -151,7 +149,7 @@ export default class Carousel extends Component {
   }
 
   addTransition() {
-    const items = document.getElementsByClassName("planning__link");
+    const items = this.$target.getElementsByClassName("planning__link");
     Array.from(items).forEach((e) => {
       e.style.transition = "transform 0.5s";
     });

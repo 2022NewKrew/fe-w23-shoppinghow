@@ -1,7 +1,9 @@
 import Component from "../core/Component";
+import data from "../data/themes.json";
+
 export default class Themes extends Component {
   template() {
-    const themeData = require("../data/themes.json").themes;
+    const themeData = data.themes;
     return `
     <ul class="theme-container">
       ${themeData

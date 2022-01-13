@@ -1,9 +1,7 @@
 import Component from "../core/Component";
+import data from "../data/searchTop10.json";
 
 const ROLLING_TIME = 2000;
-const HEIGHT = 60;
-// const TRANSITION_DURATION = "500ms";
-const FOCUS_OUT_TIME = 500;
 
 export default class Top10Input extends Component {
   slidePlaying;
@@ -15,8 +13,8 @@ export default class Top10Input extends Component {
   }
 
   template() {
-    // const { top10List } = this.props;
-    const top10List = require("../data/searchTop10.json").top10;
+    // return this.element.innerHTML;
+    const top10List = data.top10;
     return `
         <div class="search">
           <form>
@@ -28,7 +26,15 @@ export default class Top10Input extends Component {
               ${top10List
                 .map(
                   ({ rank, title }) => `
-                  <li class="search-top10__item">${rank}. ${title}</li>
+                  <li class="${
+                    rank === 1
+                      ? "search-top10__item current-top-item"
+                      : rank === 2
+                      ? "search-top10__item next-top-item"
+                      : rank === top10List.length
+                      ? "search-top10__item previous-top-item"
+                      : "search-top10__item"
+                  }">${rank}. ${title}</li>
                   `
                 )
                 .join("")}
@@ -38,14 +44,8 @@ export default class Top10Input extends Component {
     `;
   }
 
-  mounted() {
-    this.initSlide();
-    this.runSlide();
-  }
-
   setEvent() {
     const searchInput = ".search__input";
-    const top10Container = this.$target.querySelector("#top10Container");
 
     this.addEvent("mouseover", searchInput, this.pauseSlide.bind(this));
 
@@ -72,12 +72,8 @@ export default class Top10Input extends Component {
     );
   }
 
-  initSlide() {
-    const $top10Container = this.$target.querySelector("#top10Container");
-
-    $top10Container.children[0].classList.add("current-top-item");
-    $top10Container.children[1].classList.add("next-top-item");
-    $top10Container.lastElementChild.classList.add("previous-top-item");
+  mounted() {
+    this.runSlide();
   }
 
   runSlide() {
