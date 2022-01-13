@@ -1,4 +1,4 @@
-import { HotDealSection, PromotionSection, MainLayout } from '@components';
+import { HotDealSection, PromotionSection, MainLayout, SuggestProductSection } from '@components';
 import { APIService } from '@services';
 import { HotDealProductsStore, TopPopularStore } from '@stores';
 
@@ -9,6 +9,9 @@ export class HomePage extends MainLayout {
       renderType: 'appendHTML',
     });
     this.HotDealSection = new HotDealSection(this.$main, {
+      renderType: 'appendHTML',
+    });
+    this.SuggestProductSection = new SuggestProductSection(this.$main, {
       renderType: 'appendHTML',
     });
   }
