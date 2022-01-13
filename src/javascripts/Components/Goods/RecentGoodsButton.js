@@ -1,5 +1,5 @@
 import Component from '../../Core/Component'
-import styles from '../../../scss/ComponentStyles/RecentGoodsButton.module.scss'
+import styles from './styles/RecentGoodsButton.module.scss'
 import RecentAndTaggedGoodsTab from './RecentAndTaggedGoodsTab'
 import FloatingLayer from '../Common/FloatingLayer'
 

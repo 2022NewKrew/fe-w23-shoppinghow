@@ -1,4 +1,4 @@
-@use "../common/search_bar_common.module" as search-bar;
+@use "../../../../scss/common/search_bar_common.module" as search-bar;
 
 .container {
   width: search-bar.$search-bar-width;

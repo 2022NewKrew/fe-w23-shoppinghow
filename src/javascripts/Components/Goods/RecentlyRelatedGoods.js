@@ -1,5 +1,5 @@
 import Component from '../../Core/Component'
-import styles from '../../../scss/ComponentStyles/RecentlyRelatedGoods.module.scss'
+import styles from './styles/RecentlyRelatedGoods.module.scss'
 import GoodsList from './GoodsList'
 import { recentlyViewedGoodsDataSetManager } from './goodsDataSetManager'
 

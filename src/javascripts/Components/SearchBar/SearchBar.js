@@ -1,4 +1,4 @@
-import styles from '../../../scss/ComponentStyles/InputWithTopRankingGoods.module.scss'
+import styles from './styles/InputWithTopRankingGoods.module.scss'
 import RollingText from './RollingText'
 import Component from '../../Core/Component'
 import FloatingLayer from '../Common/FloatingLayer'

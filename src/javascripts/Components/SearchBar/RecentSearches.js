@@ -1,5 +1,5 @@
 import Component from '../../Core/Component'
-import styles from '../../../scss/ComponentStyles/RecentSearches.module.scss'
+import styles from './styles/RecentSearches.module.scss'
 import { recentSearchedDataSetManager } from './recentSearchesDataSetManager'
 
 /**

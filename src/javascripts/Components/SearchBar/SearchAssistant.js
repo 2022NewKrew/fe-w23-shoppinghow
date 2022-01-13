@@ -1,5 +1,5 @@
 import Component from '../../Core/Component'
-import styles from '../../../scss/ComponentStyles/SearchAssistant.module.scss'
+import styles from './styles/SearchAssistant.module.scss'
 import RecentSearches from './RecentSearches'
 
 /**

@@ -1,5 +1,5 @@
 import Component from '../../Core/Component'
-import styles from '../../../scss/ComponentStyles/RecentAndTaggedGoodsTab.module.scss'
+import styles from './styles/RecentAndTaggedGoodsTab.module.scss'
 import { recentlyViewedGoodsDataSetManager, taggedGoodsDataSetManager } from './goodsDataSetManager'
 
 export default class RecentAndTaggedGoodsTab extends Component {

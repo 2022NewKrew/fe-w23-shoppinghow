@@ -1,5 +1,5 @@
 import Component from '../../Core/Component'
-import styles from '../../../scss/ComponentStyles/GoodsList.module.scss'
+import styles from './styles/GoodsList.module.scss'
 import GoodsCard from './GoodsCard'
 
 export default class GoodsList extends Component {
