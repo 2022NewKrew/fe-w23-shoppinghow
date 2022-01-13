@@ -1,32 +1,72 @@
 import { HotDealProduct, SectionLayout } from '@components';
+import { HotDealProductsStore } from '@stores';
 import { $ } from '@utils';
 
 export class HotDealSection extends SectionLayout {
   setup() {
     this.props = { className: 'hotDeal__section', title: '품절주의, 역대급 핫딜', ...this.props };
-    this.state = { hotDealProductList: [] };
   }
 
-  render() {
-    super.render();
-    this.$contentContainer.innerHTML = `<ul class="hotDeal__container"></ul>`;
+  rendered() {
+    super.rendered();
+    this.$contentContainer.innerHTML = `
+      <ul class="hotDeal__container"></ul>
+      <div class="hotDeal__showmoreBtn"></div>
+    `;
+
     this.$hotDealContainer = $('.hotDeal__container', this.$contentContainer);
-    this.renderHotDealProductList();
+    this.$showmoreBtn = $('.hotDeal__showmoreBtn', this.$contentContainer);
+
+    this.$showmoreBtn.onclick = this.getMoreHotDealProducts.bind(this);
+  }
+
+  mounted() {
+    HotDealProductsStore.subscribe(this.renderShowmoreBtn.bind(this));
+    HotDealProductsStore.subscribe(this.renderHotDealProductList.bind(this));
   }
 
   // util
 
+  getMoreHotDealProducts() {
+    const { loading, page, per_page, total } = HotDealProductsStore.getState();
+    if (loading) return;
+    if (page * per_page > total) return;
+
+    HotDealProductsStore.dispatch('REQUEST_DATA');
+  }
+
+  renderShowmoreBtn() {
+    const { page, per_page, total, loading } = HotDealProductsStore.getState();
+
+    if (loading) {
+      this.$showmoreBtn.innerText = `로딩중...`;
+      return;
+    }
+    if (page * per_page > total) {
+      this.$showmoreBtn.innerText = `더 이상 상품이 없습니다.`;
+      return;
+    }
+
+    this.$showmoreBtn.innerHTML = `
+      <span>더보기</span>
+      <span class="hotDeal__pagging">
+        (<span class="txt__current">${page * per_page}</span>/<span class="txt__total">${total}</span>건)
+      </span>
+    `;
+  }
+
   renderHotDealProductList() {
-    this.state.hotDealProductList.forEach((product) => {
+    const { hotDealProductList, page, loading } = HotDealProductsStore.getState();
+    if (loading) return;
+
+    hotDealProductList.forEach((product) => {
       new HotDealProduct(this.$hotDealContainer, {
         renderType: 'appendHTML',
         product,
       });
     });
-  }
 
-  setHotDealProductList(hotDealProductList) {
-    this.state = { ...this.state, hotDealProductList };
-    this.renderHotDealProductList();
+    const isFristPage = page === 1;
+    if (!isFristPage) this.$showmoreBtn.scrollIntoView({ block: 'center', behavior: 'smooth' });
   }
 }

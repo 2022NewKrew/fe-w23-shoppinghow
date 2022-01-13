@@ -53,12 +53,12 @@ export class Slider extends Component {
   rendered() {
     this.clearTimerAction();
 
-    this.$target.addEventListener('click', ({ target: { className } }) => {
+    this.$target.addEventListener('click', ({ target: { classList } }) => {
       if (!!this.isBlockClickIndicator) return;
 
-      if (className === 'slider__prevBtn') {
+      if (classList.contains('slider__prevBtn')) {
         this.onclickIdicator('prev');
-      } else if (className === 'slider__nextBtn') {
+      } else if (classList.contains('slider__nextBtn')) {
         this.onclickIdicator('next');
       }
     });

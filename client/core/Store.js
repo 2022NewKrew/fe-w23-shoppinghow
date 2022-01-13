@@ -15,8 +15,8 @@ export default class Store {
   /**
    * 액션을 수행하고 새로운 state를 반환한다. dispatch를 통해 원하는 액션을 수행할 수 있다.
    * @param {{}} state 
-   * @param {{ actionKey: string, payload: {}  }} reducer 
-const reducer = (state, { actionKey, payload = {} }) => {   
+   * @param {{ payload: {}  }} reducer 
+const reducer = (state, actionKey, { payload = {} }) => {   
   switch (actionKey) {   
     case "ACTION_TEST":   
       console.log(payload);   
@@ -43,8 +43,11 @@ const reducer = (state, { actionKey, payload = {} }) => {
     this.#listeners.forEach((func) => func());
   }
 
-  async dispatch({ actionKey, ...payload }) {
-    this.#state = await this.#reducer(this.#state, { actionKey, ...payload });
+  /**
+   * @param {string} actionKey
+   */
+  async dispatch(actionKey, { ...payload } = {}) {
+    this.#state = await this.#reducer(this.#state, actionKey, { ...payload });
     this.publish();
   }
 }

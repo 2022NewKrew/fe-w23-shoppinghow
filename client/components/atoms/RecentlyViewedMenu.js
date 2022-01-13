@@ -2,7 +2,9 @@ import { Component } from '@core';
 import { RecentlyViewedStore } from '@stores';
 import { $ } from '@utils';
 
-const HOVER_DELAY_TIME = 400;
+const HOVER_CLASS_NAME = 'recentlyViewedMenu__modal--show';
+const HOVER_ENTER_DELAY_TIME = 400;
+const HOVER_LEAVE_DELAY_TIME = 400;
 
 export class RecentlyViewedMenu extends Component {
   setup() {
@@ -47,7 +49,7 @@ export class RecentlyViewedMenu extends Component {
   // util
 
   renderModalContent() {
-    const { list: recentlyViewedList } = RecentlyViewedStore.getState();
+    const { recentlyViewedList } = RecentlyViewedStore.getState();
 
     this.$title.innerText = `최근본 상품 ${recentlyViewedList.length}`;
 
@@ -63,7 +65,12 @@ export class RecentlyViewedMenu extends Component {
 
   onhover() {
     this.isMouseover = true;
-    this.$modal.classList.add('on');
+
+    setTimeout(() => {
+      if (!this.isMouseover) return;
+
+      this.$modal.classList.add(HOVER_CLASS_NAME);
+    }, HOVER_ENTER_DELAY_TIME);
   }
 
   onleave() {
@@ -72,7 +79,7 @@ export class RecentlyViewedMenu extends Component {
     setTimeout(() => {
       if (this.isMouseover) return;
 
-      this.$modal.classList.remove('on');
-    }, HOVER_DELAY_TIME);
+      this.$modal.classList.remove(HOVER_CLASS_NAME);
+    }, HOVER_LEAVE_DELAY_TIME);
   }
 }

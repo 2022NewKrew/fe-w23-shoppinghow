@@ -1,6 +1,6 @@
-import { HotDealSection, PromotionSection, MainLayout } from '@components';
-import { API } from '@services';
-import { Top10Store } from '@stores';
+import { HotDealSection, PromotionSection, MainLayout, SuggestProductSection } from '@components';
+import { APIService } from '@services';
+import { HotDealProductsStore, TopPopularStore } from '@stores';
 
 export class HomePage extends MainLayout {
   rendered() {
@@ -11,28 +11,26 @@ export class HomePage extends MainLayout {
     this.HotDealSection = new HotDealSection(this.$main, {
       renderType: 'appendHTML',
     });
+    this.SuggestProductSection = new SuggestProductSection(this.$main, {
+      renderType: 'appendHTML',
+    });
   }
 
   mounted() {
-    Top10Store.dispatch({ actionKey: 'FETCH' });
+    TopPopularStore.dispatch('FETCH_DATA');
+    HotDealProductsStore.dispatch('REQUEST_DATA');
 
     this.fetchThemeProductList();
     this.fetchSliderImages();
-    this.fetchHotDealProductList();
   }
 
   async fetchThemeProductList() {
-    const { data: themeProductList } = await API.getThemeProductList();
+    const { data: themeProductList } = await APIService.getThemeProductList();
     this.PromotionSection.setThemeProductionList(themeProductList);
   }
 
   async fetchSliderImages() {
-    const { data: sliderImgList } = await API.getSliderImages();
+    const { data: sliderImgList } = await APIService.getSliderImages();
     this.PromotionSection.Slider.setImageList(sliderImgList);
-  }
-
-  async fetchHotDealProductList() {
-    const { data: hotDealProductList } = await API.getHotDealProductList();
-    this.HotDealSection.setHotDealProductList(hotDealProductList);
   }
 }

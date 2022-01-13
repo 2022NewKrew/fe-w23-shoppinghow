@@ -3,31 +3,41 @@ import { getSessionStorageItem, getURLParams, setSessionStorageItem } from '@uti
 
 const storageKey = 'RecentlySearchStore';
 
-const getInitList = () => {
-  const localList = getSessionStorageItem(storageKey) || [];
-
+const getInitrecentlySearchList = () => {
   const { search } = getURLParams();
-  if (!search) return localList;
-  return [search, ...localList.filter((text) => text !== search)];
+  if (!search) return getSessionStorageItem(storageKey) || [];
+  return saveSearchToList(search);
 };
 
+const recentlySearchInitState = { recentlySearchList: getInitrecentlySearchList() };
+
 /**
- * @actionKey `search` | `delete`
+ * @actionKey `ADD_SEARCH` | `DELETE_SEARCH`
+ * @state { recentlySearchList: string[] }
  * @item string
  */
-export const RecentlySearchStore = new Store({ list: getInitList() }, async (state, { actionKey, item }) => {
-  const { list } = state;
+export const RecentlySearchStore = new Store(recentlySearchInitState, async (state, actionKey, { item }) => {
+  const { recentlySearchList } = state;
 
   switch (actionKey) {
-    case 'search':
-      const searchedList = [item, ...list.filter((text) => text !== item)];
-      setSessionStorageItem(storageKey, searchedList);
-      return { ...state, list: searchedList };
-    case 'delete':
-      const deletedList = list.filter((text) => text !== item);
+    case 'ADD_SEARCH':
+      return { ...state, recentlySearchList: saveSearchToList(item) };
+    case 'DELETE_SEARCH':
+      const deletedList = recentlySearchList.filter((text) => text !== item);
       setSessionStorageItem(storageKey, deletedList);
-      return { ...state, list: deletedList };
+      return { ...state, recentlySearchList: deletedList };
     default:
       return { ...state };
   }
 });
+
+/**
+ *
+ * @returns
+ */
+function saveSearchToList(search) {
+  const localList = getSessionStorageItem(storageKey) || [];
+  const newList = [search, ...localList.filter((text) => text !== search)];
+  setSessionStorageItem(storageKey, newList);
+  return newList;
+}

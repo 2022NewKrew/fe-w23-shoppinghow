@@ -42,6 +42,9 @@
     white-space: nowrap;
   }
 
+  .product__link {
+    display: block;
+  }
   .product__link:hover {
     .product__thumb {
       opacity: 0.7;
@@ -159,6 +162,230 @@
       .txt__hotdeal {
         font-size: 18px;
       }
+    }
+  }
+}
+
+.hotDeal__showmoreBtn {
+  @include flex-center;
+  cursor: pointer;
+  background-color: #e9e9e9;
+  padding: 1.5rem 0px;
+  font-size: 15px;
+  transition: background-color 200ms ease-in-out;
+
+  &:hover {
+    background-color: #ddd;
+  }
+
+  .hotDeal__pagging {
+    font-size: 12px;
+    vertical-align: top;
+
+    .txt__current {
+      color: $red-300;
+      font-weight: 700;
+    }
+    .txt__total {
+      color: #555;
+      font-weight: 700;
+    }
+  }
+}
+
+// 상품 추천
+
+.suggestProduct__nav {
+  position: relative;
+  &:hover {
+    .suggestProduct__navBtn {
+      display: inherit;
+    }
+  }
+
+  .suggestProduct__navBtn {
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    cursor: pointer;
+    top: 39px;
+    z-index: 1;
+    width: 41px;
+    height: 41px;
+    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/specials/ico_eventlist_141110_v3.png) 0 -340px no-repeat;
+    &:hover {
+      background-position: -50px -340px;
+    }
+  }
+
+  .prevBtn > span,
+  .nextBtn > span {
+    display: block;
+    margin: 12px 0 12px 14px;
+    width: 10px;
+    height: 17px;
+    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/specials/ico_eventlist_141110_v2.png) no-repeat;
+  }
+
+  .prevBtn {
+    left: 0;
+    & > span {
+      background-position: -120px -300px;
+    }
+    &:hover {
+      & > span {
+        background-position: -80px -300px;
+      }
+    }
+  }
+  .nextBtn {
+    right: 0;
+    & > span {
+      background-position: -140px -300px;
+    }
+    &:hover {
+      & > span {
+        background-position: -100px -300px;
+      }
+    }
+  }
+}
+
+//
+
+.suggestProduct__nav {
+  overflow: hidden;
+}
+
+.suggestProduct__track {
+  display: flex;
+  transition: transform 500ms ease-in-out;
+
+  .suggestProduct__navEmptyItem {
+    width: 254px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #f0f0f1;
+    color: #ccc;
+    border: 1px solid #ededed;
+  }
+
+  .suggestProduct__navItemWrapper {
+    position: relative;
+    height: 100%;
+  }
+
+  .suggestProduct__navItem {
+    width: 254px;
+    cursor: pointer;
+    padding: 1.5rem;
+    position: relative;
+    background-color: #f0f0f1;
+    height: 100%;
+    display: flex;
+    border: 1px solid #ededed;
+
+    .suggestProduct__thumb {
+      position: relative;
+      margin-right: 11px;
+      width: 80px;
+      height: 80px;
+    }
+    .suggestProduct__thumbFrame {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 80px;
+      border: 1px solid #000;
+      opacity: 0.1;
+    }
+
+    .suggestProduct__navTitle {
+      display: block;
+      font-size: 12px;
+      line-height: 18px;
+      font-weight: 400;
+      width: 105px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-top: 10px;
+      letter-spacing: -1px;
+      color: #444;
+    }
+  }
+  .suggestProduct__navItem--selected {
+    border: 1px solid #8c8c8c;
+    background-color: white;
+  }
+  .suggestProduct__navItemTail {
+    display: block;
+    position: absolute;
+    top: 129px;
+    left: 114px;
+    width: 17px;
+    height: 7px;
+    z-index: 3;
+  }
+
+  .suggestProduct__navItemLink {
+    overflow: hidden;
+    position: absolute;
+    top: 64px;
+    left: 118px;
+    width: 46px;
+    margin-top: 9px;
+    font-size: 11px;
+    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/ico_comm2_141125.gif) 100% -295px no-repeat;
+    letter-spacing: -1px;
+    color: #88888a;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.suggestProduct__container {
+  border-top: 1px solid #f1f1f1;
+
+  & > div {
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+    padding: 1rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #ededed;
+    }
+
+    span {
+      top: 21px;
+      left: 26px;
+      z-index: 1;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: -1px;
+      color: #999;
+    }
+
+    ul {
+      display: flex;
+      overflow: hidden;
+    }
+
+    .product {
+      border: none;
+      padding-bottom: 0px;
+    }
+    .product__desc {
+      display: block;
+      color: black;
+      font-size: 13px;
+      margin-top: 1rem;
     }
   }
 }

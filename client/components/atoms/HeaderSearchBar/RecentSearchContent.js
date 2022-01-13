@@ -2,6 +2,8 @@ import { Component } from '@core';
 import { RecentlySearchStore } from '@stores';
 import { $ } from '@utils';
 
+const SHOW_ITEM_CNT = 5;
+
 export class RecentSearchContent extends Component {
   template() {
     return /*html*/ `
@@ -18,9 +20,9 @@ export class RecentSearchContent extends Component {
 
   mounted() {
     this.$target.addEventListener('click', ({ target }) => {
-      if (target.className === 'closeBtn') {
+      if (target.classList.contains('closeBtn')) {
         const text = target.closest('.recentSearchContent__item').innerText;
-        RecentlySearchStore.dispatch({ actionKey: 'delete', item: text });
+        RecentlySearchStore.dispatch('DELETE_SEARCH', { item: text });
       }
     });
 
@@ -30,8 +32,11 @@ export class RecentSearchContent extends Component {
   // util
 
   renderSearchContentList() {
-    const { list } = RecentlySearchStore.getState();
-    this.$searchContentList.innerHTML = list.slice(0, 5).map(this.searchItemTemplate).join('');
+    const { recentlySearchList } = RecentlySearchStore.getState();
+    this.$searchContentList.innerHTML = recentlySearchList
+      .slice(0, SHOW_ITEM_CNT)
+      .map(this.searchItemTemplate)
+      .join('');
   }
 
   searchItemTemplate(text) {

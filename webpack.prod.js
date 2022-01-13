@@ -29,11 +29,13 @@ module.exports = merge(common, {
     }),
     new HtmlWebpackPlugin({
       template: HTML_TEMPLATE,
+      title: '쇼핑나우',
       filename: 'home.html',
       chunks: ['home'],
     }),
     new HtmlWebpackPlugin({
       template: HTML_TEMPLATE,
+      title: '쇼핑나우 | 더미',
       filename: 'dummy.html',
       chunks: ['dummy'],
     }),
