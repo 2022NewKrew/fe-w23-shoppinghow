@@ -1,33 +1,38 @@
+import { json2query } from '@utils';
 import { onFetch } from './onFetch';
 
-export const getHotDealProductList = async () => {
-  const data = await onFetch({
-    url: '/products/hot-deal',
+/**
+ * @param {{ page: number, per_page: number }?} params
+ * @returns
+ */
+export const getHotDealProductList = async (params) => {
+  const res = await onFetch({
+    url: `/products/hot-deal` + json2query(params),
     method: 'GET',
   });
-  return data;
+  return res;
 };
 
 export const getThemeProductList = async () => {
-  const data = await onFetch({
+  const res = await onFetch({
     url: '/products/theme',
     method: 'GET',
   });
-  return data;
+  return res;
 };
 
 export const getTopPopularList = async () => {
-  const data = await onFetch({
+  const res = await onFetch({
     url: '/top-popular',
     method: 'GET',
   });
-  return data;
+  return res;
 };
 
 export const getSliderImages = async () => {
-  const data = await onFetch({
+  const res = await onFetch({
     url: '/slider-images',
     method: 'GET',
   });
-  return data;
+  return res;
 };

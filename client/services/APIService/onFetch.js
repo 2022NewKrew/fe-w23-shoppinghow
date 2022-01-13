@@ -2,8 +2,8 @@ const API_BASE_URL = process.env.API_BASE_URL;
 
 /**
  *
- * @param { { url: string, method: "GET" | "POST" | "UPDATE" | "DELETE", body?: any } } params
- * @returns
+ * @param {{ url: string, method: "GET" | "POST" | "UPDATE" | "DELETE", body?: any }} params
+ * @returns {{ data?: any, error?: any, message?: string }}
  */
 export const onFetch = async ({ url, method, body }) => {
   try {
@@ -14,12 +14,13 @@ export const onFetch = async ({ url, method, body }) => {
         'Content-Type': 'application/json',
       },
     });
-    const data = await res.json();
+    const result = await res.json();
 
     if (process.env.DEBUG) {
       console.log(`[fetch ${res.status}] ${method} ${url} `);
     }
-    return { data };
+
+    return result;
   } catch (error) {
     if (process.env.DEBUG) {
       console.error(error);

@@ -1,6 +1,6 @@
 import { HotDealSection, PromotionSection, MainLayout } from '@components';
 import { APIService } from '@services';
-import { TopPopularStore } from '@stores';
+import { HotDealProductsStore, TopPopularStore } from '@stores';
 
 export class HomePage extends MainLayout {
   rendered() {
@@ -15,10 +15,10 @@ export class HomePage extends MainLayout {
 
   mounted() {
     TopPopularStore.dispatch('FETCH_DATA');
+    HotDealProductsStore.dispatch('REQUEST_DATA');
 
     this.fetchThemeProductList();
     this.fetchSliderImages();
-    this.fetchHotDealProductList();
   }
 
   async fetchThemeProductList() {
@@ -29,10 +29,5 @@ export class HomePage extends MainLayout {
   async fetchSliderImages() {
     const { data: sliderImgList } = await APIService.getSliderImages();
     this.PromotionSection.Slider.setImageList(sliderImgList);
-  }
-
-  async fetchHotDealProductList() {
-    const { data: hotDealProductList } = await APIService.getHotDealProductList();
-    this.HotDealSection.setHotDealProductList(hotDealProductList);
   }
 }

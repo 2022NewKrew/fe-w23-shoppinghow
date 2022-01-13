@@ -162,3 +162,30 @@
     }
   }
 }
+
+.hotDeal__showmoreBtn {
+  @include flex-center;
+  cursor: pointer;
+  background-color: #e9e9e9;
+  padding: 1.5rem 0px;
+  font-size: 15px;
+  transition: background-color 200ms ease-in-out;
+
+  &:hover {
+    background-color: #ddd;
+  }
+
+  .hotDeal__pagging {
+    font-size: 12px;
+    vertical-align: top;
+
+    .txt__current {
+      color: $red-300;
+      font-weight: 700;
+    }
+    .txt__total {
+      color: #555;
+      font-weight: 700;
+    }
+  }
+}
