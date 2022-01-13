@@ -33,12 +33,12 @@ export default class RecentGoodsButton extends Component {
     #setHoverEventListener() {
         let timeId
         
-        this.rootEl.addEventListener('mouseover', () => {
+        this.rootEl.addEventListener('mouseenter', () => {
             this.#floatingLayer.show()
             clearTimeout(timeId)
         })
         
-        this.rootEl.addEventListener('mouseout', () => {
+        this.rootEl.addEventListener('mouseleave', () => {
             timeId = setTimeout(() => {
                 this.#floatingLayer.hide()
             }, RecentGoodsButton.#TIME_UNTIL_HIDDEN_IF_MOUSE_OUT)
