@@ -8,8 +8,6 @@ import store from '@/store';
 const stateList = ['promotionList', 'hotDealList', 'hotItemList', 'bannerItemList'];
 
 export default class MainPage {
-  state = {};
-
   constructor({ $parent }) {
     const mainContainer = document.createElement('div');
     mainContainer.className = 'main-container';
@@ -29,14 +27,13 @@ export default class MainPage {
     });
   }
 
-  handleSubscription(e) {
-    this.setState(e.detail);
+  handleSubscription() {
+    this.setState();
   }
 
-  setState(newState) {
-    this.state = { ...this.state, ...newState };
-    this.mainBanner.setState(this.state);
-    this.hotDeal.setState(this.state);
-    this.hotItem.setState(this.state);
+  setState() {
+    this.mainBanner.setState(store.state);
+    this.hotDeal.setState(store.state);
+    this.hotItem.setState(store.state);
   }
 }
