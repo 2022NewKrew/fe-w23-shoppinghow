@@ -5,7 +5,7 @@ import FloatingLayer from './FloatingLayer'
 import SearchAssistant from './SearchAssistant'
 import { recentSearchedDataSetManager } from '../Data/recentSearchesDataSetManager'
 
-export default class InputWithTopRankingGoods extends Component {
+export default class SearchBar extends Component {
     
     static #ROLLING_PERIOD = 4000
     static #FOCUS_OUT_TIME_IF_MOUSE_OUT = 500
@@ -16,7 +16,7 @@ export default class InputWithTopRankingGoods extends Component {
     
     
     constructor() {
-        const rollingText = new RollingText([], InputWithTopRankingGoods.#ROLLING_PERIOD)
+        const rollingText = new RollingText([], SearchBar.#ROLLING_PERIOD)
         const searchAssistant = new SearchAssistant()
         const floatingLayer = new FloatingLayer(searchAssistant, {
             zIndex: 200
@@ -53,7 +53,7 @@ export default class InputWithTopRankingGoods extends Component {
     }
     
     #fetchTopGoodsData(callbackAfterFetch) {
-        fetch(InputWithTopRankingGoods.#TOP_10_GOODS_JSON_URL)
+        fetch(SearchBar.#TOP_10_GOODS_JSON_URL)
             .then((res) => {
                 res.json()
                     .then(callbackAfterFetch)
@@ -99,7 +99,7 @@ export default class InputWithTopRankingGoods extends Component {
         this.rootEl.addEventListener('mouseleave', ({ target }) => {
             timeId = setTimeout(() => {
                 this.#focusout(inputEl, rollingText)
-            }, InputWithTopRankingGoods.#FOCUS_OUT_TIME_IF_MOUSE_OUT)
+            }, SearchBar.#FOCUS_OUT_TIME_IF_MOUSE_OUT)
         })
         
         this.#floatingLayer.rootEl.addEventListener('click', (event) => {

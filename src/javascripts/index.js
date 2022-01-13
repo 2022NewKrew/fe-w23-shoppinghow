@@ -1,5 +1,5 @@
 import css from '../scss/main.scss'
-import InputWithTopRankingGoods from './Components/InputWithTopRankingGoods'
+import SearchBar from './Components/SearchBar'
 import RecentAndTaggedGoodsTab from './Components/RecentAndTaggedGoodsTab'
 import GoodsCard from './Components/GoodsCard'
 import GoodsList from './Components/GoodsList'
@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const headerTopEl = document.querySelector('.header-top')
     const privateMenuEl = document.querySelector('.private-menu')
     const planningEl = document.querySelector('.planning')
-    const rollingText = new InputWithTopRankingGoods()
+    const rollingText = new SearchBar()
     const recentGoodsButton = new RecentGoodsButton()
     const carousel = new Carousel(carouselBannerDatas.length, {
         bannerWidth: 600
