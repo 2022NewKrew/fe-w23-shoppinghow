@@ -14,7 +14,7 @@ class DibsItemIdsModel extends Observable{
       console.error(e);
       return;
     }
-    super.notify();
+    this.notify();
   }
 
   /**
@@ -34,5 +34,4 @@ class DibsItemIdsModel extends Observable{
 }
 
 const dibsItemIdsModel=new DibsItemIdsModel();
-
 export default dibsItemIdsModel;

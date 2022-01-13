@@ -14,7 +14,7 @@ class Top10Model extends Observable{
       console.error(e);
       return;
     }
-    super.notify();
+    this.notify();
   }
 
   /**
@@ -30,5 +30,4 @@ class Top10Model extends Observable{
 }
 
 const top10Model=new Top10Model();
-
 export default top10Model;

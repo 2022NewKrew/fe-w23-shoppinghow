@@ -14,7 +14,7 @@ class ItemDataModel extends Observable{
       console.error(e);
       return;
     }
-    super.notify();
+    this.notify();
   }
 
   /**
@@ -30,5 +30,4 @@ class ItemDataModel extends Observable{
 }
 
 const itemDataModel=new ItemDataModel();
-
 export default itemDataModel;
