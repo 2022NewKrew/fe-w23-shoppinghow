@@ -78,7 +78,7 @@ export default class RecentlyRelatedGoods extends Component {
         })
         
         rightSideBtnEl.addEventListener('click', () => {
-            if (recentlyViewedGoodsDataSetManager.dataList.length >= (this.#currentPageIdx + 1) * RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE) {
+            if (recentlyViewedGoodsDataSetManager.data.length >= (this.#currentPageIdx + 1) * RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE) {
                 this.#currentPageIdx++
                 this.update()
             }

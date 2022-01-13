@@ -22,8 +22,8 @@ class RecentSearchesDataSetManager extends DataSetManager {
      * 최근 검색어 정보를 MAX_NUMBER_OF_DATA만큼까지만 저장
      */
     #limitUp() {
-        while (this.dataList.length > RecentSearchesDataSetManager.#MAX_NUMBER_OF_DATA) {
-            this.dataList.pop()
+        while (this.data.length > RecentSearchesDataSetManager.#MAX_NUMBER_OF_DATA) {
+            this.data.pop()
         }
     }
     
@@ -40,11 +40,8 @@ class RecentSearchesDataSetManager extends DataSetManager {
         }
         
         // 가장 앞에 검색어를 추가
-        this.dataList.splice(0, 0, searchesToAdd)
-    
-        if (!isExists) {
-            this.notify()
-        }
+        this.data.splice(0, 0, searchesToAdd)
+        this.notify()
         
         this.#limitUp()
     }
