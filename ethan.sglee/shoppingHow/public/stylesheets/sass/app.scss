@@ -358,43 +358,87 @@ $planningcontainersize: 4;
         margin: auto;
         padding: 10px 35px;
 
-        .picked-items {
-            display: flex;
+        .picked__container {
+            position: relative;
 
-            .selected {
-                background-color: #fff;
-            }
-
-            .picked-items__item {
-                width: 240px;
+            .picked-items {
                 display: flex;
-                align-items: center;
-                height: 100px;
-                border: 1px solid lightgray;
-                padding: 20px 10px;
-
-                .picked-items__empty-text {
-                    color: gray;
+    
+                .selected {
+                    background-color: #fff;
                 }
-
-                .picked-items__thumb {
-                    width: 60px;
-                    height: 60px;
-                    background-color: gray;
-                }
-
-                .picekd-items__detail {
-                    height: 60px;
-                    margin: 0 10px;
-
-                    .picked-items__title {
-                        height: 75%;
-                        margin: auto;
-                    }
-
-                    .picked-items__link {
+    
+                .picked-items__item {
+                    width: 240px;
+                    display: flex;
+                    align-items: center;
+                    height: 100px;
+                    border: 1px solid lightgray;
+                    padding: 20px 10px;
+    
+                    .picked-items__empty-text {
                         color: gray;
                     }
+    
+                    .picked-items__thumb {
+                        width: 60px;
+                        height: 60px;
+                        background-color: gray;
+                    }
+    
+                    .picekd-items__detail {
+                        height: 60px;
+                        margin: 0 10px;
+    
+                        .picked-items__title {
+                            height: 75%;
+                            margin: auto;
+                        }
+    
+                        .picked-items__link {
+                            color: gray;
+                        }
+                    }
+                }
+            }
+
+            .picked__left-btn {
+                width: 35px;
+                height: 100px;
+                top: 0px;
+                position: absolute;
+                left: -35px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+    
+                .picked__left-btn-icon {
+                    display: inline-block;
+                    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+                    background-position: -128px -335px;
+                    width: 15px;
+                    height: 25px;
+                    pointer-events: none;
+                }
+            }
+    
+            .picked__right-btn {
+                width: 35px;
+                height: 100px;
+                top: 0px;
+                position: absolute;
+                right: -35px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+    
+                .picked__right-btn-icon {
+                    display: inline-block;
+                    background: url(//shop1.daumcdn.net/search/cdn/simage/shopping/v2/common/img_home_150131.png) no-repeat;
+                    background-position: -145px -335px;
+                    width: 15px;
+                    height: 25px;
+                    pointer-events: none;                    
                 }
             }
         }
