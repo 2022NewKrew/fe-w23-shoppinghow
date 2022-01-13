@@ -125,7 +125,6 @@ export default class HeaderTop extends Component {
       clearTimeout(this.$debounce);
     }
     this.$debounce = setTimeout(async () => {
-      console.log("dispatch!!!");
       AutoCompleteStore.dispatch({
         actionKey: "COMPLETE",
         item: { query: target.value },

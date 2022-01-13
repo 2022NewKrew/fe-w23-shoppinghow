@@ -33,7 +33,6 @@ export default class PrivateMenu extends Component {
     target.style["border-bottom"] = "5px solid black";
   }
   menuMouseleaveEventHandler({ target }) {
-    console.log("leave!!");
     $(".private-menu__content", target).style.display = "none";
     target.style["border-bottom"] = "";
   }

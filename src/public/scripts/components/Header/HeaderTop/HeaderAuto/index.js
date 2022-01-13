@@ -34,7 +34,6 @@ export default class HeaderAuto extends Component {
   }
   mounted() {}
   async renderHeaderAuto() {
-    console.log("subscribe");
     const { query } = AutoCompleteStore.getState();
     const { result } = await api.get(`search?query=${query}`);
     this.setState({ searchResult: result, query: query });

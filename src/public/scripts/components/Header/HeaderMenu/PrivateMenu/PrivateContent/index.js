@@ -40,7 +40,6 @@ export default class PrivateContent extends Component {
   }
   renderHeaderRecent() {
     const { recentViewList } = RecentViewStore.getState();
-    console.log(recentViewList);
     if (JSON.stringify(this.$state.recentViewList) !== JSON.stringify(recentViewList)) {
       this.setState({ recentViewList: recentViewList });
     }

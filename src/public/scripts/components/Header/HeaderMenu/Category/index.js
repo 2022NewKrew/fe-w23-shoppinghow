@@ -35,14 +35,11 @@ export default class Category extends Component {
     $(".category__content", this.$target).addEventListener("mouseenter", this.$contentMouseEnterHandler);
   }
   titleMouseEnterHandler({ target }) {
-    console.log("title enter", target);
-
     if (checkButtonTag(target)) {
       target.nextElementSibling.style.display = "flex";
     }
   }
   contentMouseLeaveHandler({ target }) {
-    console.log(target);
     if (checkDivTag(target)) {
       this.$categoryContentTimeout = setTimeout(() => {
         target.style.display = "none";
@@ -50,7 +47,6 @@ export default class Category extends Component {
     }
   }
   contentMouseEnterHandler({ target }) {
-    console.log("content enter", target);
     if (typeof this.$categoryContentTimeout === "number") {
       clearTimeout(this.$categoryContentTimeout);
     }

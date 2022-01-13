@@ -65,7 +65,6 @@ export default class HotDeal extends Component {
 
   async viewItemRequest(viewItemId) {
     const { result } = await api.get(`view/${viewItemId}`);
-    console.log(result);
     RecentViewStore.dispatch({
       actionKey: "VIEW",
       item: { recentViewList: result },
