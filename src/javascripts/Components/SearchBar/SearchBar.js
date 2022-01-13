@@ -1,9 +1,9 @@
-import styles from '../../scss/ComponentStyles/InputWithTopRankingGoods.module.scss'
+import styles from '../../../scss/ComponentStyles/InputWithTopRankingGoods.module.scss'
 import RollingText from './RollingText'
-import Component from '../Core/Component'
-import FloatingLayer from './FloatingLayer'
+import Component from '../../Core/Component'
+import FloatingLayer from '../Common/FloatingLayer'
 import SearchAssistant from './SearchAssistant'
-import { recentSearchedDataSetManager } from '../Data/recentSearchesDataSetManager'
+import { recentSearchedDataSetManager } from './recentSearchesDataSetManager'
 
 export default class SearchBar extends Component {
     

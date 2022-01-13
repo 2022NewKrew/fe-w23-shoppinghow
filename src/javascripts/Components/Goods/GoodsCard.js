@@ -1,6 +1,6 @@
-import Component from '../Core/Component'
-import styles from '../../scss/ComponentStyles/GoodsCard.module.scss'
-import { recentlyViewedGoodsDataSetManager, taggedGoodsDataSetManager } from '../Data/goodsDataSetManager'
+import Component from '../../Core/Component'
+import styles from '../../../scss/ComponentStyles/GoodsCard.module.scss'
+import { recentlyViewedGoodsDataSetManager, taggedGoodsDataSetManager } from './goodsDataSetManager'
 
 export default class GoodsCard extends Component {
     

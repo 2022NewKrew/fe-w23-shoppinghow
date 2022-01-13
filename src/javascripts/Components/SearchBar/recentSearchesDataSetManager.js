@@ -1,4 +1,4 @@
-import DataSetManager from '../Core/DataSetManager'
+import DataSetManager from '../../Core/DataSetManager'
 
 /**
  * 최근 검색어를 관리

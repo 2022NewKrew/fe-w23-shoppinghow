@@ -1,7 +1,7 @@
-import Component from '../Core/Component'
-import styles from '../../scss/ComponentStyles/RecentGoodsButton.module.scss'
+import Component from '../../Core/Component'
+import styles from '../../../scss/ComponentStyles/RecentGoodsButton.module.scss'
 import RecentAndTaggedGoodsTab from './RecentAndTaggedGoodsTab'
-import FloatingLayer from './FloatingLayer'
+import FloatingLayer from '../Common/FloatingLayer'
 
 export default class RecentGoodsButton extends Component {
     

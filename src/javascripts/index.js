@@ -1,12 +1,12 @@
 import css from '../scss/main.scss'
-import SearchBar from './Components/SearchBar'
-import RecentAndTaggedGoodsTab from './Components/RecentAndTaggedGoodsTab'
-import GoodsCard from './Components/GoodsCard'
-import GoodsList from './Components/GoodsList'
-import SectionTitle from './Components/SectionTitle'
-import RecentGoodsButton from './Components/RecentGoodsButton'
-import RecentlyRelatedGoods from './Components/RecentlyRelatedGoods'
-import Carousel from './Components/Carousel'
+import SearchBar from './Components/SearchBar/SearchBar'
+import RecentAndTaggedGoodsTab from './Components/Goods/RecentAndTaggedGoodsTab'
+import GoodsCard from './Components/Goods/GoodsCard'
+import GoodsList from './Components/Goods/GoodsList'
+import SectionTitle from './Components/Common/SectionTitle'
+import RecentGoodsButton from './Components/Goods/RecentGoodsButton'
+import RecentlyRelatedGoods from './Components/Goods/RecentlyRelatedGoods'
+import Carousel from './Components/Common/Carousel'
 
 
 window.addEventListener('DOMContentLoaded', () => {

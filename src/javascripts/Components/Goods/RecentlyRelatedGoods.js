@@ -1,7 +1,7 @@
-import Component from '../Core/Component'
-import styles from '../../scss/ComponentStyles/RecentlyRelatedGoods.module.scss'
+import Component from '../../Core/Component'
+import styles from '../../../scss/ComponentStyles/RecentlyRelatedGoods.module.scss'
 import GoodsList from './GoodsList'
-import { recentlyViewedGoodsDataSetManager } from '../Data/goodsDataSetManager'
+import { recentlyViewedGoodsDataSetManager } from './goodsDataSetManager'
 
 export default class RecentlyRelatedGoods extends Component {
     

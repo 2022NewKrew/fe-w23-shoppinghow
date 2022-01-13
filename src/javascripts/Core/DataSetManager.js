@@ -1,5 +1,5 @@
 import Observable from './Observable'
-import { pullFromLocalStorage, pushToLocalStorage } from '../Common/localStorageUtil'
+import { pullFromLocalStorage, pushToLocalStorage } from '../Utils/localStorageUtil'
 
 /**
  * 데이터를 Set 자료 구조에 저장하고 관리

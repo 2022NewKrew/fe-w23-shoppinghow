@@ -1,6 +1,6 @@
-import Component from '../Core/Component'
-import styles from '../../scss/ComponentStyles/RecentSearches.module.scss'
-import { recentSearchedDataSetManager } from '../Data/recentSearchesDataSetManager'
+import Component from '../../Core/Component'
+import styles from '../../../scss/ComponentStyles/RecentSearches.module.scss'
+import { recentSearchedDataSetManager } from './recentSearchesDataSetManager'
 
 /**
  * 최근 검색어를 보여주는 컴포넌트

@@ -1,5 +1,5 @@
-import Component from '../Core/Component'
-import styles from '../../scss/ComponentStyles/Carousel.module.scss'
+import Component from '../../Core/Component'
+import styles from '../../../scss/ComponentStyles/Carousel.module.scss'
 
 export default class Carousel extends Component {
     

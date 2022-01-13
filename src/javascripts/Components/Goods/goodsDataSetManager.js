@@ -1,4 +1,4 @@
-import DataSetManager from '../Core/DataSetManager'
+import DataSetManager from '../../Core/DataSetManager'
 
 class GoodsDataSetManager extends DataSetManager {
     

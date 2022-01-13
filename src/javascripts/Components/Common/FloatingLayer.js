@@ -1,5 +1,5 @@
-import Component from '../Core/Component'
-import styles from '../../scss/ComponentStyles/FloatingLayer.module.scss'
+import Component from '../../Core/Component'
+import styles from '../../../scss/ComponentStyles/FloatingLayer.module.scss'
 
 /**
  * 부모 밑에 layer을 띄워주는 컴포넌트
