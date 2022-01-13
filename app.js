@@ -29,6 +29,11 @@ app.get("/carousel-images", (req, res) => {
     res.json(data);
 });
 
+app.get("/hotdeal-items", (req, res) => {
+    const data = JSON.parse(fs.readFileSync("./public/data/hotDealItems.json", "utf8"));
+    res.json(data);
+});
+
 app.listen(3000, () => {
     console.log("running on 3000 port");
 });

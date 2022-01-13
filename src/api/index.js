@@ -9,3 +9,8 @@ export const getCarouselImgs = async () =>
     await (await Fetch({
         url: "/carousel-images",
     })).json();
+
+export const getHotDealItems = async () =>
+    await (await Fetch({
+        url: "/hotdeal-items",
+    })).json();
