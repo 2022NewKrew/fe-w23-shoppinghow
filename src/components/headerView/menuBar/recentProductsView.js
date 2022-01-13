@@ -12,7 +12,6 @@ const renderRecentProduct = () => {
 const renderPopUpLayer = () => {
     const layer = createDom('div', { className: 'pop-up-layer recent-goods' });
     layer.append(...renderRecentProduct());
-    console.log(layer);
     return layer;
 };
 
@@ -22,7 +21,6 @@ export const recentProductsView = () => {
     const render = () => {
         target.innerText = '최근 본 상품';
         target.appendChild(renderPopUpLayer());
-        console.log(target);
         return target;
     };
 
