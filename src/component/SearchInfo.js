@@ -1,5 +1,4 @@
-import globals from "../globals";
-
+import recentKeywordsModel from "../model/RecentKeywordsModel";
 export default class SearchInfo{
   /**
    * @param {HTMLElement} searchInfoElement
@@ -10,12 +9,16 @@ export default class SearchInfo{
     this.searchInfoElement=searchInfoElement;
     /** @type {string[]} */
     this.top10Keywords=top10Keywords;
+    this.recentKeywords;
 
     this.#init();
   }
 
   #init(){
     this.hide();
+    recentKeywordsModel.subscribe((recentKeywords)=>{
+      this.recentKeywords=recentKeywords;
+    });
   }
 
   hide(){
@@ -24,6 +27,7 @@ export default class SearchInfo{
   show(){
     this.searchInfoElement.removeAttribute("style");
   }
+
   showInfo(){
     this.searchInfoElement.innerHTML=`
       <div class="search-info__container">
@@ -47,7 +51,6 @@ export default class SearchInfo{
     this.searchInfoElement.innerHTML=`
       <div class="search-info__container">
         <div class="">
-          ${this.#getRecentKeywordsHtml()}
         </div>
       </div>
     `;
@@ -57,8 +60,7 @@ export default class SearchInfo{
    * @returns {string}
    */
   #getRecentKeywordsHtml(){
-    const keywords=this.#getRecentKeywords();
-    return keywords.map((keyword)=>(
+    return this.recentKeywords.map((keyword)=>(
       `<div class="search-info__recent-keyword">${keyword}</div>`
     )).join("");
   }
@@ -67,14 +69,14 @@ export default class SearchInfo{
    * @param {number?} limit
    * @returns {string[]}
    */
-  #getRecentKeywords(limit=5){
-    let concatKeywords=localStorage.getItem(globals.recentKeywordsLSKey);
-    if(concatKeywords===undefined){
-      concatKeywords="";
-    }
-    const recentKeywords=concatKeywords.split(globals.recentKeywordsSep, limit);
-    return recentKeywords;
-  }
+  // #getRecentKeywords(limit=5){
+  //   let concatKeywords=localStorage.getItem(globals.recentKeywordsLSKey);
+  //   if(concatKeywords===undefined){
+  //     concatKeywords="";
+  //   }
+  //   const recentKeywords=concatKeywords.split(globals.recentKeywordsSep, limit);
+  //   return recentKeywords;
+  // }
 
   #getHotKeywordHtml(){
     return this.top10Keywords.map((keyword, index)=>(`

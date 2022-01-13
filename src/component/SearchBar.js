@@ -1,4 +1,5 @@
 import globals from "../globals";
+import recentKeywordsModel from "../model/RecentKeywordsModel";
 import SearchInfo from "./SearchInfo";
 import Top10 from "./Top10";
 import top10Model from "../model/Top10model";
@@ -25,6 +26,9 @@ export default class SearchBar{
     this.top10Keywords=await top10Model.getData();
     top10Model.subscribe((top10Keywords)=>{
       this.top10Keywords=top10Keywords;
+    });
+    recentKeywordsModel.subscribe((recentKeywords)=>{
+      this.recentKeywords=recentKeywords;
     });
     this.#createTop10();
     this.#createSearchInfo();
@@ -71,7 +75,8 @@ export default class SearchBar{
         return;
       }
       if(e.key==="Enter"){
-        this.#saveRecentKeywords(currentKeyword);
+        // this.#saveRecentKeywords(currentKeyword);
+        recentKeywordsModel.addKeyword(currentKeyword);
       }
       this.searchInfo.showAutocomplete();
     });
@@ -81,27 +86,27 @@ export default class SearchBar{
    * @param {string[]} newKeyword
    * @param {number?} limit
    */
-  #saveRecentKeywords(newKeyword, limit=5){
-    let savedKeywords=localStorage[globals.recentKeywordsLSKey];
-    let toBeSavedKeywords=undefined;
-    if(savedKeywords===undefined){
-      // Nothing has been saved. Thus the new keyword is the only one.
-      toBeSavedKeywords=newKeyword;
-    }
-    else{
-      let separatedKeywords=savedKeywords.split(globals.recentKeywordsSep);
-      if(separatedKeywords.includes(newKeyword)){
-        // Do not save keyword if it had been already saved.
-        return;
-      }
-      if(separatedKeywords.length>=limit){
-        separatedKeywords.length=limit-1;
-      }
-      savedKeywords=separatedKeywords.join(globals.recentKeywordsSep);
-      toBeSavedKeywords=newKeyword+globals.recentKeywordsSep+savedKeywords;
-    }
-    localStorage[globals.recentKeywordsLSKey]=toBeSavedKeywords;
-  }
+  // #saveRecentKeywords(newKeyword, limit=5){
+  //   let savedKeywords=localStorage[globals.recentKeywordsLSKey];
+  //   let toBeSavedKeywords=undefined;
+  //   if(savedKeywords===undefined){
+  //     // Nothing has been saved. Thus the new keyword is the only one.
+  //     toBeSavedKeywords=newKeyword;
+  //   }
+  //   else{
+  //     let separatedKeywords=savedKeywords.split(globals.recentKeywordsSep);
+  //     if(separatedKeywords.includes(newKeyword)){
+  //       // Do not save keyword if it had been already saved.
+  //       return;
+  //     }
+  //     if(separatedKeywords.length>=limit){
+  //       separatedKeywords.length=limit-1;
+  //     }
+  //     savedKeywords=separatedKeywords.join(globals.recentKeywordsSep);
+  //     toBeSavedKeywords=newKeyword+globals.recentKeywordsSep+savedKeywords;
+  //   }
+  //   localStorage[globals.recentKeywordsLSKey]=toBeSavedKeywords;
+  // }
 
   /**
    * @param {number?} limit
