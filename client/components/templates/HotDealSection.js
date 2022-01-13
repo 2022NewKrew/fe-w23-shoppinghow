@@ -63,6 +63,6 @@ export class HotDealSection extends SectionLayout {
     });
 
     const isFristPage = page === 1;
-    if (!isFristPage) this.$showmoreBtn.scrollIntoView({ behavior: 'smooth' });
+    if (!isFristPage) this.$showmoreBtn.scrollIntoView({ block: 'center', behavior: 'smooth' });
   }
 }
