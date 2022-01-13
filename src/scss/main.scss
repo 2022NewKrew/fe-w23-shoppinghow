@@ -130,6 +130,18 @@
           margin-left: 38px;
         }
       }
+      .recent-product-items-container {
+        .recent-product-items {
+          display: flex;
+          flex-wrap: wrap;
+          .recent-product-item {
+            box-sizing: border-box;
+            width: 120px;
+            height: 120px;
+            padding: 1px;
+          }
+        }
+      }
     }
   }
 }
@@ -298,6 +310,11 @@
         padding: 20px;
         border-right: 1px solid #f1f1f1;
         border-bottom: 1px solid #f1f1f1;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.7;
+          text-decoration: underline;
+        }
       }
     }
 

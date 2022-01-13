@@ -19,9 +19,8 @@ export default class Hotdeals extends Component {
 
   mounted() {
     const $hotdealList = this.$target.querySelector(".hot-deal-list");
-    this.hotdealData.forEach((data) => {
+    this.hotdealData.map((data) => {
       new Item($hotdealList, data);
     });
-    // new Items($hotdealList, this.hotdealData);
   }
 }

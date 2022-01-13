@@ -1,22 +1,48 @@
 import Component from "../core/Component.js";
+import RecentProductModel from "../models/RecentProductModel.js";
+import RecentProductItem from "./RecentProductItem.js";
 
 export default class RecentProduct extends Component {
-  setup() {}
+  setup() {
+    this.$state = {
+      recentProducts: RecentProductModel.getRecentProducts(),
+    };
+  }
 
   template() {
+    const { recentProducts } = this.$state;
     return `
       <div id="recent-product-container">
         <div id="recent-product-menu">
             <div id="recent-products">
-                최근 본 상품 2
+                최근 본 상품 ${recentProducts.length}
             </div>
             <div id="liked-products">
-                내가 찜한 상품 0 
+                내가 찜한 상품 0
             </div>
         </div>
-        <div class="recent-product-items"></div>
+        <div class="recent-product-items-container">
+          <div class="recent-product-items">
+              ${recentProducts
+                .map(
+                  ({ img }) => `
+                    <img class = "recent-product-item" src=${img}>
+                 `
+                )
+                .join("")}
+          </div>
+        </div>
       </div>
     `;
+  }
+
+  mounted() {
+    RecentProductModel.subscribe(this.observeRecentProductsUpdate.bind(this));
+    // const { recentProducts } = this.$state;
+    // const $items = this.$element.querySelector(".recent-product-items");
+    // recentProducts.map((product) => {
+    //   new RecentProductItem($items, product);
+    // });
   }
 
   setEvent() {
@@ -46,5 +72,9 @@ export default class RecentProduct extends Component {
       },
       true
     );
+  }
+
+  observeRecentProductsUpdate(recentProducts) {
+    this.setState({ ...this.$state, ...recentProducts });
   }
 }

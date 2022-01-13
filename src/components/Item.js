@@ -1,4 +1,5 @@
 import Component from "../core/Component";
+import RecentProductModel from "../models/RecentProductModel";
 
 export default class Item extends Component {
   itemData;
@@ -8,7 +9,7 @@ export default class Item extends Component {
   template() {
     const { idx, title, price, original, discounted, img } = this.$props;
     return `
-        <li class="hot-deal__item" id="data-${idx}">
+        <li class="hot-deal__item" data-id="${idx}">
           <a class="hot-deal__link">
               <span class="hot-deal__thumb">
                   <img src=${img} class="hot-deal__img" alt=${title}>
@@ -25,12 +26,11 @@ export default class Item extends Component {
       `;
   }
 
-  // 해당 아이템 클릭시 로컬 스토리지에 데이터 추가
   setEvent() {
-    const { idx, title, price, original, discounted, img } = this.$props;
-    const elems = `#data-${this.itemData.idx}`;
+    const { idx } = this.$props;
+    const elems = `[data-id="${idx}"]`;
     this.addEvent("click", elems, (e) => {
-      localStorage.setItem("recent", JSON.stringify(this.$props));
+      RecentProductModel.addRecentProduct(this.$props);
     });
   }
 }

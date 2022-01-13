@@ -10,7 +10,6 @@ export default class Top10Input extends Component {
   setup() {
     this.timeId = 0;
     this.slidePlaying = null;
-    this.initSlide();
   }
 
   template() {
@@ -27,7 +26,15 @@ export default class Top10Input extends Component {
               ${top10List
                 .map(
                   ({ rank, title }) => `
-                  <li class="search-top10__item">${rank}. ${title}</li>
+                  <li class="${
+                    rank === 1
+                      ? "search-top10__item current-top-item"
+                      : rank === 2
+                      ? "search-top10__item next-top-item"
+                      : rank === top10List.length
+                      ? "search-top10__item previous-top-item"
+                      : "search-top10__item"
+                  }">${rank}. ${title}</li>
                   `
                 )
                 .join("")}
@@ -39,7 +46,6 @@ export default class Top10Input extends Component {
 
   setEvent() {
     const searchInput = ".search__input";
-    const top10Container = this.$element.querySelector("#top10Container");
 
     this.addEvent("mouseover", searchInput, this.pauseSlide.bind(this));
 
@@ -68,13 +74,6 @@ export default class Top10Input extends Component {
 
   mounted() {
     this.runSlide();
-  }
-
-  initSlide() {
-    const $top10Container = this.$element.querySelector("#top10Container");
-    $top10Container.children[0].classList.add("current-top-item");
-    $top10Container.children[1].classList.add("next-top-item");
-    $top10Container.lastElementChild.classList.add("previous-top-item");
   }
 
   runSlide() {
