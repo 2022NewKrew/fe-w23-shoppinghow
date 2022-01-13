@@ -158,11 +158,16 @@
             padding: $button-padding;
         }
 
-        .current-goods {
+        .recent-goods {
             width: 363px;
             height: 263px;
             top: 58px;
             right: -1px;
+
+            .recent-product__img {
+                width: 100px;
+                height: 100px;
+            }
         }
     }
 }

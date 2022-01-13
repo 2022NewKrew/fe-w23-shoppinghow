@@ -34,7 +34,7 @@ export const menuBar = () => {
         target.innerText = '';
         target.append(categoryBtn, topMenuBar, privateMenus);
 
-        const currentBtn = privateMenus.querySelector('.private-menu__current-button');
+        const currentBtn = privateMenus.querySelector('.private-menu__recent-button');
         addMouseEvent([categoryBtn, currentBtn]);
 
         return target;

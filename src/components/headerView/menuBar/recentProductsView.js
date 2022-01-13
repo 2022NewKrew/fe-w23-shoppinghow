@@ -1,17 +1,28 @@
 import { createDom } from '@utils/createDom';
+import { getItemArrayFromLocalStorage } from '../../../utils/localStorage/localStorageFunctions';
+
+const renderRecentProduct = () => {
+    const productArray = getItemArrayFromLocalStorage('recentProduct');
+    const productDOMArray = productArray.map((product) =>
+        createDom('img', { className: 'recent-product__img', src: product.imgSrc })
+    );
+    return productDOMArray;
+};
 
 const renderPopUpLayer = () => {
-    const layer = createDom('div', { className: 'pop-up-layer current-goods' });
-
+    const layer = createDom('div', { className: 'pop-up-layer recent-goods' });
+    layer.append(...renderRecentProduct());
+    console.log(layer);
     return layer;
 };
 
 export const recentProductsView = () => {
-    const target = createDom('li', { className: 'private-menu__btn private-menu__current-button' });
+    const target = createDom('li', { className: 'private-menu__btn private-menu__recent-button' });
 
     const render = () => {
         target.innerText = '최근 본 상품';
         target.appendChild(renderPopUpLayer());
+        console.log(target);
         return target;
     };
 
