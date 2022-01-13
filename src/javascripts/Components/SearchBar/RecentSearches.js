@@ -65,37 +65,40 @@ export default class RecentSearches extends Component {
         this.update()
     }
     
-    
     /**
      * 이벤트 핸들러 설정
      */
     #setEventHandler() {
-        this.#searchesItemEls.forEach((searchesItemEl) => {
-            const searchesTextEl = searchesItemEl.firstElementChild
-            const deleteBtnEl = searchesItemEl.lastElementChild
-            
-            searchesTextEl.addEventListener('click', this.#notifyIfClickSearches.bind(this))
-            deleteBtnEl.addEventListener('click', this.#removeSearches.bind(this))
+        const searchesListEl = this.rootEl.querySelector(`.${ styles.searchesList }`)
+        
+        searchesListEl.addEventListener('click', ({ target }) => {
+            if (target.classList.contains(styles.deleteBtn)) {
+                const searchesTextEl = target.parentElement.firstElementChild
+                const searches = searchesTextEl.innerText
+                
+                this.#removeSearches(searches)
+            } else if (target.classList.contains(styles.searchesText)) {
+                const searchesText = target.innerText
+                
+                this.#notifyClickSearchesEvent(searchesText)
+            }
         })
     }
     
     /**
      * 검색어를 삭제
-     * @param {HTMLElement} target - 삭제할 target
+     * @param {string} searchesToRemove - 삭제할 검색어
      */
-    #removeSearches({ target }) {
-        const searchesTextEl = target.parentElement.firstElementChild
-        const searches = searchesTextEl.innerText
-        
-        recentSearchedDataSetManager.removeData(searches)
+    #removeSearches(searchesToRemove) {
+        recentSearchedDataSetManager.removeData(searchesToRemove)
         this.update()
     }
     
     /**
      * 검색어가 클릭된 것을 리스너에게 알림
-     * @param searches
+     * @param {string} searches
      */
-    #notifyIfClickSearches(searches) {
+    #notifyClickSearchesEvent(searches) {
         this.#listenerIfClickSearches(searches)
     }
     
@@ -126,7 +129,7 @@ export default class RecentSearches extends Component {
             } else {
                 searchesTextEl.innerText = ''
             }
-    
+            
             if (searchesTextEl.innerText === '') {
                 deleteBtnEl.style.background = 'none'
             } else {
