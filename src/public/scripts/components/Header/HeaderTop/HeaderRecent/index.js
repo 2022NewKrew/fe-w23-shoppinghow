@@ -4,8 +4,10 @@ import { $ } from "@utils/query";
 export default class HeaderRecent extends Component {
   setUp() {
     this.$state = {
-      recentSearchList: ["만년필", "대리석 식탁", "석류층", "캡슐 커피"],
+      recentSearchList: [],
     };
+    this.$recentContent = null;
+    this.$contentRemoveClickHandler = this.contentRemoveClickHandler.bind(this);
   }
   template() {
     const { recentSearchList } = this.$state;
@@ -13,22 +15,52 @@ export default class HeaderRecent extends Component {
         <div class="search__recent--title">최근 검색어</div>
         <div class="search__recent--content">
          ${
-           recentSearchList.length > 0 &&
-           recentSearchList
-             .map(
-               item => `
-                <div class="search__recent--items">
-                 <span>${item}</span>
-                 <button>X</button>
-                </div>
-               `,
-             )
-             .join("")
+           recentSearchList.length > 0
+             ? recentSearchList
+                 .map(
+                   (item, idx) => `
+                    <div class="search__recent--items">
+                      <span>${item}</span>
+                      <div class="btn" data-idx="${idx}">X</div>
+                    </div>
+                  `,
+                 )
+                 .join("")
+             : ""
          }
          
         </div>
       `;
   }
-  setEvent() {}
-  mounted() {}
+  setEvent() {
+    this.$recentContent.addEventListener("click", this.$contentRemoveClickHandler);
+  }
+  removeEvent() {
+    this.$recentContent.removeEventListener("click", this.$contentRemoveClickHandler);
+  }
+  mounted() {
+    this.$recentContent = $(".search__recent--content", this.$target);
+
+    const savedRecentList = JSON.parse(localStorage.getItem("searchList"));
+    if (JSON.stringify(this.$state.recentSearchList) !== JSON.stringify(savedRecentList)) {
+      this.setState({ recentSearchList: savedRecentList });
+    }
+  }
+  renderHeaderRecent() {
+    const recentSearchList = JSON.parse(localStorage.getItem("searchList"));
+    if (JSON.stringify(this.$state.recentSearchList) !== JSON.stringify(recentSearchList)) {
+      this.setState({ recentSearchList: recentSearchList });
+    }
+  }
+  contentRemoveClickHandler({ target }) {
+    if (!target.classList.contains("btn")) return;
+
+    const clickedTargetIdx = target.getAttribute("data-idx");
+    const recentSearchList = this.$state.recentSearchList.slice();
+    recentSearchList.splice(clickedTargetIdx, 1);
+    localStorage.setItem("searchList", JSON.stringify(recentSearchList));
+    if (JSON.stringify(this.$state.recentSearchList) !== JSON.stringify(recentSearchList)) {
+      this.setState({ recentSearchList: recentSearchList });
+    }
+  }
 }
