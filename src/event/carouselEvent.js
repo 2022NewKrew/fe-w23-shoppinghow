@@ -1,27 +1,12 @@
 const CAROUSEL_TRANSITION_STYLE = 'transform 0.4s ease-in-out';
 const CAROUSEL_AUTO_MOVE_DELAY = 1000; // ms
-/*
-    <div class="carousel">
-        <div class="carousel-window">
-            <ul class="carousel-container"> <-- {containerEl}
-                <li class="carousel-item"></li>
-            </ul>
-        </div>
-        <div class="carousel-controller">
-            <button class="carousel__left-btn"><</button> <-- {leftBtnEl}
-            <button class="carousel__right-btn">></button> <-- {rightBtnEl}
-            <div class="carousel__paging">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-    </div>
-*/
+
+
 export const addCarouselEvent = ({leftBtnEl, rightBtnEl, containerEl}) => {
     const state = {
         index: 1, // 0th item : clone of last item
         waitTransition: false
     };
-
     // item 이 없는 경우 return
     if(containerEl.children.length === 0) return;
 
@@ -30,28 +15,43 @@ export const addCarouselEvent = ({leftBtnEl, rightBtnEl, containerEl}) => {
     containerEl.style.transform = `translateX(${-itemWidth * state.index}px)`;
 
     // click event
-    leftBtnEl.addEventListener('click', () => {
-        if(state.waitTransition) return;
+    const clickHandler = (event) => {
+        // tansition 중이면 동작안함
+        if(state.waitTransition) {
+            return;
+        }
         state.waitTransition = true;
-        state.index--;
-        containerEl.style.transition = CAROUSEL_TRANSITION_STYLE;
-        containerEl.style.transform = `translateX(${-itemWidth * state.index}px)`;
-    });
-    rightBtnEl.addEventListener('click', () => {
-        if(state.waitTransition) return;
-        state.waitTransition = true;
-        state.index++;
-        containerEl.style.transition = CAROUSEL_TRANSITION_STYLE;
-        containerEl.style.transform = `translateX(${-itemWidth * state.index}px)`;
-    });
+        
+        // 좌우 버튼 구분
+        if(event.currentTarget === leftBtnEl) {
+            state.index--;
+        }
+        else {
+            state.index++;
+        }
 
-    // transitionend event
-    containerEl.addEventListener('transitionend', (event) => {
-        if (state.index < 1) state.index = lastIndex;
-        else if (state.index > lastIndex) state.index = 1;
+        // transition 설정
+        containerEl.style.transition = CAROUSEL_TRANSITION_STYLE;
+        containerEl.style.transform = `translateX(${-itemWidth * state.index}px)`;
+    }
+    leftBtnEl.addEventListener('click', clickHandler);
+    rightBtnEl.addEventListener('click', clickHandler);
+
+    // transition end event
+    containerEl.addEventListener('transitionend', () => {
+        if (state.index < 1) {
+            state.index = lastIndex;
+        }
+        else if (state.index > lastIndex) {
+            state.index = 1;
+        }
+        else {
+            state.waitTransition = false;
+            return;
+        }
 
         containerEl.style.removeProperty('transition');
-        containerEl.style.transform = `translateX(${-itemWidth  * state.index}px)`;
+        containerEl.style.transform = `translateX(${-itemWidth * state.index}px)`;
         state.waitTransition = false;
     });
     
