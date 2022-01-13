@@ -1,6 +1,7 @@
 import { $ } from "@utils/query.js";
 import { Component } from "@core/Component";
 import { api } from "@utils/api.js";
+import { RecentViewStore } from "@store/RecentViewStore";
 
 export default class HotDeal extends Component {
   setUp() {
@@ -62,7 +63,12 @@ export default class HotDeal extends Component {
     }
   }
 
-  viewItemRequest(viewItemId) {
-    api.get(`view/${viewItemId}`);
+  async viewItemRequest(viewItemId) {
+    const { result } = await api.get(`view/${viewItemId}`);
+    console.log(result);
+    RecentViewStore.dispatch({
+      actionKey: "VIEW",
+      item: { recentViewList: result },
+    });
   }
 }

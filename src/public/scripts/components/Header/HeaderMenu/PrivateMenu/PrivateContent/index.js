@@ -1,6 +1,7 @@
 import { $ } from "@utils/query";
 import { api } from "@utils/api";
 import { Component } from "@core/Component";
+import { RecentViewStore } from "@store/RecentViewStore";
 export default class PrivateContent extends Component {
   setUp() {
     this.$state = {
@@ -28,12 +29,20 @@ export default class PrivateContent extends Component {
   setEvent() {}
   removeEvent() {}
   mounted() {
+    RecentViewStore.subscribe(this.renderHeaderRecent.bind(this));
     this.getRecentViewList();
   }
   async getRecentViewList() {
     const { result } = await api.get("recent");
     if (JSON.stringify(this.$state.recentViewList) !== JSON.stringify(result)) {
       this.setState({ recentViewList: result });
+    }
+  }
+  renderHeaderRecent() {
+    const { recentViewList } = RecentViewStore.getState();
+    console.log(recentViewList);
+    if (JSON.stringify(this.$state.recentViewList) !== JSON.stringify(recentViewList)) {
+      this.setState({ recentViewList: recentViewList });
     }
   }
 }
