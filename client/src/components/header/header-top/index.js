@@ -1,7 +1,6 @@
-import { LOGO } from '@/static/constants/image-path';
 import SearchContainer from '../search-container';
-
 import './index.scss';
+import { LOGO } from '@/static/constants/image-path';
 
 export default class HeaderTop {
   constructor({ $parent }) {
@@ -10,10 +9,6 @@ export default class HeaderTop {
     this.render();
     this.searchContainer = new SearchContainer({ $parent: this.headerTop });
     $parent.appendChild(this.headerTop);
-  }
-
-  setState(props) {
-    this.searchContainer.setState(props);
   }
 
   render() {

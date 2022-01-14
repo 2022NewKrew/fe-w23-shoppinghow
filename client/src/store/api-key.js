@@ -5,4 +5,5 @@ export const url = {
   bannerItemList: process.env.API_BannerItemList,
   hotItemsName: process.env.API_HotItemsName,
   menu: process.env.API_Menu,
+  autoCompleteWords: process.env.API_AutoCompleteWords,
 };

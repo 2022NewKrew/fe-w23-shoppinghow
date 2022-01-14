@@ -13,18 +13,18 @@ export default class RecentlyViewedThing {
   modalTimer = 0;
 
   constructor({ $parent }) {
-    this.recentlyViewedThing = document.createElement('div');
-    this.recentlyViewedThing.className = 'recently-viewed-thing';
-    this.recentlyViewedThing.innerHTML = this.createInitView();
-    this.modalContent = $('.modal-main', this.recentlyViewedThing);
-    this.modalThingsLength = $('.modal-things-length', this.recentlyViewedThing);
+    this.rvtContainer = document.createElement('div');
+    this.rvtContainer.className = 'recently-viewed-thing';
+    this.rvtContainer.innerHTML = this.createInitView();
+    this.modalContent = $('.modal-main', this.rvtContainer);
+    this.modalThingsLength = $('.modal-things-length', this.rvtContainer);
     this.render();
-    $parent.appendChild(this.recentlyViewedThing);
+    $parent.appendChild(this.rvtContainer);
 
-    this.modal = $('.modal', this.recentlyViewedThing);
+    this.modal = $('.modal', this.rvtContainer);
 
-    this.recentlyViewedThing.addEventListener('mouseenter', this.handleMouseEnterRVT.bind(this));
-    this.recentlyViewedThing.addEventListener('mouseleave', this.handleMouseLeaveRVT.bind(this));
+    this.rvtContainer.addEventListener('mouseenter', this.handleMouseEnterRVT.bind(this));
+    this.rvtContainer.addEventListener('mouseleave', this.handleMouseLeaveRVT.bind(this));
     this.modal.addEventListener('mouseenter', this.handleMouseEnterModal.bind(this));
     this.modal.addEventListener('mouseleave', this.handleMouseLeaveModal.bind(this));
     evt.subscribe('recentlyViewedThings', this.render.bind(this));

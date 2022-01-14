@@ -1,16 +1,16 @@
 import './index.scss';
 import { fromEvent } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { $ } from '@/utils/helper';
 import { SEARCH_ICON } from '@/static/constants/image-path';
 import { setItemInLocalStroage } from '@/utils/local-storage';
-import { api } from '@/api';
+import store from '@/store';
 
 const SEARCH_NAME_LENGTH_LIMIT = 5;
 const INPUT_MAX_LENGTH = 15;
 
 export default class SearchForm {
-  constructor({ $parent, onSubmit, refreshAutoCompleteWord, refreshInputValue }) {
+  constructor({ $parent, onSubmit }) {
     this.searchForm = document.createElement('form');
     $parent.appendChild(this.searchForm);
     this.render();
@@ -25,18 +25,19 @@ export default class SearchForm {
         map((e) => e.target.value),
         filter((text) => text.length > 0),
         debounceTime(500),
-        distinctUntilChanged(),
-        switchMap((searchTerm) => api.get(`/item/autocomplete?search=${searchTerm}`)),
-        map((res) => res.result)
+        distinctUntilChanged()
       )
       .subscribe((searchTerm) => {
-        const titles = searchTerm.map((term) => term.title);
-        refreshAutoCompleteWord(titles);
+        const queryString = `=${searchTerm}`;
+        store.load('autoCompleteWords', queryString);
       });
 
     fromEvent(this.searchInput, 'input')
       .pipe(map((e) => e.target.value))
-      .subscribe((input) => refreshInputValue(input));
+      .subscribe((input) => {
+        const newState = { searchInput: input, currChoicedWordIdx: 0 };
+        store.setState(newState, 'searchInput');
+      });
   }
 
   render() {
@@ -54,7 +55,7 @@ export default class SearchForm {
     e.preventDefault();
     const result = this.searchInput.value.replace(/^\s/, '');
     if (result) {
-      setItemInLocalStroage('search-name', result, SEARCH_NAME_LENGTH_LIMIT);
+      setItemInLocalStroage('searchName', result, SEARCH_NAME_LENGTH_LIMIT);
       this.onSubmit();
     }
   }
