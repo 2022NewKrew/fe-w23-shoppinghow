@@ -40,13 +40,13 @@ class Contents extends Component {
   handelMouseclick(e) {
     const { target } = e;
     if (target.classList.contains("product__pick-btn")) {
-      this.clickPickBtn(target);
+      this.updatePrivateItem(target);
     } else if (target.closest(".product__item")) {
       this.addPrivateItem({ target, type: PRIVATE_ITEM_TYPE.RECENT_VIEWED });
     }
   }
 
-  clickPickBtn(target) {
+  updatePrivateItem(target) {
     if (target.classList.contains("pick-btn-activated")) {
       this.removePrivateItem({ target, type: PRIVATE_ITEM_TYPE.PICKED });
     } else {

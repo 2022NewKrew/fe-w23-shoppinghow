@@ -4,6 +4,11 @@ import pickedItemModel from "@models/PickedItemModel";
 import PrivateItemsContainer from "@components/Header/PrivateItemsContainer";
 import PrivateItemsTitleWrapper from "@components/Header/PrivateItemsTitleWrapper";
 
+const PRIVATE_ITEM_TYPE = {
+  RECENT: "recent",
+  PICKED: "picked",
+};
+
 class PrivateMenuFloatLayer extends Component {
   setup() {
     this.state = {
@@ -36,20 +41,20 @@ class PrivateMenuFloatLayer extends Component {
     );
 
     new PrivateItemsTitleWrapper($privateTitleBtnsWrapper, {
-      type: "recent",
+      type: PRIVATE_ITEM_TYPE.RECENT,
       items: recentViewedItems,
     });
     new PrivateItemsContainer($privateContentsWrapper, {
-      type: "recent",
+      type: PRIVATE_ITEM_TYPE.RECENT,
       items: recentViewedItems,
       visibility: "",
     });
     new PrivateItemsTitleWrapper($privateTitleBtnsWrapper, {
-      type: "picked",
+      type: PRIVATE_ITEM_TYPE.PICKED,
       items: pickedItems,
     });
     new PrivateItemsContainer($privateContentsWrapper, {
-      type: "picked",
+      type: PRIVATE_ITEM_TYPE.PICKED,
       items: pickedItems,
       visibility: "hidden",
     });
