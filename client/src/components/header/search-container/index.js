@@ -3,8 +3,11 @@ import HelpSearchContainer from '../help-search-container';
 import SearchForm from '../search-form';
 import './index.scss';
 import { getItemInLocalStroage, removeItemInLocalStroage } from '@/utils/local-storage';
-import { api } from '@/api';
+import evt from '@/utils/custom-event';
+import store from '@/store';
 
+const subscribeList = ['hotItemsName', 'searchName', 'autoCompleteWords', 'searchInput', 'currChoicedWordIdx'];
+const initLoadList = ['hotItemsName', 'searchName'];
 const cssNameForActivation = 'active';
 const classNameForSetInputValue = [
   'recent-search-name__item-name',
@@ -13,13 +16,6 @@ const classNameForSetInputValue = [
 ];
 
 export default class SearchContainer {
-  state = {
-    searchName: getItemInLocalStroage('search-name'),
-    autoCompleteWords: [],
-    searchInput: '',
-    currChoiceIdx: -1,
-  };
-
   constructor({ $parent }) {
     this.search = document.createElement('div');
     this.search.className = 'search';
@@ -27,8 +23,6 @@ export default class SearchContainer {
     this.searchForm = new SearchForm({
       $parent: this.search,
       onSubmit: this.refreshSearchNameState.bind(this),
-      refreshAutoCompleteWord: this.refreshAutoCompleteWord.bind(this),
-      refreshInputValue: this.refreshInputValue.bind(this),
     });
     this.helpSearchContainer = new HelpSearchContainer({
       $parent: this.search,
@@ -39,19 +33,30 @@ export default class SearchContainer {
     this.search.addEventListener('mouseleave', this.deactivateInput.bind(this));
     this.search.addEventListener('click', this.handleClickHelpSearch.bind(this));
     this.search.addEventListener('keyup', this.handleKeyUpInput.bind(this));
+
+    this.initializeState();
   }
 
-  refreshAutoCompleteWord(newWords) {
-    this.controlActivationOfHelpSearchContainer(newWords);
-    this.setState({ autoCompleteWords: newWords });
+  initializeState() {
+    subscribeList.forEach((state) => {
+      evt.subscribe(state, this.handleSubscription.bind(this));
+    });
+    initLoadList.forEach((state) => {
+      store.load(state);
+    });
   }
 
-  refreshInputValue(newValue) {
-    this.setState({ searchInput: newValue, currChoiceIdx: 0 });
+  handleSubscription() {
+    this.setState();
+  }
+
+  setState() {
+    this.textRoller.setState(store.state);
+    this.helpSearchContainer.setState(store.state);
   }
 
   refreshSearchNameState() {
-    this.setState({ searchName: getItemInLocalStroage('search-name'), currChoiceIdx: 0 });
+    store.setState({ searchName: getItemInLocalStroage('searchName'), currChoicedWordIdx: 0 }, 'searchName');
     this.searchForm.setInputValue('');
     this.searchForm.blurInput();
     this.deactivateInput();
@@ -59,31 +64,22 @@ export default class SearchContainer {
 
   handleClickHelpSearch(e) {
     if (e.target.className === 'recent-search-name__remove') {
-      removeItemInLocalStroage('search-name', e.target.dataset.idx);
+      removeItemInLocalStroage('searchName', e.target.dataset.idx);
       this.refreshSearchNameState();
     }
     if (classNameForSetInputValue.includes(e.target.className)) {
       const input = e.target.innerText;
+      const queryString = `=${input}`;
+
       this.searchForm.setInputValue(input);
-      this.setState({ searchInput: input });
-      if (e.target.className !== 'autocomplete__item') {
-        api
-          .get(`/item/autocomplete?search=${input}`)
-          .then((res) => res.result)
-          .then((result) => result.map((ele) => ele.title))
-          .then((newWords) => {
-            this.controlActivationOfHelpSearchContainer(newWords);
-            this.setState({ autoCompleteWords: newWords });
-          });
-      }
-
       this.searchForm.focusInput();
-    }
-  }
 
-  controlActivationOfHelpSearchContainer(newWords) {
-    if (newWords.length === 0) this.helpSearchContainer.deActivate();
-    if (newWords.length !== 0) this.helpSearchContainer.activate();
+      store.setState({ searchInput: input }, 'searchInput');
+
+      if (e.target.className !== 'autocomplete__item') {
+        store.load('autoCompleteWords', queryString);
+      }
+    }
   }
 
   activateInput() {
@@ -104,29 +100,25 @@ export default class SearchContainer {
     this.helpSearchContainer.deActivate();
   }
 
-  setState(props) {
-    this.state = { ...this.state, ...props };
-    this.textRoller.setState(this.state);
-    this.helpSearchContainer.setState(this.state);
-  }
-
   handleKeyUpInput(e) {
-    if (!this.state.searchInput || this.state.autoCompleteWords.length === 0) return;
+    if (!store.state.searchInput || store.state.autoCompleteWords.length === 0) return;
     if (e.code === 'Enter') return;
     if (e.code !== 'ArrowUp' && e.code !== 'ArrowDown') return;
-    const autoCompleteLastIdx = this.state.autoCompleteWords.length - 1;
+    const autoCompleteLastIdx = store.state.autoCompleteWords.length - 1;
     let newCurrChoiceIdx = 0;
     let newInputValue = '';
 
     if (e.code === 'ArrowUp') {
-      newCurrChoiceIdx = this.state.currChoiceIdx - 1 < 0 ? autoCompleteLastIdx : this.state.currChoiceIdx - 1;
+      newCurrChoiceIdx =
+        store.state.currChoicedWordIdx - 1 < 0 ? autoCompleteLastIdx : store.state.currChoicedWordIdx - 1;
     }
     if (e.code === 'ArrowDown') {
-      newCurrChoiceIdx = this.state.currChoiceIdx + 1 > autoCompleteLastIdx ? 0 : this.state.currChoiceIdx + 1;
+      newCurrChoiceIdx =
+        store.state.currChoicedWordIdx + 1 > autoCompleteLastIdx ? 0 : store.state.currChoicedWordIdx + 1;
     }
 
-    newInputValue = this.state.autoCompleteWords[newCurrChoiceIdx];
+    newInputValue = store.state.autoCompleteWords[newCurrChoiceIdx];
     this.searchForm.setInputValue(newInputValue);
-    this.setState({ ...this.state, currChoiceIdx: newCurrChoiceIdx });
+    store.setState({ currChoicedWordIdx: newCurrChoiceIdx }, 'currChoicedWordIdx');
   }
 }

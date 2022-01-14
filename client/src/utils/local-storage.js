@@ -15,3 +15,8 @@ export function removeItemInLocalStroage(key, index) {
   currValue.splice(index, 1);
   localStorage.setItem(key, JSON.stringify(currValue));
 }
+
+export const removeDuplication = (data, originState, key) => {
+  const duplicationIndex = originState.findIndex((ele) => ele === data);
+  if (duplicationIndex >= 0) removeItemInLocalStroage(key, duplicationIndex);
+};

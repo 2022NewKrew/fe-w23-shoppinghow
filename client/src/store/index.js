@@ -1,8 +1,7 @@
 import evt from '@/utils/custom-event';
 import { api } from '@/api';
 import { url } from './api-key';
-import { getItemInLocalStroage, setItemInLocalStroage, removeItemInLocalStroage } from '../utils/local-storage';
-import { removeDulication } from '../utils/helper';
+import { getItemInLocalStroage, setItemInLocalStroage, removeDuplication } from '../utils/local-storage';
 
 class Store {
   state = {
@@ -14,37 +13,33 @@ class Store {
     menu: [],
     autoCompleteWords: [],
     searchInput: '',
-    searchName: getItemInLocalStroage('search-name'),
+    searchName: getItemInLocalStroage('searchName'),
     recentlyViewedThings: getItemInLocalStroage('recentlyViewedThings'),
+    currChoicedWordIdx: -1,
   };
 
   constructor() {}
 
-  async load(key) {
+  async load(key, queryString = '') {
     try {
-      const res = await api.get(url[key]);
+      const res = await api.get(`${url[key]}${queryString}`);
       if (!res.success) throw new Error(res.message);
       const newObject = { [key]: res.result };
-      this.setState(newObject);
-      this.notify(key);
+      this.setState(newObject, key);
     } catch (e) {
       console.error(e);
     }
   }
 
   addToLocalStorage(data, key, limit) {
-    removeDulication(data, this.state[key], key);
+    removeDuplication(data, this.state[key], key);
     setItemInLocalStroage(key, data, limit);
     const newObject = { [key]: getItemInLocalStroage(key) };
-    this.setState(newObject);
-    this.notify(key);
+    this.setState(newObject, key);
   }
 
-  setState(newState) {
+  setState(newState, key) {
     this.state = { ...this.state, ...newState };
-  }
-
-  notify(key) {
     evt.fire(key, this.state);
   }
 }

@@ -51,8 +51,9 @@ const getAutocompleteList = async (search) => {
   try {
     const startPoint = 0;
     const endPoint = 10;
-    const autoCompleteWord = await Item.find({ title: getRegExp(search) });
-    const result = autoCompleteWord.slice(startPoint, endPoint);
+    const matchedItems = await Item.find({ title: getRegExp(search) });
+    const slicedItems = matchedItems.slice(startPoint, endPoint);
+    const result = slicedItems.map((item) => item.title);
     return result;
   } catch (e) {
     throw e;

@@ -10,7 +10,7 @@ export default class HelpSearchContainer {
     this.helpSearchContainer.className = 'help-search-container';
     this.recentSearchName = new RecentSearchName({
       $parent: this.helpSearchContainer,
-      init: getItemInLocalStroage('search-name'),
+      init: getItemInLocalStroage('searchName'),
     });
     this.hotShoppingKeyword = new HotShoppingKeyword({
       $parent: this.helpSearchContainer,
