@@ -1,7 +1,7 @@
-import Component from '../Core/Component'
-import styles from '../../scss/ComponentStyles/RecentlyRelatedGoods.module.scss'
+import Component from '../../Core/Component'
+import styles from './styles/RecentlyRelatedGoods.module.scss'
 import GoodsList from './GoodsList'
-import { recentlyViewedGoodsDataSetManager } from '../Data/goodsDataSetManager'
+import { recentlyViewedGoodsDataSetManager } from './goodsDataSetManager'
 
 export default class RecentlyRelatedGoods extends Component {
     
@@ -38,7 +38,7 @@ export default class RecentlyRelatedGoods extends Component {
         this.#headerTabListEl = this.rootEl.querySelector(`.${ styles.headerTabList }`)
         
         this.#setRecentGoodsDataChangeEventListener()
-        this.#setSideEventClickEventListener()
+        this.#setSideBtnClickEventListener()
         this.#setHeaderTabItemClickEventListener()
         this.update()
     }
@@ -66,7 +66,7 @@ export default class RecentlyRelatedGoods extends Component {
         }).join('')
     }
     
-    #setSideEventClickEventListener() {
+    #setSideBtnClickEventListener() {
         const leftSideBtnEl = this.rootEl.querySelector(`.${ styles.leftSideBtn }`)
         const rightSideBtnEl = this.rootEl.querySelector(`.${ styles.rightSideBtn }`)
         
@@ -78,7 +78,7 @@ export default class RecentlyRelatedGoods extends Component {
         })
         
         rightSideBtnEl.addEventListener('click', () => {
-            if (recentlyViewedGoodsDataSetManager.dataList.length >= (this.#currentPageIdx + 1) * RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE) {
+            if (recentlyViewedGoodsDataSetManager.data.length >= (this.#currentPageIdx + 1) * RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE) {
                 this.#currentPageIdx++
                 this.update()
             }
@@ -113,7 +113,7 @@ export default class RecentlyRelatedGoods extends Component {
         const selectedIdxInPage = this.#currentSelectedIdx % RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE
         const startIdxToShow = RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE * this.#currentPageIdx
         const endIdxToShow = RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE * (this.#currentPageIdx + 1)
-        const recentGoodsDataListToShow = recentlyViewedGoodsDataSetManager.dataList.slice(startIdxToShow, endIdxToShow)
+        const recentGoodsDataListToShow = recentlyViewedGoodsDataSetManager.data.slice(startIdxToShow, endIdxToShow)
         
         while (recentGoodsDataListToShow.length < RecentlyRelatedGoods.#NUMBER_OF_ITEM_PER_PAGE) {
             recentGoodsDataListToShow.push({})

@@ -1,7 +1,7 @@
-import Component from '../Core/Component'
-import styles from '../../scss/ComponentStyles/RecentGoodsButton.module.scss'
+import Component from '../../Core/Component'
+import styles from './styles/RecentGoodsButton.module.scss'
 import RecentAndTaggedGoodsTab from './RecentAndTaggedGoodsTab'
-import FloatingLayer from './FloatingLayer'
+import FloatingLayer from '../Common/FloatingLayer'
 
 export default class RecentGoodsButton extends Component {
     
@@ -10,7 +10,10 @@ export default class RecentGoodsButton extends Component {
     #floatingLayer
     
     constructor() {
-        const floatingLayer = new FloatingLayer(new RecentAndTaggedGoodsTab())
+        const floatingLayer = new FloatingLayer(new RecentAndTaggedGoodsTab(), {
+            leftAlign: false,
+            rightAlign: true
+        })
         
         super(`
             <div class="${ styles.buttonBox }">
@@ -30,12 +33,12 @@ export default class RecentGoodsButton extends Component {
     #setHoverEventListener() {
         let timeId
         
-        this.rootEl.addEventListener('mouseover', () => {
+        this.rootEl.addEventListener('mouseenter', () => {
             this.#floatingLayer.show()
             clearTimeout(timeId)
         })
         
-        this.rootEl.addEventListener('mouseout', () => {
+        this.rootEl.addEventListener('mouseleave', () => {
             timeId = setTimeout(() => {
                 this.#floatingLayer.hide()
             }, RecentGoodsButton.#TIME_UNTIL_HIDDEN_IF_MOUSE_OUT)
