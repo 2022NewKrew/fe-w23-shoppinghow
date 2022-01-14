@@ -1,3 +1,4 @@
+import { debounce } from "../utils";
 import recentKeywordsModel from "../model/RecentKeywordsModel";
 import SearchInfo from "./SearchInfo";
 import Top10 from "./Top10";
@@ -17,7 +18,7 @@ export default class SearchBar{
     this.top10;
     /** @type {SearchInfo} */
     this.searchInfo;
-    this.autocompleteTimeoutHandle;
+    this.autocompleteTimeoutId;
 
     this.#init();
   }
@@ -68,6 +69,11 @@ export default class SearchBar{
      * 'keypress' does not detect 'Backspace' key.
      * 'keyup' does not fire until user releases key.
      * Which event should I use...? Or should I combine them?
+     *
+     * But do I want to show the result even before releasing the key?
+     * It's bad for UX and performance.
+     * And most of websites search components use 'keyup' event.
+     * Thus just stick to 'keyup' event.
      */
     this.inputElement.addEventListener("keyup", (e)=>{
       const currentKeyword=e.target.value;
@@ -85,15 +91,18 @@ export default class SearchBar{
     this.searchInfo.show();
     if(currentKeyword===""){
       // Show info.
-      clearTimeout(this.autocompleteTimeoutHandle);
+      clearTimeout(this.autocompleteTimeoutId);
       this.searchInfo.showInfo();
     }
     else{
       // Show autocomplete.
-      clearTimeout(this.autocompleteTimeoutHandle);
-      this.autocompleteTimeoutHandle=setTimeout(()=>{
-        this.searchInfo.showsAutocomplete(currentKeyword);
-      }, 500);
+      this.autocompleteTimeoutId=debounce(
+        this.autocompleteTimeoutId,
+        ()=>{
+          this.searchInfo.showsAutocomplete(currentKeyword);
+        },
+        500
+      );
     }
   }
 }

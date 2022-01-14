@@ -35,4 +35,17 @@ function getRequestToUrl(url){
   });
 }
 
-export {getRequestToUrl, postRequestToUrl};
+/**
+ * Run debounce technique on given timeoutId,
+ * and return a new timeoutId set on given callback.
+ * @param {number} timeoutId timeout ID to be erased.
+ * @param {Function} callback callback function to be set timeout.
+ * @param {number} timeoutMs milliseconds that callback function will be called in.
+ * @returns {number} new timeout ID set on given callback function.
+ */
+function debounce(timeoutId, callback, timeoutMs){
+  clearTimeout(timeoutId);
+  return setTimeout(callback, timeoutMs);
+}
+
+export {debounce, getRequestToUrl, postRequestToUrl};

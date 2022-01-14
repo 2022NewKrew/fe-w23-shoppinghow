@@ -23,8 +23,7 @@ class RecentKeywordsModel extends Observable{
     if(this.data.includes(newKeyword)){
       return;
     }
-    this.data.unshift(newKeyword);
-    this.data=this.data.slice(0, this.limit);
+    this.data=[...this.data, newKeyword].slice(0, this.limit);
     this.notify();
     this.#saveData();
   }
@@ -35,13 +34,12 @@ class RecentKeywordsModel extends Observable{
   }
 
   fetchData(){
-    let savedString=localStorage[this.localStorageKey];
-    let recentKeywords;
-    if(savedString===undefined){
+    let localStorageValue=localStorage[this.localStorageKey];
+    if(localStorageValue===undefined){
       this.data=[];
       return;
     }
-    recentKeywords=JSON.parse(savedString);
+    const recentKeywords=JSON.parse(localStorageValue);
     this.data=recentKeywords.slice(0, this.limit);
     this.notify();
   }
