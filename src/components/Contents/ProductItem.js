@@ -1,15 +1,16 @@
 import Component from "@core/Component";
+import pickedItemModel from "@models/PickedItemModel";
 
 class ProductItem extends Component {
   template() {
     const { idx, title, img, price, originalPrice, discountTag } = this.props;
     return `
-        <li class="product__item item" data-idx="${idx}">
-            <a href="#" class="product__link">
+        <li class="product__item" data-idx="${idx}">
+            <a href="#" class="product__link item">
                 <span class="product__thumb">
                     <img src="${img}" class="product__img item-img" alt="">
                 </span>
-
+                
                 <strong class="product__title item-title">${title}</strong>
 
                 <span class="product__detail-price">
@@ -32,6 +33,11 @@ class ProductItem extends Component {
                     }
                 </span>
             </a>
+            <div class="product__pick-btn ${
+              pickedItemModel.isItemPicked(this.props)
+                ? "pick-btn-activated"
+                : ""
+            }"></div>
         </li>
     `;
   }

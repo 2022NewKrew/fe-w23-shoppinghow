@@ -1,5 +1,5 @@
 import Component from "@core/Component";
-import RecentViewed from "@components/Header/RecentViewed";
+import PrivateMenu from "@components/Header/PrivateMenu";
 
 class Menu extends Component {
   template() {
@@ -35,53 +35,12 @@ class Menu extends Component {
                 <li class="top-menu__btn"><a href="">할인특가</a></li>
                 <li class="top-menu__btn"><a href="">기획전</a></li>
             </ul>
-            <ul class="private-menu">
-                <li class="private-menu__btn"><a href="#">로그인</a></li>
-                <div class="activate-recent-wrapper">
-                    <li class="private-menu__btn"><a href="#">최근본상품</a></li>
-                </div>
-            </ul>
         </div>`;
   }
 
   mounted() {
-    const $activateRecentWrapper = this.$target.querySelector(
-      ".activate-recent-wrapper"
-    );
-    new RecentViewed($activateRecentWrapper);
-  }
-
-  setEvent() {
-    this.addEvent("mouseover", ".header-menu", this.handleMouseover.bind(this));
-    this.addEvent("mouseout", ".header-menu", this.handleMouseout.bind(this));
-  }
-
-  handleMouseover(e) {
-    const { target } = e;
-    if (target.closest(".activate-recent-wrapper")) {
-      this.activateRecentWrapper();
-    }
-  }
-
-  handleMouseout(e) {
-    const { toElement } = e;
-    if (!toElement?.closest(".activate-recent-wrapper")) {
-      this.inactivateRecentWrapper();
-    }
-  }
-
-  activateRecentWrapper() {
-    const $recentItemsWrapper = this.$target.querySelector(
-      ".recent-items__wrapper"
-    );
-    $recentItemsWrapper.style.visibility = "visible";
-  }
-
-  inactivateRecentWrapper() {
-    const $recentItemsWrapper = this.$target.querySelector(
-      ".recent-items__wrapper"
-    );
-    $recentItemsWrapper.style.visibility = "hidden";
+    const $headerMenu = this.$target.querySelector(".header-menu");
+    new PrivateMenu($headerMenu);
   }
 }
 

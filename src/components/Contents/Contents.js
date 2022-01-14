@@ -1,10 +1,17 @@
 import Component from "@core/Component";
 import Promotion from "@components/Contents/Promotion";
 import ProductContainer from "@components/Contents/ProductContainer";
-import recentItemModel from "@models/RecentItemModel";
+import recentViewedItemModel from "@models/RecentViewedItemModel";
+import pickedItemModel from "@models/PickedItemModel";
 import { fetchData } from "@utils/apiUtils";
+import Suggestion from "@components/Contents/Suggestion";
 
 const PRODUCT_GROUP_LIST_DATA_URL = "http://localhost:3000/productGroups.json";
+
+const PRIVATE_ITEM_TYPE = {
+  PICKED: "picked",
+  RECENT_VIEWED: "recentViewed",
+};
 
 class Contents extends Component {
   #productGroupList;
@@ -23,6 +30,7 @@ class Contents extends Component {
       (productGroup, idx) =>
         new ProductContainer($container, { idx, ...productGroup })
     );
+    new Suggestion($container);
   }
 
   setEvent() {
@@ -31,26 +39,59 @@ class Contents extends Component {
 
   handelMouseclick(e) {
     const { target } = e;
-    if (target.closest(".product__item")) {
-      this.addRecentItem(target);
+    if (target.classList.contains("product__pick-btn")) {
+      this.updatePrivateItem(target);
+    } else if (target.closest(".product__item")) {
+      this.addPrivateItem({ target, type: PRIVATE_ITEM_TYPE.RECENT_VIEWED });
     }
   }
 
-  addRecentItem(target) {
+  updatePrivateItem(target) {
+    if (target.classList.contains("pick-btn-activated")) {
+      this.removePrivateItem({ target, type: PRIVATE_ITEM_TYPE.PICKED });
+    } else {
+      this.addPrivateItem({ target, type: PRIVATE_ITEM_TYPE.PICKED });
+    }
+  }
+
+  removePrivateItem({ target, type }) {
     try {
-      const productContainerIdx = target.closest(".product-group").dataset.idx;
-      const productItemIdx = target.closest(".product__item").dataset.idx;
-      const productItem = this.getProductItem(
-        productContainerIdx,
-        productItemIdx
-      );
-      recentItemModel.addRecentItem(productItem);
+      const productItem = this.getProductItem(target);
+      switch (type) {
+        case PRIVATE_ITEM_TYPE.PICKED:
+          target.classList.remove("pick-btn-activated");
+          pickedItemModel.removeItem(productItem);
+          break;
+        default:
+          break;
+      }
     } catch (error) {
       console.error(error);
     }
   }
 
-  getProductItem(productContainerIdx, productItemIdx) {
+  addPrivateItem({ target, type }) {
+    try {
+      const productItem = this.getProductItem(target);
+      switch (type) {
+        case PRIVATE_ITEM_TYPE.PICKED:
+          target.classList.add("pick-btn-activated");
+          pickedItemModel.addItem(productItem);
+          break;
+        case PRIVATE_ITEM_TYPE.RECENT_VIEWED:
+          recentViewedItemModel.addItem(productItem);
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  getProductItem(target) {
+    const productContainerIdx = target.closest(".product-group").dataset.idx;
+    const productItemIdx = target.closest(".product__item").dataset.idx;
     return this.#productGroupList[productContainerIdx].products[productItemIdx];
   }
 }
