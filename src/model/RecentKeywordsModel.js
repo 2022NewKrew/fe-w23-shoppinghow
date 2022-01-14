@@ -23,7 +23,7 @@ class RecentKeywordsModel extends Observable{
     if(this.data.includes(newKeyword)){
       return;
     }
-    this.data=[...this.data, newKeyword].slice(0, this.limit);
+    this.data=[newKeyword, ...this.data].slice(0, this.limit);
     this.notify();
     this.#saveData();
   }
