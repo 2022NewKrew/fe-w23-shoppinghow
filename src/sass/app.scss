@@ -31,14 +31,16 @@
       }
     }
 
-    .search-top10 {
-      position: absolute;
-      transform: translateY(50%);
-      left: 10px;
-      font-size: 1.2rem;
-      height: 50%;
-      display: flex;
-      align-items: center;
+    .search-top10-box {
+      overflow: hidden;
+
+      .search-top10-list {
+        position: absolute;
+        left: 10px;
+        font-size: 1.2rem;
+        height: 50%;
+        flex-direction: column;
+      }
     }
   }
 }
@@ -131,6 +133,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          margin-bottom: 10px;
 
           .planning__left-ico {
             @extend %planning-ico;
@@ -141,20 +144,21 @@
           .planning__paging {
             display: flex;
 
-            .planning__paging-btn {
-              display: flex;
-              width: 15px;
-              height: 5px;
-              margin: 1px;
+            em.planning__paging-btn {
+              @extend %planning__paging-btn;
 
               .planning__paging-num {
-                display: block;
-                width: 15px;
-                height: 5px;
-                font-size: 0;
-                line-height: 0;
+                @extend %planning__paging-num;
+                background-color: #333;
+              }
+            }
+
+            span.planning__paging-btn {
+              @extend %planning__paging-btn;
+
+              .planning__paging-num {
+                @extend %planning__paging-num;
                 background-color: #ccc;
-                text-indent: -9999px;
               }
             }
           }
@@ -174,26 +178,32 @@
       display: flex;
     }
   }
+
   .theme {
     .theme-container {
       display: flex;
     }
+
     .theme-item {
       @extend %card;
       border: 1px solid #f1f1f1;
     }
+
     .theme__link {
       display: block;
       strong,
       span {
         @extend %text-block;
       }
+
       .theme-item__title {
         font-weight: bold;
       }
+
       .theme-item__desc {
         padding-top: 0;
       }
+
       .theme-item__icon {
         border: 0.5px solid #ff000069;
         padding: 4px;
@@ -211,6 +221,7 @@
       padding-bottom: 20px;
       background-color: $bgColor;
     }
+
     .hot-deal__title,
     .hot-deal__detail-price {
       @extend %text-block;
@@ -219,6 +230,7 @@
     .hot-deal-list {
       display: flex;
       flex-wrap: wrap;
+
       .hot-deal__item {
         width: 20%;
         padding: 20px;
@@ -230,6 +242,7 @@
     .hot-deal__detail-price {
       margin-top: 20px;
       position: relative;
+
       .txt-price-percent {
         position: absolute;
         right: 10px;
