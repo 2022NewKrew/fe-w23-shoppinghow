@@ -20,7 +20,9 @@ export default class Recommend{
     /** @type {number} */
     this.numItemsInOnePage=5;
     /** @type {number} */
-    this.currentPage=0;
+    this.currentPageIndex=0;
+    /** @type {number} */
+    this.currentWatchingItemId;
 
     this.#init();
   }
@@ -48,8 +50,8 @@ export default class Recommend{
         return;
       }
       Array.from(this.viewedItemsContainer.children).some((viewedItem)=>(
-        viewedItem.classList.contains("viewed-items__item-active") ?
-          viewedItem.classList.remove("viewed-items__item-active") || true
+        viewedItem.classList.contains("viewed-items__item-active")
+          ? viewedItem.classList.remove("viewed-items__item-active") || true
           : false
       ));
       e.target.closest("li").classList.add("viewed-items__item-active");
@@ -74,10 +76,12 @@ export default class Recommend{
   #showNavigationButtons(){
     this.viewedItemsContainer.insertAdjacentHTML("beforeend",
       `<button class="viewed-items__left-btn">
-        <img src="https://static-page.kakao.com/static/pc/ic-paging-back-nor.svg?2c964bb7a6b07a7941252b32ea13f03c" alt="left">
+        <img src="https://static-page.kakao.com/static/pc/ic-paging-back-nor.svg?2c964bb7a6b07a7941252b32ea13f03c"
+        alt="left">
       </button>
       <button class="viewed-items__right-btn">
-        <img src="https://static-page.kakao.com/static/pc/ic-paging-next-nor.svg?b76f34a1b77e59514735b92464295b7c" alt="right">
+        <img src="https://static-page.kakao.com/static/pc/ic-paging-next-nor.svg?b76f34a1b77e59514735b92464295b7c"
+        alt="right">
       </button>`
     );
   }
@@ -86,12 +90,25 @@ export default class Recommend{
    * @param {number} offset
    */
   #goToRecentItemsPageByOffset(offset){
-    if((this.currentPage+offset)<0 || (this.currentPage+offset)*this.numItemsInOnePage>=Object.keys(this.viewedItemsIds).length){
+    if((this.currentPageIndex+offset)<0
+      || (this.currentPageIndex+offset)*this.numItemsInOnePage>=Object.keys(this.viewedItemsIds).length
+    ){
       return;
     }
-    this.currentPage+=offset;
-    this.#showViewedItems(this.currentPage);
+    this.currentPageIndex+=offset;
+    this.#showViewedItems(this.currentPageIndex);
     this.#showNavigationButtons();
+
+    const isCurrentWatchItemClickable=Array.from(this.viewedItemsContainer.children).some((viewedItemTab)=>{
+      if(this.currentWatchingItemId===viewedItemTab.getAttribute("data-itemId")){
+        viewedItemTab.click();
+        return true;
+      }
+    });
+
+    if(isCurrentWatchItemClickable){
+      return;
+    }
     this.viewedItemsContainer.children[0].click();
   }
 
@@ -99,7 +116,10 @@ export default class Recommend{
    * @param {number} pageIndex
    */
   #showViewedItems(pageIndex){
-    let viewedItemIdsinPage=Object.keys(this.viewedItemsIds).slice(pageIndex*this.numItemsInOnePage, (pageIndex+1)*this.numItemsInOnePage);
+    let viewedItemIdsinPage=Object.keys(this.viewedItemsIds)
+      .slice(
+        pageIndex*this.numItemsInOnePage, (pageIndex+1)*this.numItemsInOnePage
+      );
     if(viewedItemIdsinPage.length<this.numItemsInOnePage){
       // Fill 'undefined'.
       viewedItemIdsinPage.push(...Array(this.numItemsInOnePage-viewedItemIdsinPage.length).fill(undefined));
@@ -121,6 +141,7 @@ export default class Recommend{
    * @param {number} itemId
    */
   #showRecommendItems(itemId){
+    this.currentWatchingItemId=itemId;
     const recommendItemIds=this.#getRecommendItemIds(itemId);
     this.recommendItemsContainer.innerHTML=recommendItemIds.map((itemId)=> {
       const {imageSrc, title, desc}=this.itemData[Number(itemId)];
