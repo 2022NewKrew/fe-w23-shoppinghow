@@ -27,7 +27,10 @@ function createHotDealHtml(){
   container.innerHTML = Array(10).fill(0).reduce( (html) => html+hotDealItemTpl, "");
 }
 
-async function createItemsHtml(){
+/**
+ * @param {boolean} addEventListenerFlag flag whether to set event listener.
+ */
+async function createItemsHtml(addEventListenerFlag=false){
   const container = document.querySelector(".theme-container");
   const themeItemData=await itemDataModel.getData();
 
@@ -35,6 +38,10 @@ async function createItemsHtml(){
     const isDibsItem=dibsItemIdsModel.isDibsItem(itemData.itemId);
     return new ThemeItem({...itemData, isDibsItem}).getHtml();
   }).join("");
+
+  if(addEventListenerFlag){
+    ThemeItem.addClickEventListener(container);
+  }
 }
 
 function createRecentItems(){
@@ -67,11 +74,10 @@ function createAll(){
   createCarousel();
   createSearchBar();
   createRecommend();
+  createItemsHtml(true);
 
-  const themeContainer = document.querySelector(".theme-container");
-  ThemeItem.addClickEventListener(themeContainer);
   dibsItemIdsModel.subscribe(()=>{
-    createItemsHtml();
+    createItemsHtml(false);
   });
 }
 

@@ -124,8 +124,8 @@ export default class Recommend{
     const recommendItemIds=this.#getRecommendItemIds(itemId);
     this.recommendItemsContainer.innerHTML=recommendItemIds.map((itemId)=> {
       const {imageSrc, title, desc}=this.itemData[Number(itemId)];
-      const dibsed=dibsItemIdsModel.isDibsItem(itemId);
-      const themeItem=new ThemeItem({itemId, imageSrc, title, desc, dibsed});
+      const isDibsItem=dibsItemIdsModel.isDibsItem(itemId);
+      const themeItem=new ThemeItem({itemId, imageSrc, title, desc, isDibsItem});
       return themeItem.getHtml();
     }).join("");
   }
