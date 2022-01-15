@@ -10,8 +10,10 @@ import itemDataModel from "./model/ItemDataModel";
 import viewItemIdsModel from "./model/ViewItemIdsModel";
 
 (async function initDefault(){
-  await itemDataModel.fetchData();
-  await viewItemIdsModel.fetchData();
-  await dibsItemIdsModel.fetchData();
+  await Promise.all([
+    itemDataModel.fetchData(),
+    viewItemIdsModel.fetchData(),
+    dibsItemIdsModel.fetchData()
+  ]);
   createAll();
 })();

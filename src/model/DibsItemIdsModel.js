@@ -28,7 +28,7 @@ class DibsItemIdsModel extends Observable{
   /**
    * @param {number} itemId
    */
-  isDibsedItem(itemId){
+  isDibsItem(itemId){
     return (itemId in this.data);
   }
 }

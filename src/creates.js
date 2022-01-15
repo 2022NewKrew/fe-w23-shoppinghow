@@ -32,7 +32,7 @@ async function createItemsHtml(){
   const themeItemData=await itemDataModel.getData();
 
   container.innerHTML=themeItemData.map((itemData)=>{
-    const isDibsItem=dibsItemIdsModel.isDibsedItem(itemData.itemId);
+    const isDibsItem=dibsItemIdsModel.isDibsItem(itemData.itemId);
     return new ThemeItem({...itemData, isDibsItem}).getHtml();
   }).join("");
 }
